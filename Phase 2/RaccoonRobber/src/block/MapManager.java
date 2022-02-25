@@ -28,22 +28,16 @@ public class MapManager {
     //this method gets the different block images from file
     public void getBlockImage() {
         try {
-            blocks[0] = new MapBlock();
+            for(int i=0; i<7; i++){
+                blocks[i] = new MapBlock();
+            }
             blocks[0].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/floor.png")));
-            blocks[1] = new MapBlock();
             blocks[1].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wall_top.png")));
-            blocks[2] = new MapBlock();
             blocks[2].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wall_mid.png")));
-            blocks[3] = new MapBlock();
             blocks[3].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wall_left.png")));
-            blocks[4] = new MapBlock();
             blocks[4].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wall_right.png")));
-            blocks[5] = new MapBlock();
             blocks[5].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wall_single.png")));
-            blocks[6] = new MapBlock();
             blocks[6].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wall_top_end.png")));
-
-
         }
         catch(IOException e) {
             e.printStackTrace();
