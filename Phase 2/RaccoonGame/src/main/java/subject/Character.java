@@ -40,7 +40,7 @@ public class Character extends Subject{
     }
     
     //Load player frames class
-    public void loadPlayerFrames(){
+    public void loadCharacterFrames(){
         try{
             moving1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player-temp/up1.png")));
             moving2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player-temp/up2.png")));
@@ -54,7 +54,7 @@ public class Character extends Subject{
     //Movement drawing
     public void draw(Graphics2D g){
         BufferedImage frame;
-        loadPlayerFrames();
+        loadCharacterFrames();
         if(!atRest) {
             if (spriteNum == 1) {
                 frame = moving1;
