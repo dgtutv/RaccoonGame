@@ -5,7 +5,7 @@ import main.RaccoonGame;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Subject {
+public abstract class Subject {
     //Game Awareness
     RaccoonGame raccoonGame;
 
@@ -26,7 +26,11 @@ public class Subject {
     //Constructor
     public Subject(RaccoonGame raccoonGame){
         this.raccoonGame = raccoonGame;
+        atRest = true;
     }
+
+    //direction updater needs to be implemented different for characters and enemies
+    public abstract void direction();
 
     //Movement drawing
     public void draw(Graphics2D g){
@@ -46,6 +50,7 @@ public class Subject {
     }
     //Subject Movement
     public void update(){
+        direction();
          if(!atRest){
              switch (direction) {
                  case "up" -> y -= speed;
