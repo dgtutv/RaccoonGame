@@ -1,5 +1,6 @@
 package main;
 
+import javax.print.attribute.standard.PrinterIsAcceptingJobs;
 import javax.swing.*;
 
 public class Main {
@@ -24,6 +25,7 @@ public class Main {
         gameWindow.pack();
         gameWindow.setLocationRelativeTo(null);
         gameWindow.setVisible(true);
+        racoonGame.startThread();
     }
 
 }

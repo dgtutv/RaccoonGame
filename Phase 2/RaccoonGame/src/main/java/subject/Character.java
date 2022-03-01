@@ -1,5 +1,6 @@
 package subject;
 
+import main.KeyHandler;
 import main.RaccoonGame;
 
 import javax.imageio.ImageIO;
@@ -10,31 +11,40 @@ import java.util.Objects;
 
 
 public class Character extends Subject{
+    //Need a KeyHandler to handle movement of main character
+    KeyHandler keyH;
+    
     //Constructor
-    public Character(RaccoonGame raccoonGame) {
+    public Character(RaccoonGame raccoonGame, KeyHandler keyH) {
         super(raccoonGame);
         //default values that can easily be changed
         x = 100;
         y = 100;
         speed = 4;
         direction = "down";
+        //Add the key listener to raccoonGame to handle key movement
+        this.keyH = keyH;
     }
-
-    //Instantiate a KeyHandler, then handle movement itself and drawing with
-    KeyHandler keyH = new KeyHandler();
 
     //Direction updater class
     public void direction(){
         if(keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
-            if (keyH.upPressed) {
+            atRest = false;
+            if(keyH.upPressed) {
                 direction = "up";
-            } else if (keyH.downPressed) {
+            }
+            else if(keyH.downPressed) {
                 direction = "down";
-            } else if (keyH.rightPressed) {
+            }
+            else if(keyH.rightPressed) {
                 direction = "right";
-            } else {
+            }
+            else{
                 direction = "left";
             }
+        }
+        else{
+            atRest = true;
         }
     }
     
@@ -53,7 +63,7 @@ public class Character extends Subject{
     //Movement drawing
     public void draw(Graphics2D g){
         loadCharacterFrames();
-        BufferedImage frame = null;
+        BufferedImage frame = still;
         if(!atRest) {
             if (spriteNum == 1) {
                 frame = moving1;
@@ -61,9 +71,6 @@ public class Character extends Subject{
             else if(spriteNum == 2){
                 frame = moving2;
             }
-        }
-        else {
-            frame = still;
         }
         g.drawImage(frame, x, y, raccoonGame.blockSize, raccoonGame.blockSize, null);       //Image Observer
     }

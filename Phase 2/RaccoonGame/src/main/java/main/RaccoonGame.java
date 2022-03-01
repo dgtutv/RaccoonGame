@@ -19,17 +19,20 @@ public class RaccoonGame extends JPanel implements Runnable{
     public final int windowWidth = windowCol * blockSize;
     public final int windowHeight = windowRow * blockSize;
 
+    //Initialize a key handler
+    KeyHandler keyH = new KeyHandler();
+
     //initialize game thread
     Thread gameThread;
     MapManager mapManager = new MapManager(this);
-    Character character = new Character(this);
-
+    Character character = new Character(this, keyH);
 
     //create main game method
     public RaccoonGame() {
         this.setPreferredSize(new Dimension(windowWidth, windowHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
+        this.addKeyListener(keyH);
     }
 
     public void startThread() {
@@ -74,7 +77,6 @@ public class RaccoonGame extends JPanel implements Runnable{
     protected void update() {
         //Update everything here
         character.update();
-
     }
 
     //paint characters, items, map, etc...

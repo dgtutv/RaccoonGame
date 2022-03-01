@@ -35,7 +35,8 @@ public abstract class Subject {
     //Subject Movement
     public void update(){
         direction();
-        if(!atRest){
+        System.out.println(direction);
+        if(atRest == false){
             switch (direction) {
                 case "up" -> y -= speed;
                 case "down" -> y += speed;
@@ -52,7 +53,7 @@ public abstract class Subject {
                     spriteNum = 1;
                 }
                 spriteCounter = 0;
-             }
+            }
          }
     }
 }
