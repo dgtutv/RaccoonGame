@@ -32,7 +32,9 @@ public class RaccoonGame extends JPanel implements Runnable{
         this.setPreferredSize(new Dimension(windowWidth, windowHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
+        //Necessary lines for accepting key input
         this.addKeyListener(keyH);
+        this.setFocusable(true);
     }
 
     public void startThread() {
