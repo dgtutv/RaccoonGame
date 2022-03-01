@@ -30,11 +30,11 @@ public abstract class Subject {
     }
 
     //direction updater needs to be implemented different for characters and enemies
-    public abstract void direction();
+    public abstract void directionUpdate();
 
     //Subject Movement
     public void update(){
-        this.direction();
+        directionUpdate();
         if(!atRest){
             switch (direction) {
                 case "up" -> y -= speed;

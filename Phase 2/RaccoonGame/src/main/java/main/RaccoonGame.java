@@ -19,13 +19,13 @@ public class RaccoonGame extends JPanel implements Runnable{
     public final int windowWidth = windowCol * blockSize;
     public final int windowHeight = windowRow * blockSize;
 
-    //Initialize a key handler
+    //Initialize a key handler and a player with it
     KeyHandler keyH = new KeyHandler();
+    Character character = new Character(this, keyH);
 
     //initialize game thread
     Thread gameThread;
     MapManager mapManager = new MapManager(this);
-    Character character = new Character(this, keyH);
 
     //create main game method
     public RaccoonGame() {
