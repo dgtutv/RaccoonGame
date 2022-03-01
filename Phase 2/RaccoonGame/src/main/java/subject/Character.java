@@ -18,7 +18,6 @@ public class Character extends Subject{
         y = 100;
         speed = 4;
         direction = "down";
-        atRest = true;
     }
 
     //Instantiate a KeyHandler, then handle movement itself and drawing with
@@ -42,9 +41,9 @@ public class Character extends Subject{
     //Load player frames class
     public void loadCharacterFrames(){
         try{
-            moving1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player-temp/up1.png")));
-            moving2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player-temp/up2.png")));
-            still = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player-temp/down1.png")));
+            moving1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/playerTemp/up1.png")));
+            moving2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/playerTemp/up2.png")));
+            still = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/playerTemp/down1.png")));
         }
         catch(IOException e){
             e.printStackTrace();
@@ -53,13 +52,13 @@ public class Character extends Subject{
 
     //Movement drawing
     public void draw(Graphics2D g){
-        BufferedImage frame;
         loadCharacterFrames();
+        BufferedImage frame = null;
         if(!atRest) {
             if (spriteNum == 1) {
                 frame = moving1;
             }
-            else{
+            else if(spriteNum == 2){
                 frame = moving2;
             }
         }

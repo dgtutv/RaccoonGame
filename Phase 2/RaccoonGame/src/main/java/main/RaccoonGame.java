@@ -82,11 +82,12 @@ public class RaccoonGame extends JPanel implements Runnable{
         super.paintComponent(g);
         Graphics2D graphics = (Graphics2D)g;
         //Draw everything here:
-        character.draw(graphics);
 
         //draw map
         mapManager.drawMap(graphics);
 
+        //draw character
+        character.draw(graphics);
 
         //clean up
         graphics.dispose();
