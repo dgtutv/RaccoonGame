@@ -16,19 +16,17 @@ public class KeyHandler implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();       //keyCode is the ASCII value of a key on the keyboard
         //now scan to check which key has been pressed
-        switch(keyCode){
-            case KeyEvent.VK_W:     //Case for "W" key
-                upPressed = true;
-                break;
-            case KeyEvent.VK_S:     //Case for "S" key
-                leftPressed = true;
-                break;
-            case KeyEvent.VK_A:     //Case for "A" key
-                downPressed = true;
-                break;
-            case KeyEvent.VK_D:     //Case for "D" key
-                rightPressed = true;
-                break;
+        if(keyCode == KeyEvent.VK_W){      //If w pressed
+            upPressed = true;
+        }
+        if(keyCode == KeyEvent.VK_S){      //if s pressed
+            downPressed = true;
+        }
+        if(keyCode == KeyEvent.VK_A){      //if a pressed
+            leftPressed = true;
+        }
+        if(keyCode == KeyEvent.VK_D){      //if d pressed
+            rightPressed = true;
         }
     }
 
@@ -36,19 +34,17 @@ public class KeyHandler implements KeyListener {
     public void keyReleased(KeyEvent e) {
         int keyCode = e.getKeyCode();       //keyCode is the ASCII value of a key on the keyboard
         //now scan to check which key has been released
-        switch(keyCode){
-            case KeyEvent.VK_W:     //Case for "W" key
-                upPressed = false;
-                break;
-            case KeyEvent.VK_S:     //Case for "S" key
-                leftPressed = false;
-                break;
-            case KeyEvent.VK_A:     //Case for "A" key
-                downPressed = false;
-                break;
-            case KeyEvent.VK_D:     //Case for "D" key
-                rightPressed = false;
-                break;
+        if(keyCode == KeyEvent.VK_W){      //If w pressed
+            upPressed = false;
+        }
+        if(keyCode == KeyEvent.VK_S){      //if s pressed
+            downPressed =false;
+        }
+        if(keyCode == KeyEvent.VK_A){      //if a pressed
+            leftPressed =false;
+        }
+        if(keyCode == KeyEvent.VK_D){      //if d pressed
+            rightPressed =false;
         }
     }
 }

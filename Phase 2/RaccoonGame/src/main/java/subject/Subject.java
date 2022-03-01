@@ -34,9 +34,8 @@ public abstract class Subject {
 
     //Subject Movement
     public void update(){
-        direction();
-        System.out.println(direction);
-        if(atRest == false){
+        this.direction();
+        if(!atRest){
             switch (direction) {
                 case "up" -> y -= speed;
                 case "down" -> y += speed;
