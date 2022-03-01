@@ -4,6 +4,7 @@ import block.MapManager;
 
 import javax.swing.*;
 import java.awt.*;
+import subject.Character;
 
 public class RaccoonGame extends JPanel implements Runnable{
 
@@ -21,6 +22,7 @@ public class RaccoonGame extends JPanel implements Runnable{
     //initialize game thread
     Thread gameThread;
     MapManager mapManager = new MapManager(this);
+    Character character = new Character(this);
 
 
     //create main game method
@@ -71,6 +73,7 @@ public class RaccoonGame extends JPanel implements Runnable{
     //update method, update all information here such as keystrokes from a key handler class
     protected void update() {
         //Update everything here
+        character.update();
 
     }
 
@@ -79,7 +82,7 @@ public class RaccoonGame extends JPanel implements Runnable{
         super.paintComponent(g);
         Graphics2D graphics = (Graphics2D)g;
         //Draw everything here:
-
+        character.draw(graphics);
 
         //draw map
         mapManager.drawMap(graphics);

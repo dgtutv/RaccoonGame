@@ -32,6 +32,9 @@ public abstract class Subject {
     //direction updater needs to be implemented different for characters and enemies
     public abstract void direction();
 
+    //Similarly, loading the frames needs to be different for characters and enemies
+    public abstract void loadSubjectFrames();
+
     //Movement drawing
     public void draw(Graphics2D g){
         BufferedImage frame = null;
@@ -51,23 +54,24 @@ public abstract class Subject {
     //Subject Movement
     public void update(){
         direction();
-         if(!atRest){
-             switch (direction) {
-                 case "up" -> y -= speed;
-                 case "down" -> y += speed;
-                 case "left" -> x -= speed;
-                 case "right" -> x += speed;
-             }
-             //flip image/animate
-             spriteCounter++;
-             if(spriteCounter > animSpeed) {
-                 if(spriteNum == 1){
-                     spriteNum = 2;
-                 }
-                 else{
-                     spriteNum = 1;
-                 }
-                 spriteCounter = 0;
+        loadSubjectFrames();
+        if(!atRest){
+            switch (direction) {
+                case "up" -> y -= speed;
+                case "down" -> y += speed;
+                case "left" -> x -= speed;
+                case "right" -> x += speed;
+            }
+            //flip image/animate
+            spriteCounter++;
+            if(spriteCounter > animSpeed) {
+                if(spriteNum == 1){
+                    spriteNum = 2;
+                }
+                else{
+                    spriteNum = 1;
+                }
+                spriteCounter = 0;
              }
          }
     }
