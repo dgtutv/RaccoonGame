@@ -11,8 +11,9 @@ import java.util.Objects;
 
 
 public class Character extends Subject{
-    //Need a KeyHandler to handle movement of main character
+    //Unique constants to character
     KeyHandler keyH;
+    int health;
     
     //Constructor
     public Character(RaccoonGame raccoonGame, KeyHandler keyH) {
@@ -21,6 +22,7 @@ public class Character extends Subject{
         x = 100;
         y = 100;
         speed = 4;
+        health = 100;
         direction = "down";
         //Add the key listener to raccoonGame to handle key movement
         this.keyH = keyH;
@@ -73,5 +75,8 @@ public class Character extends Subject{
             }
         }
         g.drawImage(frame, x, y, raccoonGame.blockSize, raccoonGame.blockSize, null);       //Image Observer
+    }
+    public void changeHealth(int health){
+        this.health = health;
     }
 }
