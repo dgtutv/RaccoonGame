@@ -3,6 +3,8 @@ package subject;
 import main.RaccoonGame;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -36,16 +38,34 @@ public class Character extends Subject{
             }
         }
     }
-
+    
     //Load player frames class
-    public void loadSubjectFrames(){
+    public void loadPlayerFrames(){
         try{
-            moving1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("player-temp/up1.png")));
-            moving2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("player-temp/up2.png")));
-            still = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("player-temp/down1.png")));
+            moving1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player-temp/up1.png")));
+            moving2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player-temp/up2.png")));
+            still = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player-temp/down1.png")));
         }
         catch(IOException e){
             e.printStackTrace();
         }
+    }
+
+    //Movement drawing
+    public void draw(Graphics2D g){
+        BufferedImage frame;
+        loadPlayerFrames();
+        if(!atRest) {
+            if (spriteNum == 1) {
+                frame = moving1;
+            }
+            else{
+                frame = moving2;
+            }
+        }
+        else {
+            frame = still;
+        }
+        g.drawImage(frame, x, y, raccoonGame.blockSize, raccoonGame.blockSize, null);       //Image Observer
     }
 }

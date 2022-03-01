@@ -32,29 +32,9 @@ public abstract class Subject {
     //direction updater needs to be implemented different for characters and enemies
     public abstract void direction();
 
-    //Similarly, loading the frames needs to be different for characters and enemies
-    public abstract void loadSubjectFrames();
-
-    //Movement drawing
-    public void draw(Graphics2D g){
-        BufferedImage frame = null;
-        if(!atRest) {
-            if (spriteNum == 1) {
-                frame = moving1;
-            }
-            else{
-                frame = moving2;
-            }
-        }
-        else {
-            frame = still;
-        }
-        g.drawImage(frame, x, y, raccoonGame.blockSize, raccoonGame.blockSize, null);       //Image Observer
-    }
     //Subject Movement
     public void update(){
         direction();
-        loadSubjectFrames();
         if(!atRest){
             switch (direction) {
                 case "up" -> y -= speed;
