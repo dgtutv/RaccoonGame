@@ -14,6 +14,7 @@ public class Character extends Subject{
     //Unique constants to character
     KeyHandler keyH;
     int health;
+    int reward = 0;
     
     //Constructor
     public Character(RaccoonGame raccoonGame, KeyHandler keyH) {
@@ -28,7 +29,21 @@ public class Character extends Subject{
         this.keyH = keyH;
     }
 
+    //Method called every update to check on the character's health
+    @Override
+    public void customUpdate(){
+        //If character should be dead
+        if(health<=0){
+            GameOver = true;
+        }
+        //Store extra health from rewards in an int
+        if(health>100){
+               reward+= health-100;
+        }
+    }
+
     //Direction updater class
+    @Override
     public void directionUpdate(){
         if(keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
             atRest = false;
@@ -77,6 +92,9 @@ public class Character extends Subject{
         g.drawImage(frame, x, y, raccoonGame.blockSize, raccoonGame.blockSize, null);       //Image Observer
     }
     public void changeHealth(int health){
-        this.health = health;
+        this.health += health;
+    }
+    public void die(int health){
+        this.health = 0;
     }
 }

@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 public abstract class Subject {
     //Game Awareness
     RaccoonGame raccoonGame;
+    public boolean GameOver = false;
 
     //Speed and spacial awareness
     public int x, y;
@@ -32,8 +33,13 @@ public abstract class Subject {
     //direction updater needs to be implemented different for characters and enemies
     public abstract void directionUpdate();
 
+    //abstrasct customUpdate for character specific attributes
+    public abstract void customUpdate();
+
     //Subject Movement
     public void update(){
+        customUpdate();
+        if(GameOver) return;
         directionUpdate();
         if(!atRest){
             switch (direction) {

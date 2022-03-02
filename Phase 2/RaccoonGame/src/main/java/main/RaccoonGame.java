@@ -79,6 +79,8 @@ public class RaccoonGame extends JPanel implements Runnable{
     protected void update() {
         //Update everything here
         character.update();
+        //End the game if game over, add a game over screen here in future
+        if(character.GameOver) gameThread = null;
     }
 
     //paint characters, items, map, etc...
