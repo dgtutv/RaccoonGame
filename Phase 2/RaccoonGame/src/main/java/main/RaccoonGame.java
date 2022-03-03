@@ -10,8 +10,8 @@ import subject.Character;
 public class RaccoonGame extends JPanel implements Runnable{
 
     //set screen settings and map block size
-    final int pixelBlockSize = 32; //16 pixel by 16 pixel map blocks
-    final int blockSizeScale = 2; //scale this by 3, so that it displays well on modern monitors
+    final int pixelBlockSize = 16; //16 pixel by 16 pixel map blocks
+    final int blockSizeScale = 3; //scale this by 3, so that it displays well on modern monitors
     public final int blockSize = pixelBlockSize * blockSizeScale;
 
     //set our map size to be 20 by 20 blocks
