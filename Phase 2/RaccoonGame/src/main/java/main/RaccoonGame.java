@@ -1,5 +1,6 @@
 package main;
 
+import GUI.GUI;
 import block.MapManager;
 
 import javax.swing.*;
@@ -26,6 +27,7 @@ public class RaccoonGame extends JPanel implements Runnable{
     //initialize game thread
     Thread gameThread;
     MapManager mapManager = new MapManager(this);
+    GUI gui = new GUI(this);
 
     //create main game method
     public RaccoonGame() {
@@ -94,6 +96,9 @@ public class RaccoonGame extends JPanel implements Runnable{
 
         //draw character
         character.draw(graphics);
+
+        // Draw GUI
+        gui.drawGUI(graphics);
 
         //clean up
         graphics.dispose();
