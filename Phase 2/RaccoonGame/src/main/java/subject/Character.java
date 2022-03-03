@@ -68,9 +68,9 @@ public class Character extends Subject{
     //Load player frames class
     public void loadCharacterFrames(){
         try{
-            moving1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/playerTemp/up1.png")));
-            moving2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/playerTemp/up2.png")));
-            still = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/playerTemp/down1.png")));
+            moving1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/characters/raccoon_move_1.png")));
+            moving2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/characters/raccoon_move_2.png")));
+            still = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/characters/raccoon.png")));
         }
         catch(IOException e){
             e.printStackTrace();
@@ -93,8 +93,5 @@ public class Character extends Subject{
     }
     public void changeHealth(int health){
         this.health += health;
-    }
-    public void die(int health){
-        this.health = 0;
     }
 }

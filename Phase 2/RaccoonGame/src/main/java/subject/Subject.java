@@ -33,7 +33,7 @@ public abstract class Subject {
     //direction updater needs to be implemented different for characters and enemies
     public abstract void directionUpdate();
 
-    //abstrasct customUpdate for character specific attributes
+    //abstract customUpdate for character specific attributes
     public abstract void customUpdate();
 
     //Subject Movement
