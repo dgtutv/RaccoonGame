@@ -40,13 +40,13 @@ public class GUI {
     // Get image
     public void getImage() {
         try {
-            sfuIcon = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/GUI/sfu2.png")));
-            scoreIcon = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/GUI/score.png")));
-            String onesPath = "/res/GUI/" + String.valueOf(this.ones) + ".png";
+            sfuIcon = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/GUI/sfu2.png")));
+            scoreIcon = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/GUI/score.png")));
+            String onesPath = "/GUI/" + String.valueOf(this.ones) + ".png";
             onesIcon = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(onesPath)));
-            String tensPath = "/res/GUI/" + String.valueOf(this.tens) + ".png";
+            String tensPath = "/GUI/" + String.valueOf(this.tens) + ".png";
             tensIcon = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(tensPath)));
-            String hundredsPath = "/res/GUI/" + String.valueOf(this.hundreds) + ".png";
+            String hundredsPath = "/GUI/" + String.valueOf(this.hundreds) + ".png";
             hundredsIcon = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(hundredsPath)));
         }
         catch(IOException e) {
