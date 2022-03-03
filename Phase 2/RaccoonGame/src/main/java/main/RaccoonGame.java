@@ -1,10 +1,10 @@
 package main;
 
+import GUI.GUI;
 import block.MapManager;
 
 import javax.swing.*;
 import java.awt.*;
-import subject.Character;
 
 public class RaccoonGame extends JPanel implements Runnable{
 
@@ -19,22 +19,18 @@ public class RaccoonGame extends JPanel implements Runnable{
     public final int windowWidth = windowCol * blockSize;
     public final int windowHeight = windowRow * blockSize;
 
-    //Initialize a key handler and a player with it
-    KeyHandler keyH = new KeyHandler();
-    Character character = new Character(this, keyH);
-
     //initialize game thread
     Thread gameThread;
     MapManager mapManager = new MapManager(this);
+
+    GUI gui = new GUI(this);
+
 
     //create main game method
     public RaccoonGame() {
         this.setPreferredSize(new Dimension(windowWidth, windowHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
-        //Necessary lines for accepting key input
-        this.addKeyListener(keyH);
-        this.setFocusable(true);
     }
 
     public void startThread() {
@@ -78,9 +74,7 @@ public class RaccoonGame extends JPanel implements Runnable{
     //update method, update all information here such as keystrokes from a key handler class
     protected void update() {
         //Update everything here
-        character.update();
-        //End the game if game over, add a game over screen here in future
-        if(character.GameOver) gameThread = null;
+
     }
 
     //paint characters, items, map, etc...
@@ -89,11 +83,10 @@ public class RaccoonGame extends JPanel implements Runnable{
         Graphics2D graphics = (Graphics2D)g;
         //Draw everything here:
 
+
         //draw map
         mapManager.drawMap(graphics);
-
-        //draw character
-        character.draw(graphics);
+        gui.drawGUI(graphics);
 
         //clean up
         graphics.dispose();
