@@ -91,6 +91,8 @@ public class Character extends Subject{
         }
         g.drawImage(frame, x, y, raccoonGame.blockSize, raccoonGame.blockSize, null);       //Image Observer
     }
+
+    //call to change score
     public void changeScore(int score){
         this.score += score;
     }
