@@ -2,9 +2,6 @@ package subject;
 
 import main.RaccoonGame;
 
-import java.util.ArrayList;
-import java.util.List;
-
 //A superclass for the two enemy types
 public class Enemy extends Subject{
     //Unique constants to all enemies
@@ -29,7 +26,7 @@ public class Enemy extends Subject{
             damageCoolDown--;
         }
         else if(contact){
-            character.changeHealth(-damage);
+            character.changeScore(-damage);
             damageCoolDown = damageCoolDownConstant;
         }
     }

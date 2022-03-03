@@ -13,7 +13,7 @@ import java.util.Objects;
 public class Character extends Subject{
     //Unique constants to character
     KeyHandler keyH;
-    int health;
+    int score;
     int reward = 0;
     
     //Constructor
@@ -23,22 +23,22 @@ public class Character extends Subject{
         x = 100;
         y = 100;
         speed = 4;
-        health = 100;
+        score = 100;
         direction = "down";
         //Add the key listener to raccoonGame to handle key movement
         this.keyH = keyH;
     }
 
-    //Method called every update to check on the character's health
+    //Method called every update to check on the character's score
     @Override
     public void customUpdate(){
         //If character should be dead
-        if(health<=0){
+        if(score <=0){
             GameOver = true;
         }
-        //Store extra health from rewards in an int
-        if(health>100){
-               reward+= health-100;
+        //Store extra score from rewards in an int
+        if(score >100){
+               reward+= score -100;
         }
     }
 
@@ -91,7 +91,7 @@ public class Character extends Subject{
         }
         g.drawImage(frame, x, y, raccoonGame.blockSize, raccoonGame.blockSize, null);       //Image Observer
     }
-    public void changeHealth(int health){
-        this.health += health;
+    public void changeScore(int score){
+        this.score += score;
     }
 }
