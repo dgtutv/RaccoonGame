@@ -45,24 +45,30 @@ public abstract class Subject {
         customUpdate();
         if(GameOver) return;
         directionUpdate();
+
         if(!atRest){
-            switch (direction) {
-                case "up" -> y -= speed;
-                case "down" -> y += speed;
-                case "left" -> x -= speed;
-                case "right" -> x += speed;
-            }
-            //flip image/animate
-            spriteCounter++;
-            if(spriteCounter > animSpeed) {
-                if(spriteNum == 1){
-                    spriteNum = 2;
+            if(!collisionOn) {
+                switch (direction) {
+                    case "up" -> y -= speed;
+                    case "down" -> y += speed;
+                    case "left" -> x -= speed;
+                    case "right" -> x += speed;
                 }
-                else{
-                    spriteNum = 1;
+                //flip image/animate
+                spriteCounter++;
+                if(spriteCounter > animSpeed) {
+                    if(spriteNum == 1){
+                        spriteNum = 2;
+                    }
+                    else{
+                        spriteNum = 1;
+                    }
+                    spriteCounter = 0;
                 }
-                spriteCounter = 0;
             }
-         }
+
+        }
+
+
     }
 }

@@ -53,6 +53,11 @@ public class Character extends Subject{
     //Direction updater class
     @Override
     public void directionUpdate(){
+        //check is collision is on
+        collisionOn = false;
+        raccoonGame.collisionHandler.checkBlock(this);
+
+
         if(keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
             atRest = false;
             if(keyH.upPressed) {
@@ -64,13 +69,15 @@ public class Character extends Subject{
             else if(keyH.rightPressed) {
                 direction = "right";
             }
-            else{
+            else {
                 direction = "left";
             }
         }
         else{
             atRest = true;
         }
+
+
     }
     
     //Load player frames class
@@ -89,7 +96,8 @@ public class Character extends Subject{
     public void draw(Graphics2D g){
         loadCharacterFrames();
         BufferedImage frame = still;
-        if(!atRest) {
+        //if(!atRest) {
+        if(direction == "up" || direction == "down" || direction == "left" || direction == "right") {
             if (spriteNum == 1) {
                 frame = moving1;
             }

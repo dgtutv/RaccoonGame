@@ -12,8 +12,8 @@ import java.util.Objects;
 
 public class MapManager {
     RaccoonGame raccoonGame;
-    MapBlock[] blocks;
-    int[][] mapBlockArr;
+    public MapBlock[] blocks;
+    public int[][] mapBlockArr;
 
     public MapManager(RaccoonGame raccoonGame) {
         this.raccoonGame = raccoonGame;
