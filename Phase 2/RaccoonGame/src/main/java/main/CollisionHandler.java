@@ -34,7 +34,7 @@ public class CollisionHandler {
                     blockNum2 = raccoonGame.mapManager.mapBlockArr[rightCol][topRow];
                     break;
                 case "down":
-                    bottomRow = (subjectBottomY - subject.speed) / raccoonGame.blockSize;
+                    bottomRow = (subjectBottomY + subject.speed) / raccoonGame.blockSize;
                     blockNum1 = raccoonGame.mapManager.mapBlockArr[leftCol][bottomRow];
                     blockNum2 = raccoonGame.mapManager.mapBlockArr[rightCol][bottomRow];
                     break;
@@ -45,7 +45,7 @@ public class CollisionHandler {
 
                     break;
                 case "right":
-                    rightCol = (subjectRightX - subject.speed) / raccoonGame.blockSize;
+                    rightCol = (subjectRightX + subject.speed) / raccoonGame.blockSize;
                     blockNum1 = raccoonGame.mapManager.mapBlockArr[rightCol][topRow];
                     blockNum2 = raccoonGame.mapManager.mapBlockArr[rightCol][bottomRow];
                     break;

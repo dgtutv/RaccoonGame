@@ -28,10 +28,10 @@ public class Character extends Subject{
 
         //collidable area values
         collidableArea = new Rectangle();
-        collidableArea.x = raccoonGame.blockSize / 8;
-        collidableArea.y = raccoonGame.blockSize / 8;
-        collidableArea.width = raccoonGame.blockSize - (raccoonGame.blockSize / 8);
-        collidableArea.height = raccoonGame.blockSize - (raccoonGame.blockSize / 8);
+        collidableArea.x = raccoonGame.blockSize / 4;
+        collidableArea.y = raccoonGame.blockSize / 4;
+        collidableArea.width = raccoonGame.blockSize - (raccoonGame.blockSize / 4);
+        collidableArea.height = raccoonGame.blockSize - (raccoonGame.blockSize / 4);
 
         //Add the key listener to raccoonGame to handle key movement
         this.keyH = keyH;

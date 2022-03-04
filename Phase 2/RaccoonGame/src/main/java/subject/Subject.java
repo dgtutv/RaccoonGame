@@ -46,7 +46,9 @@ public abstract class Subject {
         if(GameOver) return;
         directionUpdate();
 
+        //if subject is trying to move
         if(!atRest){
+            //if character collision is off
             if(!collisionOn) {
                 switch (direction) {
                     case "up" -> y -= speed;

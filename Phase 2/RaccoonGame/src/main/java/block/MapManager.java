@@ -43,6 +43,7 @@ public class MapManager {
             blocks[5].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wall_single.png")));
             blocks[5].collidable = true;
             blocks[6].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wall_top_end.png")));
+            blocks[6].collidable = true;
         }
         catch(IOException e) {
             e.printStackTrace();
