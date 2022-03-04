@@ -33,10 +33,15 @@ public class MapManager {
             }
             blocks[0].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/floor.png")));
             blocks[1].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wall_top.png")));
+            blocks[1].collidable = true;
             blocks[2].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wall_mid.png")));
+            blocks[2].collidable = true;
             blocks[3].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wall_left.png")));
+            blocks[3].collidable = true;
             blocks[4].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wall_right.png")));
+            blocks[4].collidable = true;
             blocks[5].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wall_single.png")));
+            blocks[5].collidable = true;
             blocks[6].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wall_top_end.png")));
         }
         catch(IOException e) {
