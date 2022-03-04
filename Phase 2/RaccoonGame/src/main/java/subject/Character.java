@@ -25,6 +25,14 @@ public class Character extends Subject{
         speed = 4;
         score = 100;
         direction = "down";
+
+        //collidable area values
+        collidableArea = new Rectangle();
+        collidableArea.x = raccoonGame.blockSize / 8;
+        collidableArea.y = raccoonGame.blockSize / 8;
+        collidableArea.width = raccoonGame.blockSize - (raccoonGame.blockSize / 8);
+        collidableArea.height = raccoonGame.blockSize - (raccoonGame.blockSize / 8);
+
         //Add the key listener to raccoonGame to handle key movement
         this.keyH = keyH;
     }

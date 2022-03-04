@@ -24,6 +24,9 @@ public class RaccoonGame extends JPanel implements Runnable{
     KeyHandler keyH = new KeyHandler();
     Character character = new Character(this, keyH);
 
+    //Initialize collision handler
+    CollisionHandler collisionHandler = new CollisionHandler(this);
+
     //initialize game thread
     Thread gameThread;
     MapManager mapManager = new MapManager(this);

@@ -24,6 +24,10 @@ public abstract class Subject {
     public int spriteNum = 1;
     public int animSpeed = 12;  //speed of frame switching
 
+    //Collidable area
+    public Rectangle collidableArea;
+    public boolean collisionOn = false;
+
     //Constructor
     public Subject(RaccoonGame raccoonGame){
         this.raccoonGame = raccoonGame;
