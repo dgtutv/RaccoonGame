@@ -26,6 +26,7 @@ public abstract class Subject {
 
     //Collidable area
     public Rectangle collidableArea;
+    public int collidableAreaX, collidableAreaY;
     public boolean collisionOn = false;
 
     //Constructor

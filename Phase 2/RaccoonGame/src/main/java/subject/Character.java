@@ -13,7 +13,7 @@ import java.util.Objects;
 public class Character extends Subject{
     //Unique constants to character
     KeyHandler keyH;
-    int score = 0;
+    int score = 30;
     int reward = 0;
     
     //Constructor
@@ -32,6 +32,8 @@ public class Character extends Subject{
         collidableArea.y = raccoonGame.blockSize / 4;
         collidableArea.width = raccoonGame.blockSize - (raccoonGame.blockSize / 4);
         collidableArea.height = raccoonGame.blockSize - (raccoonGame.blockSize / 4);
+        collidableAreaX = collidableArea.x;
+        collidableAreaY = collidableArea.y;
 
         //Add the key listener to raccoonGame to handle key movement
         this.keyH = keyH;
@@ -56,6 +58,9 @@ public class Character extends Subject{
         //check is collision is on
         collisionOn = false;
         raccoonGame.collisionHandler.checkBlock(this);
+        //check object collision
+        int objectIndex = raccoonGame.collisionHandler.checkObject(this, true);
+        collectObject(objectIndex);
 
 
         if(keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
@@ -78,6 +83,27 @@ public class Character extends Subject{
         }
 
 
+    }
+
+    public void collectObject(int index) {
+        //check if the index is valid
+        if(index != 999) {
+            String objectName = raccoonGame.objects[index].objectName;
+
+            switch(objectName) {
+                case "Garbage":
+                    //increment player score and remove the item
+                    score += 10;
+                    raccoonGame.objects[index] = null;
+                    break;
+                case "Trap":
+                    //decrement player score and remove the item
+                    score -= 20;
+                    raccoonGame.objects[index] = null;
+                    break;
+
+            }
+        }
     }
     
     //Load player frames class
