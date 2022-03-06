@@ -23,14 +23,22 @@ public class GUI {
         // Initialize GUI
         this.raccoonGame = raccoonGame;
         ones = 0;
-        tens = 1;
-        hundreds = 2;
+        tens = 0;
+        hundreds = 0;
         getImage();
     }
 
     public GUI(RaccoonGame raccoonGame, int ones, int tens, int hundreds) {
         // Initialize GUI
         this.raccoonGame = raccoonGame;
+        this.ones = ones;
+        this.tens = tens;
+        this.hundreds = hundreds;
+        getImage();
+    }
+
+    public void update(int ones, int tens, int hundreds) {
+        // update numbers
         this.ones = ones;
         this.tens = tens;
         this.hundreds = hundreds;
@@ -68,4 +76,5 @@ public class GUI {
         graphics.drawImage(tensIcon, raccoonGame.getWidth()-250+scoreWidth/2+30, 0, digitSize, digitSize, null);
         graphics.drawImage(onesIcon, raccoonGame.getWidth()-250+scoreWidth/2+60, 0, digitSize, digitSize, null);
     }
+
 }
