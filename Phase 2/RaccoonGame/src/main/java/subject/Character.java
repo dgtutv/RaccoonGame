@@ -13,7 +13,7 @@ import java.util.Objects;
 public class Character extends Subject{
     //Unique constants to character
     KeyHandler keyH;
-    int score;
+    int score = 0;
     int reward = 0;
     
     //Constructor
