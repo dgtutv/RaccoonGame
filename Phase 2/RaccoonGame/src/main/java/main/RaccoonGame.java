@@ -5,6 +5,8 @@ import block.MapManager;
 
 import javax.swing.*;
 import java.awt.*;
+
+import object.GeneralObject;
 import subject.Character;
 
 public class RaccoonGame extends JPanel implements Runnable{
@@ -27,6 +29,10 @@ public class RaccoonGame extends JPanel implements Runnable{
     //Initialize collision handler
     public CollisionHandler collisionHandler = new CollisionHandler(this);
 
+    //Initialize object array and object handler
+    public ObjectHandler objectHandler = new ObjectHandler(this);
+    public GeneralObject[] objects = new GeneralObject[10];
+
     //initialize game thread
     Thread gameThread;
     MapManager mapManager = new MapManager(this);
@@ -40,6 +46,10 @@ public class RaccoonGame extends JPanel implements Runnable{
         //Necessary lines for accepting key input
         this.addKeyListener(keyH);
         this.setFocusable(true);
+    }
+
+    public void setupGame() {
+        objectHandler.setObject();
     }
 
     public void startThread() {
@@ -96,6 +106,13 @@ public class RaccoonGame extends JPanel implements Runnable{
 
         //draw map
         mapManager.drawMap(graphics);
+
+        //draw items
+        for(int i = 0; i < objects.length; i++) {
+            if(objects[i] != null) {
+                objects[i].drawObject(graphics, this);
+            }
+        }
 
         //draw character
         character.draw(graphics);

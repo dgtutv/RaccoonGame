@@ -25,6 +25,11 @@ public class Main {
         gameWindow.pack();
         gameWindow.setLocationRelativeTo(null);
         gameWindow.setVisible(true);
+
+        //setup game objects and enemies
+        racoonGame.setupGame();
+
+        //start the game
         racoonGame.startThread();
     }
 
