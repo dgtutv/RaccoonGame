@@ -13,8 +13,8 @@ import java.util.Objects;
 public class Player extends Subject{
     //Unique constants to player
     KeyHandler keyH;
-    public int score = 30;
-    int reward = 0;
+    public int score;
+    int reward;
     
     //Constructor
     public Player(RaccoonGame raccoonGame, KeyHandler keyH) {
@@ -23,7 +23,8 @@ public class Player extends Subject{
         x = 100;
         y = 100;
         speed = 4;
-        score = 100;
+        score = 30;
+        reward = 0;
         direction = "down";
 
         //collidable area values
