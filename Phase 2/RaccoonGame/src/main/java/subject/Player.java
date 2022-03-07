@@ -10,14 +10,14 @@ import java.io.IOException;
 import java.util.Objects;
 
 
-public class Character extends Subject{
-    //Unique constants to character
+public class Player extends Subject{
+    //Unique constants to player
     KeyHandler keyH;
-    int score = 30;
+    public int score = 30;
     int reward = 0;
     
     //Constructor
-    public Character(RaccoonGame raccoonGame, KeyHandler keyH) {
+    public Player(RaccoonGame raccoonGame, KeyHandler keyH) {
         super(raccoonGame);
         //default values that can easily be changed
         x = 100;
@@ -39,10 +39,10 @@ public class Character extends Subject{
         this.keyH = keyH;
     }
 
-    //Method called every update to check on the character's score
+    //Method called every update to check on the player's score
     @Override
     public void customUpdate(){
-        //If character should be dead
+        //If player should be dead
         if(score <=0){
             GameOver = true;
         }
@@ -93,16 +93,16 @@ public class Character extends Subject{
             switch(objectName) {
                 case "Garbage":
                     //increment player score and remove the item
-                    score += 10;
+                    this.changeScore(10);
                     raccoonGame.objects[index] = null;
                     break;
                 case "Trap":
                     //decrement player score and remove the item
-                    score -= 20;
-                    raccoonGame.objects[index] = null;
+                    changeScore(-20);
+                    this.raccoonGame.objects[index] = null;
                     break;
-
             }
+
         }
     }
     

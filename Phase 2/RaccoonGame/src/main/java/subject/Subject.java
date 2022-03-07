@@ -38,7 +38,7 @@ public abstract class Subject {
     //direction updater needs to be implemented different for characters and enemies
     public abstract void directionUpdate();
 
-    //abstract customUpdate for character specific attributes
+    //abstract customUpdate for player specific attributes
     public abstract void customUpdate();
 
     //Subject Movement
@@ -49,7 +49,7 @@ public abstract class Subject {
 
         //if subject is trying to move
         if(!atRest){
-            //if character collision is off
+            //if player collision is off
             if(!collisionOn) {
                 switch (direction) {
                     case "up" -> y -= speed;

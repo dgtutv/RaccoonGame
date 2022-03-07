@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 
 import object.GeneralObject;
-import subject.Character;
+import subject.Player;
 
 public class RaccoonGame extends JPanel implements Runnable{
 
@@ -24,7 +24,7 @@ public class RaccoonGame extends JPanel implements Runnable{
 
     //Initialize a key handler and a player with it
     KeyHandler keyH = new KeyHandler();
-    Character character = new Character(this, keyH);
+    Player player = new Player(this, keyH);
 
     //Initialize collision handler
     public CollisionHandler collisionHandler = new CollisionHandler(this);
@@ -36,7 +36,7 @@ public class RaccoonGame extends JPanel implements Runnable{
     //initialize game thread
     Thread gameThread;
     MapManager mapManager = new MapManager(this);
-    GUI gui = new GUI(this);
+    public GUI gui = new GUI(this);
 
     //create main game method
     public RaccoonGame() {
@@ -93,13 +93,14 @@ public class RaccoonGame extends JPanel implements Runnable{
     //update method, update all information here such as keystrokes from a key handler class
     protected void update() {
         //Update everything here
-        character.update();
+        player.update();
 
         // David: GUI update 3.3
-        gui.update(1,0,0);
+        //gui.update(1,0,0);
+        //raccoonGame.gui.update((score%10), (score/10)%10, (score/100)%10);
 
         //End the game if game over, add a game over screen here in future
-        if(character.GameOver) gameThread = null;
+        if(player.GameOver) gameThread = null;
     }
 
     //paint characters, items, map, etc...
@@ -118,8 +119,8 @@ public class RaccoonGame extends JPanel implements Runnable{
             }
         }
 
-        //draw character
-        character.draw(graphics);
+        //draw player
+        player.draw(graphics);
 
         // Draw GUI
         gui.drawGUI(graphics);
