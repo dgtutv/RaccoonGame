@@ -24,6 +24,8 @@ public abstract class Subject {
     public int spriteNum = 1;
     public int animSpeed = 12;  //speed of frame switching
 
+
+
     //Collidable area
     public Rectangle collidableArea;
     public int collidableAreaX, collidableAreaY;
@@ -34,6 +36,9 @@ public abstract class Subject {
         this.raccoonGame = raccoonGame;
         atRest = true;
     }
+
+
+
 
     //direction updater needs to be implemented different for characters and enemies
     public abstract void directionUpdate();

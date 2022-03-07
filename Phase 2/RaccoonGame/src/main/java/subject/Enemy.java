@@ -31,6 +31,10 @@ public class Enemy extends Subject{
         }
     }
 
+    public void timerUpdate() {
+
+    }
+
 
     @Override
     public void directionUpdate() {
@@ -41,4 +45,6 @@ public class Enemy extends Subject{
     public void customUpdate() {
 
     }
+
+
 }

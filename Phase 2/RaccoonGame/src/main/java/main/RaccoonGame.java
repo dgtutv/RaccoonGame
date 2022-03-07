@@ -66,6 +66,7 @@ public class RaccoonGame extends JPanel implements Runnable{
         long previousTime = System.nanoTime();
         long currentTime;
         int ticks = 60;
+        int timer = 0;
         double delta = 0;
         //calculate running interval (nano-sec per sec / ticks)
         double loopInterval = 1000000000/ticks;
@@ -80,11 +81,18 @@ public class RaccoonGame extends JPanel implements Runnable{
             previousTime = currentTime;
 
             if(delta >= 1) {
+                //increment timer
+                timer++;
                 //update information
                 update();
                 //draw with new information
                 repaint();
                 delta--;
+            }
+
+            if(timer >= ticks) { //every one second
+                //reset timer
+                timer = 0;
             }
         }
     }
@@ -96,7 +104,6 @@ public class RaccoonGame extends JPanel implements Runnable{
         player.update();
 
         // David: GUI update 3.3
-        //gui.update(1,0,0);
         gui.update((player.score%10), (player.score/10)%10, (player.score/100)%10);
 
         //End the game if game over, add a game over screen here in future

@@ -13,6 +13,8 @@ import java.util.Objects;
 public class Player extends Subject{
     //Unique constants to player
     KeyHandler keyH;
+    //timer for score decrementing
+    public int timer;
     public int score;
     int reward;
     
@@ -44,6 +46,7 @@ public class Player extends Subject{
     @Override
     public void customUpdate(){
         //If player should be dead
+        timerUpdate(60, 1);
         if(score <=0){
             GameOver = true;
         }
@@ -51,6 +54,15 @@ public class Player extends Subject{
         if(score >100){
                reward+= score -100;
         }
+    }
+
+    public void timerUpdate(int ticks, int seconds) {
+        if(timer >= ticks*seconds) {
+            score -= 1;
+            timer = 0;
+        }
+        //increment timer
+        timer++;
     }
 
     //Direction updater class
