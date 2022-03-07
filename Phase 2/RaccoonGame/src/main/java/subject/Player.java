@@ -1,7 +1,9 @@
 package subject;
 
 import main.KeyHandler;
+import main.ObjectHandler;
 import main.RaccoonGame;
+import object.GeneralObject;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -16,7 +18,9 @@ public class Player extends Subject{
     //timer for score decrementing
     public int timer;
     public int score;
+    private int collectedRewards;
     int reward;
+
     
     //Constructor
     public Player(RaccoonGame raccoonGame, KeyHandler keyH) {
@@ -26,6 +30,7 @@ public class Player extends Subject{
         y = 100;
         speed = 4;
         score = 30;
+        collectedRewards = 0;
         reward = 0;
         direction = "down";
 
@@ -107,6 +112,7 @@ public class Player extends Subject{
                 case "Garbage":
                     //increment player score and remove the item
                     this.changeScore(10);
+                    collectedRewards++;
                     raccoonGame.objects[index] = null;
                     break;
                 case "Trap":
@@ -114,6 +120,14 @@ public class Player extends Subject{
                     changeScore(-20);
                     this.raccoonGame.objects[index] = null;
                     break;
+                case "ExitDoor":
+                    //end the game if all rewards collected
+                    if(collectedRewards >= raccoonGame.objectHandler.numRewards) {
+                        GameOver = true;
+                    }
+
+                    break;
+
             }
 
         }
