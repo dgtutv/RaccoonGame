@@ -13,5 +13,7 @@ public class Trap extends GeneralObject {
         catch(IOException e) {
             e.printStackTrace();
         }
+
+        collidable = false;
     }
 }

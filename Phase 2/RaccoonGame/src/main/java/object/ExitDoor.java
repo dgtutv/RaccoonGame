@@ -14,7 +14,7 @@ public class ExitDoor extends GeneralObject {
         catch(IOException e) {
             e.printStackTrace();
         }
-        collidable = true;
+        collidable = false;
     }
 
 }

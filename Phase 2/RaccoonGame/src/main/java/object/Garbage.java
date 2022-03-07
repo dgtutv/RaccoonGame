@@ -14,6 +14,6 @@ public class Garbage extends GeneralObject {
         catch(IOException e) {
             e.printStackTrace();
         }
-        collidable = true;
+        collidable = false;
     }
 }
