@@ -1,9 +1,6 @@
 package main;
 
-import subject.Enemy;
 import subject.Subject;
-
-import java.util.List;
 
 public class CollisionHandler {
 
@@ -108,56 +105,6 @@ public class CollisionHandler {
 
                 raccoonGame.objects[i].collidableArea.x = raccoonGame.objects[i].collidableAreaX;
                 raccoonGame.objects[i].collidableArea.y = raccoonGame.objects[i].collidableAreaY;
-
-            }
-        }
-
-        return index;
-    }
-    //check collision for enemies and players
-    public int checkEnemy(Subject subject, List<Enemy> target){
-        int index = 999;
-
-        for(int i = 0; i < target.size(); i++) {
-            if(target.get(i) != null) {
-                //find subjects position
-                subject.collidableArea.x = subject.x + subject.collidableArea.x;
-                subject.collidableArea.y = subject.y + subject.collidableArea.y;
-
-                //find item/objects position
-                target.get(i).collidableArea.x = target.get(i).x + target.get(i).collidableArea.x;
-                target.get(i).collidableArea.y = target.get(i).y + target.get(i).collidableArea.y;
-
-                //check for overlap
-                if(subject.direction == "up" || subject.direction == "down" || subject.direction == "left" || subject.direction == "right") {
-                    switch(subject.direction) {
-                        case "up":
-                            subject.collidableArea.y -= subject.speed;
-                            break;
-                        case "down":
-                            subject.collidableArea.y += subject.speed;
-                            break;
-                        case "left":
-                            subject.collidableArea.x -= subject.speed;
-                            break;
-                        case "right":
-                            subject.collidableArea.x += subject.speed;
-                            break;
-
-                    }
-
-                    if(subject.collidableArea.intersects(target.get(i).collidableArea)) {
-                        subject.collisionOn = true;
-                        index = i;
-                    }
-                }
-
-                //reset position variables;
-                subject.collidableArea.x = subject.collidableAreaX;
-                subject.collidableArea.y = subject.collidableAreaY;
-
-                target.get(i).collidableArea.x = target.get(i).collidableAreaX;
-                target.get(i).collidableArea.y = target.get(i).collidableAreaY;
 
             }
         }
