@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 
 import object.GeneralObject;
+import subject.EnemyHandler;
 import subject.Player;
 
 public class RaccoonGame extends JPanel implements Runnable{
@@ -24,7 +25,7 @@ public class RaccoonGame extends JPanel implements Runnable{
 
     //Initialize a key handler and a player with it
     KeyHandler keyH = new KeyHandler();
-    Player player = new Player(this, keyH);
+    public Player player = new Player(this, keyH);
 
     //Initialize collision handler
     public CollisionHandler collisionHandler = new CollisionHandler(this);
@@ -37,6 +38,9 @@ public class RaccoonGame extends JPanel implements Runnable{
     Thread gameThread;
     MapManager mapManager = new MapManager(this);
     public GUI gui = new GUI(this);
+
+    //spawn in the enemies
+    EnemyHandler enemyHandler = new EnemyHandler(this, player);
 
     //create main game method
     public RaccoonGame() {
@@ -100,8 +104,13 @@ public class RaccoonGame extends JPanel implements Runnable{
     //IMPORTANT METHODS, THIS IS WHERE WE WILL IMPLEMENT ALL OUR METHODS
     //update method, update all information here such as keystrokes from a key handler class
     protected void update() {
-        //Update everything here
+        //Update player
         player.update();
+
+        //update enemies
+        for(int i=0; i<enemyHandler.EnemyList.size(); i++){
+            enemyHandler.EnemyList.get(i).update();
+        }
 
         // David: GUI update 3.3
         gui.update((player.score%10), (player.score/10)%10, (player.score/100)%10);
@@ -128,6 +137,11 @@ public class RaccoonGame extends JPanel implements Runnable{
 
         //draw player
         player.draw(graphics);
+
+        //draw enemies
+        for(int i=0; i<enemyHandler.EnemyList.size(); i++){
+            enemyHandler.EnemyList.get(i).draw(graphics);
+        }
 
         // Draw GUI
         gui.drawGUI(graphics);

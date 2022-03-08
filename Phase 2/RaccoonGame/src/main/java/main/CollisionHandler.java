@@ -76,8 +76,7 @@ public class CollisionHandler {
                     switch(subject.direction) {
                         case "up":
                             subject.collidableArea.y -= subject.speed;
-
-                                break;
+                            break;
                         case "down":
                             subject.collidableArea.y += subject.speed;
                             break;

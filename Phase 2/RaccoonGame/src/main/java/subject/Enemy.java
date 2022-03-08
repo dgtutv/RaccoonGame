@@ -2,49 +2,116 @@ package subject;
 
 import main.RaccoonGame;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.Objects;
+
 //A superclass for the two enemy types
 public class Enemy extends Subject{
     //Unique constants to all enemies
     Player player;
-    int damage;
-    int damageCoolDown;         //in ticks
-    int damageCoolDownConstant = 30;
-    boolean contact = false;        //touching the player?
 
     //Constructor for Enemy
     public Enemy(RaccoonGame raccoonGame, int x, int y, Player player) {
+        //Default values
         super(raccoonGame);
         this.x = x;
         this.y = y;
         this.player = player;
-        damageCoolDown = 0;
+        speed = player.speed/2;
+        direction = "down";
+        atRest = false;
+
+        //Collidable area values
+        collidableArea = new Rectangle();
+        collidableArea.x = raccoonGame.blockSize/4;
+        collidableArea.y = raccoonGame.blockSize/4;
+        collidableArea.width = raccoonGame.blockSize - (raccoonGame.blockSize/4);
+        collidableArea.height = raccoonGame.blockSize - (raccoonGame.blockSize/4);
+        collidableAreaX = collidableArea.x;
+        collidableAreaY = collidableArea.y;
     }
-
-    //update will call pathing and check if the enemy should be damaging the player
-    public void update(){
-        if(damageCoolDown>0){
-            damageCoolDown--;
-        }
-        else if(contact){
-            player.changeScore(-damage);
-            damageCoolDown = damageCoolDownConstant;
-        }
-    }
-
-    public void timerUpdate() {
-
-    }
-
 
     @Override
     public void directionUpdate() {
+        //if the enemy is within the player's hitbox, then kill the player
+//        if(playerleft <= x && x <= playerRight && playerBottom <= y && y <= playerTop) {
+//            player.changeScore(-player.score);
+//        }
 
+        //direction should mimic player
+        direction = player.direction;
     }
 
     @Override
     public void customUpdate() {
+        //check if collision is on
+        collisionOn = false;
+        raccoonGame.collisionHandler.checkBlock(this);
+    }
+
+    @Override
+    public void moveUpdate() {
+        //follow the player
+        if(x < player.x){
+            if(player.x - x < speed){
+                x += player.x - x;
+            }
+            else{
+                x += speed;
+            }
+        }
+        if(y < player.y){
+            if(player.y - y < speed){
+                y += player.y - y;
+            }
+            else{
+                y += speed;
+            }
+        }
+        if(x > player.x){
+            if(x - player.x < speed){
+                x -= x - player.x;
+            }
+            else{
+                x -= speed;
+            }
+        }
+        if(y > player.y){
+            if(y - player.y < speed){
+                y -= y - player.y;
+            }
+            else{
+                y -= speed;
+            }
+        }
+    }
+
+    public void loadEnemyFrames(){
+        try{
+            moving1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/characters/enemy.png")));
+            moving2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/characters/enemy_move.png")));
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
 
     }
+    //Movement drawing
+    public void draw(Graphics2D g){
+        loadEnemyFrames();
+        BufferedImage frame = moving1;
+        if (spriteNum == 1) {
+            frame = moving1;
+        }
+        else if(spriteNum == 2){
+            frame = moving2;
+        }
+        g.drawImage(frame, x, y, raccoonGame.blockSize, raccoonGame.blockSize, null);       //Image Observer
+    }
+
 
 
 }

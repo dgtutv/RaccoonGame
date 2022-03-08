@@ -43,8 +43,11 @@ public abstract class Subject {
     //direction updater needs to be implemented different for characters and enemies
     public abstract void directionUpdate();
 
-    //abstract customUpdate for player specific attributes
+    //abstract customUpdate for subject specific attributes
     public abstract void customUpdate();
+
+    //abstract moveUpdate for subject specific movement
+    public abstract void moveUpdate();
 
     //Subject Movement
     public void update(){
@@ -56,12 +59,7 @@ public abstract class Subject {
         if(!atRest){
             //if player collision is off
             if(!collisionOn) {
-                switch (direction) {
-                    case "up" -> y -= speed;
-                    case "down" -> y += speed;
-                    case "left" -> x -= speed;
-                    case "right" -> x += speed;
-                }
+                moveUpdate();
                 //flip image/animate
                 spriteCounter++;
                 if(spriteCounter > animSpeed) {

@@ -29,7 +29,7 @@ public class Player extends Subject{
         x = 100;
         y = 100;
         speed = 4;
-        score = 30;
+        score = 300;
         collectedRewards = 0;
         reward = 0;
         direction = "down";
@@ -58,6 +58,14 @@ public class Player extends Subject{
         //Store extra score from rewards in an int
         if(score >100){
                reward+= score -100;
+        }
+    }
+    public void moveUpdate(){
+        switch (direction) {
+            case "up" -> y -= speed;
+            case "down" -> y += speed;
+            case "left" -> x -= speed;
+            case "right" -> x += speed;
         }
     }
 

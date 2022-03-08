@@ -3,6 +3,7 @@ package main;
 import object.ExitDoor;
 import object.Garbage;
 import object.Trap;
+import subject.Enemy;
 
 public class ObjectHandler {
 
@@ -29,6 +30,7 @@ public class ObjectHandler {
         for(int i=numDoors+numRewards; i < numRewards + numTraps + numDoors; i++) {
             raccoonGame.objects[i] = new Trap();
         }
+
 
         //set exitDoor locations
         raccoonGame.objects[0].x = 29 * raccoonGame.blockSize;
