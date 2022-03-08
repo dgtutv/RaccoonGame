@@ -26,6 +26,7 @@ public class RaccoonGame extends JPanel implements Runnable{
     //Initialize a key handler and a player with it
     KeyHandler keyH = new KeyHandler();
     public Player player = new Player(this, keyH);
+    public EnemyHandler enemyHandler = new EnemyHandler(this, player);
 
     //Initialize collision handler
     public CollisionHandler collisionHandler = new CollisionHandler(this);
@@ -40,7 +41,7 @@ public class RaccoonGame extends JPanel implements Runnable{
     public GUI gui = new GUI(this);
 
     //spawn in the enemies
-    EnemyHandler enemyHandler = new EnemyHandler(this, player);
+
 
     //create main game method
     public RaccoonGame() {
@@ -116,7 +117,10 @@ public class RaccoonGame extends JPanel implements Runnable{
         gui.update((player.score%10), (player.score/10)%10, (player.score/100)%10);
 
         //End the game if game over, add a game over screen here in future
-        if(player.GameOver) gameThread = null;
+        if(player.GameOver){
+            gameThread = null;
+            System.out.println("Game Over!");
+        }
     }
 
     //paint characters, items, map, etc...

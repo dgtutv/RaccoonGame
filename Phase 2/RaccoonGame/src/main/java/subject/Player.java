@@ -15,6 +15,8 @@ import java.util.Objects;
 public class Player extends Subject{
     //Unique constants to player
     KeyHandler keyH;
+    EnemyHandler enemyH;
+
     //timer for score decrementing
     public int timer;
     public int score;
@@ -43,8 +45,9 @@ public class Player extends Subject{
         collidableAreaX = collidableArea.x;
         collidableAreaY = collidableArea.y;
 
-        //Add the key listener to raccoonGame to handle key movement
+        //Add the listeners
         this.keyH = keyH;
+        this.enemyH = enemyH;
     }
 
     //Method called every update to check on the player's score
@@ -60,6 +63,8 @@ public class Player extends Subject{
                reward+= score -100;
         }
     }
+
+    //update method for player movement
     public void moveUpdate(){
         switch (direction) {
             case "up" -> y -= speed;
@@ -69,6 +74,7 @@ public class Player extends Subject{
         }
     }
 
+    //method for score counting down overitme
     public void timerUpdate(int ticks, int seconds) {
         if(timer >= ticks*seconds) {
             score -= 1;
@@ -84,10 +90,14 @@ public class Player extends Subject{
         //check is collision is on
         collisionOn = false;
         raccoonGame.collisionHandler.checkBlock(this);
+
         //check object collision
         int objectIndex = raccoonGame.collisionHandler.checkObject(this, true);
         collectObject(objectIndex);
 
+        //get the index of any enemies the player may be colliding with
+        int enemyIndex = raccoonGame.collisionHandler.checkEnemy(this, raccoonGame.enemyHandler.EnemyList);
+        interactEnemy(enemyIndex);
 
         if(keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
             atRest = false;
@@ -107,10 +117,9 @@ public class Player extends Subject{
         else{
             atRest = true;
         }
-
-
     }
 
+    //method for checking if player collides with an object
     public void collectObject(int index) {
         //check if the index is valid
         if(index != 999) {
@@ -139,6 +148,13 @@ public class Player extends Subject{
             }
 
         }
+    }
+
+    //method for checking if the player interacts with an enemy
+    public void interactEnemy(int index){
+         if(index != 999){
+             this.score = 0;
+         }
     }
     
     //Load player frames class
