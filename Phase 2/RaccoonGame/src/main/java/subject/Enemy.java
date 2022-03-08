@@ -7,27 +7,47 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
+import java.util.Random;
 
-import static java.lang.Math.abs;
 import static java.lang.Math.pow;
 
 //A class for dynamic enemy types
 public class Enemy extends Subject{
     //Unique constants to all enemies
     Player player;
-    int range;
+    int patrolTopBound;
+    int patrolBottomBound;
+    int patrolLeftBound;
+    int patrolRightBound;
+    int targetX;
+    int targetY;
+    boolean topLeft;
+    boolean topRight;
+    boolean bottomLeft;
+    boolean bottomRight;
+
+    //variables to change for enemy behaviour, in blocks
+    int range = 10;
+    int patrolHorizontalDistance = 2;
+    int patrolVerticalDistance = 2;
+
 
     //Constructor for Enemy
     public Enemy(RaccoonGame raccoonGame, int x, int y, Player player) {
-        //Default values
+        //Default values from constructor parameters
         super(raccoonGame);
         this.x = x;
         this.y = y;
         this.player = player;
+        patrolTopBound = y;
+        patrolBottomBound = y - patrolVerticalDistance * raccoonGame.blockSize/2;
+        patrolLeftBound = x;
+        patrolRightBound = x + patrolHorizontalDistance * raccoonGame.blockSize/2;
+
+        //Default values for enemy
         speed = player.speed/2;
         direction = "down";
         atRest = false;
-        range = 10;
 
         //Collidable area values
         collidableArea = new Rectangle();
@@ -62,36 +82,74 @@ public class Enemy extends Subject{
     @Override
     //update method for enemy movement
     public void moveUpdate() {
-        //follow the player
+        //follow the player when within range
         if(rangeCheck()) {
-            //get rid of diagonal movement using x?>y
-            if (x < player.x) {
-                if (player.x - x < speed) {
-                    x += player.x - x;
-                } else {
-                    x += speed;
-                }
+            targetX = player.x;
+            targetY = player.y;
+        }
+        //patrol an area when not in sight of player, randomly
+        else{
+            if(x == patrolLeftBound && y == patrolTopBound){
+                topLeft = false;
+                bottomLeft = true;
             }
-            if (y < player.y) {
-                if (player.y - y < speed) {
-                    y += player.y - y;
-                } else {
-                    y += speed;
-                }
+            else if(x == patrolLeftBound && y == patrolBottomBound){
+                bottomLeft = false;
+                bottomRight = true;
             }
-            if (x > player.x) {
-                if (x - player.x < speed) {
-                    x -= x - player.x;
-                } else {
-                    x -= speed;
-                }
+            else if(x == patrolRightBound && y == patrolBottomBound){
+                bottomRight = false;
+                topRight = true;
             }
-            if (y > player.y) {
-                if (y - player.y < speed) {
-                    y -= y - player.y;
-                } else {
-                    y -= speed;
-                }
+            else if(x == patrolRightBound && y == patrolTopBound){
+                topRight = false;
+                topLeft = true;
+            }
+            if(bottomLeft){
+                targetX = patrolLeftBound;
+                targetY = patrolBottomBound;
+            }
+            if(bottomRight){
+                targetX = patrolRightBound;
+                targetY = patrolBottomBound;
+            }
+            if(topRight){
+                targetX = patrolRightBound;
+                targetY = patrolTopBound;
+            }
+            if(topLeft){
+                targetX = patrolLeftBound;
+                targetY = patrolTopBound;
+            }
+        }
+        //Move towards the target
+        //get rid of diagonal movement using x?>y
+        if (x < targetX) {
+            if (targetX - x < speed) {
+                x += targetX - x;
+            } else {
+                x += speed;
+            }
+        }
+        if (y < targetY) {
+            if (targetY - y < speed) {
+                y += targetY - y;
+            } else {
+                y += speed;
+            }
+        }
+        if (x > targetX) {
+            if (x - targetX < speed) {
+                x -= x - targetX;
+            } else {
+                x -= speed;
+            }
+        }
+        if (y > targetY) {
+            if (y - targetY < speed) {
+                y -= y - targetY;
+            } else {
+                y -= speed;
             }
         }
     }
