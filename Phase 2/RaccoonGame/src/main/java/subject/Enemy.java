@@ -26,6 +26,8 @@ public class Enemy extends Subject{
     boolean bottomLeft;
     boolean bottomRight;
 
+    public boolean collidable;
+
     //variables to change for enemy behaviour, in blocks
     int range = 10;
     int patrolHorizontalDistance = 2;
@@ -47,6 +49,7 @@ public class Enemy extends Subject{
         //Default values for enemy
         speed = player.speed/2;
         direction = "down";
+        collidable = true;
         atRest = false;
 
         //Collidable area values

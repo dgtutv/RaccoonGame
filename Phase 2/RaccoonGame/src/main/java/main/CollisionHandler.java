@@ -21,13 +21,13 @@ public class CollisionHandler {
         int subjectBottomY = subject.y + subject.collidableArea.height;
 
         //check which blocks the subject is in
-        int leftCol = subjectLeftX/raccoonGame.blockSize;
-        int rightCol = subjectRightX/raccoonGame.blockSize;
-        int topRow = subjectTopY/raccoonGame.blockSize;
-        int bottomRow = subjectBottomY/ raccoonGame.blockSize;
+        int leftCol = subjectLeftX / raccoonGame.blockSize;
+        int rightCol = subjectRightX / raccoonGame.blockSize;
+        int topRow = subjectTopY / raccoonGame.blockSize;
+        int bottomRow = subjectBottomY / raccoonGame.blockSize;
 
-        if(subject.direction == "up" || subject.direction == "down" || subject.direction == "left" || subject.direction == "right") {
-            switch(subject.direction) {
+        if (subject.direction == "up" || subject.direction == "down" || subject.direction == "left" || subject.direction == "right") {
+            switch (subject.direction) {
                 case "up":
                     topRow = (subjectTopY - subject.speed) / raccoonGame.blockSize;
                     blockNum1 = raccoonGame.mapManager.mapBlockArr[leftCol][topRow];
@@ -51,7 +51,7 @@ public class CollisionHandler {
                     break;
             }
 
-            if(raccoonGame.mapManager.blocks[blockNum1].collidable || raccoonGame.mapManager.blocks[blockNum2].collidable) {
+            if (raccoonGame.mapManager.blocks[blockNum1].collidable || raccoonGame.mapManager.blocks[blockNum2].collidable) {
                 subject.collisionOn = true;
             }
         }
@@ -61,8 +61,8 @@ public class CollisionHandler {
     public int checkObject(Subject subject, boolean player) {
         int index = 999;
 
-        for(int i = 0; i < raccoonGame.objects.length; i++) {
-            if(raccoonGame.objects[i] != null) {
+        for (int i = 0; i < raccoonGame.objects.length; i++) {
+            if (raccoonGame.objects[i] != null) {
                 //find subjects position
                 subject.collidableArea.x = subject.x + subject.collidableArea.x;
                 subject.collidableArea.y = subject.y + subject.collidableArea.y;
@@ -72,8 +72,8 @@ public class CollisionHandler {
                 raccoonGame.objects[i].collidableArea.y = raccoonGame.objects[i].y + raccoonGame.objects[i].collidableArea.y;
 
                 //check for overlap
-                if(subject.direction == "up" || subject.direction == "down" || subject.direction == "left" || subject.direction == "right") {
-                    switch(subject.direction) {
+                if (subject.direction == "up" || subject.direction == "down" || subject.direction == "left" || subject.direction == "right") {
+                    switch (subject.direction) {
                         case "up":
                             subject.collidableArea.y -= subject.speed;
                             break;
@@ -89,11 +89,11 @@ public class CollisionHandler {
 
                     }
 
-                    if(subject.collidableArea.intersects(raccoonGame.objects[i].collidableArea)) {
-                        if(raccoonGame.objects[i].collidable) {
+                    if (subject.collidableArea.intersects(raccoonGame.objects[i].collidableArea)) {
+                        if (raccoonGame.objects[i].collidable) {
                             subject.collisionOn = true;
                         }
-                        if(player) {
+                        if (player) {
                             index = i;
                         }
                     }
@@ -111,4 +111,62 @@ public class CollisionHandler {
 
         return index;
     }
+
+
+    public boolean checkEnemy(Subject subject, boolean player) {
+        int index = 999;
+        boolean collided = false;
+
+        for (int i = 0; i < raccoonGame.enemyHandler.EnemyList.size(); i++) {
+            if (raccoonGame.enemyHandler.EnemyList.get(i) != null) {
+                //find subjects position
+                subject.collidableArea.x = subject.x + subject.collidableArea.x;
+                subject.collidableArea.y = subject.y + subject.collidableArea.y;
+
+                //find item/objects position
+                raccoonGame.enemyHandler.EnemyList.get(i).collidableArea.x = raccoonGame.enemyHandler.EnemyList.get(i).x + raccoonGame.enemyHandler.EnemyList.get(i).collidableArea.x;
+                raccoonGame.enemyHandler.EnemyList.get(i).collidableArea.y = raccoonGame.enemyHandler.EnemyList.get(i).y + raccoonGame.enemyHandler.EnemyList.get(i).collidableArea.y;
+
+                //check for overlap
+                if (subject.direction == "up" || subject.direction == "down" || subject.direction == "left" || subject.direction == "right") {
+                    switch (subject.direction) {
+                        case "up":
+                            subject.collidableArea.y -= subject.speed;
+                            break;
+                        case "down":
+                            subject.collidableArea.y += subject.speed;
+                            break;
+                        case "left":
+                            subject.collidableArea.x -= subject.speed;
+                            break;
+                        case "right":
+                            subject.collidableArea.x += subject.speed;
+                            break;
+
+                    }
+
+                    if (subject.collidableArea.intersects(raccoonGame.enemyHandler.EnemyList.get(i).collidableArea)) {
+                        if (raccoonGame.enemyHandler.EnemyList.get(i).collidable) {
+                            subject.collisionOn = true;
+                        }
+                        if (player) {
+                            index = i;
+                            collided = true;
+                        }
+                    }
+                }
+
+                //reset position variables;
+                subject.collidableArea.x = subject.collidableAreaX;
+                subject.collidableArea.y = subject.collidableAreaY;
+
+                raccoonGame.enemyHandler.EnemyList.get(i).collidableArea.x = raccoonGame.enemyHandler.EnemyList.get(i).collidableAreaX;
+                raccoonGame.enemyHandler.EnemyList.get(i).collidableArea.y = raccoonGame.enemyHandler.EnemyList.get(i).collidableAreaY;
+
+            }
+        }
+
+        return collided;
+    }
+
 }
