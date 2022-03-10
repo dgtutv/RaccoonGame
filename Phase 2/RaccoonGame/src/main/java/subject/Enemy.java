@@ -195,12 +195,14 @@ public class Enemy extends Subject{
             //player is above the enemy
             if(player.y/raccoonGame.blockSize <= this.y/raccoonGame.blockSize) {
                 slope = (float)(this.y - player.y) / (float)(this.x - player.x);
-                System.out.println(slope);
-                for (int i = player.x / raccoonGame.blockSize; i <= this.x / raccoonGame.blockSize; i++) {
+                if(this == raccoonGame.enemyHandler.EnemyList.get(1)) {
+                    System.out.println(slope);
+                }
+                for (int i = player.x / raccoonGame.blockSize; i < this.x / raccoonGame.blockSize; i++) {
                     int j = player.y / raccoonGame.blockSize;
                     currentBlock = raccoonGame.mapManager.mapBlockArr[i][j+(int)((i*slope)/raccoonGame.blockSize)];
+                    System.out.println(currentBlock);
                     if (raccoonGame.mapManager.blocks[currentBlock].collidable) {
-                        System.out.println("Block in the way");
                         return false;
                     }
                 }
@@ -208,12 +210,13 @@ public class Enemy extends Subject{
             //player is below the enemy
             else if(player.y/raccoonGame.blockSize > this.y/raccoonGame.blockSize) {
                 slope = (float)(this.y - player.y) / (float)(this.x - player.x);
-                System.out.println(slope);
+                if(this == raccoonGame.enemyHandler.EnemyList.get(1)) {
+                    System.out.println(slope);
+                }
                 for(int i = player.x/raccoonGame.blockSize; i <= this.x/raccoonGame.blockSize; i++) {
                     int j = player.y / raccoonGame.blockSize;
                     currentBlock = raccoonGame.mapManager.mapBlockArr[i][j-(int)((i*slope)/raccoonGame.blockSize)];
                         if(raccoonGame.mapManager.blocks[currentBlock].collidable) {
-                            System.out.println("Block in the way");
                             return false;
                         }
                 }
@@ -224,12 +227,13 @@ public class Enemy extends Subject{
             //player is above the enemy
             if(player.y/raccoonGame.blockSize <= this.y/raccoonGame.blockSize) {
                 slope = (float)(this.y - player.y) / (float)(this.x - player.x);
-                System.out.println(slope);
+                if(this == raccoonGame.enemyHandler.EnemyList.get(1)) {
+                    System.out.println(slope);
+                }
                 for(int i = player.x/raccoonGame.blockSize; i >= this.x/raccoonGame.blockSize; i--) {
                     int j = player.y / raccoonGame.blockSize;
                         currentBlock = raccoonGame.mapManager.mapBlockArr[i][j+(int)((i*slope)/raccoonGame.blockSize)];
                         if(raccoonGame.mapManager.blocks[currentBlock].collidable) {
-                            System.out.println("Block in the way");
                             return false;
                         }
                 }
@@ -237,12 +241,13 @@ public class Enemy extends Subject{
             //player is below the enemy
             else if(player.y/raccoonGame.blockSize > this.y/raccoonGame.blockSize) {
                 slope = (float)(this.y - player.y) / (float)(this.x - player.x);
-                System.out.println(slope);
+                if(this == raccoonGame.enemyHandler.EnemyList.get(1)) {
+                    System.out.println(slope);
+                }
                 for(int i = player.x/raccoonGame.blockSize; i >= this.x/raccoonGame.blockSize; i--) {
                     int j = player.y / raccoonGame.blockSize;
                         currentBlock = raccoonGame.mapManager.mapBlockArr[i][j-(int)((i*slope)/raccoonGame.blockSize)];
                         if(raccoonGame.mapManager.blocks[currentBlock].collidable) {
-                            System.out.println("Block in the way");
                             return false;
                         }
                         //}
