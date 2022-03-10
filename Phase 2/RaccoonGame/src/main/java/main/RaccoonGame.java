@@ -36,7 +36,7 @@ public class RaccoonGame extends JPanel implements Runnable{
 
     //initialize game thread
     Thread gameThread;
-    MapManager mapManager = new MapManager(this);
+    public MapManager mapManager = new MapManager(this);
     public GUI gui = new GUI(this);
 
     //spawn in the enemies

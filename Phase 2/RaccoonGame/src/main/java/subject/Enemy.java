@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Random;
 
+import static java.lang.Math.floorDiv;
 import static java.lang.Math.pow;
 
 //A class for dynamic enemy types
@@ -187,10 +188,75 @@ public class Enemy extends Subject{
     }
     //check if the enemy is within an appropriate range to chase the player
     private boolean rangeCheck(){
+        int currentBlock;
+        //player is to the left of the enemy
+        if(player.x/raccoonGame.blockSize < this.x/raccoonGame.blockSize) {
+            //player is above the enemy
+            if(player.y/raccoonGame.blockSize <= this.y/raccoonGame.blockSize) {
+                for(int i = player.x/raccoonGame.blockSize; i <= this.x/raccoonGame.blockSize; i++) {
+                    for(int j = player.y/raccoonGame.blockSize; j <= this.y/raccoonGame.blockSize; j++) {
+                        //if(i < j+1 && i > j-1) {
+                        currentBlock = raccoonGame.mapManager.mapBlockArr[i][j];
+                        if(raccoonGame.mapManager.blocks[currentBlock].collidable) {
+                            System.out.println("Block in the way");
+                            return false;
+                        }
+                        //}
+                    }
+                }
+            }
+            //player is below the enemy
+            else if(player.y/raccoonGame.blockSize > this.y/raccoonGame.blockSize) {
+                for(int i = player.x/raccoonGame.blockSize; i <= this.x/raccoonGame.blockSize; i++) {
+                    for(int j = player.y/raccoonGame.blockSize; j >= this.y/raccoonGame.blockSize; j--) {
+                        //if(i < j+1 && i > j-1) {
+                        currentBlock = raccoonGame.mapManager.mapBlockArr[i][j];
+                        if(raccoonGame.mapManager.blocks[currentBlock].collidable) {
+                            System.out.println("Block in the way");
+                            return false;
+                        }
+                        //}
+                    }
+                }
+            }
+        }
+        //player is to the right of the enemy
+        else if(player.x/raccoonGame.blockSize > this.x/raccoonGame.blockSize) {
+            //player is above the enemy
+            if(player.y/raccoonGame.blockSize <= this.y/raccoonGame.blockSize) {
+                for(int i = player.x/raccoonGame.blockSize; i >= this.x/raccoonGame.blockSize; i--) {
+                    for(int j = player.y/raccoonGame.blockSize; j <= this.y/raccoonGame.blockSize; j++) {
+                        //if(i < j+1 && i > j-1) {
+                        currentBlock = raccoonGame.mapManager.mapBlockArr[i][j];
+                        if(raccoonGame.mapManager.blocks[currentBlock].collidable) {
+                            System.out.println("Block in the way");
+                            return false;
+                        }
+                        //}
+                    }
+                }
+            }
+            //player is below the enemy
+            else if(player.y/raccoonGame.blockSize > this.y/raccoonGame.blockSize) {
+                for(int i = player.x/raccoonGame.blockSize; i >= this.x/raccoonGame.blockSize; i--) {
+                    for(int j = player.y/raccoonGame.blockSize; j >= this.y/raccoonGame.blockSize; j--) {
+                        //if(i < j+1 && i > j-1) {
+                        currentBlock = raccoonGame.mapManager.mapBlockArr[i][j];
+                        if(raccoonGame.mapManager.blocks[currentBlock].collidable) {
+                            System.out.println("Block in the way");
+                            return false;
+                        }
+                        //}
+                    }
+                }
+            }
+        }
         //use pythagorean theorem to get the distance of a line to the player, then compare to range * blocksize
         //this in turn calculates if a player is within a range given in blocks to the enemy
         return (pow((player.x - x), 2) + pow((player.y - y), 2) <= pow(range * raccoonGame.blockSize, 2));
+
     }
+
 
     //method for loading in the enemy's sprites
     public void loadEnemyFrames(){
