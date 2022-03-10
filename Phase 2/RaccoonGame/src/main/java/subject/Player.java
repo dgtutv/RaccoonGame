@@ -19,7 +19,7 @@ public class Player extends Subject{
     public int timer;
     public int score;
     private int collectedRewards;
-    int reward;
+    public int reward;
 
     
     //Constructor
@@ -52,14 +52,17 @@ public class Player extends Subject{
     public void customUpdate(){
         //If player should be dead
         timerUpdate(60, 1);
-        if(score <=0){
+        if(score <= 0){
             GameOver = true;
         }
-        //Store extra score from rewards in an int
-        if(score >100){
-               reward+= score -100;
-        }
     }
+
+    //Store reward to be added to the score at the end of the game
+    public void rewardUpdate(int increase){
+        reward += increase;
+    }
+
+    //Custom method for updating the movement based off direction
     public void moveUpdate(){
         if(!this.collisionOn) {
             switch (direction) {
@@ -69,9 +72,9 @@ public class Player extends Subject{
                 case "right" -> x += speed;
             }
         }
-
     }
 
+    //Method for decreasing player score overtime
     public void timerUpdate(int ticks, int seconds) {
         if(timer >= ticks*seconds) {
             score -= 1;
@@ -94,8 +97,7 @@ public class Player extends Subject{
         if(raccoonGame.collisionHandler.checkEnemy(this, true)) {
             GameOver = true;
         }
-
-
+        //Direction based off key-presses
         if(keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
             atRest = false;
             if(keyH.upPressed) {
@@ -111,13 +113,13 @@ public class Player extends Subject{
                 direction = "left";
             }
         }
+        //If no key-press, the player is still
         else{
             atRest = true;
         }
-
-
     }
 
+    //Method for handling objects collected by the player
     public void collectObject(int index) {
         //check if the index is valid
         if(index != 999) {
@@ -140,11 +142,8 @@ public class Player extends Subject{
                     if(collectedRewards >= raccoonGame.objectHandler.numRewards) {
                         GameOver = true;
                     }
-
                     break;
-
             }
-
         }
     }
 
