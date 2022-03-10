@@ -40,7 +40,7 @@ public class RaccoonGame extends JPanel implements Runnable{
     public GUI gui = new GUI(this);
 
     //spawn in the enemies
-    EnemyHandler enemyHandler = new EnemyHandler(this, player);
+    public EnemyHandler enemyHandler = new EnemyHandler(this, player);
 
     //create main game method
     public RaccoonGame() {

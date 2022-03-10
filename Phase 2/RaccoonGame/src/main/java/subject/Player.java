@@ -61,12 +61,15 @@ public class Player extends Subject{
         }
     }
     public void moveUpdate(){
-        switch (direction) {
-            case "up" -> y -= speed;
-            case "down" -> y += speed;
-            case "left" -> x -= speed;
-            case "right" -> x += speed;
+        if(!this.collisionOn) {
+            switch (direction) {
+                case "up" -> y -= speed;
+                case "down" -> y += speed;
+                case "left" -> x -= speed;
+                case "right" -> x += speed;
+            }
         }
+
     }
 
     public void timerUpdate(int ticks, int seconds) {
@@ -87,6 +90,10 @@ public class Player extends Subject{
         //check object collision
         int objectIndex = raccoonGame.collisionHandler.checkObject(this, true);
         collectObject(objectIndex);
+        //check enemy collision, if true end game
+        if(raccoonGame.collisionHandler.checkEnemy(this, true)) {
+            GameOver = true;
+        }
 
 
         if(keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
@@ -140,6 +147,7 @@ public class Player extends Subject{
 
         }
     }
+
     
     //Load player frames class
     public void loadCharacterFrames(){

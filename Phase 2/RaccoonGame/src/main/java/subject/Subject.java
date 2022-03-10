@@ -58,7 +58,6 @@ public abstract class Subject {
         //if subject is trying to move
         if(!atRest){
             //if player collision is off
-            if(!collisionOn) {
                 moveUpdate();
                 //flip image/animate
                 spriteCounter++;
@@ -71,7 +70,6 @@ public abstract class Subject {
                     }
                     spriteCounter = 0;
                 }
-            }
 
         }
 

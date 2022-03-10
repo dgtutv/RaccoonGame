@@ -26,6 +26,8 @@ public class Enemy extends Subject{
     boolean bottomLeft;
     boolean bottomRight;
 
+    public boolean collidable;
+
     //variables to change for enemy behaviour, in blocks
     int range = 10;
     int patrolHorizontalDistance = 2;
@@ -47,6 +49,7 @@ public class Enemy extends Subject{
         //Default values for enemy
         speed = player.speed/2;
         direction = "down";
+        collidable = true;
         atRest = false;
 
         //Collidable area values
@@ -63,7 +66,7 @@ public class Enemy extends Subject{
     //update method for enemy direction
     public void directionUpdate() {
         //direction should mimic player
-        direction = player.direction;
+        //direction = player.direction;
     }
 
     @Override
@@ -72,86 +75,115 @@ public class Enemy extends Subject{
         //check if collision is on
         collisionOn = false;
         raccoonGame.collisionHandler.checkBlock(this);
-
-        //if the enemy is within the player's hitbox, then kill the player
-//        if(playerleft <= x && x <= playerRight && playerBottom <= y && y <= playerTop) {
-//            player.changeScore(-player.score);
-//        }
     }
 
     @Override
     //update method for enemy movement
     public void moveUpdate() {
-        //follow the player when within range
-        if(rangeCheck()) {
-            targetX = player.x;
-            targetY = player.y;
+        if(!this.collisionOn) {
+            //follow the player when within range
+            if(rangeCheck()) {
+                targetX = player.x;
+                targetY = player.y;
+            }
+            //patrol an area when not in sight of player, randomly
+            else{
+                if(x == patrolLeftBound && y == patrolTopBound){
+                    topLeft = false;
+                    bottomLeft = true;
+                }
+                else if(x == patrolLeftBound && y == patrolBottomBound){
+                    bottomLeft = false;
+                    bottomRight = true;
+                }
+                else if(x == patrolRightBound && y == patrolBottomBound){
+                    bottomRight = false;
+                    topRight = true;
+                }
+                else if(x == patrolRightBound && y == patrolTopBound){
+                    topRight = false;
+                    topLeft = true;
+                }
+                if(bottomLeft){
+                    targetX = patrolLeftBound;
+                    targetY = patrolBottomBound;
+                }
+                if(bottomRight){
+                    targetX = patrolRightBound;
+                    targetY = patrolBottomBound;
+                }
+                if(topRight){
+                    targetX = patrolRightBound;
+                    targetY = patrolTopBound;
+                }
+                if(topLeft){
+                    targetX = patrolLeftBound;
+                    targetY = patrolTopBound;
+                }
+            }
+            //Move towards the target
+            //get rid of diagonal movement using x?>y
+            if (x < targetX) {
+                if (targetX - x < speed) {
+                    x += targetX - x;
+                } else {
+                    x += speed;
+                }
+            }
+            else if (y < targetY) {
+                if (targetY - y < speed) {
+                    y += targetY - y;
+                } else {
+                    y += speed;
+                }
+            }
+            else if (x > targetX) {
+                if (x - targetX < speed) {
+                    x -= x - targetX;
+                } else {
+                    x -= speed;
+                }
+            }
+            else if (y > targetY) {
+                if (y - targetY < speed) {
+                    y -= y - targetY;
+                } else {
+                    y -= speed;
+                }
+            }
         }
-        //patrol an area when not in sight of player, randomly
-        else{
-            if(x == patrolLeftBound && y == patrolTopBound){
-                topLeft = false;
-                bottomLeft = true;
+
+        else {
+            if (x < targetX) {
+                if (targetX - x < speed) {
+                    x += targetX - x;
+                } else {
+                    x -= speed;
+                }
             }
-            else if(x == patrolLeftBound && y == patrolBottomBound){
-                bottomLeft = false;
-                bottomRight = true;
+            else if (y < targetY) {
+                if (targetY - y < speed) {
+                    y += targetY - y;
+                } else {
+                    y -= speed;
+                }
             }
-            else if(x == patrolRightBound && y == patrolBottomBound){
-                bottomRight = false;
-                topRight = true;
+            else if (x > targetX) {
+                if (x - targetX < speed) {
+                    x -= x - targetX;
+                } else {
+                    x += speed;
+                }
             }
-            else if(x == patrolRightBound && y == patrolTopBound){
-                topRight = false;
-                topLeft = true;
-            }
-            if(bottomLeft){
-                targetX = patrolLeftBound;
-                targetY = patrolBottomBound;
-            }
-            if(bottomRight){
-                targetX = patrolRightBound;
-                targetY = patrolBottomBound;
-            }
-            if(topRight){
-                targetX = patrolRightBound;
-                targetY = patrolTopBound;
-            }
-            if(topLeft){
-                targetX = patrolLeftBound;
-                targetY = patrolTopBound;
+            else if (y > targetY) {
+                if (y - targetY < speed) {
+                    y -= y - targetY;
+                } else {
+                    y += speed;
+                }
             }
         }
-        //Move towards the target
-        //get rid of diagonal movement using x?>y
-        if (x < targetX) {
-            if (targetX - x < speed) {
-                x += targetX - x;
-            } else {
-                x += speed;
-            }
-        }
-        if (y < targetY) {
-            if (targetY - y < speed) {
-                y += targetY - y;
-            } else {
-                y += speed;
-            }
-        }
-        if (x > targetX) {
-            if (x - targetX < speed) {
-                x -= x - targetX;
-            } else {
-                x -= speed;
-            }
-        }
-        if (y > targetY) {
-            if (y - targetY < speed) {
-                y -= y - targetY;
-            } else {
-                y -= speed;
-            }
-        }
+
     }
     //check if the enemy is within an appropriate range to chase the player
     private boolean rangeCheck(){
