@@ -11,7 +11,7 @@ public class CollisionHandler {
     }
 
     public void checkBlock(Subject subject) {
-        //int varialbes to store which block subject is hitting
+        //int variables to store which block subject is hitting
         int blockNum1 = 0, blockNum2 = 0;
 
         //find 4 corner coordinates of subject's collidable area

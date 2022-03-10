@@ -61,12 +61,15 @@ public class Player extends Subject{
         }
     }
     public void moveUpdate(){
-        switch (direction) {
-            case "up" -> y -= speed;
-            case "down" -> y += speed;
-            case "left" -> x -= speed;
-            case "right" -> x += speed;
+        if(!this.collisionOn) {
+            switch (direction) {
+                case "up" -> y -= speed;
+                case "down" -> y += speed;
+                case "left" -> x -= speed;
+                case "right" -> x += speed;
+            }
         }
+
     }
 
     public void timerUpdate(int ticks, int seconds) {
