@@ -198,7 +198,6 @@ public class Enemy extends Subject{
                         //if(i < j+1 && i > j-1) {
                         currentBlock = raccoonGame.mapManager.mapBlockArr[i][j];
                         if(raccoonGame.mapManager.blocks[currentBlock].collidable) {
-                            System.out.println("Block in the way");
                             return false;
                         }
                         //}
@@ -212,7 +211,6 @@ public class Enemy extends Subject{
                         //if(i < j+1 && i > j-1) {
                         currentBlock = raccoonGame.mapManager.mapBlockArr[i][j];
                         if(raccoonGame.mapManager.blocks[currentBlock].collidable) {
-                            System.out.println("Block in the way");
                             return false;
                         }
                         //}
@@ -229,7 +227,6 @@ public class Enemy extends Subject{
                         //if(i < j+1 && i > j-1) {
                         currentBlock = raccoonGame.mapManager.mapBlockArr[i][j];
                         if(raccoonGame.mapManager.blocks[currentBlock].collidable) {
-                            System.out.println("Block in the way");
                             return false;
                         }
                         //}
@@ -243,7 +240,6 @@ public class Enemy extends Subject{
                         //if(i < j+1 && i > j-1) {
                         currentBlock = raccoonGame.mapManager.mapBlockArr[i][j];
                         if(raccoonGame.mapManager.blocks[currentBlock].collidable) {
-                            System.out.println("Block in the way");
                             return false;
                         }
                         //}
