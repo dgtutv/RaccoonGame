@@ -13,8 +13,8 @@ import subject.Player;
 public class RaccoonGame extends JPanel implements Runnable{
 
     //set screen settings and map block size
-    final int pixelBlockSize = 32; //16 pixel by 16 pixel map blocks
-    final int blockSizeScale = 1; //scale this by 3, so that it displays well on modern monitors
+    final int pixelBlockSize = 32; //32 pixel by 32 pixel map blocks
+    final int blockSizeScale = 1; //scale this by 1, so that it displays well on modern monitors
     public final int blockSize = pixelBlockSize * blockSizeScale;
 
     //set our map size to be 20 by 20 blocks
@@ -31,8 +31,8 @@ public class RaccoonGame extends JPanel implements Runnable{
     public CollisionHandler collisionHandler = new CollisionHandler(this);
 
     //Initialize object array and object handler
+    public GeneralObject[] objects = new GeneralObject[windowCol*windowRow];
     public ObjectHandler objectHandler = new ObjectHandler(this);
-    public GeneralObject[] objects = new GeneralObject[10];
 
     //initialize game thread
     Thread gameThread;
@@ -50,10 +50,6 @@ public class RaccoonGame extends JPanel implements Runnable{
         //Necessary lines for accepting key input
         this.addKeyListener(keyH);
         this.setFocusable(true);
-    }
-
-    public void setupGame() {
-        objectHandler.setObject();
     }
 
     public void startThread() {
@@ -111,6 +107,7 @@ public class RaccoonGame extends JPanel implements Runnable{
         for(int i=0; i<enemyHandler.EnemyList.size(); i++){
             enemyHandler.EnemyList.get(i).update();
         }
+
 
         // David: GUI update 3.3
         gui.update((player.score%10), (player.score/10)%10, (player.score/100)%10);

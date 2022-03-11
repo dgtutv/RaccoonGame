@@ -1,6 +1,9 @@
 package object;
 
+import main.RaccoonGame;
+
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -16,4 +19,5 @@ public class Trap extends GeneralObject {
 
         collidable = false;
     }
+
 }

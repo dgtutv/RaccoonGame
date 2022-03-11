@@ -4,6 +4,7 @@ import main.KeyHandler;
 import main.ObjectHandler;
 import main.RaccoonGame;
 import object.GeneralObject;
+import object.RedRaccoon;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

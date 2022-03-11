@@ -1,52 +1,117 @@
 package main;
 
-import object.ExitDoor;
-import object.Garbage;
-import object.Trap;
+import object.*;
 import subject.Enemy;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ObjectHandler {
 
     RaccoonGame raccoonGame;
 
-    final protected int numDoors = 2;
-    public int numRewards = 2;
-    public int numTraps = 1;
+    protected int numDoors = 0;
+    protected int numRaccoon = 0;
+    public int numRewards = 0;
+    public int numTraps = 0;
+    int[][] mapItemArr;
 
     public ObjectHandler(RaccoonGame raccoonGame) {
+        mapItemArr = new int[raccoonGame.windowCol][raccoonGame.windowRow];
         this.raccoonGame = raccoonGame;
+        loadMap();
+        spawnItems();
     }
 
-    public void setObject() {
+    private void loadMap(){
+        try {
+            //set up file reader
+            InputStream inputStream = getClass().getResourceAsStream("/map/raccoonItemMap.txt");
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
-        for(int i=0; i < numDoors; i++) {
-            raccoonGame.objects[i] = new ExitDoor();
+            int currentCol = 0;
+            int currentRow = 0;
+
+            //read the map text file. top, left -> bottom, right
+            while(currentCol < raccoonGame.windowCol && currentRow < raccoonGame.windowRow) {
+                //read one line at a time (should be map width per line) and store numbers in string array
+                String line = bufferedReader.readLine();
+                String numbers[] = line.split(" ");
+
+                //add each block in the current row to mapBlockArr as an int
+                while(currentCol < raccoonGame.windowCol) {
+                    int num = Integer.parseInt(numbers[currentCol]);
+                    mapItemArr[currentCol][currentRow] = num;
+                    currentCol++;
+                }
+                //increment row (reset column tracker)
+                if(currentCol == raccoonGame.windowCol) {
+                    currentCol = 0;
+                    currentRow++;
+                }
+            }
+
+            //close the file reader
+            bufferedReader.close();
         }
-
-        for(int i=numDoors; i < numRewards+numDoors; i++) {
-            raccoonGame.objects[i] = new Garbage();
+        catch(Exception e) {
+            e.printStackTrace();
         }
-
-        for(int i=numDoors+numRewards; i < numRewards + numTraps + numDoors; i++) {
-            raccoonGame.objects[i] = new Trap();
-        }
-
-
-        //set exitDoor locations
-        raccoonGame.objects[0].x = 29 * raccoonGame.blockSize;
-        raccoonGame.objects[0].y = 9 * raccoonGame.blockSize;
-        raccoonGame.objects[1].x = 29 * raccoonGame.blockSize;
-        raccoonGame.objects[1].y = 10 * raccoonGame.blockSize;
-
-        //set garbage object locations
-        raccoonGame.objects[2].x = 10 * raccoonGame.blockSize;
-        raccoonGame.objects[2].y = 10 * raccoonGame.blockSize;
-        raccoonGame.objects[3].x = 0 * raccoonGame.blockSize;
-        raccoonGame.objects[3].y = 0 * raccoonGame.blockSize;
-
-        //set trap object locations
-        raccoonGame.objects[4].x = 15 * raccoonGame.blockSize;
-        raccoonGame.objects[4].y = 5 * raccoonGame.blockSize;
     }
 
+    private void spawnItems(){
+        System.out.print(("spawning items"));
+        int currentCol = 0;
+        int currentRow = 0;
+        int currentX = 0;
+        int currentY = 0;
+        int ind = 0;
+
+        //iterate through our array, spawn corresponding item based on number, nothing if 0
+        while(currentCol < raccoonGame.windowCol && currentRow < raccoonGame.windowRow) {
+            int blockNum = mapItemArr[currentCol][currentRow];
+
+            switch(blockNum) {
+                case 1:
+                    raccoonGame.objects[ind] = new Trap();
+                    numTraps++;
+                    raccoonGame.objects[ind].x = currentX;
+                    raccoonGame.objects[ind].y = currentY;
+                    break;
+                case 2:
+                    raccoonGame.objects[ind] = new Garbage();
+                    numRewards++;
+                    raccoonGame.objects[ind].x = currentX;
+                    raccoonGame.objects[ind].y = currentY;
+                    break;
+                case 3:
+                    raccoonGame.objects[ind] = new ExitDoor();
+                    numDoors++;
+                    raccoonGame.objects[ind].x = currentX;
+                    raccoonGame.objects[ind].y = currentY;
+                    break;
+                case 4:
+                    raccoonGame.objects[ind] = new RedRaccoon();
+                    numRaccoon++;
+                    raccoonGame.objects[ind].x = currentX;
+                    raccoonGame.objects[ind].y = currentY;
+                    break;
+            }
+
+            ind++;
+            currentCol++;
+            currentX += raccoonGame.blockSize;
+
+            //row exhausted, reset col variables and check the next row
+            if(currentCol == raccoonGame.windowCol) {
+                currentCol = 0;
+                currentX = 0;
+                currentRow++;
+                currentY += raccoonGame.blockSize;
+            }
+        }
+    }
 }
