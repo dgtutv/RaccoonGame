@@ -144,6 +144,11 @@ public class Player extends Subject{
                         GameOver = true;
                     }
                     break;
+                case "RedRaccoon":
+                    //end the game if all rewards collected
+                    rewardUpdate(100);
+                    this.raccoonGame.objects[index] = null;
+                    break;
             }
         }
     }
