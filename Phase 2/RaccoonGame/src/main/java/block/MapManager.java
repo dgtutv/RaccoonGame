@@ -18,7 +18,7 @@ public class MapManager {
     public MapManager(RaccoonGame raccoonGame) {
         this.raccoonGame = raccoonGame;
 
-        blocks = new MapBlock[10]; //storage for different block images
+        blocks = new MapBlock[11]; //storage for different block images
         mapBlockArr = new int[raccoonGame.windowCol][raccoonGame.windowRow];
 
         getBlockImage();
@@ -28,7 +28,7 @@ public class MapManager {
     //this method gets the different block images from file
     public void getBlockImage() {
         try {
-            for(int i=0; i<7; i++){
+            for(int i=0; i<11; i++){
                 blocks[i] = new MapBlock();
             }
             blocks[0].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wood_floor.png")));
@@ -44,6 +44,14 @@ public class MapManager {
             blocks[5].collidable = true;
             blocks[6].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wall_top_end.png")));
             blocks[6].collidable = true;
+            blocks[7].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/vending_top.png")));
+            blocks[7].collidable = true;
+            blocks[8].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/vending_bottom.png")));
+            blocks[8].collidable = true;
+            blocks[9].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/table_left.png")));
+            blocks[9].collidable = true;
+            blocks[10].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/table_right.png")));
+            blocks[10].collidable = true;
         }
         catch(IOException e) {
             e.printStackTrace();
