@@ -22,45 +22,10 @@ public class ObjectHandler {
     public ObjectHandler(RaccoonGame raccoonGame) {
         mapItemArr = new int[raccoonGame.windowCol][raccoonGame.windowRow];
         this.raccoonGame = raccoonGame;
-        loadMap();
+        raccoonGame.mapLoader.loadMap(mapItemArr, "/map/raccoonItemMap.txt");
         spawnItems();
     }
 
-    private void loadMap(){
-        try {
-            //set up file reader
-            InputStream inputStream = getClass().getResourceAsStream("/map/raccoonItemMap.txt");
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-
-            int currentCol = 0;
-            int currentRow = 0;
-
-            //read the map text file. top, left -> bottom, right
-            while(currentCol < raccoonGame.windowCol && currentRow < raccoonGame.windowRow) {
-                //read one line at a time (should be map width per line) and store numbers in string array
-                String line = bufferedReader.readLine();
-                String numbers[] = line.split(" ");
-
-                //add each block in the current row to mapBlockArr as an int
-                while(currentCol < raccoonGame.windowCol) {
-                    int num = Integer.parseInt(numbers[currentCol]);
-                    mapItemArr[currentCol][currentRow] = num;
-                    currentCol++;
-                }
-                //increment row (reset column tracker)
-                if(currentCol == raccoonGame.windowCol) {
-                    currentCol = 0;
-                    currentRow++;
-                }
-            }
-
-            //close the file reader
-            bufferedReader.close();
-        }
-        catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     private void spawnItems(){
         System.out.print(("spawning items"));

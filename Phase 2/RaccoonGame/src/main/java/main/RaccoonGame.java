@@ -30,6 +30,9 @@ public class RaccoonGame extends JPanel implements Runnable{
     //Initialize collision handler
     public CollisionHandler collisionHandler = new CollisionHandler(this);
 
+    //initialize map loader
+    public main.mapLoader mapLoader = new mapLoader(this);
+
     //Initialize object array and object handler
     public GeneralObject[] objects = new GeneralObject[windowCol*windowRow];
     public ObjectHandler objectHandler = new ObjectHandler(this);

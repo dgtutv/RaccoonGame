@@ -33,7 +33,6 @@ public class RedRaccoon extends GeneralObject {
     public void drawObject(Graphics2D graphics, RaccoonGame raccoonGame) {
         //increment timer
         timer++;
-        System.out.println(timer);
         //after raccoon has been invisible for 10 seconds, spawn at a random location
         if(timer == 60*10) {
             do {

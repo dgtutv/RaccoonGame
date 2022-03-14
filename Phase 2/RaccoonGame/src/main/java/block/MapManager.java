@@ -1,5 +1,6 @@
 package block;
 
+import main.mapLoader;
 import main.RaccoonGame;
 
 import javax.imageio.ImageIO;
@@ -12,6 +13,7 @@ import java.util.Objects;
 
 public class MapManager {
     RaccoonGame raccoonGame;
+    mapLoader loadMap;
     public MapBlock[] blocks;
     public int[][] mapBlockArr;
 
@@ -22,7 +24,7 @@ public class MapManager {
         mapBlockArr = new int[raccoonGame.windowCol][raccoonGame.windowRow];
 
         getBlockImage();
-        loadMap();
+        raccoonGame.mapLoader.loadMap(mapBlockArr, "/map/raccoonGameMap.txt");
     }
 
     //this method gets the different block images from file
@@ -58,42 +60,6 @@ public class MapManager {
         }
     }
 
-    //this method loads the map from a text file into a 2D array mapBlockArr[][]
-    public void loadMap() {
-        try {
-            //set up file reader
-            InputStream inputStream = getClass().getResourceAsStream("/map/raccoonGameMap.txt");
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-
-            int currentCol = 0;
-            int currentRow = 0;
-
-            //read the map text file. top, left -> bottom, right
-            while(currentCol < raccoonGame.windowCol && currentRow < raccoonGame.windowRow) {
-                //read one line at a time (should be map width per line) and store numbers in string array
-                String line = bufferedReader.readLine();
-                String numbers[] = line.split(" ");
-
-                //add each block in the current row to mapBlockArr as an int
-                while(currentCol < raccoonGame.windowCol) {
-                    int num = Integer.parseInt(numbers[currentCol]);
-                    mapBlockArr[currentCol][currentRow] = num;
-                    currentCol++;
-                }
-                //increment row (reset column tracker)
-                if(currentCol == raccoonGame.windowCol) {
-                    currentCol = 0;
-                    currentRow++;
-                }
-            }
-
-            //close the file reader
-            bufferedReader.close();
-        }
-        catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     //this method must be called from the draw function of the main game loop
     //it draws the map from the 2D array mapBlockArr[][]
