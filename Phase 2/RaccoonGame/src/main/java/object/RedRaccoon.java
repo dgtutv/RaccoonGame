@@ -25,7 +25,7 @@ public class RedRaccoon extends GeneralObject {
         catch(IOException e) {
             e.printStackTrace();
         }
-        collidable = true;
+        collidable = false;
         timer = 0;
         randomNumGenerator = new Random();
     }
