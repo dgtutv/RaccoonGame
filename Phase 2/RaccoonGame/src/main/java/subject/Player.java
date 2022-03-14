@@ -132,6 +132,10 @@ public class Player extends Subject{
                     this.changeScore(10);
                     collectedRewards++;
                     raccoonGame.objects[index] = null;
+                    //check if all rewards collected
+                    if(collectedRewards >= raccoonGame.objectHandler.numRewards) {
+                        raccoonGame.mapLoader.loadMap(raccoonGame.mapManager.mapBlockArr, "/map/raccoonGameMapEnd.txt");
+                    }
                     break;
                 case "Trap":
                     //decrement player score and remove the item
