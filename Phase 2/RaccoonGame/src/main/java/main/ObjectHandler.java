@@ -96,8 +96,10 @@ public class ObjectHandler {
                 case 4:
                     raccoonGame.objects[ind] = new RedRaccoon();
                     numRaccoon++;
-                    raccoonGame.objects[ind].x = currentX;
-                    raccoonGame.objects[ind].y = currentY;
+                    raccoonGame.objects[ind].x = 0;
+                    raccoonGame.objects[ind].y = 0;
+                    raccoonGame.objects[ind].collidableArea.width = 0;
+                    raccoonGame.objects[ind].collidableArea.height = 0;
                     break;
             }
 

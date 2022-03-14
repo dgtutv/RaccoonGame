@@ -33,6 +33,7 @@ public class RedRaccoon extends GeneralObject {
     public void drawObject(Graphics2D graphics, RaccoonGame raccoonGame) {
         //increment timer
         timer++;
+        System.out.println(timer);
         //after raccoon has been invisible for 10 seconds, spawn at a random location
         if(timer == 60*10) {
             do {
@@ -43,6 +44,8 @@ public class RedRaccoon extends GeneralObject {
             while(raccoonGame.mapManager.blocks[spawnBlock].collidable);
             this.x = row*raccoonGame.blockSize;
             this.y = col*raccoonGame.blockSize;
+            this.collidableArea.width = raccoonGame.blockSize;
+            this.collidableArea.height = raccoonGame.blockSize;
         }
         if(timer > 60*10) {
             //flip between drawing regular and "flash" red raccoon every 5/6 ths of a second
@@ -57,6 +60,9 @@ public class RedRaccoon extends GeneralObject {
         //after racoon has been visible for 5 seconds, remove
         if(timer > 60*15) {
             timer = 0;
+            //set collidable area to zero so that you cannot pickup the raccoon when it is invisible
+            this.collidableArea.width = 0;
+            this.collidableArea.height = 0;
         }
     }
 
