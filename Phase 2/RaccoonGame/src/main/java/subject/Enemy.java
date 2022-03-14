@@ -9,8 +9,7 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Random;
 
-import static java.lang.Math.floorDiv;
-import static java.lang.Math.pow;
+import static java.lang.Math.*;
 
 //A class for dynamic enemy types
 public class Enemy extends Subject{
@@ -124,67 +123,39 @@ public class Enemy extends Subject{
             }
             //Move towards the target
             //get rid of diagonal movement using x?>y
-            if (x < targetX) {
-                if (targetX - x < speed) {
-                    x += targetX - x;
-                } else {
-                    x += speed;
+            if(abs(targetX-x) > abs(targetY-y)){
+                if (x < targetX) {
+                    if (targetX - x < speed) {
+                        x += targetX - x;
+                    } else {
+                        x += speed;
+                    }
+                }
+                else if (x > targetX) {
+                    if (x - targetX < speed) {
+                        x -= x - targetX;
+                    } else {
+                        x -= speed;
+                    }
                 }
             }
-            else if (y < targetY) {
-                if (targetY - y < speed) {
-                    y += targetY - y;
-                } else {
-                    y += speed;
+            else{
+                if (y < targetY) {
+                    if (targetY - y < speed) {
+                        y += targetY - y;
+                    } else {
+                        y += speed;
+                    }
                 }
-            }
-            else if (x > targetX) {
-                if (x - targetX < speed) {
-                    x -= x - targetX;
-                } else {
-                    x -= speed;
-                }
-            }
-            else if (y > targetY) {
-                if (y - targetY < speed) {
-                    y -= y - targetY;
-                } else {
-                    y -= speed;
-                }
-            }
-        }
-
-        else {
-            if (x < targetX) {
-                if (targetX - x < speed) {
-                    x += targetX - x;
-                } else {
-                    x -= speed;
-                }
-            }
-            else if (y < targetY) {
-                if (targetY - y < speed) {
-                    y += targetY - y;
-                } else {
-                    y -= speed;
-                }
-            }
-            else if (x > targetX) {
-                if (x - targetX < speed) {
-                    x -= x - targetX;
-                } else {
-                    x += speed;
-                }
-            }
-            else if (y > targetY) {
-                if (y - targetY < speed) {
-                    y -= y - targetY;
-                } else {
-                    y += speed;
+                else if (y > targetY) {
+                    if (y - targetY < speed) {
+                        y -= y - targetY;
+                    } else {
+                        y -= speed;
+                    }
                 }
             }
         }
-
     }
     //check if the enemy is within an appropriate range to chase the player
     private boolean rangeCheck(){
