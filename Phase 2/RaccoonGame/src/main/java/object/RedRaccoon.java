@@ -39,10 +39,10 @@ public class RedRaccoon extends GeneralObject {
                 row = randomNumGenerator.nextInt(raccoonGame.windowCol);
                 col = randomNumGenerator.nextInt(raccoonGame.windowRow);
                 spawnBlock = raccoonGame.mapManager.mapBlockArr[row][col];
-                this.x = row*raccoonGame.blockSize;
-                this.y = col*raccoonGame.blockSize;
             }
             while(raccoonGame.mapManager.blocks[spawnBlock].collidable);
+            this.x = row*raccoonGame.blockSize;
+            this.y = col*raccoonGame.blockSize;
         }
         if(timer > 60*10) {
             //flip between drawing regular and "flash" red raccoon every 5/6 ths of a second
@@ -55,7 +55,7 @@ public class RedRaccoon extends GeneralObject {
 
         }
         //after racoon has been visible for 5 seconds, remove
-        if(timer > 60*10) {
+        if(timer > 60*15) {
             timer = 0;
         }
     }
