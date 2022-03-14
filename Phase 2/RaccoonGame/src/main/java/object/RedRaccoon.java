@@ -55,7 +55,7 @@ public class RedRaccoon extends GeneralObject {
 
         }
         //after racoon has been visible for 5 seconds, remove
-        if(timer > 60*15) {
+        if(timer > 60*10) {
             timer = 0;
         }
     }
