@@ -2,6 +2,8 @@ package subject;
 
 import main.RaccoonGame;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class TreeMaker {
@@ -27,10 +29,11 @@ public class TreeMaker {
     }
 
     //BFS traversal
-    void BFS(int root){
+    public ArrayList<GraphMaker.Node> BFS(GraphMaker.Node root){
         //mark all the nodes as unvisited
         GraphMaker.Node head = GraphMaker.head;
         GraphMaker.Node current = head;
+        ArrayList<GraphMaker.Node> path = new ArrayList<GraphMaker.Node>();
         for(GraphMaker.Node i = head; i != null; i = i.down){
             for(GraphMaker.Node j = i; j != null; j = j.right){
                 j.visited = false;
@@ -40,7 +43,32 @@ public class TreeMaker {
         LinkedList<GraphMaker.Node> queue = new LinkedList<GraphMaker.Node>();
 
         //Mark the current node as visited and add to the queue
+        current.visited = true;
+        queue.add(current);
 
+        while(queue.size() != 0){
+            //dequeue a vertex from queue and print it
+            root = queue.poll();
+            path.add(root);
+            //visit all unvisited neighbors, add them to the queue
+            if(current.left != null && !current.left.visited){
+                queue.add(current.left);
+                current.left.visited = true;
+            }
+            if(current.right != null && !current.right.visited){
+                queue.add(current.right);
+                current.right.visited = true;
+            }
+            if(current.up != null && !current.up.visited){
+                queue.add(current.up);
+                current.up.visited = true;
+            }
+            if(current.down != null && !current.down.visited){
+                queue.add(current.down);
+                current.down.visited = true;
+            }
+        }
+        return path;
     }
 
     //Find which blocks the enemy and player are in
