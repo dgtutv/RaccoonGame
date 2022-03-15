@@ -51,19 +51,19 @@ public class TreeMaker {
             root = queue.poll();
             path.add(root);
             //visit all unvisited neighbors, add them to the queue
-            if(current.left != null && !current.left.visited){
+            if(current.left != null && !current.left.visited && current.left.isZero){
                 queue.add(current.left);
                 current.left.visited = true;
             }
-            if(current.right != null && !current.right.visited){
+            if(current.right != null && !current.right.visited && current.right.isZero){
                 queue.add(current.right);
                 current.right.visited = true;
             }
-            if(current.up != null && !current.up.visited){
+            if(current.up != null && !current.up.visited && current.up.isZero){
                 queue.add(current.up);
                 current.up.visited = true;
             }
-            if(current.down != null && !current.down.visited){
+            if(current.down != null && !current.down.visited && current.down.isZero){
                 queue.add(current.down);
                 current.down.visited = true;
             }
