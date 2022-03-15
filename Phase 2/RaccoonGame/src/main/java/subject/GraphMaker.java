@@ -9,13 +9,14 @@ public class GraphMaker {
     RaccoonGame raccoonGame;
     public int mapBlockArr[][];
     public int mapNodeArr[][];
-    Node head;
+    public static Node head;
 
     //Node class for a linked list-based map
-    private class Node{
+    public class Node{
         public Node up, down, left, right = null;
         public int blockX, blockY;
         public boolean isZero;
+        public boolean visited = false;
         Node(int x, int y){
             this.blockX = x;
             this.blockY = y;
@@ -27,6 +28,20 @@ public class GraphMaker {
         this.raccoonGame = raccoonGame;
         this.mapBlockArr = raccoonGame.mapManager.mapBlockArr;
         graphGenerate();
+    }
+
+    public void print(){
+        for(Node i = head; i != null; i = i.down){
+            System.out.print("\n");
+            for(Node j = i; j != null; j = j.right){
+                if(j.isZero){
+                    System.out.print(" O ");
+                }
+                else{
+                    System.out.print(" ! ");
+                }
+            }
+        }
     }
 
     //Create our linked list based-graph using the mapArray from MapManager.
