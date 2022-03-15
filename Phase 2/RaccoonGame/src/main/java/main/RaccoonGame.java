@@ -8,6 +8,7 @@ import java.awt.*;
 
 import object.GeneralObject;
 import subject.EnemyHandler;
+import subject.GraphMaker;
 import subject.Player;
 
 public class RaccoonGame extends JPanel implements Runnable{
@@ -30,8 +31,9 @@ public class RaccoonGame extends JPanel implements Runnable{
     //Initialize collision handler
     public CollisionHandler collisionHandler = new CollisionHandler(this);
 
-    //initialize map loader
+    //initialize tree loader
     public main.mapLoader mapLoader = new mapLoader(this);
+
 
     //Initialize object array and object handler
     public GeneralObject[] objects = new GeneralObject[windowCol*windowRow];
@@ -40,6 +42,7 @@ public class RaccoonGame extends JPanel implements Runnable{
     //initialize game thread
     Thread gameThread;
     public MapManager mapManager = new MapManager(this);
+    public GraphMaker graphMaker = new GraphMaker(this);
     public GUI gui = new GUI(this);
 
     //spawn in the enemies
@@ -73,6 +76,9 @@ public class RaccoonGame extends JPanel implements Runnable{
         double delta = 0;
         //calculate running interval (nano-sec per sec / ticks)
         double loopInterval = 1000000000/ticks;
+
+        //Test graph of map by printing
+        graphMaker.print();
 
         //gameThread loop
         while(gameThread != null) {

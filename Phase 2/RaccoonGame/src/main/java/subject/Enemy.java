@@ -25,6 +25,7 @@ public class Enemy extends Subject{
     boolean topRight;
     boolean bottomLeft;
     boolean bottomRight;
+    TreeMaker tree;
 
     public boolean collidable;
 
@@ -60,6 +61,7 @@ public class Enemy extends Subject{
         collidableArea.height = raccoonGame.blockSize - (raccoonGame.blockSize/4);
         collidableAreaX = collidableArea.x;
         collidableAreaY = collidableArea.y;
+        tree = new TreeMaker(player, this);
     }
 
     @Override
@@ -75,6 +77,7 @@ public class Enemy extends Subject{
         //check if collision is on
         collisionOn = false;
         raccoonGame.collisionHandler.checkBlock(this);
+        tree.update();
     }
 
     @Override
