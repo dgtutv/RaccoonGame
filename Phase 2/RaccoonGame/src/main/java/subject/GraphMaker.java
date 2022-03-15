@@ -12,7 +12,7 @@ public class GraphMaker {
     public static Node head;
 
     //Node class for a linked list-based map
-    public class Node{
+    public static class Node{
         public Node up, down, left, right = null;
         public int blockX, blockY;
         public boolean isZero;

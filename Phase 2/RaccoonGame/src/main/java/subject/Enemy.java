@@ -77,7 +77,6 @@ public class Enemy extends Subject{
         //check if collision is on
         collisionOn = false;
         raccoonGame.collisionHandler.checkBlock(this);
-        tree.update();
     }
 
     @Override
@@ -86,8 +85,7 @@ public class Enemy extends Subject{
         if(!this.collisionOn) {
             //follow the player when within range
             if(rangeCheck()) {
-                targetX = player.x;
-                targetY = player.y;
+                tree.update();
             }
             //patrol an area when not in sight of player, randomly
             else{

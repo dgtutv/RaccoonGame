@@ -26,15 +26,22 @@ public class TreeMaker {
     //Update method called by enemy each update
     public void update(){
         blockUpdate();
+        GraphMaker.Node enemyNode = new GraphMaker.Node(enemyBlockX, enemyBlockY);
+        ArrayList<GraphMaker.Node> path = BFS(enemyNode);
+        for(int i=0; i<path.size(); i++){
+            System.out.print("("+path.get(i).blockX+", "+path.get(i).blockY+")");
+        }
+        System.out.print("\n");
+        enemy.targetX = path.get(0).blockX;
+        enemy.targetY = path.get(0).blockY;
     }
 
-    //BFS traversal
+    //BFS traversal for enemy pathing.
     public ArrayList<GraphMaker.Node> BFS(GraphMaker.Node root){
         //mark all the nodes as unvisited
-        GraphMaker.Node head = GraphMaker.head;
-        GraphMaker.Node current = head;
+        GraphMaker.Node current = root;
         ArrayList<GraphMaker.Node> path = new ArrayList<GraphMaker.Node>();
-        for(GraphMaker.Node i = head; i != null; i = i.down){
+        for(GraphMaker.Node i = root; i != null; i = i.down){
             for(GraphMaker.Node j = i; j != null; j = j.right){
                 j.visited = false;
             }
