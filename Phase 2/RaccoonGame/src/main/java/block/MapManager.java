@@ -36,9 +36,9 @@ public class MapManager {
             blocks[0].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wood_floor.png")));
             blocks[1].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wall_top.png")));
             blocks[1].collidable = true;
-            blocks[2].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wall_mid.png")));
+            blocks[2].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wall.png")));
             blocks[2].collidable = true;
-            blocks[3].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wall_left.png")));
+            blocks[3].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/exit.png")));
             blocks[3].collidable = true;
             blocks[4].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wall_right.png")));
             blocks[4].collidable = true;
