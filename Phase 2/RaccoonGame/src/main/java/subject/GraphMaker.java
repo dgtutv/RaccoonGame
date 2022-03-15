@@ -2,6 +2,8 @@ package subject;
 
 import main.RaccoonGame;
 
+import java.awt.color.ICC_ColorSpace;
+
 public class GraphMaker {
     //Needed variables
     RaccoonGame raccoonGame;
@@ -19,35 +21,88 @@ public class GraphMaker {
             this.blockY = y;
         }
     }
-    //Test the graph
-    public void print(){
-        for(Node i = head; i != null; i = i.down){
-            System.out.print("\n");
-            for(Node j = i; j != null; j = j.right){
-                if(j.isZero){
-                    System.out.print(" O ");
+    //constructor
+    public GraphMaker(RaccoonGame raccoonGame) {
+        //Set variables based off constructor input
+        this.raccoonGame = raccoonGame;
+        this.mapBlockArr = raccoonGame.mapManager.mapBlockArr;
+        graphGenerate();
+        wallCleanup();
+    }
+
+
+    //This method gets rid of the walls in the graph
+    public void wallCleanup(){
+        Node currentNode = head;
+        Node prevNode = null;
+
+        //If the head is a wall
+        while(currentNode != null && !currentNode.isZero){
+            if(currentNode.right != null){
+                head = currentNode.right;
+                currentNode = currentNode.right;
+            }
+            else if(currentNode.down != null){
+                //go to the far left
+                while(currentNode.left != null){
+                    currentNode = currentNode.left;
                 }
+                //then go down
+                head = currentNode.down;
+                currentNode = head;
+            }
+        }
+
+        //remove walls that are not the head
+        while(currentNode != null){
+            while(currentNode != null && !currentNode.isZero){
+                prevNode = currentNode;
+                currentNode =  currentNode.right;
+            }
+            //if not present in this row
+            if(currentNode == null){
+                //go to the far left
+                while(currentNode.left != null){
+                    currentNode = currentNode.left;
+                }
+                //then go down if possible
+                if(currentNode.down != null){
+                    currentNode = currentNode.down;
+                }
+                //If not possible, all walls have been removed
                 else{
-                    System.out.print(" ! ");
+                    break;
                 }
+            }
+            //Remove the node, and update the
+            else{
+                //detach from the left
+                prevNode.right = null;
+                //detach from the right
+                currentNode.right.left = null;
+                //detach from above
+                if(currentNode.up != null){
+                    currentNode.up.down = null;
+                }
+                //detach from below
+                if(currentNode.down != null){
+                    currentNode.down.up = null;
+                }
+                currentNode = currentNode.right;
             }
         }
     }
 
-    //constructor
-    public GraphMaker(RaccoonGame raccoonGame){
-        //Set variables based off constructor input
-        this.raccoonGame = raccoonGame;
-        this.mapBlockArr = raccoonGame.mapManager.mapBlockArr;
-
+    //Create our linked list based-graph using the mapArray from MapManager.
+    //We go from top left to bottom right
+    public void graphGenerate(){
         //Iterator variables
         int currentCol = 0;
         int currentRow = 0;
         Node currentNode = new Node(0, 0);
         head = currentNode;
 
-        //Create our linked list based-graph using the mapArray from MapManager.
-        //We go from top left to bottom right
+        //The loop itself
         while(currentCol < raccoonGame.windowCol && currentRow < raccoonGame.windowRow) {
             int blockNum = mapBlockArr[currentCol][currentRow];
             if (blockNum == 0){
@@ -117,7 +172,5 @@ public class GraphMaker {
                 currentNode = currentNode.right;
             }
         }
-
-
     }
 }
