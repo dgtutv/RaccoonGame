@@ -18,8 +18,8 @@ public class RaccoonGame extends JPanel implements Runnable{
     public final int blockSize = pixelBlockSize * blockSizeScale;
 
     //set our map size to be 20 by 20 blocks
-    public final int windowCol = 30;
-    public final int windowRow = 20;
+    public final int windowCol = 45;
+    public final int windowRow = 30;
     public final int windowWidth = windowCol * blockSize;
     public final int windowHeight = windowRow * blockSize;
 
