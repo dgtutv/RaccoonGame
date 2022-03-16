@@ -23,7 +23,7 @@ public class TreeMaker {
         this.enemy = enemy;
         this.raccoonGame = player.raccoonGame;
         this.graph = raccoonGame.graphMaker;
-
+        path = new ArrayList<GraphMaker.Node>();
     }
 
     //Update method called by enemy each update
@@ -32,15 +32,16 @@ public class TreeMaker {
         blockUpdate();
         //Initialize a new root for current position of the enemy
         root = GraphMaker.find(enemyBlockX, enemyBlockY);
-        root.parent = null;
         root.isRoot = true;
         //Generate the tree
         BFS();
         System.out.println("Generated Tree");
         //Find the player's node
         playerNode = GraphMaker.find(playerBlockX, playerBlockY);
+        System.out.println("Player X: "+playerNode.x+"\nPlayer Y: "+playerNode.y);
+        System.out.println("Player: "+playerNode);
         //Find the path from the enemy to the player, and save as an arrayList of nodes
-        path = new ArrayList<>();
+        path.clear();
         getPath(root);
         System.out.println("Generated Path");
         System.out.println("Path Size: "+path.size());
@@ -64,6 +65,7 @@ public class TreeMaker {
         else{
             for(int i=0; i < current.children.size(); i++){
                 if(getPath(current.children.get(i))){
+                    System.out.println("HERE");
                     path.add(current);
                     return true;
                 }
@@ -93,6 +95,7 @@ public class TreeMaker {
         while(!queue.isEmpty()){
             //Let current be the vertex and the front of the queue and remove current from the queue
             current = queue.poll();
+            System.out.println("X: "+current.x+" Y: "+current.y+" Reference: "+current);
             //for each unvisited neighbor i of current (do this with 4 directional if statements);
             //insert i at the end of the queue and mark i as visited;
             //make i a child of current

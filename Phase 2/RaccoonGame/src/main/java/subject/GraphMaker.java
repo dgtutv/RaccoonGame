@@ -21,13 +21,12 @@ public class GraphMaker {
         public boolean visited = false;
         public boolean isZero = false;
         //tree node stuff
-        public Node parent = null;
-        public ArrayList<Node> children = new ArrayList<Node>();
-        public boolean isParent = false;
+        public ArrayList<Node> children;
         //Constructor
         Node(int x, int y){
             this.x = x;
             this.y = y;
+            children = new ArrayList<Node>();
         }
     }
 
@@ -45,10 +44,10 @@ public class GraphMaker {
             System.out.print("\n");
             for(Node j = i; j != null; j = j.right){
                 if(j.isZero){
-                    System.out.print(" O ");
+                    System.out.print("[X: "+j.x+" Y: "+j.y+"] ");
                 }
                 else{
-                    System.out.print(" ! ");
+                    System.out.print("[-] ");
                 }
             }
         }
