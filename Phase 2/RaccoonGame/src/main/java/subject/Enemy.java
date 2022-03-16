@@ -6,6 +6,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
@@ -25,6 +26,7 @@ public class Enemy extends Subject{
     boolean topRight;
     boolean bottomLeft;
     boolean bottomRight;
+    List<GraphMaker.Node> path;
     TreeMaker tree;
 
     public boolean collidable;
@@ -65,162 +67,97 @@ public class Enemy extends Subject{
     }
 
     @Override
-    //update method for enemy direction
+    //update method for enemy direction (i.e, pathing)
     public void directionUpdate() {
-        //direction should mimic player
-        //direction = player.direction;
+        path = tree.update();
     }
 
     @Override
-    //enemy specific update method
-    public void customUpdate() {
-        //check if collision is on
-        collisionOn = false;
-        raccoonGame.collisionHandler.checkBlock(this);
-    }
+    //enemy specific update method, not used
+    public void customUpdate() {}
 
     @Override
     //update method for enemy movement
     public void moveUpdate() {
-        if(!this.collisionOn) {
+        //check if collision is on
+        if(rangeCheck()) {
             //follow the player when within range
-            if(rangeCheck()) {
-                tree.update();
-                targetX = x;
-                targetY = y;
+            targetX = path.get(1).x * raccoonGame.blockSize;
+            targetY = path.get(1).y * raccoonGame.blockSize;
+        }
+        //patrol an area when not in sight of player, randomly
+        else{
+            if(x == patrolLeftBound && y == patrolTopBound){
+                topLeft = false;
+                bottomLeft = true;
             }
-            //patrol an area when not in sight of player, randomly
-            else{
-                if(x == patrolLeftBound && y == patrolTopBound){
-                    topLeft = false;
-                    bottomLeft = true;
-                }
-                else if(x == patrolLeftBound && y == patrolBottomBound){
-                    bottomLeft = false;
-                    bottomRight = true;
-                }
-                else if(x == patrolRightBound && y == patrolBottomBound){
-                    bottomRight = false;
-                    topRight = true;
-                }
-                else if(x == patrolRightBound && y == patrolTopBound){
-                    topRight = false;
-                    topLeft = true;
-                }
-                if(bottomLeft){
-                    targetX = patrolLeftBound;
-                    targetY = patrolBottomBound;
-                }
-                if(bottomRight){
-                    targetX = patrolRightBound;
-                    targetY = patrolBottomBound;
-                }
-                if(topRight){
-                    targetX = patrolRightBound;
-                    targetY = patrolTopBound;
-                }
-                if(topLeft){
-                    targetX = patrolLeftBound;
-                    targetY = patrolTopBound;
-                }
+            else if(x == patrolLeftBound && y == patrolBottomBound){
+                bottomLeft = false;
+                bottomRight = true;
             }
-            //Move towards the target
-            //get rid of diagonal movement using x?>y
-            if(abs(targetX-x) > abs(targetY-y)){
-                if (x < targetX) {
-                    if (targetX - x < speed) {
-                        x += targetX - x;
-                    } else {
-                        x += speed;
-                    }
-                }
-                else if (x > targetX) {
-                    if (x - targetX < speed) {
-                        x -= x - targetX;
-                    } else {
-                        x -= speed;
-                    }
+            else if(x == patrolRightBound && y == patrolBottomBound){
+                bottomRight = false;
+                topRight = true;
+            }
+            else if(x == patrolRightBound && y == patrolTopBound){
+                topRight = false;
+                topLeft = true;
+            }
+            if(bottomLeft){
+                targetX = patrolLeftBound;
+                targetY = patrolBottomBound;
+            }
+            if(bottomRight){
+                targetX = patrolRightBound;
+                targetY = patrolBottomBound;
+            }
+            if(topRight){
+                targetX = patrolRightBound;
+                targetY = patrolTopBound;
+            }
+            if(topLeft){
+                targetX = patrolLeftBound;
+                targetY = patrolTopBound;
+            }
+        }
+        //Move towards the target
+        //get rid of diagonal movement using x?>y
+        if(abs(targetX-x) > abs(targetY-y)){
+            if (x < targetX) {
+                if (targetX - x < speed) {
+                    x += targetX - x;
+                } else {
+                    x += speed;
                 }
             }
-            else{
-                if (y < targetY) {
-                    if (targetY - y < speed) {
-                        y += targetY - y;
-                    } else {
-                        y += speed;
-                    }
+            else if (x > targetX) {
+                if (x - targetX < speed) {
+                    x -= x - targetX;
+                } else {
+                    x -= speed;
                 }
-                else if (y > targetY) {
-                    if (y - targetY < speed) {
-                        y -= y - targetY;
-                    } else {
-                        y -= speed;
-                    }
+            }
+        }
+        else{
+            if (y < targetY) {
+                if (targetY - y < speed) {
+                    y += targetY - y;
+                } else {
+                    y += speed;
+                }
+            }
+            else if (y > targetY) {
+                if (y - targetY < speed) {
+                    y -= y - targetY;
+                } else {
+                    y -= speed;
                 }
             }
         }
     }
+
     //check if the enemy is within an appropriate range to chase the player
     private boolean rangeCheck(){
-        int currentBlock;
-        //player is to the left of the enemy
-        if(player.x/raccoonGame.blockSize < this.x/raccoonGame.blockSize) {
-            //player is above the enemy
-            if(player.y/raccoonGame.blockSize <= this.y/raccoonGame.blockSize) {
-                for(int i = player.x/raccoonGame.blockSize; i <= this.x/raccoonGame.blockSize; i++) {
-                    for(int j = player.y/raccoonGame.blockSize; j <= this.y/raccoonGame.blockSize; j++) {
-                        //if(i < j+1 && i > j-1) {
-                        currentBlock = raccoonGame.mapManager.mapBlockArr[i][j];
-                        if(raccoonGame.mapManager.blocks[currentBlock].collidable) {
-                            return false;
-                        }
-                        //}
-                    }
-                }
-            }
-            //player is below the enemy
-            else if(player.y/raccoonGame.blockSize > this.y/raccoonGame.blockSize) {
-                for(int i = player.x/raccoonGame.blockSize; i <= this.x/raccoonGame.blockSize; i++) {
-                    for(int j = player.y/raccoonGame.blockSize; j >= this.y/raccoonGame.blockSize; j--) {
-                        //if(i < j+1 && i > j-1) {
-                        currentBlock = raccoonGame.mapManager.mapBlockArr[i][j];
-                        if(raccoonGame.mapManager.blocks[currentBlock].collidable) {
-                            return false;
-                        }
-                        //}
-                    }
-                }
-            }
-        }
-        //player is to the right of the enemy
-        else if(player.x/raccoonGame.blockSize > this.x/raccoonGame.blockSize) {
-            //player is above the enemy
-            if(player.y/raccoonGame.blockSize <= this.y/raccoonGame.blockSize) {
-                for(int i = player.x/raccoonGame.blockSize; i >= this.x/raccoonGame.blockSize; i--) {
-                    for(int j = player.y/raccoonGame.blockSize; j <= this.y/raccoonGame.blockSize; j++) {
-                        //if(i < j+1 && i > j-1) {
-                        currentBlock = raccoonGame.mapManager.mapBlockArr[i][j];
-                        if(raccoonGame.mapManager.blocks[currentBlock].collidable) {
-                            return false;
-                        }
-                        //}
-                    }
-                }
-            }
-            //player is below the enemy
-            else if(player.y/raccoonGame.blockSize > this.y/raccoonGame.blockSize) {
-                for(int i = player.x/raccoonGame.blockSize; i >= this.x/raccoonGame.blockSize; i--) {
-                    for(int j = player.y/raccoonGame.blockSize; j >= this.y/raccoonGame.blockSize; j--) {
-                        //if(i < j+1 && i > j-1) {
-                        currentBlock = raccoonGame.mapManager.mapBlockArr[i][j];
-                        if(raccoonGame.mapManager.blocks[currentBlock].collidable) {
-                            return false;
-                        }
-                        //}
-                    }
-                }
-            }
-        }
         //use pythagorean theorem to get the distance of a line to the player, then compare to range * blocksize
         //this in turn calculates if a player is within a range given in blocks to the enemy
         return (pow((player.x - x), 2) + pow((player.y - y), 2) <= pow(range * raccoonGame.blockSize, 2));

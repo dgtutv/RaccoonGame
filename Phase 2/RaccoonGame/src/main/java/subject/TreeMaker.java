@@ -25,28 +25,19 @@ public class TreeMaker {
     }
 
     //Update method called by enemy each update
-    public void update(){
+    public List<GraphMaker.Node> update(){
         //Get block locations of the enemy and player
         blockUpdate();
         //Initialize a new root for current position of the enemy
         root = GraphMaker.find(enemyBlockX, enemyBlockY);
         //Find the player's Node
         playerNode = GraphMaker.find(playerBlockX, playerBlockY);
-        //Printing stuff for testing
-        System.out.println("Enemy X: "+root.x+"\nEnemy Y: "+root.y);
-        System.out.println("Enemy: "+root);
-        System.out.println("Player X: "+playerNode.x+"\nPlayer Y: "+playerNode.y);
-        System.out.println("Player: "+playerNode);
         //reset the path and generate the tree
-        List<GraphMaker.Node> path = BFS();
-        //more testing stuff
-        printPath(path);
-        System.out.println("Generated Tree");
-        System.out.println("Path Size: "+path.size());
+        return BFS();
     }
 
     //Method to print the path found from the enemy to the player
-    private void printPath(List<GraphMaker.Node> path){
+    public void print(List<GraphMaker.Node> path){
         for(int i=0; i<path.size(); i++){
             System.out.print("("+path.get(i).x+" ,"+path.get(i).y+")");
         }
@@ -58,6 +49,13 @@ public class TreeMaker {
 
         Queue<GraphMaker.Node> queue = new LinkedList<>();
         List<GraphMaker.Node> path = new ArrayList<>();
+
+        //mark all nodes unvisited
+        for (int row = 0; row < raccoonGame.windowRow; row++) {
+            for (int col = 0; col < raccoonGame.windowCol; col++) {
+                mapNodeArr[col][row].visited = false;
+            }
+        }
 
         queue.add(root);
         root.visited = true;
@@ -71,7 +69,6 @@ public class TreeMaker {
             current.visited = true;
 
             if(current == playerNode){
-                System.out.println("HERE");
                 break;
             }
 
