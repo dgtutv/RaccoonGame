@@ -7,9 +7,9 @@ import java.util.Currency;
 
 public class GraphMaker {
     //Needed variables
-    RaccoonGame raccoonGame;
+    static RaccoonGame raccoonGame;
     public int mapBlockArr[][];
-    public int mapNodeArr[][];
+    private static Node[][] mapNodeArr;
     public static Node head;
 
     //Node class for a linked list-based map
@@ -36,45 +36,21 @@ public class GraphMaker {
         //Set variables based off constructor input
         this.raccoonGame = raccoonGame;
         this.mapBlockArr = raccoonGame.mapManager.mapBlockArr;
+        mapNodeArr = new Node[raccoonGame.windowCol][raccoonGame.windowRow];
         graphGenerate();
-    }
-
-    //Print the map
-    public void print() {
-        for (Node i = head; i != null; i = i.down) {
-            System.out.print("\n");
-            for (Node j = i; j != null; j = j.right) {
-                if (j.isZero) {
-                    System.out.print("0 ");
-                } else {
-                    System.out.print("! ");
-                }
-            }
-        }
-    }
-
-    //Method used to find a node, returns such node. Returns null if no such node was found
-    public static Node find(int x, int y) {
-        for (Node i = head; i != null; i = i.down) {
-            for (Node j = i; j != null; j = j.right) {
-                if (j.x == x && j.y == y) {
-                    return j;
-                }
-            }
-        }
-        return null;
+        graphDirectionFill();
     }
 
     //Create our linked list based-graph using the mapArray from MapManager.
     //We go from top left to bottom right
-    public void graphGenerate() {
+    private void graphGenerate() {
         //Iterator variables
         int currentCol = 0;
         int currentRow = 0;
-        Node currentNode = new Node(0, 0);
-        head = currentNode;
-        Node leftNode = null;
-        Node upperNode = null;
+
+        //Initialize node and add to array
+        Node currentNode = new Node(currentCol, currentRow);
+        mapNodeArr[currentCol][currentRow] = currentNode;
 
         //The loop itself
         while (currentCol < raccoonGame.windowCol && currentRow < raccoonGame.windowRow) {
@@ -83,65 +59,54 @@ public class GraphMaker {
                 currentNode.isZero = true;
             }
 
-            //Up & Down for the head
-            if(currentCol==0 && currentRow + 1 < raccoonGame.windowRow){
-                //down
-                blockNum = mapBlockArr[currentCol][currentRow + 1];
-                currentNode.down = new Node(currentNode.x, currentNode.y + 1);
-                if (blockNum == 0) {
-                    currentNode.down.isZero = true;
-                } else {
-                    currentNode.down.isZero = false;
-                }
-                //up
-                currentNode.down.up = currentNode;
-            }
-
-            //Left
-            if(currentCol > 0){
-                currentNode.left = leftNode;
-            }
-
-            //up & down in general
-            if(currentRow > 1){
-                upperNode.down = currentNode;
-                currentNode.up = upperNode;
-            }
-
-            //Right
-            if (currentCol + 1 < raccoonGame.windowCol && currentRow < raccoonGame.windowRow) {
-                blockNum = mapBlockArr[currentCol + 1][currentRow];
-                currentNode.right = new Node(currentNode.x + 1, currentNode.y);
-                if (blockNum == 0) {
-                    currentNode.right.isZero = true;
-                } else {
-                    currentNode.right.isZero = false;
-                }
-            }
             currentCol++;
 
             //row checked, reset col variables and draw the next row
             if (currentCol == raccoonGame.windowCol) {
                 currentCol = 0;
                 currentRow++;
-                //go to the far left
-                while (currentNode.left != null) {
-                    currentNode = currentNode.left;
-                }
-                //set upperNode to this
-                upperNode = currentNode;
-                //then go down
-                currentNode = currentNode.down;
+                //go to the far left and down 1
+                currentNode = mapNodeArr[currentCol][currentRow];
             }
-            else {
-                leftNode = currentNode;
-                currentNode = currentNode.right;
-                //iterate upperNode to the right
-                if(currentRow > 1){
-                    upperNode = upperNode.right;
-                }
-            }
+        }
+    }
 
+    //Here we assign the direction variables to each node from a completed map
+    private void graphDirectionFill(){
+        for(int row = 0; row< raccoonGame.windowRow; row++){
+            for(int col = 0; col< raccoonGame.windowCol; col++){
+                if(0<row){
+                    mapNodeArr[col][row].up = mapNodeArr[col][row-1];
+                }
+                if(0<col){
+                    mapNodeArr[col][row].left = mapNodeArr[col-1][row];
+                }
+                if(row<raccoonGame.windowRow-1) {
+                    mapNodeArr[col][row].down = mapNodeArr[col][row+1];
+                }
+                if(col< raccoonGame.windowCol-1){
+                    mapNodeArr[col][row].right = mapNodeArr[col+1][row];
+                }
+            }
+        }
+    }
+
+    //Method used to find a node, returns such node. Returns null if no such node was found
+    public static Node find(int x, int y) {
+        return mapNodeArr[x][y];
+    }
+
+    //Print the map
+    public void print() {
+        for(int row = 0; row< raccoonGame.windowRow; row++){
+            System.out.println("\n");
+            for(int col = 0; col< raccoonGame.windowCol; col++){
+                if(mapNodeArr[col][row].isZero){
+                    System.out.print("0 ");
+                } else {
+                    System.out.print("! ");
+                }
+            }
         }
     }
 }
