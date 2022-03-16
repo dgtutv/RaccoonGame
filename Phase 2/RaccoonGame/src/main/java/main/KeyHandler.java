@@ -63,12 +63,19 @@ public class KeyHandler implements KeyListener {
             if(keyCode == KeyEvent.VK_ENTER) {
                 switch (raccoonGame.gui.cursorNum) {
                     case 0:
-                        raccoonGame.initializedGame.resetGame(raccoonGame.initializedGame.gameWindow, raccoonGame);
+                        raccoonGame.gameState = raccoonGame.titleState;
                         break;
                     case 1:
                         System.exit(0);
                         break;
                 }
+            }
+        }
+
+        //pause state
+        else if(raccoonGame.gameState == raccoonGame.pauseState) {
+            if(keyCode == KeyEvent.VK_ESCAPE){      //if esc pressed
+                raccoonGame.gameState = raccoonGame.playState;
             }
         }
 
@@ -86,6 +93,9 @@ public class KeyHandler implements KeyListener {
             }
             if(keyCode == KeyEvent.VK_D){      //if d pressed
                 rightPressed = true;
+            }
+            if(keyCode == KeyEvent.VK_ESCAPE){      //if esc pressed
+                raccoonGame.gameState = raccoonGame.pauseState;
             }
         }
 

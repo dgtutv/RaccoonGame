@@ -23,8 +23,6 @@ public class RaccoonGame extends JPanel implements Runnable{
     public final int windowWidth = windowCol * blockSize;
     public final int windowHeight = windowRow * blockSize;
 
-    //game frame
-    public InitializeGame initializedGame;
 
     //Initialize a key handler and a player with it
     KeyHandler keyH = new KeyHandler(this);
@@ -50,6 +48,7 @@ public class RaccoonGame extends JPanel implements Runnable{
     public int titleState = 0;
     public int playState = 1;
     public int endState = 2;
+    public int pauseState = 3;
 
     //spawn in the enemies
     public EnemyHandler enemyHandler = new EnemyHandler(this, player);

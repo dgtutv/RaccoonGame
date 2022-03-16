@@ -95,6 +95,12 @@ public class GUI {
         if(raccoonGame.gameState == raccoonGame.endState) {
             drawEndScreen(graphics);
         }
+
+        //if pauseState, draw GUI for end pause screen
+        if(raccoonGame.gameState == raccoonGame.pauseState) {
+            drawPauseScreen(graphics);
+        }
+
     }
 
     private void drawTitleScreen(Graphics2D graphics) {
@@ -128,6 +134,10 @@ public class GUI {
             graphics.drawString(">", x-raccoonGame.blockSize, y);
         }
 
+
+    }
+
+    private void drawPauseScreen(Graphics2D graphics) {
 
     }
 
