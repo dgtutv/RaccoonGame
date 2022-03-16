@@ -4,6 +4,7 @@ import main.RaccoonGame;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Queue;
 
 public class TreeMaker {
     //Some needed variables
@@ -38,20 +39,41 @@ public class TreeMaker {
         //Find the player's node
         playerNode = GraphMaker.find(playerBlockX, playerBlockY);
         //Find the path from the enemy to the player, and save as an arrayList of nodes
-        ArrayList<GraphMaker.Node> path = getPath();
+        path = new ArrayList<>();
+        getPath(root);
+        printPath();
 
     }
-    //function to search the BFS tree for the player and record its path
-    public ArrayList<GraphMaker.Node> getPath(){
-        ArrayList<GraphMaker.Node> path = new ArrayList<GraphMaker.Node>();
-        return path;
+
+    //Method to print the path found from the enemy to the player
+    private void printPath(){
+        for(int i=path.size()-1; i>-1; i--){
+            System.out.print("("+path.get(i).x+" ,"+")");
+        }
+        System.out.println();
+    }
+    //Recursive method to search the BFS tree for the player and record its path
+    private Boolean getPath(GraphMaker.Node current){
+        if(current == playerNode){
+            path.add(current);
+            return true;
+        }
+        else{
+            for(int i=0; i< current.children.size(); i++){
+                if(getPath(current.children.get(i))){
+                    path.add(current);
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 
     //BFS traversal for enemy pathing. Returns a root to the tree
-    public void BFS(){
+    private void BFS(){
         //set the current node to the root, create an empty queue
         GraphMaker.Node current = root;
-        LinkedList<GraphMaker.Node> queue = new LinkedList<GraphMaker.Node>();
+        Queue<GraphMaker.Node> queue = new LinkedList<>();
 
         //mark all nodes unvisited
         for(GraphMaker.Node i = root; i != null; i = i.down){
@@ -74,21 +96,25 @@ public class TreeMaker {
 
             //left
             if(!current.left.visited && current.left.isZero){
+                queue.add(current.left);
                 current.children.add(current.left);
                 current.left.visited = true;
             }
             //right
             if(!current.right.visited && current.right.isZero){
+                queue.add(current.right);
                 current.children.add(current.right);
                 current.right.visited = true;
             }
             //up
             if(!current.up.visited && current.up.isZero){
+                queue.add(current.up);
                 current.children.add(current.up);
                 current.up.visited = true;
             }
             //down
             if(!current.down.visited && current.down.isZero){
+                queue.add(current.down);
                 current.children.add(current.down);
                 current.down.visited = true;
             }
