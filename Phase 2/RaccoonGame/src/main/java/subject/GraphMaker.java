@@ -44,29 +44,17 @@ public class GraphMaker {
     //Create our linked list based-graph using the mapArray from MapManager.
     //We go from top left to bottom right
     private void graphGenerate() {
-        //Iterator variables
-        int currentCol = 0;
-        int currentRow = 0;
-
-        //Initialize node and add to array
-        Node currentNode = new Node(currentCol, currentRow);
-        mapNodeArr[currentCol][currentRow] = currentNode;
-
         //The loop itself
-        while (currentCol < raccoonGame.windowCol && currentRow < raccoonGame.windowRow) {
-            int blockNum = mapBlockArr[currentCol][currentRow];
-            if (blockNum == 0) {
-                currentNode.isZero = true;
-            }
-
-            currentCol++;
-
-            //row checked, reset col variables and draw the next row
-            if (currentCol == raccoonGame.windowCol) {
-                currentCol = 0;
-                currentRow++;
-                //go to the far left and down 1
-                currentNode = mapNodeArr[currentCol][currentRow];
+        for(int currentRow = 0; currentRow< raccoonGame.windowRow; currentRow++){
+            for(int currentCol = 0; currentCol< raccoonGame.windowCol; currentCol++){
+                //Initialize node and add to array
+                Node currentNode = new Node(currentCol, currentRow);
+                mapNodeArr[currentCol][currentRow] = currentNode;
+                //if block is a 0 (i.e, not collidable), then set isZero to true. isZero is false by default
+                int blockNum = mapBlockArr[currentCol][currentRow];
+                if (blockNum == 0) {
+                    currentNode.isZero = true;
+                }
             }
         }
     }
@@ -99,7 +87,7 @@ public class GraphMaker {
     //Print the map
     public void print() {
         for(int row = 0; row< raccoonGame.windowRow; row++){
-            System.out.println("\n");
+            System.out.println();
             for(int col = 0; col< raccoonGame.windowCol; col++){
                 if(mapNodeArr[col][row].isZero){
                     System.out.print("0 ");
