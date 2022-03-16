@@ -46,7 +46,7 @@ public class TreeMaker {
 
     //BFS traversal for enemy pathing. Returns a root to the tree
     private List<GraphMaker.Node> BFS() {
-
+        //Make a queue for bfs and a list for path tracking
         Queue<GraphMaker.Node> queue = new LinkedList<>();
         List<GraphMaker.Node> path = new ArrayList<>();
 
@@ -57,41 +57,52 @@ public class TreeMaker {
             }
         }
 
+        //Add the root to the queue and mark it as visited
         queue.add(root);
         root.visited = true;
 
+        //Create a hashmap for tracking the node's parents
         Map<GraphMaker.Node, GraphMaker.Node> parentMap = new HashMap<>();
 
+        //Initialize a current node, and note that the root's parent is null
         GraphMaker.Node current = root;
         parentMap.put(root, null);
+
+        //Main BFS loop
         while(!queue.isEmpty()){
+            //pop current from the queue and mark it as visited
             current = queue.poll();
             current.visited = true;
 
+            //If this node is the playerNode we break to stop noting parents
             if(current == playerNode){
                 break;
             }
 
-            //Make a list of adjacent nodes to current
+            //Make a list of nodes adjacent to current
             ArrayList<GraphMaker.Node> adjacent = new ArrayList<>();
             adjacent.add(current.left);
             adjacent.add(current.right);
             adjacent.add(current.up);
             adjacent.add(current.down);
 
-            //Iterate through, check if visited, if not add to queue
+            //Iterate through each neighbor checking both if theyre not visited and non-collidable
             for (GraphMaker.Node neighbor : adjacent) {
-                if (!neighbor.visited && neighbor.isZero) {
+                //if so, note the parent of the neighbor and add the neighbor to the queue
+                if (!neighbor.visited && neighbor.nonCollidable) {
                     queue.add(neighbor);
-                    parentMap.put(neighbor, current); // mark current node as parent to neighbor
+                    parentMap.put(neighbor, current);
                 }
             }
         }
+        //Once the loop is complete, we should end at playerNode
+        //So, backtrack through it's parents, and record each parent in path
         GraphMaker.Node currIter = current;
         while (currIter != null) {
             path.add(0, currIter);
             currIter = parentMap.get(currIter);
         }
+        //return path from enemy to player
         return path;
     }
 

@@ -73,61 +73,79 @@ public class Enemy extends Subject{
     }
 
     @Override
-    //enemy specific update method, not used
-    public void customUpdate() {}
+    //enemy specific update method
+    public void customUpdate() {
+        //check if collision is on
+        collisionOn = false;
+        raccoonGame.collisionHandler.checkBlock(this);
+    }
 
     @Override
     //update method for enemy movement
     public void moveUpdate() {
         //check if collision is on
-        if(rangeCheck()) {
+        if(!this.collisionOn) {
             //follow the player when within range
-            targetX = path.get(1).x * raccoonGame.blockSize;
-            targetY = path.get(1).y * raccoonGame.blockSize;
-        }
-        //patrol an area when not in sight of player, randomly
-        else{
-            if(x == patrolLeftBound && y == patrolTopBound){
-                topLeft = false;
-                bottomLeft = true;
+            if(rangeCheck()) {
+                targetX = path.get(1).x * raccoonGame.blockSize;
+                targetY = path.get(1).y * raccoonGame.blockSize;
             }
-            else if(x == patrolLeftBound && y == patrolBottomBound){
-                bottomLeft = false;
-                bottomRight = true;
+            //patrol an area when not in sight of player, randomly
+            else{
+                if(x == patrolLeftBound && y == patrolTopBound){
+                    topLeft = false;
+                    bottomLeft = true;
+                }
+                else if(x == patrolLeftBound && y == patrolBottomBound){
+                    bottomLeft = false;
+                    bottomRight = true;
+                }
+                else if(x == patrolRightBound && y == patrolBottomBound){
+                    bottomRight = false;
+                    topRight = true;
+                }
+                else if(x == patrolRightBound && y == patrolTopBound){
+                    topRight = false;
+                    topLeft = true;
+                }
+                if(bottomLeft){
+                    targetX = patrolLeftBound;
+                    targetY = patrolBottomBound;
+                }
+                if(bottomRight){
+                    targetX = patrolRightBound;
+                    targetY = patrolBottomBound;
+                }
+                if(topRight){
+                    targetX = patrolRightBound;
+                    targetY = patrolTopBound;
+                }
+                if(topLeft){
+                    targetX = patrolLeftBound;
+                    targetY = patrolTopBound;
+                }
             }
-            else if(x == patrolRightBound && y == patrolBottomBound){
-                bottomRight = false;
-                topRight = true;
+            //Move towards the target
+            //get rid of diagonal movement using x?>y
+            if (x < targetX) {
+                if (targetX - x < speed) {
+                    x += targetX - x;
+                } else {
+                    x += speed;
+                }
             }
-            else if(x == patrolRightBound && y == patrolTopBound){
-                topRight = false;
-                topLeft = true;
-            }
-            if(bottomLeft){
-                targetX = patrolLeftBound;
-                targetY = patrolBottomBound;
-            }
-            if(bottomRight){
-                targetX = patrolRightBound;
-                targetY = patrolBottomBound;
-            }
-            if(topRight){
-                targetX = patrolRightBound;
-                targetY = patrolTopBound;
-            }
-            if(topLeft){
-                targetX = patrolLeftBound;
-                targetY = patrolTopBound;
-            }
-        }
-        //Move towards the target
-        //get rid of diagonal movement using x?>y
-        if(targetX/raccoonGame.blockSize == x/raccoonGame.blockSize){
-            if (y < targetY) {
+            else if (y < targetY) {
                 if (targetY - y < speed) {
                     y += targetY - y;
                 } else {
                     y += speed;
+                }
+            }
+            else if (x > targetX) {
+                if (x - targetX < speed) {
+                    x -= x - targetX;
+                } else {
+                    x -= speed;
                 }
             }
             else if (y > targetY) {
@@ -138,19 +156,33 @@ public class Enemy extends Subject{
                 }
             }
         }
-        else{
+        else {
             if (x < targetX) {
                 if (targetX - x < speed) {
                     x += targetX - x;
                 } else {
-                    x += speed;
+                    x -= speed;
+                }
+            }
+            else if (y < targetY) {
+                if (targetY - y < speed) {
+                    y += targetY - y;
+                } else {
+                    y -= speed;
                 }
             }
             else if (x > targetX) {
                 if (x - targetX < speed) {
                     x -= x - targetX;
                 } else {
-                    x -= speed;
+                    x += speed;
+                }
+            }
+            else if (y > targetY) {
+                if (y - targetY < speed) {
+                    y -= y - targetY;
+                } else {
+                    y += speed;
                 }
             }
         }

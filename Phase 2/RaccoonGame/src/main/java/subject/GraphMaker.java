@@ -3,7 +3,6 @@ package subject;
 import main.RaccoonGame;
 
 import java.util.ArrayList;
-import java.util.Currency;
 
 public class GraphMaker {
     //Needed variables
@@ -17,18 +16,16 @@ public class GraphMaker {
         //general node stuff
         public int x, y;
         //graph node stuff
-        public boolean isZero = false;
+        public boolean nonCollidable = false;
         //tree node stuff
         public ArrayList<Node> children;
         public boolean visited = false;
         public Node up, down, left, right = null;
-        public Node parent = null;
 
         //Constructor
         Node(int x, int y) {
             this.x = x;
             this.y = y;
-            children = new ArrayList<Node>();
         }
     }
 
@@ -56,7 +53,7 @@ public class GraphMaker {
                 //if block is a 0 (i.e, not collidable), then set isZero to true. isZero is false by default
                 int blockNum = mapBlockArr[currentCol][currentRow];
                 if (blockNum == 0) {
-                    currentNode.isZero = true;
+                    currentNode.nonCollidable = true;
                 }
             }
         }
@@ -97,7 +94,7 @@ public class GraphMaker {
         for(int row = 0; row< raccoonGame.windowRow; row++){
             System.out.println();
             for(int col = 0; col< raccoonGame.windowCol; col++){
-                if(mapNodeArr[col][row].isZero){
+                if(mapNodeArr[col][row].nonCollidable){
                     System.out.print("0 ");
                 } else {
                     System.out.print("! ");
