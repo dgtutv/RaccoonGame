@@ -78,7 +78,7 @@ public class RaccoonGame extends JPanel implements Runnable{
         double loopInterval = 1000000000/ticks;
 
         //Test graph of map by printing
-        //graphMaker.print();
+        graphMaker.print();
 
         //gameThread loop
         while(gameThread != null) {

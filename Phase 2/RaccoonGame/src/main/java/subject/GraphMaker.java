@@ -45,9 +45,9 @@ public class GraphMaker {
             System.out.print("\n");
             for (Node j = i; j != null; j = j.right) {
                 if (j.isZero) {
-                    System.out.print("[X: " + j.x + " Y: " + j.y + "] ");
+                    System.out.print("0 ");
                 } else {
-                    System.out.print("[-] ");
+                    System.out.print("! ");
                 }
             }
         }
@@ -73,7 +73,8 @@ public class GraphMaker {
         int currentRow = 0;
         Node currentNode = new Node(0, 0);
         head = currentNode;
-        Node prevNode = null;
+        Node leftNode = null;
+        Node upperNode = null;
 
         //The loop itself
         while (currentCol < raccoonGame.windowCol && currentRow < raccoonGame.windowRow) {
@@ -81,8 +82,9 @@ public class GraphMaker {
             if (blockNum == 0) {
                 currentNode.isZero = true;
             }
-            //Down for the head
+            //Up & Down for the head
             if(currentCol==0 && currentRow + 1 < raccoonGame.windowRow){
+                //down
                 blockNum = mapBlockArr[currentCol][currentRow + 1];
                 currentNode.down = new Node(currentNode.x, currentNode.y + 1);
                 if (blockNum == 0) {
@@ -90,10 +92,20 @@ public class GraphMaker {
                 } else {
                     currentNode.down.isZero = false;
                 }
+                //up
+                currentNode.down.up = currentNode;
             }
 
             //Left
-            currentNode.left = prevNode;
+            if(currentCol > 0){
+                currentNode.left = leftNode;
+            }
+
+            //up & down in general
+            if(currentRow > 0){
+                upperNode.down = currentNode;
+                currentNode.up = upperNode;
+            }
 
             //Right
             if (currentCol + 1 < raccoonGame.windowCol && currentRow < raccoonGame.windowRow) {
@@ -111,22 +123,22 @@ public class GraphMaker {
             if (currentCol == raccoonGame.windowCol) {
                 currentCol = 0;
                 currentRow++;
-                currentNode = head;
-                for (int i = 0; i < currentRow; i++) {
-                    currentNode = currentNode.down;
+                //go to the far left
+                while(currentNode.left != null){
+                    currentNode = currentNode.left;
                 }
+                //set upperNode to this
+                upperNode = currentNode;
+                //then go down
+                currentNode = currentNode.down;
             } else {
-                prevNode = currentNode;
+                leftNode = currentNode;
                 currentNode = currentNode.right;
+                if(upperNode != null){
+                    upperNode = upperNode.right;
+                }
             }
 
         }
-    }
-    public void fillDirections(){
-        //up & down
-        //Scan through 2 rows at a time and using conditionals each node's up and down should be added
-
-        //left
-
     }
 }

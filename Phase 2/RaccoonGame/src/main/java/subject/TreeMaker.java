@@ -34,18 +34,18 @@ public class TreeMaker {
         root = GraphMaker.find(enemyBlockX, enemyBlockY);
         //Generate the tree
         BFS();
-        System.out.println("Generated Tree");
+        //System.out.println("Generated Tree");
         //Find the player's node
         playerNode = GraphMaker.find(playerBlockX, playerBlockY);
-        System.out.println("Enemy X: "+root.x+"\nEnemy Y: "+root.y);
-        System.out.println("Player X: "+playerNode.x+"\nPlayer Y: "+playerNode.y);
-        System.out.println("Player: "+playerNode);
+        //System.out.println("Enemy X: "+root.x+"\nEnemy Y: "+root.y);
+        //System.out.println("Player X: "+playerNode.x+"\nPlayer Y: "+playerNode.y);
+        //System.out.println("Player: "+playerNode);
         //Find the path from the enemy to the player, and save as an arrayList of nodes
         path.clear();
         getPath(root);
-        System.out.println("Generated Path");
-        System.out.println("Path Size: "+path.size());
-        printPath();
+        //System.out.println("Generated Path");
+        //System.out.println("Path Size: "+path.size());
+        //printPath();
 
     }
 
@@ -65,7 +65,7 @@ public class TreeMaker {
         else{
             for(int i=0; i < current.children.size(); i++){
                 if(getPath(current.children.get(i))){
-                    System.out.println("HERE");
+                    //System.out.println("HERE");
                     path.add(current);
                     return true;
                 }
@@ -96,7 +96,7 @@ public class TreeMaker {
             //Let current be the vertex and the front of the queue and remove current from the queue, also mark current as visited
             current = queue.poll();
             current.visited = true;
-            System.out.println("X: "+current.x+" Y: "+current.y+" Reference: "+current);
+            //System.out.println("X: "+current.x+" Y: "+current.y+" Reference: "+current);
             //for each unvisited neighbor i of current (do this with 4 directional if statements);
             //insert i at the end of the queue and mark i as visited;
             //make i a child of current
