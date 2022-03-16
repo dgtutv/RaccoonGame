@@ -2,7 +2,7 @@ package subject;
 
 import main.RaccoonGame;
 
-import java.awt.color.ICC_ColorSpace;
+import java.util.ArrayList;
 
 public class GraphMaker {
     //Needed variables
@@ -13,15 +13,24 @@ public class GraphMaker {
 
     //Node class for a linked list-based map
     public static class Node{
+        //general node stuff
+        public int x, y;
+        //graph node stuff
         public Node up, down, left, right = null;
-        public int blockX, blockY;
-        public boolean isZero;
+        public boolean isRoot = false;
         public boolean visited = false;
+        public boolean isZero = false;
+        //tree node stuff
+        public Node parent = null;
+        public ArrayList<Node> children = new ArrayList<Node>();
+        public boolean isParent = false;
+        //Constructor
         Node(int x, int y){
-            this.blockX = x;
-            this.blockY = y;
+            this.x = x;
+            this.y = y;
         }
     }
+
     //constructor
     public GraphMaker(RaccoonGame raccoonGame) {
         //Set variables based off constructor input
@@ -30,6 +39,7 @@ public class GraphMaker {
         graphGenerate();
     }
 
+    //Print the map
     public void print(){
         for(Node i = head; i != null; i = i.down){
             System.out.print("\n");
@@ -42,6 +52,18 @@ public class GraphMaker {
                 }
             }
         }
+    }
+
+    //Method used to find a node, returns such node. Returns null if no such node was found
+    public static Node find(int x, int y){
+        for(Node i = head; i != null; i = i.down){
+            for(Node j = i; j != null; j = j.right){
+                if(j.x ==x && j.y == y){
+                    return j;
+                }
+            }
+        }
+        return null;
     }
 
     //Create our linked list based-graph using the mapArray from MapManager.
@@ -63,7 +85,7 @@ public class GraphMaker {
             //Left
             if(currentCol - 1 < raccoonGame.windowCol && currentRow < raccoonGame.windowRow && currentCol -1 > -1){
                 blockNum = mapBlockArr[currentCol-1][currentRow];
-                currentNode.left = new Node(currentNode.blockX - 1, currentNode.blockY);
+                currentNode.left = new Node(currentNode.x - 1, currentNode.y);
                 if(blockNum == 0){
                     currentNode.left.isZero = true;
 
@@ -76,7 +98,7 @@ public class GraphMaker {
             //Right
             if(currentCol + 1 < raccoonGame.windowCol && currentRow < raccoonGame.windowRow){
                 blockNum = mapBlockArr[currentCol+1][currentRow];
-                currentNode.right = new Node(currentNode.blockX + 1, currentNode.blockY);
+                currentNode.right = new Node(currentNode.x + 1, currentNode.y);
                 if(blockNum == 0){
                     currentNode.right.isZero = true;
                 }
@@ -88,7 +110,7 @@ public class GraphMaker {
             //Down
             if(currentCol < raccoonGame.windowCol && currentRow + 1 < raccoonGame.windowRow){
                 blockNum = mapBlockArr[currentCol][currentRow+1];
-                currentNode.down = new Node(currentNode.blockX, currentNode.blockY + 1);
+                currentNode.down = new Node(currentNode.x, currentNode.y + 1);
                 if(blockNum == 0){
                     currentNode.down.isZero = true;
                 }
@@ -100,7 +122,7 @@ public class GraphMaker {
             //Top
             if(currentCol< raccoonGame.windowCol && currentRow - 1 < raccoonGame.windowRow && currentRow - 1 > -1) {
                 blockNum = mapBlockArr[currentCol][currentRow-1];
-                currentNode.up = new Node(currentNode.blockX, currentNode.blockY - 1);
+                currentNode.up = new Node(currentNode.x, currentNode.y - 1);
                 if(blockNum == 0){
                     currentNode.up.isZero = true;
                 }

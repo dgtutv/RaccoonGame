@@ -3,7 +3,6 @@ package subject;
 import main.RaccoonGame;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 
 public class TreeMaker {
@@ -13,6 +12,8 @@ public class TreeMaker {
     int enemyBlockX, enemyBlockY, playerBlockX, playerBlockY;
     RaccoonGame raccoonGame;
     GraphMaker graph;
+    GraphMaker.Node root, playerNode;
+    ArrayList<GraphMaker.Node> path;
 
     //Default constructor
     TreeMaker(Player player, Enemy enemy){
@@ -21,61 +22,77 @@ public class TreeMaker {
         this.enemy = enemy;
         this.raccoonGame = player.raccoonGame;
         this.graph = raccoonGame.graphMaker;
+
     }
 
     //Update method called by enemy each update
     public void update(){
+        //Get block locations of the enemy and player
         blockUpdate();
-        GraphMaker.Node enemyNode = new GraphMaker.Node(enemyBlockX, enemyBlockY);
-        ArrayList<GraphMaker.Node> path = BFS(enemyNode);
-        for(int i=0; i<path.size(); i++){
-            System.out.print("("+path.get(i).blockX+", "+path.get(i).blockY+")");
-        }
-        System.out.print("\n");
-        enemy.targetX = path.get(0).blockX;
-        enemy.targetY = path.get(0).blockY;
+        //Initialize a new root for current position of the enemy
+        root = GraphMaker.find(enemyBlockX, enemyBlockY);
+        root.parent = null;
+        root.isRoot = true;
+        //Generate the tree
+        BFS();
+        //Find the player's node
+        playerNode = GraphMaker.find(playerBlockX, playerBlockY);
+        //Find the path from the enemy to the player, and save as an arrayList of nodes
+        ArrayList<GraphMaker.Node> path = getPath();
+
+    }
+    //function to search the BFS tree for the player and record its path
+    public ArrayList<GraphMaker.Node> getPath(){
+        ArrayList<GraphMaker.Node> path = new ArrayList<GraphMaker.Node>();
+        return path;
     }
 
-    //BFS traversal for enemy pathing.
-    public ArrayList<GraphMaker.Node> BFS(GraphMaker.Node root){
-        //mark all the nodes as unvisited
+    //BFS traversal for enemy pathing. Returns a root to the tree
+    public void BFS(){
+        //set the current node to the root, create an empty queue
         GraphMaker.Node current = root;
-        ArrayList<GraphMaker.Node> path = new ArrayList<GraphMaker.Node>();
+        LinkedList<GraphMaker.Node> queue = new LinkedList<GraphMaker.Node>();
+
+        //mark all nodes unvisited
         for(GraphMaker.Node i = root; i != null; i = i.down){
             for(GraphMaker.Node j = i; j != null; j = j.right){
                 j.visited = false;
             }
         }
 
-        LinkedList<GraphMaker.Node> queue = new LinkedList<GraphMaker.Node>();
+        //Insert the root into the queue and mark it as visited
+        queue.add(root);
+        root.visited = true;
 
-        //Mark the current node as visited and add to the queue
-        current.visited = true;
-        queue.add(current);
+        //Do the search
+        while(!queue.isEmpty()){
+            //Let current be the vertex and the front of the queue and remove current from the queue
+            current = queue.poll();
+            //for each unvisited neighbor i of current (do this with 4 directional if statements);
+            //insert i at the end of the queue and mark i as visited;
+            //make i a child of current
 
-        while(queue.size() != 0){
-            //dequeue a vertex from queue and print it
-            root = queue.poll();
-            path.add(root);
-            //visit all unvisited neighbors, add them to the queue
-            if(current.left != null && !current.left.visited && current.left.isZero){
-                queue.add(current.left);
+            //left
+            if(!current.left.visited && current.left.isZero){
+                current.children.add(current.left);
                 current.left.visited = true;
             }
-            if(current.right != null && !current.right.visited && current.right.isZero){
-                queue.add(current.right);
+            //right
+            if(!current.right.visited && current.right.isZero){
+                current.children.add(current.right);
                 current.right.visited = true;
             }
-            if(current.up != null && !current.up.visited && current.up.isZero){
-                queue.add(current.up);
+            //up
+            if(!current.up.visited && current.up.isZero){
+                current.children.add(current.up);
                 current.up.visited = true;
             }
-            if(current.down != null && !current.down.visited && current.down.isZero){
-                queue.add(current.down);
+            //down
+            if(!current.down.visited && current.down.isZero){
+                current.children.add(current.down);
                 current.down.visited = true;
             }
         }
-        return path;
     }
 
     //Find which blocks the enemy and player are in
