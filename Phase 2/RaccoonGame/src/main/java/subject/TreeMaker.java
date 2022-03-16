@@ -59,10 +59,11 @@ public class TreeMaker {
         Queue<GraphMaker.Node> queue = new LinkedList<>();
         List<GraphMaker.Node> path = new ArrayList<>();
 
-        //mark all nodes unvisited
+        //mark all nodes unvisited, and set their direction to ""
         for (int row = 0; row < raccoonGame.windowRow; row++) {
             for (int col = 0; col < raccoonGame.windowCol; col++) {
                 mapNodeArr[col][row].visited = false;
+                mapNodeArr[col][row].direction = "";
             }
         }
 
@@ -88,12 +89,16 @@ public class TreeMaker {
                 break;
             }
 
-            //Make a list of nodes adjacent to current
+            //Make a list of nodes adjacent to current, and set each direction
             ArrayList<GraphMaker.Node> adjacent = new ArrayList<>();
             adjacent.add(current.left);
             adjacent.add(current.right);
             adjacent.add(current.up);
             adjacent.add(current.down);
+            current.left.direction = "left";
+            current.right.direction = "right";
+            current.up.direction = "down";
+            current.down.direction = "up";
 
             //Iterate through each neighbor checking both if theyre not visited and non-collidable
             for (GraphMaker.Node neighbor : adjacent) {

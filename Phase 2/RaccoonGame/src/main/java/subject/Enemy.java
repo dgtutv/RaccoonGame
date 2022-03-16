@@ -69,7 +69,53 @@ public class Enemy extends Subject{
     @Override
     //update method for enemy direction (i.e, pathing)
     public void directionUpdate() {
+        if(collisionOn){
+
+        }
         path = tree.update();
+        //get direction based on the node we want to follow
+        direction = path.get(1).direction;
+        System.out.println(direction);
+        //follow the player when within range
+        if(rangeCheck()) {
+            targetX = path.get(1).x * raccoonGame.blockSize;
+            targetY = path.get(1).y * raccoonGame.blockSize;
+        }
+        //patrol an area when not in sight of player, randomly
+        else{
+            if(x == patrolLeftBound && y == patrolTopBound){
+                topLeft = false;
+                bottomLeft = true;
+            }
+            else if(x == patrolLeftBound && y == patrolBottomBound){
+                bottomLeft = false;
+                bottomRight = true;
+            }
+            else if(x == patrolRightBound && y == patrolBottomBound){
+                bottomRight = false;
+                topRight = true;
+            }
+            else if(x == patrolRightBound && y == patrolTopBound){
+                topRight = false;
+                topLeft = true;
+            }
+            if(bottomLeft){
+                targetX = patrolLeftBound;
+                targetY = patrolBottomBound;
+            }
+            if(bottomRight){
+                targetX = patrolRightBound;
+                targetY = patrolBottomBound;
+            }
+            if(topRight){
+                targetX = patrolRightBound;
+                targetY = patrolTopBound;
+            }
+            if(topLeft){
+                targetX = patrolLeftBound;
+                targetY = patrolTopBound;
+            }
+        }
     }
 
     @Override
@@ -85,46 +131,6 @@ public class Enemy extends Subject{
     public void moveUpdate() {
         //check if collision is on
         if(!this.collisionOn) {
-            //follow the player when within range
-            if(rangeCheck()) {
-                targetX = path.get(1).x * raccoonGame.blockSize;
-                targetY = path.get(1).y * raccoonGame.blockSize;
-            }
-            //patrol an area when not in sight of player, randomly
-            else{
-                if(x == patrolLeftBound && y == patrolTopBound){
-                    topLeft = false;
-                    bottomLeft = true;
-                }
-                else if(x == patrolLeftBound && y == patrolBottomBound){
-                    bottomLeft = false;
-                    bottomRight = true;
-                }
-                else if(x == patrolRightBound && y == patrolBottomBound){
-                    bottomRight = false;
-                    topRight = true;
-                }
-                else if(x == patrolRightBound && y == patrolTopBound){
-                    topRight = false;
-                    topLeft = true;
-                }
-                if(bottomLeft){
-                    targetX = patrolLeftBound;
-                    targetY = patrolBottomBound;
-                }
-                if(bottomRight){
-                    targetX = patrolRightBound;
-                    targetY = patrolBottomBound;
-                }
-                if(topRight){
-                    targetX = patrolRightBound;
-                    targetY = patrolTopBound;
-                }
-                if(topLeft){
-                    targetX = patrolLeftBound;
-                    targetY = patrolTopBound;
-                }
-            }
             //Move towards the target
             //get rid of diagonal movement using x?>y
             if (x < targetX) {
@@ -157,32 +163,46 @@ public class Enemy extends Subject{
             }
         }
         else {
-            if (x < targetX) {
-                if (targetX - x < speed) {
-                    x += targetX - x;
-                } else {
-                    x -= speed;
+            if(Objects.equals(direction, "up") || Objects.equals(direction, "down")){
+                if (x < targetX) {
+                    if (targetX - x < speed) {
+                        x += targetX - x;
+                    } else {
+                        x += speed;
+                    }
+                }
+                else if (x > targetX) {
+                    if (x - targetX < speed) {
+                        x -= x - targetX;
+                    } else {
+                        x -= speed;
+                    }
                 }
             }
-            else if (y < targetY) {
-                if (targetY - y < speed) {
-                    y += targetY - y;
-                } else {
-                    y -= speed;
+            else{
+                if (y < targetY) {
+                    if (targetY - y < speed) {
+                        y += targetY - y;
+                    } else {
+                        y += speed;
+                    }
+                }
+                else if (y > targetY) {
+                    if (y - targetY < speed) {
+                        y -= y - targetY;
+                    } else {
+                        y -= speed;
+                    }
                 }
             }
-            else if (x > targetX) {
-                if (x - targetX < speed) {
-                    x -= x - targetX;
-                } else {
-                    x += speed;
-                }
-            }
-            else if (y > targetY) {
-                if (y - targetY < speed) {
-                    y -= y - targetY;
-                } else {
-                    y += speed;
+            collisionOn = false;
+            raccoonGame.collisionHandler.checkBlock(this, false);
+            if(collisionOn){
+                switch(direction) {
+                    case "up" -> y += speed;
+                    case "down" -> y -= speed;
+                    case "left" -> x += speed;
+                    case "right" -> x -= speed;
                 }
             }
         }

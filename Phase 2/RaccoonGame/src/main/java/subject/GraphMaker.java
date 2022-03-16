@@ -21,6 +21,7 @@ public class GraphMaker {
         public ArrayList<Node> children;
         public boolean visited = false;
         public Node up, down, left, right = null;
+        public String direction = "";
 
         //Constructor
         Node(int x, int y) {
