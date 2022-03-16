@@ -122,23 +122,7 @@ public class Enemy extends Subject{
         }
         //Move towards the target
         //get rid of diagonal movement using x?>y
-        if(abs(targetX-x) > abs(targetY-y)){
-            if (x < targetX) {
-                if (targetX - x < speed) {
-                    x += targetX - x;
-                } else {
-                    x += speed;
-                }
-            }
-            else if (x > targetX) {
-                if (x - targetX < speed) {
-                    x -= x - targetX;
-                } else {
-                    x -= speed;
-                }
-            }
-        }
-        else{
+        if(targetX/raccoonGame.blockSize == x/raccoonGame.blockSize){
             if (y < targetY) {
                 if (targetY - y < speed) {
                     y += targetY - y;
@@ -151,6 +135,22 @@ public class Enemy extends Subject{
                     y -= y - targetY;
                 } else {
                     y -= speed;
+                }
+            }
+        }
+        else{
+            if (x < targetX) {
+                if (targetX - x < speed) {
+                    x += targetX - x;
+                } else {
+                    x += speed;
+                }
+            }
+            else if (x > targetX) {
+                if (x - targetX < speed) {
+                    x -= x - targetX;
+                } else {
+                    x -= speed;
                 }
             }
         }
