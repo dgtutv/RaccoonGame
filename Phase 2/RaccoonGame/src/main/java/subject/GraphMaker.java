@@ -9,7 +9,7 @@ public class GraphMaker {
     //Needed variables
     static RaccoonGame raccoonGame;
     public int mapBlockArr[][];
-    private static Node[][] mapNodeArr;
+    public static Node[][] mapNodeArr;
     public static Node head;
 
     //Node class for a linked list-based map
@@ -17,11 +17,12 @@ public class GraphMaker {
         //general node stuff
         public int x, y;
         //graph node stuff
-        public Node up, down, left, right = null;
-        public boolean visited = false;
         public boolean isZero = false;
         //tree node stuff
         public ArrayList<Node> children;
+        public boolean visited = false;
+        public Node up, down, left, right = null;
+        public Node parent = null;
 
         //Constructor
         Node(int x, int y) {
@@ -50,6 +51,8 @@ public class GraphMaker {
                 //Initialize node and add to array
                 Node currentNode = new Node(currentCol, currentRow);
                 mapNodeArr[currentCol][currentRow] = currentNode;
+                currentNode.x = currentCol;
+                currentNode.y = currentRow;
                 //if block is a 0 (i.e, not collidable), then set isZero to true. isZero is false by default
                 int blockNum = mapBlockArr[currentCol][currentRow];
                 if (blockNum == 0) {
@@ -63,16 +66,16 @@ public class GraphMaker {
     private void graphDirectionFill(){
         for(int row = 0; row< raccoonGame.windowRow; row++){
             for(int col = 0; col< raccoonGame.windowCol; col++){
-                if(0<row){
+                if(0 < row){
                     mapNodeArr[col][row].up = mapNodeArr[col][row-1];
                 }
-                if(0<col){
+                if(0 < col){
                     mapNodeArr[col][row].left = mapNodeArr[col-1][row];
                 }
-                if(row<raccoonGame.windowRow-1) {
+                if(row < raccoonGame.windowRow-1) {
                     mapNodeArr[col][row].down = mapNodeArr[col][row+1];
                 }
-                if(col< raccoonGame.windowCol-1){
+                if(col < raccoonGame.windowCol-1){
                     mapNodeArr[col][row].right = mapNodeArr[col+1][row];
                 }
             }
@@ -81,7 +84,12 @@ public class GraphMaker {
 
     //Method used to find a node, returns such node. Returns null if no such node was found
     public static Node find(int x, int y) {
-        return mapNodeArr[x][y];
+        try{
+            return mapNodeArr[x][y];
+        }
+        catch(Exception e){
+            return null;
+        }
     }
 
     //Print the map
