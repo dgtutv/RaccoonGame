@@ -10,7 +10,7 @@ public class CollisionHandler {
         this.raccoonGame = raccoonGame;
     }
 
-    public void checkBlock(Subject subject) {
+    public void checkBlock(Subject subject, boolean player) {
         //int variables to store which block subject is hitting
         int blockNum1 = 0, blockNum2 = 0;
 
@@ -53,9 +53,16 @@ public class CollisionHandler {
 
             if (raccoonGame.mapManager.blocks[blockNum1].collidable || raccoonGame.mapManager.blocks[blockNum2].collidable) {
                 subject.collisionOn = true;
+                if(player){
+                    switch(subject.direction) {
+                        case "up" -> subject.y += 2*subject.speed;
+                        case "down" -> subject.y -= 2*subject.speed;
+                        case "left" -> subject.x += 2*subject.speed;
+                        case "right" -> subject.x -= 2*subject.speed;
+                    }
+                }
             }
         }
-
     }
 
     public int checkObject(Subject subject, boolean player) {

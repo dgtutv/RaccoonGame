@@ -77,7 +77,7 @@ public class Enemy extends Subject{
     public void customUpdate() {
         //check if collision is on
         collisionOn = false;
-        raccoonGame.collisionHandler.checkBlock(this);
+        raccoonGame.collisionHandler.checkBlock(this, false);
     }
 
     @Override

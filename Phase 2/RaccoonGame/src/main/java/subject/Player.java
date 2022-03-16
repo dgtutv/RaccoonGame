@@ -90,7 +90,7 @@ public class Player extends Subject{
     public void directionUpdate(){
         //check is collision is on
         collisionOn = false;
-        raccoonGame.collisionHandler.checkBlock(this);
+        raccoonGame.collisionHandler.checkBlock(this, true);
         //check object collision
         int objectIndex = raccoonGame.collisionHandler.checkObject(this, true);
         collectObject(objectIndex);
