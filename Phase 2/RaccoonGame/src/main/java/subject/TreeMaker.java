@@ -36,19 +36,22 @@ public class TreeMaker {
         root.isRoot = true;
         //Generate the tree
         BFS();
+        System.out.println("Generated Tree");
         //Find the player's node
         playerNode = GraphMaker.find(playerBlockX, playerBlockY);
         //Find the path from the enemy to the player, and save as an arrayList of nodes
         path = new ArrayList<>();
         getPath(root);
+        System.out.println("Generated Path");
+        System.out.println("Path Size: "+path.size());
         printPath();
 
     }
 
     //Method to print the path found from the enemy to the player
     private void printPath(){
-        for(int i=path.size()-1; i>-1; i--){
-            System.out.print("("+path.get(i).x+" ,"+")");
+        for(int i=0; i<path.size(); i++){
+            System.out.print("("+path.get(i).x+" ,"+path.get(i).y+")");
         }
         System.out.println();
     }
@@ -59,7 +62,7 @@ public class TreeMaker {
             return true;
         }
         else{
-            for(int i=0; i< current.children.size(); i++){
+            for(int i=0; i < current.children.size(); i++){
                 if(getPath(current.children.get(i))){
                     path.add(current);
                     return true;
@@ -76,15 +79,15 @@ public class TreeMaker {
         Queue<GraphMaker.Node> queue = new LinkedList<>();
 
         //mark all nodes unvisited
-        for(GraphMaker.Node i = root; i != null; i = i.down){
+        for(GraphMaker.Node i = current; i != null; i = i.down){
             for(GraphMaker.Node j = i; j != null; j = j.right){
                 j.visited = false;
             }
         }
 
         //Insert the root into the queue and mark it as visited
-        queue.add(root);
-        root.visited = true;
+        queue.add(current);
+        current.visited = true;
 
         //Do the search
         while(!queue.isEmpty()){
@@ -95,28 +98,36 @@ public class TreeMaker {
             //make i a child of current
 
             //left
-            if(!current.left.visited && current.left.isZero){
-                queue.add(current.left);
-                current.children.add(current.left);
-                current.left.visited = true;
+            if(current.left != null) {
+                if (!current.left.visited && current.left.isZero) {
+                    queue.add(current.left);
+                    current.children.add(current.left);
+                    current.left.visited = true;
+                }
             }
             //right
-            if(!current.right.visited && current.right.isZero){
-                queue.add(current.right);
-                current.children.add(current.right);
-                current.right.visited = true;
+            if(current.right != null) {
+                if (!current.right.visited && current.right.isZero) {
+                    queue.add(current.right);
+                    current.children.add(current.right);
+                    current.right.visited = true;
+                }
             }
             //up
-            if(!current.up.visited && current.up.isZero){
-                queue.add(current.up);
-                current.children.add(current.up);
-                current.up.visited = true;
+            if(current.up != null) {
+                if (!current.up.visited && current.up.isZero) {
+                    queue.add(current.up);
+                    current.children.add(current.up);
+                    current.up.visited = true;
+                }
             }
             //down
-            if(!current.down.visited && current.down.isZero){
-                queue.add(current.down);
-                current.children.add(current.down);
-                current.down.visited = true;
+            if(current.down != null) {
+                if (!current.down.visited && current.down.isZero) {
+                    queue.add(current.down);
+                    current.children.add(current.down);
+                    current.down.visited = true;
+                }
             }
         }
     }
