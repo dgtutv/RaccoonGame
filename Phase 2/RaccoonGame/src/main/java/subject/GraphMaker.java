@@ -17,7 +17,6 @@ public class GraphMaker {
         public int x, y;
         //graph node stuff
         public Node up, down, left, right = null;
-        public boolean isRoot = false;
         public boolean visited = false;
         public boolean isZero = false;
         //tree node stuff

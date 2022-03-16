@@ -86,6 +86,8 @@ public class Enemy extends Subject{
             //follow the player when within range
             if(rangeCheck()) {
                 tree.update();
+                targetX = x;
+                targetY = y;
             }
             //patrol an area when not in sight of player, randomly
             else{

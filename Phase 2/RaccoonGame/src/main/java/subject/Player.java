@@ -27,8 +27,8 @@ public class Player extends Subject{
     public Player(RaccoonGame raccoonGame, KeyHandler keyH) {
         super(raccoonGame);
         //default values that can easily be changed
-        x = 100;
-        y = 100;
+        x = 13* raccoonGame.blockSize;
+        y = 10* raccoonGame.blockSize;
         speed = 4;
         score = 300;
         collectedRewards = 0;

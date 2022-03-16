@@ -32,12 +32,12 @@ public class TreeMaker {
         blockUpdate();
         //Initialize a new root for current position of the enemy
         root = GraphMaker.find(enemyBlockX, enemyBlockY);
-        root.isRoot = true;
         //Generate the tree
         BFS();
         System.out.println("Generated Tree");
         //Find the player's node
         playerNode = GraphMaker.find(playerBlockX, playerBlockY);
+        System.out.println("Enemy X: "+root.x+"\nEnemy Y: "+root.y);
         System.out.println("Player X: "+playerNode.x+"\nPlayer Y: "+playerNode.y);
         System.out.println("Player: "+playerNode);
         //Find the path from the enemy to the player, and save as an arrayList of nodes
@@ -51,7 +51,7 @@ public class TreeMaker {
 
     //Method to print the path found from the enemy to the player
     private void printPath(){
-        for(int i=0; i<path.size(); i++){
+        for(int i=path.size()-1; i>-1; i--){
             System.out.print("("+path.get(i).x+" ,"+path.get(i).y+")");
         }
         System.out.println();
@@ -87,14 +87,15 @@ public class TreeMaker {
             }
         }
 
-        //Insert the root into the queue and mark it as visited
+        //Insert the root into the queue
         queue.add(current);
         current.visited = true;
 
         //Do the search
         while(!queue.isEmpty()){
-            //Let current be the vertex and the front of the queue and remove current from the queue
+            //Let current be the vertex and the front of the queue and remove current from the queue, also mark current as visited
             current = queue.poll();
+            current.visited = true;
             System.out.println("X: "+current.x+" Y: "+current.y+" Reference: "+current);
             //for each unvisited neighbor i of current (do this with 4 directional if statements);
             //insert i at the end of the queue and mark i as visited;
@@ -105,7 +106,6 @@ public class TreeMaker {
                 if (!current.left.visited && current.left.isZero) {
                     queue.add(current.left);
                     current.children.add(current.left);
-                    current.left.visited = true;
                 }
             }
             //right
@@ -113,7 +113,6 @@ public class TreeMaker {
                 if (!current.right.visited && current.right.isZero) {
                     queue.add(current.right);
                     current.children.add(current.right);
-                    current.right.visited = true;
                 }
             }
             //up
@@ -121,7 +120,6 @@ public class TreeMaker {
                 if (!current.up.visited && current.up.isZero) {
                     queue.add(current.up);
                     current.children.add(current.up);
-                    current.up.visited = true;
                 }
             }
             //down
@@ -129,7 +127,6 @@ public class TreeMaker {
                 if (!current.down.visited && current.down.isZero) {
                     queue.add(current.down);
                     current.children.add(current.down);
-                    current.down.visited = true;
                 }
             }
         }
