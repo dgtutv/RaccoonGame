@@ -16,7 +16,6 @@ public class TreeMaker {
     RaccoonGame raccoonGame;
     GraphMaker graph;
     GraphMaker.Node root, playerNode;
-    ArrayList<GraphMaker.Node> path;
 
     //Default constructor
     TreeMaker(Player player, Enemy enemy){
@@ -25,7 +24,6 @@ public class TreeMaker {
         this.enemy = enemy;
         this.raccoonGame = player.raccoonGame;
         this.graph = raccoonGame.graphMaker;
-        path = new ArrayList<GraphMaker.Node>();
     }
 
     //Update method called by enemy each update
@@ -42,30 +40,30 @@ public class TreeMaker {
         System.out.println("Player X: "+playerNode.x+"\nPlayer Y: "+playerNode.y);
         System.out.println("Player: "+playerNode);
         //reset the path and generate the tree
-        path.clear();
-        BFS();
+        ArrayList<GraphMaker.Node> path = BFS();
         //more testing stuff
-        printPath();
+        printPath(path);
         System.out.println("Generated Tree");
         System.out.println("Path Size: "+path.size());
     }
 
     //Method to print the path found from the enemy to the player
-    private void printPath(){
-        for(int i=path.size()-1; i>-1; i--){
+    private void printPath(ArrayList<GraphMaker.Node> path){
+        for(int i=0; i<path.size(); i++){
             System.out.print("("+path.get(i).x+" ,"+path.get(i).y+")");
         }
         System.out.println();
     }
 
     //BFS traversal for enemy pathing. Returns a root to the tree
-    private void BFS(){
-        //set the current node to the root, create an empty queue
+    private ArrayList<GraphMaker.Node> BFS() {
+        //set the current node to the root, create an empty queue, and a list for storing path
         GraphMaker.Node current;
         Queue<GraphMaker.Node> queue = new LinkedList<>();
+        ArrayList<GraphMaker.Node> path = new ArrayList<GraphMaker.Node>();
 
         //mark all nodes unvisited
-        for(int row = 0; row< raccoonGame.windowRow; row++) {
+        for (int row = 0; row < raccoonGame.windowRow; row++) {
             for (int col = 0; col < raccoonGame.windowCol; col++) {
                 mapNodeArr[col][row].visited = false;
             }
@@ -73,59 +71,34 @@ public class TreeMaker {
 
         //Insert the root into the queue
         queue.add(root);
-
-        //Do the search
-        while(!queue.isEmpty()){
+        while(!queue.isEmpty()) {
             //Let current be the vertex and the front of the queue and remove current from the queue, also mark current as visited
             current = queue.poll();
+            path.add(current);
             current.visited = true;
-            //System.out.println("X: "+current.x+" Y: "+current.y+" Reference: "+current);
-            //for each unvisited neighbor i of current (do this with 4 directional if statements);
-            //insert i at the end of the queue and mark i as visited;
-            //make i a child of current
 
-            //if we find the player, back-trace the path and write into an arrayList called path
-            if(current == playerNode){
-                while(current != null){
-                    path.add(current);
-                    current = current.parent;
-                }
+            if (current == playerNode) {
+                return path;
             }
 
-            //left
-            if(current.left != null) {
-                if (!current.left.visited && current.left.isZero) {
-                    queue.add(current.left);
-                    current.children.add(current.left);
-                    current.left.parent = current;
-                }
-            }
-            //right
-            if(current.right != null) {
-                if (!current.right.visited && current.right.isZero) {
-                    queue.add(current.right);
-                    current.children.add(current.right);
-                    current.right.parent = current;
-                }
-            }
-            //up
-            if(current.up != null) {
-                if (!current.up.visited && current.up.isZero) {
-                    queue.add(current.up);
-                    current.children.add(current.up);
-                    current.up.parent = current;
-                }
-            }
-            //down
-            if(current.down != null) {
-                if (!current.down.visited && current.down.isZero) {
-                    queue.add(current.down);
-                    current.children.add(current.down);
-                    current.down.parent = current;
+            //Make a list of adjacent nodes to current
+            ArrayList<GraphMaker.Node> adjacent = new ArrayList<>();
+            adjacent.add(current.left);
+            adjacent.add(current.right);
+            adjacent.add(current.up);
+            adjacent.add(current.down);
+
+            //Iterate through, check if visited, if not add to queue
+            for (GraphMaker.Node neighbor : adjacent) {
+                if (neighbor != null && !neighbor.visited) {
+                    queue.add(neighbor);
                 }
             }
         }
+        //No path found at this point, so return null
+        return null;
     }
+
 
     //Find which blocks the enemy and player are in
     private void blockUpdate(){

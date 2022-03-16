@@ -28,7 +28,7 @@ public class Player extends Subject{
         super(raccoonGame);
         //default values that can easily be changed
         x = 6* raccoonGame.blockSize;
-        y = 10* raccoonGame.blockSize;
+        y = 7* raccoonGame.blockSize;
         speed = 4;
         score = 300;
         collectedRewards = 0;
