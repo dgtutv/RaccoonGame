@@ -82,6 +82,7 @@ public class GraphMaker {
             if (blockNum == 0) {
                 currentNode.isZero = true;
             }
+
             //Up & Down for the head
             if(currentCol==0 && currentRow + 1 < raccoonGame.windowRow){
                 //down
@@ -102,7 +103,7 @@ public class GraphMaker {
             }
 
             //up & down in general
-            if(currentRow > 0){
+            if(currentRow > 1){
                 upperNode.down = currentNode;
                 currentNode.up = upperNode;
             }
@@ -124,17 +125,19 @@ public class GraphMaker {
                 currentCol = 0;
                 currentRow++;
                 //go to the far left
-                while(currentNode.left != null){
+                while (currentNode.left != null) {
                     currentNode = currentNode.left;
                 }
                 //set upperNode to this
                 upperNode = currentNode;
                 //then go down
                 currentNode = currentNode.down;
-            } else {
+            }
+            else {
                 leftNode = currentNode;
                 currentNode = currentNode.right;
-                if(upperNode != null){
+                //iterate upperNode to the right
+                if(currentRow > 1){
                     upperNode = upperNode.right;
                 }
             }
