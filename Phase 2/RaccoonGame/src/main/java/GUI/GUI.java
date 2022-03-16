@@ -16,7 +16,7 @@ public class GUI {
     public BufferedImage hundredsIcon;
     public BufferedImage tensIcon;
     public BufferedImage onesIcon;
-    public BufferedImage titleBackground;
+    public BufferedImage titleBackground, endBackground;
     Font customFont, purisa;
     public int hundreds;
     public int tens;
@@ -147,6 +147,35 @@ public class GUI {
     }
 
     private void drawEndScreen(Graphics2D graphics) {
+        try {
+            endBackground = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/GUI/gameOver.png")));
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
+
+        //set background image with title
+        graphics.drawImage(endBackground, 0, 0, raccoonGame.windowWidth, raccoonGame.windowHeight, null);
+
+        //instantiate menu
+        graphics.setFont(purisa.deriveFont(Font.PLAIN, 48F));
+        graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        graphics.setColor(Color.white);
+        String text = "Return to Main Menu";
+        int x = raccoonGame.windowWidth/2 - 6*raccoonGame.blockSize;
+        int y = raccoonGame.windowHeight/2 + 4*raccoonGame.blockSize;
+        graphics.drawString(text, x, y);
+        if(cursorNum == 0) {
+            graphics.drawString(">", x-raccoonGame.blockSize, y);
+        }
+
+        text = "Quit Game";
+        x += 0.5*raccoonGame.blockSize;;
+        y += 2*raccoonGame.blockSize;
+        graphics.drawString(text, x, y);
+        if(cursorNum == 1) {
+            graphics.drawString(">", x-raccoonGame.blockSize, y);
+        }
 
     }
 
