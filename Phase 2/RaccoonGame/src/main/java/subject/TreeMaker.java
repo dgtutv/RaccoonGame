@@ -2,9 +2,9 @@ package subject;
 
 import main.RaccoonGame;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.*;
+
+import static subject.GraphMaker.mapNodeArr;
 
 public class TreeMaker {
     //Some needed variables
@@ -13,6 +13,7 @@ public class TreeMaker {
     int enemyBlockX, enemyBlockY, playerBlockX, playerBlockY;
     RaccoonGame raccoonGame;
     GraphMaker graph;
+    GraphMaker.Node root, playerNode;
 
     //Default constructor
     TreeMaker(Player player, Enemy enemy){
@@ -24,59 +25,101 @@ public class TreeMaker {
     }
 
     //Update method called by enemy each update
-    public void update(){
+    public List<GraphMaker.Node> update(){
+        //Get block locations of the enemy and player
         blockUpdate();
-        GraphMaker.Node enemyNode = new GraphMaker.Node(enemyBlockX, enemyBlockY);
-        ArrayList<GraphMaker.Node> path = BFS(enemyNode);
-        for(int i=0; i<path.size(); i++){
-            System.out.print("("+path.get(i).blockX+", "+path.get(i).blockY+")");
+        //Initialize a new root for current position of the enemy
+        root = GraphMaker.find(enemyBlockX, enemyBlockY);
+        //Find the player's Node
+        playerNode = GraphMaker.find(playerBlockX, playerBlockY);
+        if(!playerNode.nonCollidable){
+            switch(player.direction){
+                case "up" -> playerBlockY++;
+                case "down" -> playerBlockY--;
+                case "left" -> playerBlockX++;
+                case "right" -> playerBlockX--;
+            }
+            playerNode = GraphMaker.find(playerBlockX, playerBlockY);
         }
-        System.out.print("\n");
-        enemy.targetX = path.get(0).blockX;
-        enemy.targetY = path.get(0).blockY;
+        //reset the path and generate the tree
+        return BFS();
     }
 
-    //BFS traversal for enemy pathing.
-    public ArrayList<GraphMaker.Node> BFS(GraphMaker.Node root){
-        //mark all the nodes as unvisited
+    //Method to print the path found from the enemy to the player
+    public void print(List<GraphMaker.Node> path){
+        for(int i=0; i<path.size(); i++){
+            System.out.print("("+path.get(i).x+" ,"+path.get(i).y+")");
+        }
+        System.out.println();
+    }
+
+    //BFS traversal for enemy pathing. Returns a root to the tree
+    private List<GraphMaker.Node> BFS() {
+        //Make a queue for bfs and a list for path tracking
+        Queue<GraphMaker.Node> queue = new LinkedList<>();
+        List<GraphMaker.Node> path = new ArrayList<>();
+
+        //mark all nodes unvisited, and set their direction to ""
+        for (int row = 0; row < raccoonGame.windowRow; row++) {
+            for (int col = 0; col < raccoonGame.windowCol; col++) {
+                mapNodeArr[col][row].visited = false;
+                mapNodeArr[col][row].direction = "";
+            }
+        }
+
+        //Add the root to the queue and mark it as visited
+        queue.add(root);
+        root.visited = true;
+
+        //Create a hashmap for tracking the node's parents
+        Map<GraphMaker.Node, GraphMaker.Node> parentMap = new HashMap<>();
+
+        //Initialize a current node, and note that the root's parent is null
         GraphMaker.Node current = root;
-        ArrayList<GraphMaker.Node> path = new ArrayList<GraphMaker.Node>();
-        for(GraphMaker.Node i = root; i != null; i = i.down){
-            for(GraphMaker.Node j = i; j != null; j = j.right){
-                j.visited = false;
+        parentMap.put(root, null);
+
+        //Main BFS loop
+        while(!queue.isEmpty()){
+            //pop current from the queue and mark it as visited
+            current = queue.poll();
+            current.visited = true;
+
+            //If this node is the playerNode we break to stop noting parents
+            if(current == playerNode){
+                break;
+            }
+
+            //Make a list of nodes adjacent to current, and set each direction
+            ArrayList<GraphMaker.Node> adjacent = new ArrayList<>();
+            adjacent.add(current.left);
+            adjacent.add(current.right);
+            adjacent.add(current.up);
+            adjacent.add(current.down);
+            current.left.direction = "left";
+            current.right.direction = "right";
+            current.up.direction = "down";
+            current.down.direction = "up";
+
+            //Iterate through each neighbor checking both if theyre not visited and non-collidable
+            for (GraphMaker.Node neighbor : adjacent) {
+                //if so, note the parent of the neighbor and add the neighbor to the queue
+                if (!neighbor.visited && neighbor.nonCollidable) {
+                    queue.add(neighbor);
+                    parentMap.put(neighbor, current);
+                }
             }
         }
-
-        LinkedList<GraphMaker.Node> queue = new LinkedList<GraphMaker.Node>();
-
-        //Mark the current node as visited and add to the queue
-        current.visited = true;
-        queue.add(current);
-
-        while(queue.size() != 0){
-            //dequeue a vertex from queue and print it
-            root = queue.poll();
-            path.add(root);
-            //visit all unvisited neighbors, add them to the queue
-            if(current.left != null && !current.left.visited && current.left.isZero){
-                queue.add(current.left);
-                current.left.visited = true;
-            }
-            if(current.right != null && !current.right.visited && current.right.isZero){
-                queue.add(current.right);
-                current.right.visited = true;
-            }
-            if(current.up != null && !current.up.visited && current.up.isZero){
-                queue.add(current.up);
-                current.up.visited = true;
-            }
-            if(current.down != null && !current.down.visited && current.down.isZero){
-                queue.add(current.down);
-                current.down.visited = true;
-            }
+        //Once the loop is complete, we should end at playerNode
+        //So, backtrack through it's parents, and record each parent in path
+        GraphMaker.Node currIter = current;
+        while (currIter != null) {
+            path.add(0, currIter);
+            currIter = parentMap.get(currIter);
         }
+        //return path from enemy to player
         return path;
     }
+
 
     //Find which blocks the enemy and player are in
     private void blockUpdate(){

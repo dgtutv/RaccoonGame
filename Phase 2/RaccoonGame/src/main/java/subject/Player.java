@@ -27,8 +27,8 @@ public class Player extends Subject{
     public Player(RaccoonGame raccoonGame, KeyHandler keyH) {
         super(raccoonGame);
         //default values that can easily be changed
-        x = 100;
-        y = 100;
+        x = 6* raccoonGame.blockSize;
+        y = 7* raccoonGame.blockSize;
         speed = 4;
         score = 300;
         collectedRewards = 0;
@@ -90,7 +90,7 @@ public class Player extends Subject{
     public void directionUpdate(){
         //check is collision is on
         collisionOn = false;
-        raccoonGame.collisionHandler.checkBlock(this);
+        raccoonGame.collisionHandler.checkBlock(this, true);
         //check object collision
         int objectIndex = raccoonGame.collisionHandler.checkObject(this, true);
         collectObject(objectIndex);

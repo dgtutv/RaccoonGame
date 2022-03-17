@@ -19,19 +19,19 @@ public class RaccoonGame extends JPanel implements Runnable{
     public final int blockSize = pixelBlockSize * blockSizeScale;
 
     //set our map size to be 20 by 20 blocks
-    public final int windowCol = 30;
-    public final int windowRow = 20;
+    public final int windowCol = 45;
+    public final int windowRow = 30;
     public final int windowWidth = windowCol * blockSize;
     public final int windowHeight = windowRow * blockSize;
 
     //Initialize a key handler and a player with it
-    KeyHandler keyH = new KeyHandler();
+    KeyHandler keyH = new KeyHandler(this);
     public Player player = new Player(this, keyH);
 
     //Initialize collision handler
     public CollisionHandler collisionHandler = new CollisionHandler(this);
 
-    //initialize tree loader
+    //initialize map loader
     public main.mapLoader mapLoader = new mapLoader(this);
 
 
@@ -45,6 +45,12 @@ public class RaccoonGame extends JPanel implements Runnable{
     public GraphMaker graphMaker = new GraphMaker(this);
     public GUI gui = new GUI(this);
 
+    //game states
+    public int gameState;
+    public int titleState = 0;
+    public int playState = 1;
+    public int endState = 2;
+
     //spawn in the enemies
     public EnemyHandler enemyHandler = new EnemyHandler(this, player);
 
@@ -56,6 +62,12 @@ public class RaccoonGame extends JPanel implements Runnable{
         //Necessary lines for accepting key input
         this.addKeyListener(keyH);
         this.setFocusable(true);
+    }
+
+
+    //setup game
+    public void setupGame() {
+        gameState = titleState;
     }
 
     public void startThread() {
@@ -76,9 +88,6 @@ public class RaccoonGame extends JPanel implements Runnable{
         double delta = 0;
         //calculate running interval (nano-sec per sec / ticks)
         double loopInterval = 1000000000/ticks;
-
-        //Test graph of map by printing
-        graphMaker.print();
 
         //gameThread loop
         while(gameThread != null) {
@@ -132,6 +141,7 @@ public class RaccoonGame extends JPanel implements Runnable{
             System.out.println("Total Score: " + player.score);     //temporary
             gameThread = null;
             System.out.println("Game Over!");       //temporary
+            gameState = endState;
         }
     }
 
@@ -141,26 +151,40 @@ public class RaccoonGame extends JPanel implements Runnable{
         Graphics2D graphics = (Graphics2D)g;
         //Draw everything here:
 
-        //draw map
-        mapManager.drawMap(graphics);
+        //title screen
+        if(gameState == titleState) {
+            gui.drawGUI(graphics);
+        }
 
-        //draw items
-        for(int i = 0; i < objects.length; i++) {
-            if(objects[i] != null) {
-                objects[i].drawObject(graphics, this);
+        if(gameState == endState) {
+            gui.drawGUI(graphics);
+        }
+
+        //play state
+        else {
+            //draw map
+            mapManager.drawMap(graphics);
+
+            //draw items
+            for(int i = 0; i < objects.length; i++) {
+                if(objects[i] != null) {
+                    objects[i].drawObject(graphics, this);
+                }
             }
+
+            //draw player
+            player.draw(graphics);
+
+            //draw enemies
+            for(int i=0; i<enemyHandler.EnemyList.size(); i++){
+                enemyHandler.EnemyList.get(i).draw(graphics);
+            }
+
+            // Draw GUI
+            gui.drawGUI(graphics);
         }
 
-        //draw player
-        player.draw(graphics);
 
-        //draw enemies
-        for(int i=0; i<enemyHandler.EnemyList.size(); i++){
-            enemyHandler.EnemyList.get(i).draw(graphics);
-        }
-
-        // Draw GUI
-        gui.drawGUI(graphics);
 
         //clean up
         graphics.dispose();

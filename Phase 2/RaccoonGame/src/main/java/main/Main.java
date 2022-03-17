@@ -26,6 +26,8 @@ public class Main {
         gameWindow.setLocationRelativeTo(null);
         gameWindow.setVisible(true);
 
+        //setup game
+        racoonGame.setupGame();
 
         //start the game
         racoonGame.startThread();

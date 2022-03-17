@@ -13,7 +13,7 @@ public abstract class Subject {
     //Speed and spacial awareness
     public int x, y;
     public int speed;
-    public boolean atRest;      //track if the player is moving or not
+    public boolean atRest;      //track if the player is moving or notassa
 
     //Sprite awareness
     public BufferedImage moving1,moving2 ,still;
