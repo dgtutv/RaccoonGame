@@ -191,7 +191,7 @@ public class GUI {
         graphics.setFont(purisa.deriveFont(Font.PLAIN, 48F));
         graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         graphics.setColor(Color.red);
-        String text = "Your total score was: " + (raccoonGame.player.score + raccoonGame.player.reward) + "!";
+        String text = "Your total score was: " + (raccoonGame.player.score) + "!";
         int x = raccoonGame.windowWidth/2 - 11*raccoonGame.blockSize;
         int y = raccoonGame.windowHeight/2 + 4*raccoonGame.blockSize;
         graphics.drawString(text, x, y);

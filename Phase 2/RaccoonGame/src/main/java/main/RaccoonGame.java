@@ -140,7 +140,6 @@ public class RaccoonGame extends JPanel implements Runnable{
 
             //End the game if game over, add a game over screen here in future
             if(player.GameOver){
-                player.rewardUpdate(10);    //temporary
                 //We're going to want some sort of breakdown like this on the game over screen
                 System.out.println("Score: " + player.score);       //temporary
                 System.out.println("Reward: " + player.reward);     //temporary

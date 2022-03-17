@@ -30,7 +30,7 @@ public class Player extends Subject{
         x = 6* raccoonGame.blockSize;
         y = 7* raccoonGame.blockSize;
         speed = 4;
-        score = 300;
+        score = 50;
         collectedRewards = 0;
         reward = 0;
         direction = "down";
@@ -56,11 +56,6 @@ public class Player extends Subject{
         if(score <= 0){
             GameOver = true;
         }
-    }
-
-    //Store reward to be added to the score at the end of the game
-    public void rewardUpdate(int increase){
-        reward += increase;
     }
 
     //Custom method for updating the movement based off direction
@@ -149,7 +144,12 @@ public class Player extends Subject{
                     //play trap sound
                     raccoonGame.sound.effect(2, raccoonGame.sound);
                     //decrement player score and remove the item
-                    changeScore(-20);
+                    if(this.score <= 20) {
+                        this.score = 0;
+                    }
+                    else {
+                        changeScore(-20);
+                    }
                     this.raccoonGame.objects[index] = null;
                     break;
                 case "ExitDoor":
@@ -204,5 +204,10 @@ public class Player extends Subject{
     //call to change score
     public void changeScore(int score){
         this.score += score;
+    }
+
+    //Store reward to be added to the score at the end of the game
+    public void rewardUpdate(int increase){
+        this.reward += increase;
     }
 }
