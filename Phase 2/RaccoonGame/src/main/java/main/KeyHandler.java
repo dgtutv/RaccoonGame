@@ -1,6 +1,7 @@
 package main;
 
 import javax.sound.midi.SysexMessage;
+import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -49,26 +50,10 @@ public class KeyHandler implements KeyListener {
 
         //end state
         else if(raccoonGame.gameState == raccoonGame.endState) {
-            if(keyCode == KeyEvent.VK_W){      //If w pressed
-                if(raccoonGame.gui.cursorNum > 0) {
-                    raccoonGame.gui.cursorNum--;
-                }
-            }
-            if(keyCode == KeyEvent.VK_S){      //if s pressed
-                if(raccoonGame.gui.cursorNum < 1) {
-                    raccoonGame.gui.cursorNum++;
-                }
-            }
 
             if(keyCode == KeyEvent.VK_ENTER) {
-                switch (raccoonGame.gui.cursorNum) {
-                    case 0:
-                        raccoonGame.gameState = raccoonGame.titleState;
-                        break;
-                    case 1:
-                        System.exit(0);
-                        break;
-                }
+                System.exit(0);
+                
             }
         }
 

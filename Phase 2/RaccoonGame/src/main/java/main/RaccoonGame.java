@@ -34,6 +34,9 @@ public class RaccoonGame extends JPanel implements Runnable{
     //initialize map loader
     public main.mapLoader mapLoader = new mapLoader(this);
 
+    //initialize sound handler
+    public Sound sound = new Sound();
+
     //Initialize object array and object handler
     public GeneralObject[] objects = new GeneralObject[windowCol*windowRow];
     public ObjectHandler objectHandler = new ObjectHandler(this);
@@ -66,7 +69,9 @@ public class RaccoonGame extends JPanel implements Runnable{
 
     //setup game
     public void setupGame() {
+
         gameState = titleState;
+        sound.music(0, sound);
     }
 
     public void startThread() {
@@ -192,4 +197,7 @@ public class RaccoonGame extends JPanel implements Runnable{
         //clean up
         graphics.dispose();
     }
+
+
+
 }

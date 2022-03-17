@@ -171,21 +171,13 @@ public class GUI {
         graphics.setFont(purisa.deriveFont(Font.PLAIN, 48F));
         graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         graphics.setColor(Color.white);
-        String text = "Return to Main Menu";
-        int x = raccoonGame.windowWidth/2 - 6*raccoonGame.blockSize;
+        String text = "Quit Game";
+        int x = raccoonGame.windowWidth/2 - 4*raccoonGame.blockSize;
         int y = raccoonGame.windowHeight/2 + 4*raccoonGame.blockSize;
         graphics.drawString(text, x, y);
-        if(cursorNum == 0) {
-            graphics.drawString(">", x-raccoonGame.blockSize, y);
-        }
+        graphics.drawString(">", x-raccoonGame.blockSize, y);
 
-        text = "Quit Game";
-        x += 0.5*raccoonGame.blockSize;;
-        y += 2*raccoonGame.blockSize;
-        graphics.drawString(text, x, y);
-        if(cursorNum == 1) {
-            graphics.drawString(">", x-raccoonGame.blockSize, y);
-        }
+
 
     }
 

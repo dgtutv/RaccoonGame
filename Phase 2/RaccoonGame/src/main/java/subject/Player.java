@@ -96,6 +96,9 @@ public class Player extends Subject{
         collectObject(objectIndex);
         //check enemy collision, if true end game
         if(raccoonGame.collisionHandler.checkEnemy(this, true)) {
+            //play loss sound
+            raccoonGame.sound.stop(raccoonGame.sound);
+            raccoonGame.sound.effect(7, raccoonGame.sound);
             GameOver = true;
         }
         //Direction based off key-presses
@@ -128,16 +131,23 @@ public class Player extends Subject{
 
             switch(objectName) {
                 case "Garbage":
+                    //play powerup sound
+                    raccoonGame.sound.effect(1, raccoonGame.sound);
                     //increment player score and remove the item
                     this.changeScore(10);
                     collectedRewards++;
                     raccoonGame.objects[index] = null;
                     //check if all rewards collected
                     if(collectedRewards >= raccoonGame.objectHandler.numRewards) {
+                        //load secondary map with door
                         raccoonGame.mapLoader.loadMap(raccoonGame.mapManager.mapBlockArr, "/map/raccoonGameMapEnd.txt");
+                        //play door sound
+                        raccoonGame.sound.effect(5, raccoonGame.sound);
                     }
                     break;
                 case "Trap":
+                    //play trap sound
+                    raccoonGame.sound.effect(2, raccoonGame.sound);
                     //decrement player score and remove the item
                     changeScore(-20);
                     this.raccoonGame.objects[index] = null;
@@ -145,11 +155,16 @@ public class Player extends Subject{
                 case "ExitDoor":
                     //end the game if all rewards collected
                     if(collectedRewards >= raccoonGame.objectHandler.numRewards) {
+                        //play winning sound
+                        raccoonGame.sound.stop(raccoonGame.sound);
+                        raccoonGame.sound.effect(6, raccoonGame.sound);
                         GameOver = true;
                     }
                     break;
                 case "RedRaccoon":
-                    //end the game if all rewards collected
+                    //play swoon sound
+                    raccoonGame.sound.effect(4, raccoonGame.sound);
+                    //add 100 bonus points to rewards
                     rewardUpdate(100);
                     this.raccoonGame.objects[index] = null;
                     break;

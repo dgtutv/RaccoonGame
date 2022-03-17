@@ -45,6 +45,8 @@ public class RedRaccoon extends GeneralObject {
             this.y = col*raccoonGame.blockSize;
             this.collidableArea.width = raccoonGame.blockSize;
             this.collidableArea.height = raccoonGame.blockSize;
+            //play red raccoon spawn sound
+            raccoonGame.sound.effect(3, raccoonGame.sound);
         }
         if(timer > 60*10) {
             //flip between drawing regular and "flash" red raccoon every 5/6 ths of a second
