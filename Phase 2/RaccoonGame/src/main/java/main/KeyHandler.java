@@ -62,6 +62,27 @@ public class KeyHandler implements KeyListener {
             if(keyCode == KeyEvent.VK_ESCAPE){      //if esc pressed
                 raccoonGame.gameState = raccoonGame.playState;
             }
+            if(keyCode == KeyEvent.VK_W){      //If w pressed
+                if(raccoonGame.gui.cursorNum > 0) {
+                    raccoonGame.gui.cursorNum--;
+                }
+            }
+            if(keyCode == KeyEvent.VK_S){      //if s pressed
+                if(raccoonGame.gui.cursorNum < 1) {
+                    raccoonGame.gui.cursorNum++;
+                }
+            }
+
+            if(keyCode == KeyEvent.VK_ENTER) {
+                switch (raccoonGame.gui.cursorNum) {
+                    case 0:
+                        raccoonGame.gameState = raccoonGame.playState;
+                        break;
+                    case 1:
+                        System.exit(0);
+                        break;
+                }
+            }
         }
 
         //play state

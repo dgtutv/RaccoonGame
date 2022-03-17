@@ -31,8 +31,11 @@ public class RedRaccoon extends GeneralObject {
     }
 
     public void drawObject(Graphics2D graphics, RaccoonGame raccoonGame) {
-        //increment timer
-        timer++;
+        //increment timer if gameState is playState
+        if(raccoonGame.gameState == raccoonGame.playState) {
+            timer++;
+        }
+
         //after raccoon has been invisible for 10 seconds, spawn at a random location
         if(timer == 60*10) {
             do {
