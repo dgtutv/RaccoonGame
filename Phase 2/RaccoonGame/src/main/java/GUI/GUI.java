@@ -190,10 +190,16 @@ public class GUI {
         //instantiate menu
         graphics.setFont(purisa.deriveFont(Font.PLAIN, 48F));
         graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-        graphics.setColor(Color.white);
-        String text = "Quit Game";
-        int x = raccoonGame.windowWidth/2 - 4*raccoonGame.blockSize;
+        graphics.setColor(Color.red);
+        String text = "Your total score was: " + (raccoonGame.player.score + raccoonGame.player.reward) + "!";
+        int x = raccoonGame.windowWidth/2 - 11*raccoonGame.blockSize;
         int y = raccoonGame.windowHeight/2 + 4*raccoonGame.blockSize;
+        graphics.drawString(text, x, y);
+
+        graphics.setColor(Color.white);
+        text = "Quit Game";
+        x += 7*raccoonGame.blockSize;
+        y += 4*raccoonGame.blockSize;
         graphics.drawString(text, x, y);
         graphics.drawString(">", x-raccoonGame.blockSize, y);
 

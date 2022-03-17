@@ -169,7 +169,7 @@ public class RaccoonGame extends JPanel implements Runnable{
         else if(gameState == endState) {
             gui.drawGUI(graphics);
         }
-        
+
 
         //play state
         else {
