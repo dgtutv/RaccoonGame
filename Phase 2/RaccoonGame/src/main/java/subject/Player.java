@@ -21,19 +21,22 @@ public class Player extends Subject{
     public int score;
     private int collectedRewards;
     public int reward;
+    //bool for tracking if player won the game or lost
+    public boolean hasEscaped;
 
     
     //Constructor
     public Player(RaccoonGame raccoonGame, KeyHandler keyH) {
         super(raccoonGame);
         //default values that can easily be changed
-        x = 6* raccoonGame.blockSize;
-        y = 7* raccoonGame.blockSize;
+        x = 2* raccoonGame.blockSize;
+        y = 15* raccoonGame.blockSize;
         speed = 4;
         score = 50;
         collectedRewards = 0;
         reward = 0;
         direction = "down";
+        hasEscaped = false;
 
         //collidable area values
         collidableArea = new Rectangle();
@@ -155,6 +158,8 @@ public class Player extends Subject{
                 case "ExitDoor":
                     //end the game if all rewards collected
                     if(collectedRewards >= raccoonGame.objectHandler.numRewards) {
+                        //set hasEscaped (won) to true
+                        hasEscaped = true;
                         //play winning sound
                         raccoonGame.sound.stop(raccoonGame.sound);
                         raccoonGame.sound.effect(6, raccoonGame.sound);

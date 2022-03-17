@@ -191,9 +191,25 @@ public class GUI {
         graphics.setFont(purisa.deriveFont(Font.PLAIN, 48F));
         graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         graphics.setColor(Color.red);
-        String text = "Your total score was: " + (raccoonGame.player.score) + "!";
-        int x = raccoonGame.windowWidth/2 - 11*raccoonGame.blockSize;
-        int y = raccoonGame.windowHeight/2 + 4*raccoonGame.blockSize;
+
+        String text;
+        int x, y;
+
+        if(raccoonGame.player.hasEscaped) {
+            text = "You Escaped Successfully!";
+            x= raccoonGame.windowWidth/2 - 10*raccoonGame.blockSize;
+        }
+        else {
+            text = "You died! :(";
+            x = raccoonGame.windowWidth/2 - 5*raccoonGame.blockSize;
+        }
+
+        y = raccoonGame.windowHeight/2;
+        graphics.drawString(text, x, y);
+
+        text = "Your total score was: " + (raccoonGame.player.score) + "!";
+        x = raccoonGame.windowWidth/2 - 11*raccoonGame.blockSize;
+        y = raccoonGame.windowHeight/2 + 4*raccoonGame.blockSize;
         graphics.drawString(text, x, y);
 
         graphics.setColor(Color.white);
