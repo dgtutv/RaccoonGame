@@ -67,7 +67,7 @@ public class GUI {
     // Get image
     public void getImage() {
         try {
-            sfuIcon = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/GUI/sfu2.png")));
+            sfuIcon = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/GUI/sfu.png")));
             scoreIcon = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/GUI/score.png")));
             String onesPath = "/GUI/" + String.valueOf(this.ones) + ".png";
             onesIcon = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(onesPath)));
@@ -175,7 +175,7 @@ public class GUI {
 
     private void drawPlayScreen(Graphics2D graphics) {
         int sfuWidth = 120;
-        int sfuHeight = 50;
+        int sfuHeight = 60;
         int scoreWidth = 240;
         int scoreHeight = 50;
         int digitSize = 50;
