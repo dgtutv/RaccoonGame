@@ -32,7 +32,7 @@ public class Enemy extends Subject{
     public boolean collidable;
 
     //variables to change for enemy behaviour, in blocks
-    int range = 10;
+    int range = 7;
     int patrolHorizontalDistance = 2;
     int patrolVerticalDistance = 2;
 
@@ -69,17 +69,20 @@ public class Enemy extends Subject{
     @Override
     //update method for enemy direction (i.e, pathing)
     public void directionUpdate() {
-        if(collisionOn){
-
-        }
-        path = tree.update();
-        //get direction based on the node we want to follow
-        direction = path.get(1).direction;
-        System.out.println(direction);
         //follow the player when within range
         if(rangeCheck()) {
-            targetX = path.get(1).x * raccoonGame.blockSize;
-            targetY = path.get(1).y * raccoonGame.blockSize;
+            path = tree.update();
+            //get direction based on the node we want to follow
+            direction = path.get(1).direction;
+
+            try{
+                targetX = path.get(1).x * raccoonGame.blockSize;
+                targetY = path.get(1).y * raccoonGame.blockSize;
+            }
+            catch (Exception e){
+                targetX = path.get(0).x * raccoonGame.blockSize;
+                targetY = path.get(0).y * raccoonGame.blockSize;
+            }
         }
         //patrol an area when not in sight of player, randomly
         else{
