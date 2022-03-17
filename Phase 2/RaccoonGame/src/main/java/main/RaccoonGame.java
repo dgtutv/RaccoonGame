@@ -8,7 +8,6 @@ import java.awt.*;
 
 import object.GeneralObject;
 import subject.EnemyHandler;
-import subject.GraphMaker;
 import subject.Player;
 
 public class RaccoonGame extends JPanel implements Runnable{
@@ -19,21 +18,24 @@ public class RaccoonGame extends JPanel implements Runnable{
     public final int blockSize = pixelBlockSize * blockSizeScale;
 
     //set our map size to be 20 by 20 blocks
-    public final int windowCol = 30;
-    public final int windowRow = 20;
+    public final int windowCol = 45;
+    public final int windowRow = 30;
     public final int windowWidth = windowCol * blockSize;
     public final int windowHeight = windowRow * blockSize;
 
+
     //Initialize a key handler and a player with it
-    KeyHandler keyH = new KeyHandler();
+    KeyHandler keyH = new KeyHandler(this);
     public Player player = new Player(this, keyH);
 
     //Initialize collision handler
     public CollisionHandler collisionHandler = new CollisionHandler(this);
 
-    //initialize tree loader
+    //initialize map loader
     public main.mapLoader mapLoader = new mapLoader(this);
 
+    //initialize sound handler
+    public Sound sound = new Sound();
 
     //Initialize object array and object handler
     public GeneralObject[] objects = new GeneralObject[windowCol*windowRow];
@@ -42,8 +44,14 @@ public class RaccoonGame extends JPanel implements Runnable{
     //initialize game thread
     Thread gameThread;
     public MapManager mapManager = new MapManager(this);
-    public GraphMaker graphMaker = new GraphMaker(this);
     public GUI gui = new GUI(this);
+
+    //game states
+    public int gameState;
+    public int titleState = 0;
+    public int playState = 1;
+    public int endState = 2;
+    public int pauseState = 3;
 
     //spawn in the enemies
     public EnemyHandler enemyHandler = new EnemyHandler(this, player);
@@ -56,6 +64,14 @@ public class RaccoonGame extends JPanel implements Runnable{
         //Necessary lines for accepting key input
         this.addKeyListener(keyH);
         this.setFocusable(true);
+    }
+
+
+    //setup game
+    public void setupGame() {
+
+        gameState = titleState;
+        sound.music(0, sound);
     }
 
     public void startThread() {
@@ -76,9 +92,6 @@ public class RaccoonGame extends JPanel implements Runnable{
         double delta = 0;
         //calculate running interval (nano-sec per sec / ticks)
         double loopInterval = 1000000000/ticks;
-
-        //Test graph of map by printing
-        graphMaker.print();
 
         //gameThread loop
         while(gameThread != null) {
@@ -109,30 +122,35 @@ public class RaccoonGame extends JPanel implements Runnable{
     //IMPORTANT METHODS, THIS IS WHERE WE WILL IMPLEMENT ALL OUR METHODS
     //update method, update all information here such as keystrokes from a key handler class
     protected void update() {
-        //Update player
-        player.update();
 
-        //update enemies
-        for(int i=0; i<enemyHandler.EnemyList.size(); i++){
-            enemyHandler.EnemyList.get(i).update();
+        if(gameState == playState) {
+            //Update player
+            player.update();
+
+            //update enemies
+            for(int i=0; i<enemyHandler.EnemyList.size(); i++){
+                enemyHandler.EnemyList.get(i).update();
+            }
+
+
+            // David: GUI update 3.3
+            gui.update((player.score%10), (player.score/10)%10, (player.score/100)%10);
+
+            //End the game if game over, add a game over screen here in future
+            if(player.GameOver){
+                player.rewardUpdate(10);    //temporary
+                //We're going to want some sort of breakdown like this on the game over screen
+                System.out.println("Score: " + player.score);       //temporary
+                System.out.println("Reward: " + player.reward);     //temporary
+                //Add the rewards to the score at the end of the game
+                player.score += player.reward;
+                System.out.println("Total Score: " + player.score);     //temporary
+                //gameThread = null;
+                System.out.println("Game Over!");       //temporary
+                gameState = endState;
+            }
         }
 
-
-        // David: GUI update 3.3
-        gui.update((player.score%10), (player.score/10)%10, (player.score/100)%10);
-
-        //End the game if game over, add a game over screen here in future
-        if(player.GameOver){
-            player.rewardUpdate(10);    //temporary
-            //We're going to want some sort of breakdown like this on the game over screen
-            System.out.println("Score: " + player.score);       //temporary
-            System.out.println("Reward: " + player.reward);     //temporary
-            //Add the rewards to the score at the end of the game
-            player.score += player.reward;
-            System.out.println("Total Score: " + player.score);     //temporary
-            gameThread = null;
-            System.out.println("Game Over!");       //temporary
-        }
     }
 
     //paint characters, items, map, etc...
@@ -141,28 +159,45 @@ public class RaccoonGame extends JPanel implements Runnable{
         Graphics2D graphics = (Graphics2D)g;
         //Draw everything here:
 
-        //draw map
-        mapManager.drawMap(graphics);
+        //title screen
+        if(gameState == titleState) {
+            gui.drawGUI(graphics);
+        }
 
-        //draw items
-        for(int i = 0; i < objects.length; i++) {
-            if(objects[i] != null) {
-                objects[i].drawObject(graphics, this);
+        if(gameState == endState) {
+            gui.drawGUI(graphics);
+        }
+
+        //play state
+        else {
+            //draw map
+            mapManager.drawMap(graphics);
+
+            //draw items
+            for(int i = 0; i < objects.length; i++) {
+                if(objects[i] != null) {
+                    objects[i].drawObject(graphics, this);
+                }
             }
+
+            //draw player
+            player.draw(graphics);
+
+            //draw enemies
+            for(int i=0; i<enemyHandler.EnemyList.size(); i++){
+                enemyHandler.EnemyList.get(i).draw(graphics);
+            }
+
+            // Draw GUI
+            gui.drawGUI(graphics);
         }
 
-        //draw player
-        player.draw(graphics);
 
-        //draw enemies
-        for(int i=0; i<enemyHandler.EnemyList.size(); i++){
-            enemyHandler.EnemyList.get(i).draw(graphics);
-        }
-
-        // Draw GUI
-        gui.drawGUI(graphics);
 
         //clean up
         graphics.dispose();
     }
+
+
+
 }
