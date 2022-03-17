@@ -16,7 +16,7 @@ public class GUI {
     public BufferedImage hundredsIcon;
     public BufferedImage tensIcon;
     public BufferedImage onesIcon;
-    public BufferedImage titleBackground, endBackground, pauseText;
+    public BufferedImage titleBackground, endBackground, pauseBackground, pauseText;
     Font customFont, purisa;
     public int hundreds;
     public int tens;
@@ -142,12 +142,14 @@ public class GUI {
 
         try {
             pauseText = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/GUI/pause.png")));
+            pauseBackground = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/GUI/pauseBackground.png")));
         }
         catch(IOException e) {
             e.printStackTrace();
         }
 
         //set background image with title
+        graphics.drawImage(pauseBackground, 0, 0, raccoonGame.windowWidth, raccoonGame.windowHeight, null);
         graphics.drawImage(pauseText, raccoonGame.windowWidth/2 - 180, 10*raccoonGame.blockSize, 360, 90, null);
 
         //instantiate menu
