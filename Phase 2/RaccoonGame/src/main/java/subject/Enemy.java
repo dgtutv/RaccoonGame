@@ -73,13 +73,13 @@ public class Enemy extends Subject{
         if(rangeCheck()) {
             path = tree.update();
             //get direction based on the node we want to follow
-            direction = path.get(1).direction;
-
             try{
+                direction = path.get(1).direction;
                 targetX = path.get(1).x * raccoonGame.blockSize;
                 targetY = path.get(1).y * raccoonGame.blockSize;
             }
             catch (Exception e){
+                direction = path.get(0).direction;
                 targetX = path.get(0).x * raccoonGame.blockSize;
                 targetY = path.get(0).y * raccoonGame.blockSize;
             }
