@@ -16,7 +16,7 @@ public class GUI {
     public BufferedImage hundredsIcon;
     public BufferedImage tensIcon;
     public BufferedImage onesIcon;
-    public BufferedImage titleBackground;
+    public BufferedImage titleBackground, endBackground;
     Font customFont, purisa;
     public int hundreds;
     public int tens;
@@ -95,6 +95,12 @@ public class GUI {
         if(raccoonGame.gameState == raccoonGame.endState) {
             drawEndScreen(graphics);
         }
+
+        //if pauseState, draw GUI for end pause screen
+        if(raccoonGame.gameState == raccoonGame.pauseState) {
+            drawPauseScreen(graphics);
+        }
+
     }
 
     private void drawTitleScreen(Graphics2D graphics) {
@@ -131,6 +137,10 @@ public class GUI {
 
     }
 
+    private void drawPauseScreen(Graphics2D graphics) {
+
+    }
+
     private void drawPlayScreen(Graphics2D graphics) {
         int sfuWidth = 120;
         int sfuHeight = 50;
@@ -147,6 +157,27 @@ public class GUI {
     }
 
     private void drawEndScreen(Graphics2D graphics) {
+        try {
+            endBackground = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/GUI/gameOver.png")));
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
+
+        //set background image with title
+        graphics.drawImage(endBackground, 0, 0, raccoonGame.windowWidth, raccoonGame.windowHeight, null);
+
+        //instantiate menu
+        graphics.setFont(purisa.deriveFont(Font.PLAIN, 48F));
+        graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        graphics.setColor(Color.white);
+        String text = "Quit Game";
+        int x = raccoonGame.windowWidth/2 - 4*raccoonGame.blockSize;
+        int y = raccoonGame.windowHeight/2 + 4*raccoonGame.blockSize;
+        graphics.drawString(text, x, y);
+        graphics.drawString(">", x-raccoonGame.blockSize, y);
+
+
 
     }
 

@@ -1,5 +1,7 @@
 package main;
 
+import javax.sound.midi.SysexMessage;
+import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -41,12 +43,29 @@ public class KeyHandler implements KeyListener {
                         break;
                     case 1:
                         System.exit(0);
+                        break;
                 }
             }
         }
 
+        //end state
+        else if(raccoonGame.gameState == raccoonGame.endState) {
+
+            if(keyCode == KeyEvent.VK_ENTER) {
+                System.exit(0);
+                
+            }
+        }
+
+        //pause state
+        else if(raccoonGame.gameState == raccoonGame.pauseState) {
+            if(keyCode == KeyEvent.VK_ESCAPE){      //if esc pressed
+                raccoonGame.gameState = raccoonGame.playState;
+            }
+        }
+
         //play state
-        if(raccoonGame.gameState == raccoonGame.playState) {
+        else if(raccoonGame.gameState == raccoonGame.playState) {
             //now scan to check which key has been pressed
             if(keyCode == KeyEvent.VK_W){      //If w pressed
                 upPressed = true;
@@ -60,6 +79,9 @@ public class KeyHandler implements KeyListener {
             if(keyCode == KeyEvent.VK_D){      //if d pressed
                 rightPressed = true;
             }
+            if(keyCode == KeyEvent.VK_ESCAPE){      //if esc pressed
+                raccoonGame.gameState = raccoonGame.pauseState;
+            }
         }
 
     }
@@ -67,18 +89,22 @@ public class KeyHandler implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
         int keyCode = e.getKeyCode();       //keyCode is the ASCII value of a key on the keyboard
-        //now scan to check which key has been released
-        if(keyCode == KeyEvent.VK_W){      //If w pressed
-            upPressed = false;
+
+        if(raccoonGame.gameState == raccoonGame.playState) {
+            //now scan to check which key has been released
+            if(keyCode == KeyEvent.VK_W){      //If w pressed
+                upPressed = false;
+            }
+            if(keyCode == KeyEvent.VK_S){      //if s pressed
+                downPressed =false;
+            }
+            if(keyCode == KeyEvent.VK_A){      //if a pressed
+                leftPressed =false;
+            }
+            if(keyCode == KeyEvent.VK_D){      //if d pressed
+                rightPressed =false;
+            }
         }
-        if(keyCode == KeyEvent.VK_S){      //if s pressed
-            downPressed =false;
-        }
-        if(keyCode == KeyEvent.VK_A){      //if a pressed
-            leftPressed =false;
-        }
-        if(keyCode == KeyEvent.VK_D){      //if d pressed
-            rightPressed =false;
-        }
+
     }
 }
