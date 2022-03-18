@@ -13,9 +13,8 @@ public class GUI {
     RaccoonGame raccoonGame;
     public BufferedImage sfuIcon;
     public BufferedImage scoreIcon;
-    public BufferedImage hundredsIcon;
-    public BufferedImage tensIcon;
-    public BufferedImage onesIcon;
+    public BufferedImage onesIcon, tensIcon, hundredsIcon;
+    public BufferedImage zero, one, two, three, four, five, six, seven, eight, nine;
     public BufferedImage titleBackground, endBackground, pauseBackground, pauseText;
     Font customFont, purisa;
     public int hundreds;
@@ -61,7 +60,7 @@ public class GUI {
         this.ones = ones;
         this.tens = tens;
         this.hundreds = hundreds;
-        getImage();
+        //getImage();
     }
 
     // Get image
@@ -69,12 +68,24 @@ public class GUI {
         try {
             sfuIcon = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/GUI/sfu.png")));
             scoreIcon = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/GUI/score.png")));
-            String onesPath = "/GUI/" + String.valueOf(this.ones) + ".png";
-            onesIcon = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(onesPath)));
-            String tensPath = "/GUI/" + String.valueOf(this.tens) + ".png";
-            tensIcon = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(tensPath)));
-            String hundredsPath = "/GUI/" + String.valueOf(this.hundreds) + ".png";
-            hundredsIcon = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(hundredsPath)));
+
+            zero = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/GUI/0.png")));
+            one = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/GUI/1.png")));
+            two = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/GUI/2.png")));
+            three = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/GUI/3.png")));
+            four = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/GUI/4.png")));
+            five = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/GUI/5.png")));
+            six = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/GUI/6.png")));
+            seven = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/GUI/7.png")));
+            eight = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/GUI/8.png")));
+            nine = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/GUI/9.png")));
+
+            titleBackground = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/GUI/titleBackground.png")));
+
+            pauseText = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/GUI/pause.png")));
+            pauseBackground = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/GUI/pauseBackground.png")));
+
+            endBackground = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/GUI/gameOver.png")));
         }
         catch(IOException e) {
             e.printStackTrace();
@@ -104,12 +115,6 @@ public class GUI {
     }
 
     private void drawTitleScreen(Graphics2D graphics) {
-        try {
-            titleBackground = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/GUI/titleBackground.png")));
-        }
-        catch(IOException e) {
-            e.printStackTrace();
-        }
 
         //set background image with title
         graphics.drawImage(titleBackground, 0, 0, raccoonGame.windowWidth, raccoonGame.windowHeight, null);
@@ -138,15 +143,7 @@ public class GUI {
     }
 
     private void drawPauseScreen(Graphics2D graphics) {
-            drawPlayScreen(graphics);
-
-        try {
-            pauseText = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/GUI/pause.png")));
-            pauseBackground = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/GUI/pauseBackground.png")));
-        }
-        catch(IOException e) {
-            e.printStackTrace();
-        }
+        drawPlayScreen(graphics);
 
         //set background image with title
         graphics.drawImage(pauseBackground, 0, 0, raccoonGame.windowWidth, raccoonGame.windowHeight, null);
@@ -183,18 +180,50 @@ public class GUI {
         // Draw GUI
         graphics.drawImage(sfuIcon, raccoonGame.getWidth()/2-sfuWidth/2, 0, sfuWidth, sfuHeight, null);
         graphics.drawImage(scoreIcon, raccoonGame.getWidth()-scoreWidth/2-250, 0, scoreWidth, scoreHeight, null);
+
+        switch(this.hundreds) {
+            case 0 -> hundredsIcon = zero;
+            case 1 -> hundredsIcon = one;
+            case 2 -> hundredsIcon = two;
+            case 3 -> hundredsIcon = three;
+            case 4 -> hundredsIcon = four;
+            case 5 -> hundredsIcon = five;
+            case 6 -> hundredsIcon = six;
+            case 7 -> hundredsIcon = seven;
+            case 8 -> hundredsIcon = eight;
+            case 9 -> hundredsIcon = nine;
+        }
+        switch(this.tens) {
+            case 0 -> tensIcon = zero;
+            case 1 -> tensIcon = one;
+            case 2 -> tensIcon = two;
+            case 3 -> tensIcon = three;
+            case 4 -> tensIcon = four;
+            case 5 -> tensIcon = five;
+            case 6 -> tensIcon = six;
+            case 7 -> tensIcon = seven;
+            case 8 -> tensIcon = eight;
+            case 9 -> tensIcon = nine;
+        }
+        switch(this.ones) {
+            case 0 -> onesIcon = zero;
+            case 1 -> onesIcon = one;
+            case 2 -> onesIcon = two;
+            case 3 -> onesIcon = three;
+            case 4 -> onesIcon = four;
+            case 5 -> onesIcon = five;
+            case 6 -> onesIcon = six;
+            case 7 -> onesIcon = seven;
+            case 8 -> onesIcon = eight;
+            case 9 -> onesIcon = nine;
+        }
+
         graphics.drawImage(hundredsIcon, raccoonGame.getWidth()-250+scoreWidth/2, 0, digitSize, digitSize, null);
         graphics.drawImage(tensIcon, raccoonGame.getWidth()-250+scoreWidth/2+30, 0, digitSize, digitSize, null);
         graphics.drawImage(onesIcon, raccoonGame.getWidth()-250+scoreWidth/2+60, 0, digitSize, digitSize, null);
     }
 
     private void drawEndScreen(Graphics2D graphics) {
-        try {
-            endBackground = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/GUI/gameOver.png")));
-        }
-        catch(IOException e) {
-            e.printStackTrace();
-        }
 
         //set background image with title
         graphics.drawImage(endBackground, 0, 0, raccoonGame.windowWidth, raccoonGame.windowHeight, null);

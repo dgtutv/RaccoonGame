@@ -26,7 +26,7 @@ public class RaccoonGame extends JPanel implements Runnable{
     public final int windowHeight = windowRow * blockSize;
 
     //FPS
-    int ticks = 30;
+    int ticks = 60;
     int flip = 0;
 
     //Initialize collision handler
