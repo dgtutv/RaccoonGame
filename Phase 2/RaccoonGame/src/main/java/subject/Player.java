@@ -34,7 +34,7 @@ public class Player extends Subject{
         //default values that can easily be changed
         x = 2* raccoonGame.blockSize;
         y = 15* raccoonGame.blockSize;
-        speed = 4;
+        speed = 8;
         score = 50;
         collectedRewards = 0;
         reward = 0;

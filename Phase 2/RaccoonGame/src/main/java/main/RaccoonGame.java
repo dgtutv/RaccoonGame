@@ -88,7 +88,7 @@ public class RaccoonGame extends JPanel implements Runnable{
         //implement delta-style game loop
         long previousTime = System.nanoTime();
         long currentTime;
-        int ticks = 60;
+        int ticks = 30;
         int timer = 0;
         double delta = 0;
         //calculate running interval (nano-sec per sec / ticks)
