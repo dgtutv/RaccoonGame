@@ -127,11 +127,7 @@ public class Enemy extends Subject{
 
     @Override
     //enemy specific update method
-    public void customUpdate() {
-        //check if collision is on
-        collisionOn = false;
-        raccoonGame.collisionHandler.checkBlock(this, false);
-    }
+    public void customUpdate() {}
 
     @Override
     //update method for enemy movement

@@ -24,11 +24,6 @@ public class RaccoonGame extends JPanel implements Runnable{
     public final int windowWidth = windowCol * blockSize;
     public final int windowHeight = windowRow * blockSize;
 
-
-    //Initialize a key handler and a player with it
-    KeyHandler keyH = new KeyHandler(this);
-    public Player player = new Player(this, keyH);
-
     //Initialize collision handler
     public CollisionHandler collisionHandler = new CollisionHandler(this);
 
@@ -47,6 +42,10 @@ public class RaccoonGame extends JPanel implements Runnable{
     public MapManager mapManager = new MapManager(this);
     public GraphMaker graphMaker = new GraphMaker(this);
     public GUI gui = new GUI(this);
+
+    //Initialize a key handler and a player with it
+    KeyHandler keyH = new KeyHandler(this);
+    public Player player = new Player(this, keyH);
 
     //game states
     public int gameState;
@@ -133,7 +132,6 @@ public class RaccoonGame extends JPanel implements Runnable{
             for(int i=0; i<enemyHandler.EnemyList.size(); i++){
                 enemyHandler.EnemyList.get(i).update();
             }
-
 
             // David: GUI update 3.3
             gui.update((player.score%10), (player.score/10)%10, (player.score/100)%10);

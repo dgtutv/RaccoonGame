@@ -24,6 +24,8 @@ public class Player extends Subject{
     //bool for tracking if player won the game or lost
     public boolean hasEscaped;
 
+    //mapBlockArr for collisions
+    public int mapBlockArr[][];
 
     
     //Constructor
@@ -51,6 +53,9 @@ public class Player extends Subject{
 
         //Add the key listener to raccoonGame to handle key movement
         this.keyH = keyH;
+
+        //instantiate mapBlockArr
+        this.mapBlockArr = raccoonGame.mapManager.mapBlockArr;
     }
 
     //Method called every update to check on the player's score
@@ -67,21 +72,19 @@ public class Player extends Subject{
     public void moveUpdate(){
         //If the subject is moving, keep moving until centered in block
         if(moving) {
-            if (!this.collisionOn) {
-                switch (direction) {
-                    case "up":
-                        y -= speed;
-                        break;
-                    case "down":
-                        y += speed;
-                        break;
-                    case "left":
-                        x -= speed;
-                        break;
-                    case "right":
-                        x += speed;
-                        break;
-                }
+            switch (direction) {
+                case "up":
+                    y -= speed;
+                    break;
+                case "down":
+                    y += speed;
+                    break;
+                case "left":
+                    x -= speed;
+                    break;
+                case "right":
+                    x += speed;
+                    break;
             }
             //Tracks how many pixels we've moved
             pixelCounter += speed;
@@ -116,25 +119,37 @@ public class Player extends Subject{
         }
         //If and only if the player is still, accept key-presses, then set moving to true
         if(!moving){
-            //Direction based off key-presses
+            //Direction based off key-presses, check if valid input instead of collisions
             if(keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
                 if(keyH.upPressed) {
-                    direction = "up";
+                    //valid input check
+                    if(mapBlockArr[x/raccoonGame.blockSize][(y/raccoonGame.blockSize)-1] == 0){
+                        direction = "up";
+                        moving = true;
+                    }
                 }
                 else if(keyH.downPressed) {
-                    direction = "down";
+                    //valid input check
+                    if(mapBlockArr[x/raccoonGame.blockSize][(y/raccoonGame.blockSize)+1] == 0){
+                        direction = "down";
+                        moving = true;
+                    }
                 }
                 else if(keyH.rightPressed) {
-                    direction = "right";
+                    //valid input check
+                    if(mapBlockArr[(x/raccoonGame.blockSize)+1][y/raccoonGame.blockSize] == 0) {
+                        direction = "right";
+                        moving = true;
+                    }
                 }
-                else {
-                    direction = "left";
+                else if(keyH.leftPressed) {
+                    //valid input check
+                    if(mapBlockArr[(x/raccoonGame.blockSize)-1][y/raccoonGame.blockSize] == 0) {
+                        direction = "left";
+                        moving = true;
+                    }
                 }
-                moving = true;
             }
-            //check is collision is on
-            collisionOn = false;
-            raccoonGame.collisionHandler.checkBlock(this, true);
             //check object collision
             int objectIndex = raccoonGame.collisionHandler.checkObject(this, true);
             collectObject(objectIndex);
