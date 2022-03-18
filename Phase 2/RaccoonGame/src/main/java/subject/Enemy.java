@@ -35,12 +35,13 @@ public class Enemy extends Subject{
     int range = 7;
     int patrolHorizontalDistance = 2;
     int patrolVerticalDistance = 2;
-
+    
 
     //Constructor for Enemy
     public Enemy(RaccoonGame raccoonGame, int x, int y, Player player) {
         //Default values from constructor parameters
         super(raccoonGame);
+        loadEnemyFrames();
         this.x = x;
         this.y = y;
         this.player = player;
@@ -85,6 +86,7 @@ public class Enemy extends Subject{
                     targetX = path.get(0).x * raccoonGame.blockSize;
                     targetY = path.get(0).y * raccoonGame.blockSize;
                 }
+
             }
             //patrol an area when not in sight of player, randomly
             else{
@@ -196,7 +198,7 @@ public class Enemy extends Subject{
     }
     //method for movement drawing/animation
     public void draw(Graphics2D g){
-        loadEnemyFrames();
+        //loadEnemyFrames();
         BufferedImage frame = moving1;
         if (spriteNum == 1) {
             frame = moving1;

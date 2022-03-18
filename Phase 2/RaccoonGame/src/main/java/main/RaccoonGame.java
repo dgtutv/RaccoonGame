@@ -3,6 +3,7 @@ package main;
 import GUI.GUI;
 import block.MapManager;
 
+import javax.sound.midi.SysexMessage;
 import javax.swing.*;
 import java.awt.*;
 
@@ -23,6 +24,10 @@ public class RaccoonGame extends JPanel implements Runnable{
     public final int windowRow = 30;
     public final int windowWidth = windowCol * blockSize;
     public final int windowHeight = windowRow * blockSize;
+
+    //FPS
+    int ticks = 30;
+    int flip = 0;
 
     //Initialize collision handler
     public CollisionHandler collisionHandler = new CollisionHandler(this);
@@ -88,7 +93,6 @@ public class RaccoonGame extends JPanel implements Runnable{
         //implement delta-style game loop
         long previousTime = System.nanoTime();
         long currentTime;
-        int ticks = 30;
         int timer = 0;
         double delta = 0;
         //calculate running interval (nano-sec per sec / ticks)
@@ -170,8 +174,13 @@ public class RaccoonGame extends JPanel implements Runnable{
 
         //play state
         else {
+            long drawStart = System.nanoTime();
             //draw map
+
             mapManager.drawMap(graphics);
+
+
+
 
             //draw items
             for(int i = 0; i < objects.length; i++) {
@@ -180,16 +189,27 @@ public class RaccoonGame extends JPanel implements Runnable{
                 }
             }
 
+
+
             //draw player
             player.draw(graphics);
+
 
             //draw enemies
             for(int i=0; i<enemyHandler.EnemyList.size(); i++){
                 enemyHandler.EnemyList.get(i).draw(graphics);
             }
 
+
+
+
             // Draw GUI
             gui.drawGUI(graphics);
+
+            long drawEnd = System.nanoTime();
+            long passed = drawEnd - drawStart;
+            System.out.println(passed);
+
         }
 
 
