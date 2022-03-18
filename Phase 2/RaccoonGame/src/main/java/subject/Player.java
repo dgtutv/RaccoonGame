@@ -31,6 +31,7 @@ public class Player extends Subject{
     //Constructor
     public Player(RaccoonGame raccoonGame, KeyHandler keyH) {
         super(raccoonGame);
+        loadCharacterFrames();
         //default values that can easily be changed
         x = 2* raccoonGame.blockSize;
         y = 15* raccoonGame.blockSize;
@@ -227,7 +228,6 @@ public class Player extends Subject{
 
     //Movement drawing
     public void draw(Graphics2D g){
-        loadCharacterFrames();
         BufferedImage frame = still;
         if(direction == "up" || direction == "down" || direction == "left" || direction == "right") {
             if (spriteNum == 1) {

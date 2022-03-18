@@ -35,7 +35,7 @@ public class Enemy extends Subject{
     int range = 7;
     int patrolHorizontalDistance = 2;
     int patrolVerticalDistance = 2;
-    
+
 
     //Constructor for Enemy
     public Enemy(RaccoonGame raccoonGame, int x, int y, Player player) {
