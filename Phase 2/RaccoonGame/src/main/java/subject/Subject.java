@@ -14,6 +14,7 @@ public abstract class Subject {
     public int x, y;
     public int speed;
     boolean moving = false;      //track if the player is moving or not
+    int pixelCounter = 0;       //track the amount of pixels a subject has travelled between blocks
 
     //Sprite awareness
     public BufferedImage moving1,moving2 ,still;

@@ -23,7 +23,6 @@ public class Player extends Subject{
     public int reward;
     //bool for tracking if player won the game or lost
     public boolean hasEscaped;
-    int pixelCounter = 0;
 
 
     
@@ -84,7 +83,7 @@ public class Player extends Subject{
                         break;
                 }
             }
-            //Tracks how many pixels weve moved
+            //Tracks how many pixels we've moved
             pixelCounter += speed;
 
             //Once we've moved a whole block, player can be still (!moving) and reset pixelCounter
@@ -215,7 +214,6 @@ public class Player extends Subject{
     public void draw(Graphics2D g){
         loadCharacterFrames();
         BufferedImage frame = still;
-        //if(!atRest) {
         if(direction == "up" || direction == "down" || direction == "left" || direction == "right") {
             if (spriteNum == 1) {
                 frame = moving1;
