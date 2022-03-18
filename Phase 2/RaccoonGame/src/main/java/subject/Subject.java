@@ -13,7 +13,7 @@ public abstract class Subject {
     //Speed and spacial awareness
     public int x, y;
     public int speed;
-    public boolean atRest;      //track if the player is moving or notassa
+    boolean moving = false;      //track if the player is moving or not
 
     //Sprite awareness
     public BufferedImage moving1,moving2 ,still;
@@ -34,7 +34,7 @@ public abstract class Subject {
     //Constructor
     public Subject(RaccoonGame raccoonGame){
         this.raccoonGame = raccoonGame;
-        atRest = true;
+        moving = false;
     }
 
 
@@ -55,22 +55,20 @@ public abstract class Subject {
         if(GameOver) return;
         directionUpdate();
 
+        moveUpdate();
         //if subject is trying to move
-        if(!atRest){
-            //if player collision is off
-                moveUpdate();
-                //flip image/animate
-                spriteCounter++;
-                if(spriteCounter > animSpeed) {
-                    if(spriteNum == 1){
-                        spriteNum = 2;
-                    }
-                    else{
-                        spriteNum = 1;
-                    }
-                    spriteCounter = 0;
+        if(moving){
+            //flip image/animate
+            spriteCounter++;
+            if(spriteCounter > animSpeed) {
+                if(spriteNum == 1){
+                    spriteNum = 2;
                 }
-
+                else{
+                    spriteNum = 1;
+                }
+                spriteCounter = 0;
+            }
         }
 
 

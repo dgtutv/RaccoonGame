@@ -53,7 +53,6 @@ public class Enemy extends Subject{
         speed = player.speed/2;
         direction = "down";
         collidable = true;
-        atRest = false;
 
         //Collidable area values
         collidableArea = new Rectangle();

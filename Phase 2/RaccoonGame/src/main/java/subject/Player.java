@@ -23,6 +23,8 @@ public class Player extends Subject{
     public int reward;
     //bool for tracking if player won the game or lost
     public boolean hasEscaped;
+    int pixelCounter = 0;
+
 
     
     //Constructor
@@ -37,13 +39,14 @@ public class Player extends Subject{
         reward = 0;
         direction = "down";
         hasEscaped = false;
+        moving = false;
 
         //collidable area values
         collidableArea = new Rectangle();
-        collidableArea.x = raccoonGame.blockSize / 4;
-        collidableArea.y = raccoonGame.blockSize / 4;
-        collidableArea.width = raccoonGame.blockSize - (raccoonGame.blockSize / 4);
-        collidableArea.height = raccoonGame.blockSize - (raccoonGame.blockSize / 4);
+        collidableArea.x = 1;
+        collidableArea.y = 1;
+        collidableArea.width = raccoonGame.blockSize-2;
+        collidableArea.height = raccoonGame.blockSize-2;
         collidableAreaX = collidableArea.x;
         collidableAreaY = collidableArea.y;
 
@@ -63,12 +66,31 @@ public class Player extends Subject{
 
     //Custom method for updating the movement based off direction
     public void moveUpdate(){
-        if(!this.collisionOn) {
-            switch (direction) {
-                case "up" -> y -= speed;
-                case "down" -> y += speed;
-                case "left" -> x -= speed;
-                case "right" -> x += speed;
+        //If the subject is moving, keep moving until centered in block
+        if(moving) {
+            if (!this.collisionOn) {
+                switch (direction) {
+                    case "up":
+                        y -= speed;
+                        break;
+                    case "down":
+                        y += speed;
+                        break;
+                    case "left":
+                        x -= speed;
+                        break;
+                    case "right":
+                        x += speed;
+                        break;
+                }
+            }
+            //Tracks how many pixels weve moved
+            pixelCounter += speed;
+
+            //Once we've moved a whole block, player can be still (!moving) and reset pixelCounter
+            if (pixelCounter == raccoonGame.blockSize) {
+                moving = false;
+                pixelCounter = 0;
             }
         }
     }
@@ -86,12 +108,6 @@ public class Player extends Subject{
     //Direction updater class
     @Override
     public void directionUpdate(){
-        //check is collision is on
-        collisionOn = false;
-        raccoonGame.collisionHandler.checkBlock(this, true);
-        //check object collision
-        int objectIndex = raccoonGame.collisionHandler.checkObject(this, true);
-        collectObject(objectIndex);
         //check enemy collision, if true end game
         if(raccoonGame.collisionHandler.checkEnemy(this, true)) {
             //play loss sound
@@ -99,25 +115,30 @@ public class Player extends Subject{
             raccoonGame.sound.effect(7, raccoonGame.sound);
             GameOver = true;
         }
-        //Direction based off key-presses
-        if(keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
-            atRest = false;
-            if(keyH.upPressed) {
-                direction = "up";
+        //If and only if the player is still, accept key-presses, then set moving to true
+        if(!moving){
+            //Direction based off key-presses
+            if(keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
+                if(keyH.upPressed) {
+                    direction = "up";
+                }
+                else if(keyH.downPressed) {
+                    direction = "down";
+                }
+                else if(keyH.rightPressed) {
+                    direction = "right";
+                }
+                else {
+                    direction = "left";
+                }
+                moving = true;
             }
-            else if(keyH.downPressed) {
-                direction = "down";
-            }
-            else if(keyH.rightPressed) {
-                direction = "right";
-            }
-            else {
-                direction = "left";
-            }
-        }
-        //If no key-press, the player is still
-        else{
-            atRest = true;
+            //check is collision is on
+            collisionOn = false;
+            raccoonGame.collisionHandler.checkBlock(this, true);
+            //check object collision
+            int objectIndex = raccoonGame.collisionHandler.checkObject(this, true);
+            collectObject(objectIndex);
         }
     }
 
@@ -129,7 +150,7 @@ public class Player extends Subject{
 
             switch(objectName) {
                 case "Garbage":
-                    //play powerup sound
+                    //play power-up sound
                     raccoonGame.sound.effect(1, raccoonGame.sound);
                     //increment player score and remove the item
                     this.changeScore(10);

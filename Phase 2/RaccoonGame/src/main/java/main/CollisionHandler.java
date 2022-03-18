@@ -55,10 +55,10 @@ public class CollisionHandler {
                 subject.collisionOn = true;
                 if(player){
                     switch(subject.direction) {
-                        case "up" -> subject.y += 2*subject.speed;
-                        case "down" -> subject.y -= 2*subject.speed;
-                        case "left" -> subject.x += 2*subject.speed;
-                        case "right" -> subject.x -= 2*subject.speed;
+                        case "up" -> subject.y += subject.speed;
+                        case "down" -> subject.y -= subject.speed;
+                        case "left" -> subject.x += subject.speed;
+                        case "right" -> subject.x -= subject.speed;
                     }
                 }
             }

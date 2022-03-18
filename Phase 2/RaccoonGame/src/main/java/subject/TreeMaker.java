@@ -32,15 +32,6 @@ public class TreeMaker {
         root = GraphMaker.find(enemyBlockX, enemyBlockY);
         //Find the player's Node
         playerNode = GraphMaker.find(playerBlockX, playerBlockY);
-        if(!playerNode.nonCollidable){
-            switch(player.direction){
-                case "up" -> playerBlockY++;
-                case "down" -> playerBlockY--;
-                case "left" -> playerBlockX++;
-                case "right" -> playerBlockX--;
-            }
-            playerNode = GraphMaker.find(playerBlockX, playerBlockY);
-        }
         //reset the path and generate the tree
         return BFS();
     }
