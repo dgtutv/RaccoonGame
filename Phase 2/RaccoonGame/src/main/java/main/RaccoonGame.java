@@ -27,7 +27,6 @@ public class RaccoonGame extends JPanel implements Runnable{
 
     //FPS
     int ticks = 60;
-    int flip = 0;
 
     //Initialize collision handler
     public CollisionHandler collisionHandler = new CollisionHandler(this);
@@ -174,7 +173,6 @@ public class RaccoonGame extends JPanel implements Runnable{
 
         //play state
         else {
-            long drawStart = System.nanoTime();
             //draw map
 
             mapManager.drawMap(graphics);
@@ -205,10 +203,6 @@ public class RaccoonGame extends JPanel implements Runnable{
 
             // Draw GUI
             gui.drawGUI(graphics);
-
-            long drawEnd = System.nanoTime();
-            long passed = drawEnd - drawStart;
-            System.out.println(passed);
 
         }
 
