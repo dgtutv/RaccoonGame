@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Random;
 
+/**
+ * A pretty (randomly generated) raccoon lady.
+ */
 public class RedRaccoon extends GeneralObject {
 
     private BufferedImage objectImage2;

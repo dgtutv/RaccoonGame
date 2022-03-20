@@ -12,7 +12,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
 
-
+/**
+ * Main player character. Contains timer score, movement handling, animation, and so forth.
+ */
 public class Player extends Subject{
     //Unique constants to player
     KeyHandler keyH;

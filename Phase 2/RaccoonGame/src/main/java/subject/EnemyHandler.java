@@ -9,7 +9,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-//A class to handle enemies as a group
+/**
+ * Handles enemies as a group. Also contains the spawning info.
+ */
 public class EnemyHandler {
     //Lists of enemies, should also contain coordinates of such enemies.
     public List<Enemy> EnemyList = new ArrayList<>();

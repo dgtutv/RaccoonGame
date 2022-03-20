@@ -5,6 +5,9 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.net.URL;
 
+/**
+ * Sound implementation and functionality.
+ */
 public class Sound {
 
     Clip clip;

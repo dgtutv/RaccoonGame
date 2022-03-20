@@ -7,6 +7,9 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * A cardboard box with a stick underneath it.
+ */
 public class Trap extends GeneralObject {
     public Trap() {
         objectName = "Trap";

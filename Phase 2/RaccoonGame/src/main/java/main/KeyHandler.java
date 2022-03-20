@@ -5,6 +5,9 @@ import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * Delegates certain keys into in-game commands.
+ */
 public class KeyHandler implements KeyListener {
     //Some basic booleans to track keys being currently pressed
     public boolean upPressed, downPressed, leftPressed, rightPressed;

@@ -5,6 +5,9 @@ import main.RaccoonGame;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * General class for characters. Has movement stuff and sprite info.
+ */
 public abstract class Subject {
     //Game Awareness
     RaccoonGame raccoonGame;

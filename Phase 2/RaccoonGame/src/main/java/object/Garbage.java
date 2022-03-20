@@ -4,6 +4,9 @@ import javax.imageio.ImageIO;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * Our main collectible: garbage.
+ */
 public class Garbage extends GeneralObject {
 
     public Garbage() {

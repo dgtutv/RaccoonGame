@@ -2,6 +2,9 @@ package main;
 
 import subject.Subject;
 
+/**
+ * Observes objects to check if a collision is going to occur.
+ */
 public class CollisionHandler {
 
     RaccoonGame raccoonGame;

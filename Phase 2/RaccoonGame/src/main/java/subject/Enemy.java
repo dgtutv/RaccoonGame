@@ -12,7 +12,9 @@ import java.util.Random;
 
 import static java.lang.Math.*;
 
-//A class for dynamic enemy types
+/**
+ * A class for dynamic enemy types. Contains pathing information.
+ */
 public class Enemy extends Subject{
     //Unique constants to all enemies
     Player player;

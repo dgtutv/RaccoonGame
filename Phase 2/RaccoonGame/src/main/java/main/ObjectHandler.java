@@ -9,6 +9,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Handler used to spawn items.
+ */
 public class ObjectHandler {
 
     RaccoonGame raccoonGame;

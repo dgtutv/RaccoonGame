@@ -5,6 +5,9 @@ import main.RaccoonGame;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * General class that contains the object image and information.
+ */
 public class GeneralObject {
 
     public BufferedImage objectImage;

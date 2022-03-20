@@ -12,6 +12,9 @@ import subject.EnemyHandler;
 import subject.GraphMaker;
 import subject.Player;
 
+/**
+ * Starts main game loop, constructs handlers.
+ */
 public class RaccoonGame extends JPanel implements Runnable{
 
     //set screen settings and map block size
