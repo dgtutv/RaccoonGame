@@ -139,7 +139,6 @@ public class Enemy extends Subject{
         //check if collision is on
         if(moving) {
             //Move towards the target
-            //get rid of diagonal movement using x?>y
             if (x < targetX) {
                 if (targetX - x < speed) {
                     x += targetX - x;

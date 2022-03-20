@@ -31,7 +31,6 @@ public class ObjectHandler {
 
 
     private void spawnItems(){
-        System.out.print(("spawning items"));
         int currentCol = 0;
         int currentRow = 0;
         int currentX = 0;
