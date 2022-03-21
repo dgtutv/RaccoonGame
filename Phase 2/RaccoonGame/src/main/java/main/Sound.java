@@ -22,6 +22,7 @@ public class Sound {
         soundPaths[5] = getClass().getResource("/sound/door.wav");
         soundPaths[6] = getClass().getResource("/sound/winning.wav");
         soundPaths[7] = getClass().getResource("/sound/death.wav");
+        soundPaths[8] = getClass().getResource("/sound/music.wav");
     }
 
     public void setSound(int i) {

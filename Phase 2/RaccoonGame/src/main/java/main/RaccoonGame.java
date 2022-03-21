@@ -28,6 +28,9 @@ public class RaccoonGame extends JPanel implements Runnable{
     public final int windowWidth = windowCol * blockSize;
     public final int windowHeight = windowRow * blockSize;
 
+    //Used to tell if this is the first iteration of the game loop, if true start main music, otherwise do not
+    boolean startMainMusic;
+
     //FPS
     int ticks = 60;
 
@@ -72,14 +75,15 @@ public class RaccoonGame extends JPanel implements Runnable{
         //Necessary lines for accepting key input
         this.addKeyListener(keyH);
         this.setFocusable(true);
+        startMainMusic = true;
     }
 
 
     //setup game
     public void setupGame() {
-
         gameState = titleState;
-        sound.music(0, sound);
+        //start the title/end screen music
+        sound.music(8, sound);
     }
 
     public void startThread() {
@@ -97,6 +101,7 @@ public class RaccoonGame extends JPanel implements Runnable{
         long currentTime;
         int timer = 0;
         double delta = 0;
+
         //calculate running interval (nano-sec per sec / ticks)
         double loopInterval = 1000000000/ticks;
 
@@ -129,8 +134,14 @@ public class RaccoonGame extends JPanel implements Runnable{
     //IMPORTANT METHODS, THIS IS WHERE WE WILL IMPLEMENT ALL OUR METHODS
     //update method, update all information here such as keystrokes from a key handler class
     protected void update() {
-
         if(gameState == playState) {
+            //if the first iteration, start the main game music and end the title music
+            if(startMainMusic){
+                sound.stopSound();
+                sound.music(0, sound);
+                startMainMusic = false;
+            }
+
             //Update player
             player.update();
 
@@ -144,14 +155,12 @@ public class RaccoonGame extends JPanel implements Runnable{
 
             //End the game if game over, add a game over screen here in future
             if(player.GameOver){
-                //We're going to want some sort of breakdown like this on the game over screen
-                System.out.println("Score: " + player.score);       //temporary
-                System.out.println("Reward: " + player.reward);     //temporary
-                //Add the rewards to the score at the end of the game
+                //start the music for the start/end menu, stop the music for the main game
+                sound.setSound(0);
+                sound.stop(sound);
+                sound.music(8, sound);
+
                 player.score += player.reward;
-                System.out.println("Total Score: " + player.score);     //temporary
-                //gameThread = null;
-                System.out.println("Game Over!");       //temporary
                 gameState = endState;
             }
         }

@@ -33,6 +33,7 @@ public class Player extends Subject{
     //Constructor
     public Player(RaccoonGame raccoonGame, KeyHandler keyH) {
         super(raccoonGame);
+
         loadCharacterFrames();
         //default values that can easily be changed
         x = 2* raccoonGame.blockSize;
@@ -184,6 +185,7 @@ public class Player extends Subject{
                 case "Trap":
                     //play trap sound
                     raccoonGame.sound.effect(2, raccoonGame.sound);
+
                     //decrement player score and remove the item
                     if(this.score <= 20) {
                         this.score = 0;
