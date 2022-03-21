@@ -30,6 +30,8 @@ public class RaccoonGame extends JPanel implements Runnable{
 
     //Used to tell if this is the first iteration of the game loop, if true start main music, otherwise do not
     boolean startMainMusic;
+    //Used to copy the main music, so we can end it
+    Sound cloneSound;
 
     //FPS
     int ticks = 60;
@@ -117,8 +119,12 @@ public class RaccoonGame extends JPanel implements Runnable{
             if(delta >= 1) {
                 //increment timer
                 timer++;
-                //update information
-                update();
+                //update information (in a try catch for thread.sleep
+                try {
+                    update();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 //draw with new information
                 repaint();
                 delta--;
@@ -133,12 +139,14 @@ public class RaccoonGame extends JPanel implements Runnable{
 
     //IMPORTANT METHODS, THIS IS WHERE WE WILL IMPLEMENT ALL OUR METHODS
     //update method, update all information here such as keystrokes from a key handler class
-    protected void update() {
+    protected void update() throws InterruptedException {
         if(gameState == playState) {
             //if the first iteration, start the main game music and end the title music
             if(startMainMusic){
                 sound.stopSound();
                 sound.music(0, sound);
+                //let's also copy this clip to a clone for ending the music later
+                cloneSound = new Sound(sound);
                 startMainMusic = false;
             }
 
@@ -155,7 +163,13 @@ public class RaccoonGame extends JPanel implements Runnable{
 
             //End the game if game over, add a game over screen here in future
             if(player.GameOver){
-                //start the music for the start/end menu, stop the music for the main game
+                //stop the music for the main game
+                cloneSound.stopSound();
+
+                //wait 3 seconds so that the death music finishes playing before going to the end screen
+                Thread.sleep(3000);
+
+                //start the music for the start/end menu
                 sound.setSound(0);
                 sound.stop(sound);
                 sound.music(8, sound);

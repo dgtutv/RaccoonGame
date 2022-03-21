@@ -25,6 +25,12 @@ public class Sound {
         soundPaths[8] = getClass().getResource("/sound/music.wav");
     }
 
+    //copy constructor
+    public Sound(Sound sound){
+        this.clip = sound.clip;
+        this.soundPaths = sound.soundPaths;
+    }
+
     public void setSound(int i) {
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundPaths[i]);
@@ -38,7 +44,6 @@ public class Sound {
 
     public void playSound() {
         clip.start();
-
     }
 
     public void loopSound() {
