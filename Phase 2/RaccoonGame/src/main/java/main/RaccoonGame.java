@@ -43,7 +43,7 @@ public class RaccoonGame extends JPanel implements Runnable{
     public MapManager mapManager;
     public GraphMaker graphMaker;
     public GUI gui;
-    public KeyHandler keyH;
+    public KeyHandler keyHandler;
     public Player player;
 
     //game states
@@ -61,8 +61,6 @@ public class RaccoonGame extends JPanel implements Runnable{
         this.setPreferredSize(new Dimension(windowWidth, windowHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
-        //Necessary lines for accepting key input
-
         this.setFocusable(true);
 
     }
@@ -96,9 +94,9 @@ public class RaccoonGame extends JPanel implements Runnable{
         gui = new GUI(this);
 
         //Initialize KeyHandler and player
-        keyH = new KeyHandler(this);
-        this.addKeyListener(keyH);
-        player = new Player(this, keyH);
+        keyHandler = new KeyHandler(this);
+        this.addKeyListener(keyHandler);
+        player = new Player(this, keyHandler);
 
         //Initialize enemyHandler
         enemyHandler = new EnemyHandler(this, player);
