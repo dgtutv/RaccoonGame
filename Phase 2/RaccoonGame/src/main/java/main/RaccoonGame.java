@@ -31,11 +31,6 @@ public class RaccoonGame extends JPanel implements Runnable{
     //initialize game thread
     Thread gameThread;
 
-    //Used to tell if this is the first iteration of the game loop, if true start main music, otherwise do not
-    boolean startMainMusic;
-    //Used to copy the main music, so we can end it
-    Sound cloneSound;
-
     //FPS
     int ticks = 60;
 
@@ -84,7 +79,6 @@ public class RaccoonGame extends JPanel implements Runnable{
 
         //initialize sound handler
         sound = new Sound();
-        startMainMusic = true;
 
         //Initialize object array and object handler
         objects = new GeneralObject[windowCol*windowRow];
@@ -169,14 +163,6 @@ public class RaccoonGame extends JPanel implements Runnable{
     //update method, update all information here such as keystrokes from a key handler class
     protected void update() throws InterruptedException {
         if(gameState == playState) {
-            //if the first iteration, start the main game music and end the title music
-            if(startMainMusic){
-                sound.stopSound();
-                sound.music(0, sound);
-                //let's also copy this clip to a clone for ending the music later
-                cloneSound = new Sound(sound);
-                startMainMusic = false;
-            }
 
             //Update player
             player.update();
@@ -192,14 +178,15 @@ public class RaccoonGame extends JPanel implements Runnable{
             //End the game if game over, add a game over screen here in future
             if(player.GameOver){
                 //stop the music for the main game
-                cloneSound.stopSound();
+                //cloneSound.stopSound();
 
                 //wait 3 seconds so that the death music finishes playing before going to the end screen
+                sound.stop(sound);
+                sound.flushSound();
+                sound.effect(7, sound);
                 Thread.sleep(3000);
 
-                //start the music for the start/end menu
-                sound.setSound(0);
-                sound.stop(sound);
+                //play loss sound
                 sound.music(8, sound);
 
                 player.score += player.reward;

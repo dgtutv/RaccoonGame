@@ -54,6 +54,8 @@ public class Sound {
         clip.stop();
     }
 
+    public void flushSound() { clip.flush(); }
+
     public void music(int i, Sound sound) {
         sound.setSound(i);
         sound.playSound();

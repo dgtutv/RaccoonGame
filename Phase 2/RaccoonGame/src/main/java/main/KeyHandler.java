@@ -43,6 +43,8 @@ public class KeyHandler implements KeyListener {
                 switch (raccoonGame.gui.cursorNum) {
                     case 0:
                         raccoonGame.gameState = raccoonGame.playState;
+                        raccoonGame.sound.stop(raccoonGame.sound);
+                        raccoonGame.sound.music(0, raccoonGame.sound);
                         break;
                     case 1:
                         System.exit(0);

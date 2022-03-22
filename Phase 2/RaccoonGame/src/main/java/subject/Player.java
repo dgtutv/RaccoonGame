@@ -116,9 +116,7 @@ public class Player extends Subject{
     public void directionUpdate(){
         //check enemy collision, if true end game
         if(raccoonGame.collisionHandler.checkEnemy(this, true)) {
-            //play loss sound
-            raccoonGame.sound.stop(raccoonGame.sound);
-            raccoonGame.sound.effect(7, raccoonGame.sound);
+
             GameOver = true;
         }
         //If and only if the player is still, accept key-presses, then set moving to true
