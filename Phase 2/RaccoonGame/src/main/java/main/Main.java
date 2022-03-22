@@ -20,14 +20,17 @@ public class Main {
         //this is where we will have to implement a UI class possibly for the main menu, which then
         //would have a button to call the below raccoonGame initiation
         RaccoonGame raccoonGame = new RaccoonGame();
+        //setup game
+        raccoonGame.setupGame();
         gameWindow.add(raccoonGame);
+
+
 
         gameWindow.pack();
         gameWindow.setLocationRelativeTo(null);
         gameWindow.setVisible(true);
 
-        //setup game
-        raccoonGame.setupGame();
+
 
         //start the game
         raccoonGame.startThread();

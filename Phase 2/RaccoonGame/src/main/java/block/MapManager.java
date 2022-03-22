@@ -23,8 +23,6 @@ public class MapManager {
         blocks = new MapBlock[11]; //storage for different block images
         mapBlockArr = new int[raccoonGame.windowCol][raccoonGame.windowRow];
 
-        getBlockImage();
-        raccoonGame.mapLoader.loadMap(mapBlockArr, "/map/raccoonGameMap.txt");
     }
 
     //this method gets the different block images from file

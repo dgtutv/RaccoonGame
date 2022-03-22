@@ -28,6 +28,9 @@ public class RaccoonGame extends JPanel implements Runnable{
     public final int windowWidth = windowCol * blockSize;
     public final int windowHeight = windowRow * blockSize;
 
+    //initialize game thread
+    Thread gameThread;
+
     //Used to tell if this is the first iteration of the game loop, if true start main music, otherwise do not
     boolean startMainMusic;
     //Used to copy the main music, so we can end it
@@ -36,28 +39,17 @@ public class RaccoonGame extends JPanel implements Runnable{
     //FPS
     int ticks = 60;
 
-    //Initialize collision handler
-    public CollisionHandler collisionHandler = new CollisionHandler(this);
 
-    //initialize map loader
-    public main.mapLoader mapLoader = new mapLoader(this);
-
-    //initialize sound handler
-    public Sound sound = new Sound();
-
-    //Initialize object array and object handler
-    public GeneralObject[] objects = new GeneralObject[windowCol*windowRow];
-    public ObjectHandler objectHandler = new ObjectHandler(this);
-
-    //initialize game thread
-    Thread gameThread;
-    public MapManager mapManager = new MapManager(this);
-    public GraphMaker graphMaker = new GraphMaker(this);
-    public GUI gui = new GUI(this);
-
-    //Initialize a key handler and a player with it
-    KeyHandler keyH = new KeyHandler(this);
-    public Player player = new Player(this, keyH);
+    public CollisionHandler collisionHandler;
+    public main.mapLoader mapLoader;
+    public Sound sound;
+    public GeneralObject[] objects;
+    public ObjectHandler objectHandler;
+    public MapManager mapManager;
+    public GraphMaker graphMaker;
+    public GUI gui;
+    public KeyHandler keyH;
+    public Player player;
 
     //game states
     public int gameState;
@@ -67,7 +59,7 @@ public class RaccoonGame extends JPanel implements Runnable{
     public int pauseState = 3;
 
     //spawn in the enemies
-    public EnemyHandler enemyHandler = new EnemyHandler(this, player);
+    public EnemyHandler enemyHandler;
 
     //create main game method
     public RaccoonGame() {
@@ -75,14 +67,50 @@ public class RaccoonGame extends JPanel implements Runnable{
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
         //Necessary lines for accepting key input
-        this.addKeyListener(keyH);
+
         this.setFocusable(true);
-        startMainMusic = true;
+
     }
 
 
     //setup game
     public void setupGame() {
+
+        //Initialize collision handler
+        collisionHandler = new CollisionHandler(this);
+
+        //initialize map loader
+        mapLoader = new mapLoader(this);
+
+        //initialize sound handler
+        sound = new Sound();
+        startMainMusic = true;
+
+        //Initialize object array and object handler
+        objects = new GeneralObject[windowCol*windowRow];
+        objectHandler = new ObjectHandler(this);
+
+        //initialize map
+        mapManager = new MapManager(this);
+        mapManager.getBlockImage();
+        mapLoader.loadMap(mapManager.mapBlockArr, "/map/raccoonGameMap.txt");
+
+        //initialize graphMaker
+        graphMaker = new GraphMaker(this);
+
+        //Initialize GUI
+        gui = new GUI(this);
+
+        //Initialize KeyHandler and player
+        keyH = new KeyHandler(this);
+        this.addKeyListener(keyH);
+        player = new Player(this, keyH);
+
+        //Initialize enemyHandler
+        enemyHandler = new EnemyHandler(this, player);
+
+
+
         gameState = titleState;
         //start the title/end screen music
         sound.music(8, sound);
