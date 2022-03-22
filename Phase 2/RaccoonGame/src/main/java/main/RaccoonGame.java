@@ -21,6 +21,7 @@ public class RaccoonGame extends JPanel implements Runnable{
     final int pixelBlockSize = 32; //32 pixel by 32 pixel map blocks
     final int blockSizeScale = 1; //scale this by 1, so that it displays well on modern monitors
     public final int blockSize = pixelBlockSize * blockSizeScale;
+    int ticks = 60; //FPS
 
     //set our map size to be 20 by 20 blocks
     public final int windowCol = 45;
@@ -30,10 +31,6 @@ public class RaccoonGame extends JPanel implements Runnable{
 
     //initialize game thread
     Thread gameThread;
-
-    //FPS
-    int ticks = 60;
-
 
     public CollisionHandler collisionHandler;
     public main.mapLoader mapLoader;
@@ -45,6 +42,7 @@ public class RaccoonGame extends JPanel implements Runnable{
     public GUI gui;
     public KeyHandler keyHandler;
     public Player player;
+    public EnemyHandler enemyHandler;
 
     //game states
     public int gameState;
@@ -53,8 +51,6 @@ public class RaccoonGame extends JPanel implements Runnable{
     public int endState = 2;
     public int pauseState = 3;
 
-    //spawn in the enemies
-    public EnemyHandler enemyHandler;
 
     //create main game method
     public RaccoonGame() {
@@ -100,8 +96,6 @@ public class RaccoonGame extends JPanel implements Runnable{
 
         //Initialize enemyHandler
         enemyHandler = new EnemyHandler(this, player);
-
-
 
         gameState = titleState;
         //start the title/end screen music

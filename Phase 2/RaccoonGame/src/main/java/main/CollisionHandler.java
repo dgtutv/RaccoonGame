@@ -69,7 +69,6 @@ public class CollisionHandler {
 
 
     public boolean checkEnemy(Subject subject, boolean player) {
-        int index = 999;
         boolean collided = false;
 
         for (int i = 0; i < raccoonGame.enemyHandler.EnemyList.size(); i++) {
@@ -105,7 +104,6 @@ public class CollisionHandler {
                             subject.collisionOn = true;
                         }
                         if (player) {
-                            index = i;
                             collided = true;
                         }
                     }
