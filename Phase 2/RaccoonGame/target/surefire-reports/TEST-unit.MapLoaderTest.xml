@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="2" failures="0" name="unit.CollisionHandlerTest" time="1.562" errors="0" skipped="0">
+<testsuite tests="1" failures="0" name="unit.MapLoaderTest" time="0.318" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2021.3.1"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
@@ -61,6 +61,5 @@
     <property name="java.vendor.version" value="Temurin-17.0.1+12"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="unit.CollisionHandlerTest" name="test_checkEnemy" time="0.973"/>
-  <testcase classname="unit.CollisionHandlerTest" name="test_checkObject" time="0.589"/>
+  <testcase classname="unit.MapLoaderTest" name="test_loadMap" time="0.318"/>
 </testsuite>

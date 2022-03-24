@@ -1,3 +1,5 @@
 unit\CollisionHandlerTest.class
 unit\KeyHandlerTest.class
 unit\MapManagerTest.class
+integration\KeyHandleGUIMovement.class
+unit\MapLoaderTest.class
