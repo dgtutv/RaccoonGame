@@ -17,6 +17,9 @@ import subject.Player;
  */
 public class RaccoonGame extends JPanel implements Runnable{
 
+    //game window
+    JFrame gameWindow;
+
     //set screen settings and map block size
     final int pixelBlockSize = 32; //32 pixel by 32 pixel map blocks
     final int blockSizeScale = 1; //scale this by 1, so that it displays well on modern monitors
@@ -54,6 +57,20 @@ public class RaccoonGame extends JPanel implements Runnable{
 
     //create main game method
     public RaccoonGame() {
+        setupScreen();
+        setupGame();
+        startGame();
+    }
+
+    public void setupScreen() {
+        //create new window
+        gameWindow = new JFrame();
+
+        //set window properties
+        gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        gameWindow.setResizable(false);
+        gameWindow.setTitle("Raccoon Robber");
+
         this.setPreferredSize(new Dimension(windowWidth, windowHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
@@ -102,7 +119,12 @@ public class RaccoonGame extends JPanel implements Runnable{
         sound.music(8, sound);
     }
 
-    public void startThread() {
+    public void startGame() {
+        gameWindow.add(this);
+        gameWindow.pack();
+        gameWindow.setLocationRelativeTo(null);
+        gameWindow.setVisible(true);
+
         gameThread = new Thread(this);
         gameThread.start();
     }
