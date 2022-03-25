@@ -11,9 +11,10 @@ import java.net.URL;
 public class Sound {
 
     Clip clip;
-    URL soundPaths[] = new URL[30];
+    public URL[] soundPaths;
 
     public Sound() {
+        soundPaths = new URL[30];
         soundPaths[0] = getClass().getResource("/sound/raccoon.wav");
         soundPaths[1] = getClass().getResource("/sound/power up.wav");
         soundPaths[2] = getClass().getResource("/sound/cage trap.wav");
@@ -55,6 +56,7 @@ public class Sound {
     }
 
     public void flushSound() { clip.flush(); }
+
 
     public void music(int i, Sound sound) {
         sound.setSound(i);

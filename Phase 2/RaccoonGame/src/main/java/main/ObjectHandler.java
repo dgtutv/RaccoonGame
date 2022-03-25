@@ -16,8 +16,8 @@ public class ObjectHandler {
 
     RaccoonGame raccoonGame;
 
-    protected int numDoors = 0;
-    protected int numRaccoon = 0;
+    public int numDoors = 0;
+    public int numRaccoon = 0;
     public int numRewards = 0;
     public int numTraps = 0;
     int[][] mapItemArr;

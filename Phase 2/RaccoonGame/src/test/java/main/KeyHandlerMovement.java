@@ -1,5 +1,4 @@
-package integration;
-import main.RaccoonGame;
+package main;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -7,45 +6,10 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 
-public class KeyHandleGUIMovement {
+public class KeyHandlerMovement {
 
     @Test
-    public void test_keyPressed_titleState() {
-        //create new window
-        RaccoonGame raccoonGame = new RaccoonGame();
-
-        Robot robot = null;
-        try {
-            robot = new Robot();
-            robot.delay(100);
-            robot.keyPress(KeyEvent.VK_S);
-            robot.delay(100);
-            robot.keyRelease(KeyEvent.VK_S);
-            robot.delay(500);
-            Assert.assertEquals(1, raccoonGame.gui.cursorNum);
-
-            robot.keyPress(KeyEvent.VK_W);
-            robot.delay(100);
-            robot.keyRelease(KeyEvent.VK_W);
-            robot.delay(500);
-            Assert.assertEquals(0, raccoonGame.gui.cursorNum);
-
-            robot.keyPress(KeyEvent.VK_ENTER);
-            robot.delay(100);
-            robot.keyRelease(KeyEvent.VK_ENTER);
-            robot.delay(500);
-            Assert.assertEquals(raccoonGame.playState, raccoonGame.gameState);
-
-        } catch (AWTException e) {
-            e.printStackTrace();
-        }
-
-
-
-    }
-
-    @Test
-    public void test_keyPressed_gameState() {
+    public void gamePlayKeyPress() {
         //create new game
         RaccoonGame raccoonGame = new RaccoonGame();
 
@@ -103,6 +67,5 @@ public class KeyHandleGUIMovement {
         robot.delay(500);
         Assert.assertEquals(raccoonGame.pauseState, raccoonGame.gameState);
     }
-
 
 }

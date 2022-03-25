@@ -1,5 +1,8 @@
-unit\CollisionHandlerTest.class
-unit\KeyHandlerTest.class
-unit\MapManagerTest.class
-integration\KeyHandleGUIMovement.class
-unit\MapLoaderTest.class
+main\SoundTest.class
+main\KeyHandlerMovement.class
+GUI\KeyHandlerGUI.class
+block\MapManagerTest.class
+main\CollisionHandlerTest.class
+main\KeyHandlerTest.class
+main\MapLoaderTest.class
+main\ObjectHandlerTest.class

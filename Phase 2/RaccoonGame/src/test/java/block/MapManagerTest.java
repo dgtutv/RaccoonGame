@@ -1,4 +1,4 @@
-package unit;
+package block;
 
 import block.MapManager;
 import main.RaccoonGame;

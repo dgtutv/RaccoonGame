@@ -1,4 +1,4 @@
-package unit;
+package main;
 
 import main.RaccoonGame;
 import org.junit.Assert;
