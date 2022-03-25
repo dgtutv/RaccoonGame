@@ -1,8 +1,12 @@
 main\SoundTest.class
 main\KeyHandlerMovement.class
+object\RedRaccoonTest.class
 GUI\KeyHandlerGUI.class
 block\MapManagerTest.class
+object\ExitDoorTest.class
 main\CollisionHandlerTest.class
 main\KeyHandlerTest.class
+object\GarbageTest.class
 main\MapLoaderTest.class
 main\ObjectHandlerTest.class
+object\TrapTest.class
