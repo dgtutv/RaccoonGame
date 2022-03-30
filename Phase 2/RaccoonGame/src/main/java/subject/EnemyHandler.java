@@ -26,7 +26,11 @@ public class EnemyHandler {
         mapEnemyArr = new int[raccoonGame.windowCol][raccoonGame.windowRow];
 
         raccoonGame.mapLoader.loadMap(mapEnemyArr, "/map/raccoonEnemyMap.txt");
+
+
         spawnEnemies();
+
+
     }
 
 
@@ -55,6 +59,10 @@ public class EnemyHandler {
                 currentY += raccoonGame.blockSize;
             }
         }
+    }
+
+    public void deleteEnemies() {
+        EnemyList.clear();
     }
 }
 
