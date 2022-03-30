@@ -94,6 +94,8 @@ public class RaccoonGame extends JPanel implements Runnable{
         //Initialize object array and object handler
         objects = new GeneralObject[windowCol*windowRow];
         objectHandler = new ObjectHandler(this);
+        mapLoader.loadMap(objectHandler.mapItemArr, "/map/raccoonItemMap.txt");
+        objectHandler.spawnItems();
 
         //initialize map
         mapManager = new MapManager(this);

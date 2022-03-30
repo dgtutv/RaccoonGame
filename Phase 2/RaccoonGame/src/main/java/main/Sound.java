@@ -13,8 +13,12 @@ public class Sound {
     Clip clip;
     public URL[] soundPaths;
 
+    /**
+     * Constructs a new Sound class which initializes its URL array to a capacity of 9 and also
+     * fills that array with the correct resource path's for the .WAV sound files.
+     */
     public Sound() {
-        soundPaths = new URL[30];
+        soundPaths = new URL[9];
         soundPaths[0] = getClass().getResource("/sound/raccoon.wav");
         soundPaths[1] = getClass().getResource("/sound/power up.wav");
         soundPaths[2] = getClass().getResource("/sound/cage trap.wav");
@@ -24,12 +28,6 @@ public class Sound {
         soundPaths[6] = getClass().getResource("/sound/winning.wav");
         soundPaths[7] = getClass().getResource("/sound/death.wav");
         soundPaths[8] = getClass().getResource("/sound/music.wav");
-    }
-
-    //copy constructor
-    public Sound(Sound sound){
-        this.clip = sound.clip;
-        this.soundPaths = sound.soundPaths;
     }
 
     public void setSound(int i) {

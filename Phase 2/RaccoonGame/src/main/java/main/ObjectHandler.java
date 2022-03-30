@@ -20,17 +20,22 @@ public class ObjectHandler {
     public int numRaccoon = 0;
     public int numRewards = 0;
     public int numTraps = 0;
-    int[][] mapItemArr;
+    public int[][] mapItemArr;
 
+    /**
+     * Constructs a new ObjectHandler class and sets its raccoonGame attribute to the parameter passed.
+     */
     public ObjectHandler(RaccoonGame raccoonGame) {
         mapItemArr = new int[raccoonGame.windowCol][raccoonGame.windowRow];
         this.raccoonGame = raccoonGame;
-        raccoonGame.mapLoader.loadMap(mapItemArr, "/map/raccoonItemMap.txt");
-        spawnItems();
     }
 
-
-    private void spawnItems(){
+    /**
+     * Reads ObjectHandler's 2D integer array mapItemArr and places objects in their correct places on
+     * the game map. It also increments ObjectHandler's numDoors, numRaccoon, numRewards, and numTraps
+     * integers which represent the total number of respective items of those types that are on the map.
+     */
+    public void spawnItems(){
         int currentCol = 0;
         int currentRow = 0;
         int currentX = 0;

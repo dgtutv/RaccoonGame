@@ -9,10 +9,19 @@ public class CollisionHandler {
 
     RaccoonGame raccoonGame;
 
+    /**
+     * Constructs a new CollisionHandler class and sets its raccoonGame attribute to the parameter passed.
+     */
     public CollisionHandler(RaccoonGame raccoonGame) {
         this.raccoonGame = raccoonGame;
     }
 
+    /**
+     * Takes in a Subject object and boolean which represents whether the subject being
+     * checked for object collision is the player or not.
+     * Returns an integer representing the type of object the player is colliding with,
+     * returns 999 if the player is not colliding with any object.
+     */
     public int checkObject(Subject subject, boolean player) {
         int index = 999;
 
@@ -67,7 +76,12 @@ public class CollisionHandler {
         return index;
     }
 
-
+    /**
+     * Takes in a Subject object and boolean which represents whether the subject being
+     * checked for enemy collision is the player or not.
+     * Returns a boolean representing whether the player is colliding with an enemy or not,
+     * returns true if the player is colliding with an enemy, else returns false.
+     */
     public boolean checkEnemy(Subject subject, boolean player) {
         boolean collided = false;
 
