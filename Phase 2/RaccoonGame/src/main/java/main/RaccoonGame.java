@@ -56,12 +56,21 @@ public class RaccoonGame extends JPanel implements Runnable{
 
 
     //create main game method
+    /**
+     * Constructs a new RaccoonGame object and calls the setupScreen, setupGame, and startGame methods
+     * in order to start a new game and display it to a newly created window.
+     */
     public RaccoonGame() {
         setupScreen();
         setupGame();
         startGame();
     }
 
+    /**
+     * Sets up a JFrame window for the game to be displayed on, sets some of its basic attributes and
+     * set's the title of the window to "Raccoon Simulator". Also sets its size, background color, and
+     * makes it DoubleBuffered and Focusable.
+     */
     public void setupScreen() {
         //create new window
         gameWindow = new JFrame();
@@ -69,7 +78,7 @@ public class RaccoonGame extends JPanel implements Runnable{
         //set window properties
         gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gameWindow.setResizable(false);
-        gameWindow.setTitle("Raccoon Robber");
+        gameWindow.setTitle("Raccoon Simulator");
 
         this.setPreferredSize(new Dimension(windowWidth, windowHeight));
         this.setBackground(Color.black);
@@ -79,7 +88,13 @@ public class RaccoonGame extends JPanel implements Runnable{
     }
 
 
-    //setup game
+    /**
+     * Initializes all of RaccoonGame's object attributes to newly constructed objects that are needed
+     * for gamePlay:
+     * collisionHandler, mapLoader, sound, objectHandler, mapManager, mapLoader, graphMaker, gui,
+     * keyHandler, enemyHandler, and player.
+     * Set's the game's default gameState to be titleState.
+     */
     public void setupGame() {
 
         //Initialize collision handler
@@ -121,6 +136,10 @@ public class RaccoonGame extends JPanel implements Runnable{
         sound.music(8, sound);
     }
 
+    /**
+     * Pack's the window and makes it visible in the middle of the player's screen,
+     * then starts the game thread.
+     */
     public void startGame() {
         gameWindow.add(this);
         gameWindow.pack();
@@ -132,8 +151,10 @@ public class RaccoonGame extends JPanel implements Runnable{
     }
 
 
-    //hopefully should not need to change anything here, modular design so our changes can
-    //go in update() and paintComponent()
+    /**
+     * The main method that runs the game. Implements a delta-style game loop that runs at 60
+     * frames per second (ticks). Calls the update and paint functions each tick.
+     */
     @Override
     public void run() {
         //implement delta-style game loop
@@ -177,6 +198,12 @@ public class RaccoonGame extends JPanel implements Runnable{
 
     //IMPORTANT METHODS, THIS IS WHERE WE WILL IMPLEMENT ALL OUR METHODS
     //update method, update all information here such as keystrokes from a key handler class
+    /**
+     * Updates RaccoonGame's object attributes that should be modified while the game is running.
+     * Updates the player and enemy locations, checking for any collisions of any type.
+     * Also updates the gui with a new score.
+     * Checks if the player's gameOver boolean is true and sets the gameState to endState if this is true.
+     */
     protected void update() throws InterruptedException {
         if(gameState == playState) {
 
@@ -212,7 +239,10 @@ public class RaccoonGame extends JPanel implements Runnable{
 
     }
 
-    //paint characters, items, map, etc...
+    /**
+     * Draws RaccoonGame's object attributes that should be modified while the game is running.
+     * Draws the respective gui depending on the gameState, also draws the map, player and enemies.
+     */
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D graphics = (Graphics2D)g;
