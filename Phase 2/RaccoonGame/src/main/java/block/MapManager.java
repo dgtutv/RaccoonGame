@@ -17,6 +17,11 @@ public class MapManager {
     public MapBlock[] blocks;
     public int[][] mapBlockArr;
 
+    /**
+     * Constructs a new ObjectHandler class and sets its raccoonGame attribute to the parameter passed.
+     * Also initializes the ObjectHandler's MapBlock object array "blocks" to an initial size of 11 and
+     * 2D integer array "mapBlockArr" to a size of windowCol*windowRow.
+     */
     public MapManager(RaccoonGame raccoonGame) {
         this.raccoonGame = raccoonGame;
 
@@ -25,7 +30,10 @@ public class MapManager {
 
     }
 
-    //this method gets the different block images from file
+    /**
+     * Sets the MapManager's blocks array to the necessary resource images located in the /blocks folder.
+     * Also sets these MapBlock's collidable boolean to true if the block should have collision.
+     */
     public void getBlockImage() {
         try {
             for(int i=0; i<11; i++){
@@ -59,8 +67,10 @@ public class MapManager {
     }
 
 
-    //this method must be called from the draw function of the main game loop
-    //it draws the map from the 2D array mapBlockArr[][]
+    /**
+     * Takes in a Graphics2D object and reads from mapBlockArr to draw the currently saved map to the
+     * player's screen.
+     */
     public void drawMap(Graphics2D graphics) {
 
         int currentCol = 0;
