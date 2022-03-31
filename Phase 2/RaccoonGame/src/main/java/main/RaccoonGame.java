@@ -224,8 +224,8 @@ public class RaccoonGame extends JPanel implements Runnable{
                 //cloneSound.stopSound();
 
                 //wait 3 seconds so that the death music finishes playing before going to the end screen
-                sound.stop(sound);
                 sound.flushSound();
+                sound.stop(sound);
                 sound.effect(7, sound);
                 Thread.sleep(3000);
 
