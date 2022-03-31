@@ -1,1 +1,14 @@
-subject/SubjectTest.class
+main\SoundTest.class
+main\KeyHandlerMovement.class
+subject\PlayerTest.class
+object\RedRaccoonTest.class
+object\ExitDoorTest.class
+main\KeyHandlerTest.class
+GUI\KeyHandlerGUI.class
+block\MapManagerTest.class
+subject\SubjectTest.class
+main\CollisionHandlerTest.class
+object\GarbageTest.class
+main\MapLoaderTest.class
+main\ObjectHandlerTest.class
+object\TrapTest.class

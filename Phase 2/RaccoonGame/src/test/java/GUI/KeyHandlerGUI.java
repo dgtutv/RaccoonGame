@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowEvent;
 
 public class KeyHandlerGUI {
 
@@ -38,5 +39,7 @@ public class KeyHandlerGUI {
         } catch (AWTException e) {
             e.printStackTrace();
         }
+        raccoonGame.gameWindow.dispatchEvent(new WindowEvent(raccoonGame.gameWindow, WindowEvent.WINDOW_CLOSING));
+
     }
 }

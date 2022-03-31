@@ -1,13 +1,13 @@
 -------------------------------------------------------------------------------
-Test set: main.KeyHandlerTest
+Test set: subject.PlayerTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 8.807 sec <<< FAILURE!
-test_downPress(main.KeyHandlerTest)  Time elapsed: 1.415 sec  <<< FAILURE!
+Tests run: 4, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 15.115 sec <<< FAILURE!
+moveUpdate(subject.PlayerTest)  Time elapsed: 3.375 sec  <<< FAILURE!
 java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:87)
 	at org.junit.Assert.assertTrue(Assert.java:42)
 	at org.junit.Assert.assertTrue(Assert.java:53)
-	at main.KeyHandlerTest.test_downPress(KeyHandlerTest.java:43)
+	at subject.PlayerTest.moveUpdate(PlayerTest.java:59)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -41,12 +41,12 @@ java.lang.AssertionError
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-test_rightPress(main.KeyHandlerTest)  Time elapsed: 1.824 sec  <<< FAILURE!
+customUpdate(subject.PlayerTest)  Time elapsed: 4.358 sec  <<< FAILURE!
 java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:87)
 	at org.junit.Assert.assertTrue(Assert.java:42)
 	at org.junit.Assert.assertTrue(Assert.java:53)
-	at main.KeyHandlerTest.test_rightPress(KeyHandlerTest.java:64)
+	at subject.PlayerTest.customUpdate(PlayerTest.java:40)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -80,12 +80,12 @@ java.lang.AssertionError
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-test_leftPress(main.KeyHandlerTest)  Time elapsed: 2.519 sec  <<< FAILURE!
+directionUpdate(subject.PlayerTest)  Time elapsed: 4.799 sec  <<< FAILURE!
 java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:87)
 	at org.junit.Assert.assertTrue(Assert.java:42)
 	at org.junit.Assert.assertTrue(Assert.java:53)
-	at main.KeyHandlerTest.test_leftPress(KeyHandlerTest.java:85)
+	at subject.PlayerTest.directionUpdate(PlayerTest.java:101)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
