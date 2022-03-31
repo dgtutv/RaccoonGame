@@ -22,6 +22,11 @@ public class GUI {
     public int ones;
     public int cursorNum = 0;
 
+    /**
+     * Constructs a new GUI class and sets its raccoonGame attribute to the parameter passed.
+     * Also set the GUI's ones, tens, and hundreds integer attributes to 0 and loads the font
+     * that will be used throughout the game's title, pause, and end screen.
+     */
     public GUI(RaccoonGame raccoonGame) {
         // Initialize GUI
         this.raccoonGame = raccoonGame;
@@ -46,15 +51,11 @@ public class GUI {
         getImage();
     }
 
-    public GUI(RaccoonGame raccoonGame, int ones, int tens, int hundreds) {
-        // Initialize GUI
-        this.raccoonGame = raccoonGame;
-        this.ones = ones;
-        this.tens = tens;
-        this.hundreds = hundreds;
-        getImage();
-    }
 
+    /**
+     * Takes in three integer parameters ones, tens, and hundreds and sets the calling GUI's repective
+     * ones, tens, and hundreds attributes to those passed in.
+     */
     public void update(int ones, int tens, int hundreds) {
         // update numbers
         this.ones = ones;
@@ -63,7 +64,10 @@ public class GUI {
         //getImage();
     }
 
-    // Get image
+    /**
+     * Sets all the GUI's BufferedImage attributes to their respective resource images located in the /GUI
+     * resource folder.
+     */
     public void getImage() {
         try {
             sfuIcon = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/GUI/sfu.png")));
@@ -92,6 +96,10 @@ public class GUI {
         }
     }
 
+    /**
+     * Draw's the GUI to the player's screen, this method simply calls one of 4 other methods depending
+     * on the gameState of the game: either playState, titleState, endState, or pauseState.
+     */
     public void drawGUI(Graphics2D graphics) {
         //if playState, draw GUI for gameplay
         if(raccoonGame.gameState == raccoonGame.playState) {
@@ -114,6 +122,10 @@ public class GUI {
 
     }
 
+    /**
+     * Takes in a Graphics2D object and draws the title screen of the game including background image,
+     * "Start Game" and "Quit Game" options as well as the pointer.
+     */
     private void drawTitleScreen(Graphics2D graphics) {
 
         //set background image with title
@@ -142,6 +154,10 @@ public class GUI {
 
     }
 
+    /**
+     * Takes in a Graphics2D object and draws the pause screen of the game including the playScreen with a
+     * darkened tone, "PAUSED" text, and "Resume Game" and "Quit Game" options as well as the pointer.
+     */
     private void drawPauseScreen(Graphics2D graphics) {
         drawPlayScreen(graphics);
 
@@ -170,6 +186,10 @@ public class GUI {
         }
     }
 
+    /**
+     * Takes in a Graphics2D object and draws the GUI for the play screen of the game including the
+     * current score and a cute SFU logo with cheerful small raccoon photoshopped on top.
+     */
     private void drawPlayScreen(Graphics2D graphics) {
         int sfuWidth = 120;
         int sfuHeight = 60;
@@ -223,6 +243,11 @@ public class GUI {
         graphics.drawImage(onesIcon, raccoonGame.getWidth()-250+scoreWidth/2+60, 0, digitSize, digitSize, null);
     }
 
+    /**
+     * Takes in a Graphics2D object and draws the end screen of the game including background image, the
+     * player's total score at the end of the game, a message that is dependent on whether the player won
+     * or lost the game, a "Quit Game" option as well as the pointer.
+     */
     private void drawEndScreen(Graphics2D graphics) {
 
         //set background image with title

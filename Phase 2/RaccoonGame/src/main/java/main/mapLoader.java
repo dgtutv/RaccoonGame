@@ -9,11 +9,18 @@ public class mapLoader {
 
     RaccoonGame raccoonGame;
 
+    /**
+     * Constructs a new mapLoader class and sets its raccoonGame attribute to the parameter passed.
+     */
     public mapLoader(RaccoonGame raccoonGame) {
         this.raccoonGame = raccoonGame;
     }
 
-    //this method loads the map from a text file into a 2D array mapBlockArr[][]
+    /**
+     * The method takes in a 2D integer array that needs to be of size windowCol*windowRow and
+     * a String fileName that must be a valid path to a map text file.
+     * This method loads the map from the text file into the 2D array mapBlockArr[][].
+     */
     public void loadMap(int[][] mapArr, String fileName) {
         try {
             //set up file reader

@@ -13,6 +13,9 @@ public class KeyHandler implements KeyListener {
     public boolean upPressed, downPressed, leftPressed, rightPressed;
     RaccoonGame raccoonGame;
 
+    /**
+     * Constructs a new KeyHandler class and sets its raccoonGame attribute to the parameter passed.
+     */
     public KeyHandler(RaccoonGame raccoonGame) {
         this.raccoonGame = raccoonGame;
     }
@@ -22,6 +25,13 @@ public class KeyHandler implements KeyListener {
     public void keyTyped(KeyEvent e) {
     }
 
+    /**
+     * Takes in a KeyEvent parameter which is the key that is has been pressed by the user.
+     * Depending on the current gameState of the game the key press will set a variety of attributes.
+     * In pauseState, titleState, and endState these key presses affect the games GUI.
+     * In playState these keyPresses affect the KeyHandler's upPressed, downPressed, leftPressed,
+     * and rightPressed boolean attributes to determine which direction the player wants to move in.
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();       //keyCode is the ASCII value of a key on the keyboard
@@ -112,6 +122,11 @@ public class KeyHandler implements KeyListener {
 
     }
 
+    /**
+     * In playState this method will set the KeyHandler's upPressed, downPressed, leftPressed,
+     * or rightPressed attributes to false if they had recently been pressed and set true
+     * by the keyPressed method, else it does nothing.
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         int keyCode = e.getKeyCode();       //keyCode is the ASCII value of a key on the keyboard
