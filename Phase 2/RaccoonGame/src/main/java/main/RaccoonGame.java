@@ -18,7 +18,7 @@ import subject.Player;
 public class RaccoonGame extends JPanel implements Runnable{
 
     //game window
-    JFrame gameWindow;
+    public JFrame gameWindow;
 
     //set screen settings and map block size
     final int pixelBlockSize = 32; //32 pixel by 32 pixel map blocks
