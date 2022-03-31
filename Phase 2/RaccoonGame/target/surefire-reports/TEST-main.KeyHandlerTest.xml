@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="5" failures="0" name="main.KeyHandlerTest" time="3.516" errors="0" skipped="0">
+<testsuite tests="5" failures="0" name="main.KeyHandlerTest" time="4.298" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2021.3.2"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
@@ -60,9 +60,9 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
   </properties>
-  <testcase classname="main.KeyHandlerTest" name="test_upPress" time="0.615"/>
-  <testcase classname="main.KeyHandlerTest" name="test_escPress" time="0.949"/>
-  <testcase classname="main.KeyHandlerTest" name="test_downPress" time="0.614"/>
-  <testcase classname="main.KeyHandlerTest" name="test_rightPress" time="0.671"/>
-  <testcase classname="main.KeyHandlerTest" name="test_leftPress" time="0.667"/>
+  <testcase classname="main.KeyHandlerTest" name="test_upPress" time="0.733"/>
+  <testcase classname="main.KeyHandlerTest" name="test_escPress" time="1.047"/>
+  <testcase classname="main.KeyHandlerTest" name="test_downPress" time="0.835"/>
+  <testcase classname="main.KeyHandlerTest" name="test_rightPress" time="0.87"/>
+  <testcase classname="main.KeyHandlerTest" name="test_leftPress" time="0.813"/>
 </testsuite>

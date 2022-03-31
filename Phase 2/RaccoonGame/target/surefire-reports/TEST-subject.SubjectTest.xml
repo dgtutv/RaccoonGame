@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="2" failures="0" name="subject.SubjectTest" time="1.875" errors="0" skipped="0">
+<testsuite tests="2" failures="0" name="subject.SubjectTest" time="1.991" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2021.3.2"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
@@ -60,6 +60,6 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
   </properties>
-  <testcase classname="subject.SubjectTest" name="createSubject" time="0.965"/>
-  <testcase classname="subject.SubjectTest" name="updateSubject" time="0.91"/>
+  <testcase classname="subject.SubjectTest" name="createSubject" time="1.02"/>
+  <testcase classname="subject.SubjectTest" name="updateSubject" time="0.971"/>
 </testsuite>

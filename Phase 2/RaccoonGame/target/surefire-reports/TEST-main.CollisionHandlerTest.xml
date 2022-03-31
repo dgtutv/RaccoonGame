@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="4" failures="0" name="main.CollisionHandlerTest" time="3.73" errors="0" skipped="0">
+<testsuite tests="4" failures="0" name="main.CollisionHandlerTest" time="5.745" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2021.3.2"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
@@ -60,8 +60,8 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
   </properties>
-  <testcase classname="main.CollisionHandlerTest" name="isObject" time="0.872"/>
-  <testcase classname="main.CollisionHandlerTest" name="noObject" time="0.914"/>
-  <testcase classname="main.CollisionHandlerTest" name="isEnemy" time="0.904"/>
-  <testcase classname="main.CollisionHandlerTest" name="noEnemy" time="1.04"/>
+  <testcase classname="main.CollisionHandlerTest" name="isObject" time="1.221"/>
+  <testcase classname="main.CollisionHandlerTest" name="noObject" time="1.417"/>
+  <testcase classname="main.CollisionHandlerTest" name="isEnemy" time="1.49"/>
+  <testcase classname="main.CollisionHandlerTest" name="noEnemy" time="1.617"/>
 </testsuite>
