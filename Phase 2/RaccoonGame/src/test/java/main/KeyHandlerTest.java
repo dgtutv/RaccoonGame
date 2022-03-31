@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowEvent;
 
 public class KeyHandlerTest {
 
@@ -27,6 +28,8 @@ public class KeyHandlerTest {
         catch (AWTException e) {
             e.printStackTrace();
         }
+
+        raccoonGame.gameWindow.dispose();
     }
 
     @Test
@@ -48,6 +51,8 @@ public class KeyHandlerTest {
         catch (AWTException e) {
             e.printStackTrace();
         }
+
+        raccoonGame.gameWindow.dispose();
     }
 
     @Test
@@ -69,6 +74,8 @@ public class KeyHandlerTest {
         catch (AWTException e) {
             e.printStackTrace();
         }
+
+        raccoonGame.gameWindow.dispose();
     }
 
     @Test
@@ -90,6 +97,8 @@ public class KeyHandlerTest {
         catch (AWTException e) {
             e.printStackTrace();
         }
+
+        raccoonGame.gameWindow.dispose();
     }
 
     @Test
@@ -116,5 +125,7 @@ public class KeyHandlerTest {
         catch (AWTException e) {
             e.printStackTrace();
         }
+
+        raccoonGame.gameWindow.dispose();
     }
 }

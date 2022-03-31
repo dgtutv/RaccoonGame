@@ -4,6 +4,8 @@ import main.RaccoonGame;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.awt.event.WindowEvent;
+
 public class MapLoaderTest {
 
     @Test
@@ -63,6 +65,6 @@ public class MapLoaderTest {
 
         Assert.assertArrayEquals(correctArr, testArr);
 
-
+        raccoonGame.gameWindow.dispose();
     }
 }

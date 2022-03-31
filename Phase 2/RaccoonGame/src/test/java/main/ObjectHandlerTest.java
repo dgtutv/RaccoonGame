@@ -4,6 +4,8 @@ import main.RaccoonGame;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.awt.event.WindowEvent;
+
 public class ObjectHandlerTest {
 
     @Test
@@ -14,6 +16,8 @@ public class ObjectHandlerTest {
         Assert.assertEquals(1, raccoonGame.objectHandler.numRaccoon);
         Assert.assertEquals(31, raccoonGame.objectHandler.numRewards);
         Assert.assertEquals(19, raccoonGame.objectHandler.numTraps);
+
+        raccoonGame.gameWindow.dispose();
 
     }
 }

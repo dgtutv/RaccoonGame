@@ -26,6 +26,8 @@ public class SubjectTest {
         catch (Exception e) {
             e.printStackTrace();
         }
+
+        raccoonGame.gameWindow.dispose();
     }
 
     @Test
@@ -52,6 +54,8 @@ public class SubjectTest {
         catch (Exception e) {
             e.printStackTrace();
         }
+
+        raccoonGame.gameWindow.dispose();
     }
 
 

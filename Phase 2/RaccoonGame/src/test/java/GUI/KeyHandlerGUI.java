@@ -39,7 +39,6 @@ public class KeyHandlerGUI {
         } catch (AWTException e) {
             e.printStackTrace();
         }
-        raccoonGame.gameWindow.dispatchEvent(new WindowEvent(raccoonGame.gameWindow, WindowEvent.WINDOW_CLOSING));
-
+        raccoonGame.gameWindow.dispose();
     }
 }

@@ -24,6 +24,8 @@ public class PlayerTest {
         catch (Exception e) {
             e.printStackTrace();
         }
+
+        raccoonGame.gameWindow.dispose();
     }
 
     @Test
@@ -42,6 +44,8 @@ public class PlayerTest {
         catch (Exception e) {
             e.printStackTrace();
         }
+
+        raccoonGame.gameWindow.dispose();
     }
 
     @Test
@@ -85,6 +89,8 @@ public class PlayerTest {
         catch (Exception e) {
             e.printStackTrace();
         }
+
+        raccoonGame.gameWindow.dispose();
     }
 
     @Test
@@ -103,6 +109,8 @@ public class PlayerTest {
         catch (Exception e) {
             e.printStackTrace();
         }
+
+        raccoonGame.gameWindow.dispose();
     }
 
 

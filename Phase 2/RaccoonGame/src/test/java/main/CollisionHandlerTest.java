@@ -3,9 +3,12 @@ package main;
 import main.CollisionHandler;
 import main.KeyHandler;
 import main.RaccoonGame;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Test;
 import subject.Player;
+
+import java.awt.event.WindowEvent;
 
 public class CollisionHandlerTest {
 
@@ -16,6 +19,8 @@ public class CollisionHandlerTest {
 
         //standard position, no object
         Assert.assertEquals(999, raccoonGame.collisionHandler.checkObject(raccoonGame.player, true));
+
+        raccoonGame.gameWindow.dispose();
     }
 
     @Test
@@ -27,6 +32,8 @@ public class CollisionHandlerTest {
         raccoonGame.player.x = 1*raccoonGame.blockSize;
         raccoonGame.player.y = 10*raccoonGame.blockSize;
         Assert.assertNotEquals(999, raccoonGame.collisionHandler.checkObject(raccoonGame.player, true));
+
+        raccoonGame.gameWindow.dispose();
     }
 
     @Test
@@ -36,6 +43,8 @@ public class CollisionHandlerTest {
 
         //standard position, no enemy
         Assert.assertFalse(raccoonGame.collisionHandler.checkEnemy(raccoonGame.player, true));
+
+        raccoonGame.gameWindow.dispose();
     }
 
     @Test
@@ -47,5 +56,7 @@ public class CollisionHandlerTest {
         raccoonGame.player.x = 17*raccoonGame.blockSize;
         raccoonGame.player.y = 11*raccoonGame.blockSize;
         Assert.assertTrue(raccoonGame.collisionHandler.checkEnemy(raccoonGame.player, true));
+
+        raccoonGame.gameWindow.dispose();
     }
 }

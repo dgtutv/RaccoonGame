@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowEvent;
 
 
 public class KeyHandlerMovement {
@@ -66,6 +67,8 @@ public class KeyHandlerMovement {
         robot.keyRelease(KeyEvent.VK_ESCAPE);
         robot.delay(500);
         Assert.assertEquals(raccoonGame.pauseState, raccoonGame.gameState);
+
+        raccoonGame.gameWindow.dispose();
     }
 
 }
