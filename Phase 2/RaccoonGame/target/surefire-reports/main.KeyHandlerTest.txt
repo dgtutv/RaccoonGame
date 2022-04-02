@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: subject.TreeMakerTest
+Test set: main.KeyHandlerTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s - in subject.TreeMakerTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.54 s - in main.KeyHandlerTest

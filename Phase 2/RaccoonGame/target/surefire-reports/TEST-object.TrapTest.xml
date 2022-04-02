@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="subject.TreeMakerTest" time="0.001" tests="3" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="object.TrapTest" time="0" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.class.path" value="C:\Users\dgtut\Desktop\Spring 2022\project\Phase 2\RaccoonGame\target\test-classes;C:\Users\dgtut\Desktop\Spring 2022\project\Phase 2\RaccoonGame\target\classes;C:\Users\dgtut\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\dgtut\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\dgtut\.m2\repository\org\junit\jupiter\junit-jupiter\5.8.2\junit-jupiter-5.8.2.jar;C:\Users\dgtut\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.8.2\junit-jupiter-api-5.8.2.jar;C:\Users\dgtut\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\dgtut\.m2\repository\org\junit\platform\junit-platform-commons\1.8.2\junit-platform-commons-1.8.2.jar;C:\Users\dgtut\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\dgtut\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.8.2\junit-jupiter-params-5.8.2.jar;C:\Users\dgtut\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.8.2\junit-jupiter-engine-5.8.2.jar;C:\Users\dgtut\.m2\repository\org\junit\platform\junit-platform-engine\1.8.2\junit-platform-engine-1.8.2.jar;"/>
+    <property name="java.class.path" value="C:\Users\dgtut\Desktop\Spring 2022\project\Phase 2\RaccoonGame\target\test-classes;C:\Users\dgtut\Desktop\Spring 2022\project\Phase 2\RaccoonGame\target\classes;C:\Users\dgtut\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\dgtut\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
@@ -15,9 +15,9 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="C:\Users\dgtut\.jdks\openjdk-17.0.2\bin"/>
-    <property name="sun.java.command" value="C:\Users\dgtut\AppData\Local\Temp\surefire5667146209417150777\surefirebooter15992416989399675613.jar C:\Users\dgtut\AppData\Local\Temp\surefire5667146209417150777 2022-04-01T23-30-00_895-jvmRun1 surefire3563030995065148966tmp surefire_07017643033143025142tmp"/>
+    <property name="sun.java.command" value="C:\Users\dgtut\AppData\Local\Temp\surefire14113247307017484415\surefirebooter5395669049470328101.jar C:\Users\dgtut\AppData\Local\Temp\surefire14113247307017484415 2022-04-01T23-30-21_961-jvmRun1 surefire6854371105189347570tmp surefire_08491718246801249212tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="C:\Users\dgtut\Desktop\Spring 2022\project\Phase 2\RaccoonGame\target\test-classes;C:\Users\dgtut\Desktop\Spring 2022\project\Phase 2\RaccoonGame\target\classes;C:\Users\dgtut\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\dgtut\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\dgtut\.m2\repository\org\junit\jupiter\junit-jupiter\5.8.2\junit-jupiter-5.8.2.jar;C:\Users\dgtut\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.8.2\junit-jupiter-api-5.8.2.jar;C:\Users\dgtut\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\dgtut\.m2\repository\org\junit\platform\junit-platform-commons\1.8.2\junit-platform-commons-1.8.2.jar;C:\Users\dgtut\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\dgtut\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.8.2\junit-jupiter-params-5.8.2.jar;C:\Users\dgtut\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.8.2\junit-jupiter-engine-5.8.2.jar;C:\Users\dgtut\.m2\repository\org\junit\platform\junit-platform-engine\1.8.2\junit-platform-engine-1.8.2.jar;"/>
+    <property name="surefire.test.class.path" value="C:\Users\dgtut\Desktop\Spring 2022\project\Phase 2\RaccoonGame\target\test-classes;C:\Users\dgtut\Desktop\Spring 2022\project\Phase 2\RaccoonGame\target\classes;C:\Users\dgtut\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\dgtut\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\dgtut"/>
     <property name="user.language" value="en"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\dgtut\AppData\Local\Temp\surefire5667146209417150777\surefirebooter15992416989399675613.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\dgtut\AppData\Local\Temp\surefire14113247307017484415\surefirebooter5395669049470328101.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.2+8-86"/>
@@ -57,7 +57,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="update" classname="subject.TreeMakerTest" time="0"/>
-  <testcase name="makeTree" classname="subject.TreeMakerTest" time="0"/>
-  <testcase name="print" classname="subject.TreeMakerTest" time="0"/>
+  <testcase name="createTrap" classname="object.TrapTest" time="0"/>
 </testsuite>
