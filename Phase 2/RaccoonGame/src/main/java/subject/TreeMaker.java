@@ -113,7 +113,7 @@ public class TreeMaker {
 
 
     //Find which blocks the enemy and player are in
-    private void blockUpdate(){
+    public void blockUpdate(){
         enemyBlockX = enemy.x / raccoonGame.blockSize;
         enemyBlockY = enemy.y / raccoonGame.blockSize;
         playerBlockX = player.x / raccoonGame.blockSize;
