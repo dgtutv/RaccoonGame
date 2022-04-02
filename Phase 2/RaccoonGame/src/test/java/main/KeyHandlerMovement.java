@@ -27,7 +27,6 @@ public class KeyHandlerMovement {
         int originalY = raccoonGame.player.y;
 
         robot.keyPress(KeyEvent.VK_S);
-        robot.delay(100);
         robot.keyRelease(KeyEvent.VK_S);
         robot.delay(500);
         Assert.assertEquals(originalY += raccoonGame.blockSize, raccoonGame.player.y);
@@ -36,7 +35,6 @@ public class KeyHandlerMovement {
         raccoonGame.player.y = originalY;
 
         robot.keyPress(KeyEvent.VK_D);
-        robot.delay(100);
         robot.keyRelease(KeyEvent.VK_D);
         robot.delay(500);
         Assert.assertEquals(originalX += raccoonGame.blockSize, raccoonGame.player.x);
@@ -45,7 +43,6 @@ public class KeyHandlerMovement {
         raccoonGame.player.y = originalY;
 
         robot.keyPress(KeyEvent.VK_W);
-        robot.delay(100);
         robot.keyRelease(KeyEvent.VK_W);
         robot.delay(500);
         Assert.assertEquals(originalY -= raccoonGame.blockSize, raccoonGame.player.y);
@@ -54,7 +51,6 @@ public class KeyHandlerMovement {
         raccoonGame.player.y = originalY;
 
         robot.keyPress(KeyEvent.VK_A);
-        robot.delay(100);
         robot.keyRelease(KeyEvent.VK_A);
         robot.delay(500);
         Assert.assertEquals(originalX -= raccoonGame.blockSize, raccoonGame.player.x);

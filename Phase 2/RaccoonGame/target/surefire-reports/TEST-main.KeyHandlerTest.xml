@@ -1,65 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="main.KeyHandlerTest" time="3.547" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="main.KeyHandlerTest" time="3.616" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.class.path" value="C:\Users\dgtut\Desktop\Spring 2022\project\Phase 2\RaccoonGame\target\test-classes;C:\Users\dgtut\Desktop\Spring 2022\project\Phase 2\RaccoonGame\target\classes;C:\Users\dgtut\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\dgtut\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
-    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.class.path" value="C:\Users\Ryan\Documents\CMPT 276\project\Phase 2\RaccoonGame\target\test-classes;C:\Users\Ryan\Documents\CMPT 276\project\Phase 2\RaccoonGame\target\classes;C:\Users\Ryan\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\Ryan\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
+    <property name="java.vm.vendor" value="Eclipse Adoptium"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
-    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="java.vendor.url" value="https://adoptium.net/"/>
     <property name="user.timezone" value="America/Vancouver"/>
     <property name="os.name" value="Windows 10"/>
     <property name="java.vm.specification.version" value="17"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
-    <property name="user.country" value="US"/>
-    <property name="sun.boot.library.path" value="C:\Users\dgtut\.jdks\openjdk-17.0.2\bin"/>
-    <property name="sun.java.command" value="C:\Users\dgtut\AppData\Local\Temp\surefire8063586805178277807\surefirebooter4406241583738518891.jar C:\Users\dgtut\AppData\Local\Temp\surefire8063586805178277807 2022-04-02T00-05-19_682-jvmRun1 surefire360352728723607617tmp surefire_03669342922943979417tmp"/>
+    <property name="user.country" value="CA"/>
+    <property name="sun.boot.library.path" value="C:\Users\Ryan\AppData\Local\Programs\Eclipse Adoptium\jdk-17.0.1.12-hotspot\bin"/>
+    <property name="sun.java.command" value="C:\Users\Ryan\AppData\Local\Temp\surefire6551747354579368719\surefirebooter6527578204121176195.jar C:\Users\Ryan\AppData\Local\Temp\surefire6551747354579368719 2022-04-02T11-15-52_422-jvmRun1 surefire1946267651631131201tmp surefire_013516243626624230412tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="C:\Users\dgtut\Desktop\Spring 2022\project\Phase 2\RaccoonGame\target\test-classes;C:\Users\dgtut\Desktop\Spring 2022\project\Phase 2\RaccoonGame\target\classes;C:\Users\dgtut\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\dgtut\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
+    <property name="surefire.test.class.path" value="C:\Users\Ryan\Documents\CMPT 276\project\Phase 2\RaccoonGame\target\test-classes;C:\Users\Ryan\Documents\CMPT 276\project\Phase 2\RaccoonGame\target\classes;C:\Users\Ryan\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\Ryan\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
-    <property name="user.home" value="C:\Users\dgtut"/>
+    <property name="user.home" value="C:\Users\Ryan"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
-    <property name="java.version.date" value="2022-01-18"/>
-    <property name="java.home" value="C:\Users\dgtut\.jdks\openjdk-17.0.2"/>
+    <property name="java.version.date" value="2021-10-19"/>
+    <property name="java.home" value="C:\Users\Ryan\AppData\Local\Programs\Eclipse Adoptium\jdk-17.0.1.12-hotspot"/>
     <property name="file.separator" value="\"/>
-    <property name="basedir" value="C:\Users\dgtut\Desktop\Spring 2022\project\Phase 2\RaccoonGame"/>
+    <property name="basedir" value="C:\Users\Ryan\Documents\CMPT 276\project\Phase 2\RaccoonGame"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\dgtut\AppData\Local\Temp\surefire8063586805178277807\surefirebooter4406241583738518891.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Ryan\AppData\Local\Temp\surefire6551747354579368719\surefirebooter6527578204121176195.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="java.runtime.version" value="17.0.2+8-86"/>
-    <property name="user.name" value="dgtut"/>
+    <property name="java.runtime.version" value="17.0.1+12"/>
+    <property name="user.name" value="Ryan"/>
     <property name="path.separator" value=";"/>
     <property name="os.version" value="10.0"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="file.encoding" value="Cp1252"/>
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
-    <property name="localRepository" value="C:\Users\dgtut\.m2\repository"/>
-    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
-    <property name="java.io.tmpdir" value="C:\Users\dgtut\AppData\Local\Temp\"/>
-    <property name="idea.version" value="2021.3.2"/>
-    <property name="java.version" value="17.0.2"/>
-    <property name="user.dir" value="C:\Users\dgtut\Desktop\Spring 2022\project\Phase 2\RaccoonGame"/>
+    <property name="java.vendor.version" value="Temurin-17.0.1+12"/>
+    <property name="localRepository" value="C:\Users\Ryan\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/adoptium/adoptium-support/issues"/>
+    <property name="java.io.tmpdir" value="C:\Users\Ryan\AppData\Local\Temp\"/>
+    <property name="idea.version" value="2021.3.1"/>
+    <property name="java.version" value="17.0.1"/>
+    <property name="user.dir" value="C:\Users\Ryan\Documents\CMPT 276\project\Phase 2\RaccoonGame"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="native.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Users\dgtut\.jdks\openjdk-17.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Razer\ChromaBroadcast\bin;C:\Program Files\Razer\ChromaBroadcast\bin;C:\Program Files (x86)\Razer Chroma SDK\bin;C:\Program Files\Razer Chroma SDK\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\MATLAB\R2021b\bin;C:\Program Files\dotnet\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Users\dgtut\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Git\cmd;C:\Users\dgtut\AppData\Local\Microsoft\WindowsApps;;."/>
+    <property name="java.library.path" value="C:\Users\Ryan\AppData\Local\Programs\Eclipse Adoptium\jdk-17.0.1.12-hotspot\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Razer\ChromaBroadcast\bin;C:\Program Files\Razer\ChromaBroadcast\bin;C:\Program Files (x86)\Razer Chroma SDK\bin;C:\Program Files\Razer Chroma SDK\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Windows\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps;C:\Users\Ryan\AppData\Local\Microsoft\WindowsApps;C:\Users\Ryan\AppData\Local\atom\bin;C:\MinGW\bin;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Users\Ryan\AppData\Local\Programs\Eclipse Adoptium\jdk-17.0.1.12-hotspot\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Ryan\AppData\Local\Microsoft\WindowsApps;C:\Users\Ryan\AppData\Local\atom\bin;C:\MinGW\bin;C:\Users\Ryan\AppData\Roaming\npm;C:\Users\Ryan\AppData\Local\Programs\Microsoft VS Code\bin;."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
-    <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="java.vm.version" value="17.0.2+8-86"/>
+    <property name="java.vendor" value="Eclipse Adoptium"/>
+    <property name="java.vm.version" value="17.0.1+12"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="test_upPress" classname="main.KeyHandlerTest" time="0.624"/>
-  <testcase name="test_escPress" classname="main.KeyHandlerTest" time="1.04"/>
-  <testcase name="test_downPress" classname="main.KeyHandlerTest" time="0.636"/>
-  <testcase name="test_rightPress" classname="main.KeyHandlerTest" time="0.622"/>
-  <testcase name="test_leftPress" classname="main.KeyHandlerTest" time="0.623"/>
+  <testcase name="test_upPress" classname="main.KeyHandlerTest" time="0.648"/>
+  <testcase name="test_escPress" classname="main.KeyHandlerTest" time="1.02"/>
+  <testcase name="test_downPress" classname="main.KeyHandlerTest" time="0.682"/>
+  <testcase name="test_rightPress" classname="main.KeyHandlerTest" time="0.635"/>
+  <testcase name="test_leftPress" classname="main.KeyHandlerTest" time="0.631"/>
 </testsuite>

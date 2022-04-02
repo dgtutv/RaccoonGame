@@ -64,6 +64,7 @@ public class RaccoonGame extends JPanel implements Runnable{
         setupScreen();
         setupGame();
         startGame();
+        startThread();
     }
 
     /**
@@ -137,17 +138,22 @@ public class RaccoonGame extends JPanel implements Runnable{
     }
 
     /**
-     * Pack's the window and makes it visible in the middle of the player's screen,
-     * then starts the game thread.
+     * Pack's the window and makes it visible in the middle of the player's screen.
      */
     public void startGame() {
         gameWindow.add(this);
         gameWindow.pack();
         gameWindow.setLocationRelativeTo(null);
         gameWindow.setVisible(true);
+    }
 
+    /**
+     * Initializes the GameThread and starts it.
+     */
+    public void startThread() {
         gameThread = new Thread(this);
         gameThread.start();
+
     }
 
 

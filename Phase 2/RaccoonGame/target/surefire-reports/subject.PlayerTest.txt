@@ -1,12 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: subject.PlayerTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 8.692 s <<< FAILURE! - in subject.PlayerTest
-customUpdate(subject.PlayerTest)  Time elapsed: 1.049 s  <<< FAILURE!
-java.lang.AssertionError
-	at subject.PlayerTest.customUpdate(PlayerTest.java:42)
-
-directionUpdate(subject.PlayerTest)  Time elapsed: 3.435 s  <<< FAILURE!
-java.lang.AssertionError
-	at subject.PlayerTest.directionUpdate(PlayerTest.java:107)
-
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 46.305 s - in subject.PlayerTest
