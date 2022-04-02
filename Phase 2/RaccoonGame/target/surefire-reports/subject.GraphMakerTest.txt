@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: main.CollisionHandlerTest
+Test set: subject.GraphMakerTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.168 sec
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.44 s - in subject.GraphMakerTest
