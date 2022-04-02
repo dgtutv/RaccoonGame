@@ -90,17 +90,19 @@ public class GraphMaker {
     }
 
     //Print the map
-    public void print() {
+    public String print() {
+        String printString = "";
 
         for(int row = 0; row< raccoonGame.windowRow; row++){
-            System.out.println();
+            printString+="\n";
             for(int col = 0; col< raccoonGame.windowCol; col++){
                 if(mapNodeArr[col][row].nonCollidable){
-                    System.out.print("0 ");
+                    printString+= "0 ";
                 } else {
-                    System.out.print("! ");
+                    printString+= "! ";
                 }
             }
         }
+        return printString;
     }
 }
