@@ -61,30 +61,30 @@ public class PlayerTest {
             robot.keyPress(KeyEvent.VK_D);
             robot.delay(100);
             Assert.assertTrue(raccoonGame.player.moving);
-            Assert.assertTrue(raccoonGame.player.direction == "right");
+            Assert.assertSame("right", raccoonGame.player.direction);
             robot.keyRelease(KeyEvent.VK_D);
             robot.delay(100);
             robot.keyPress(KeyEvent.VK_A);
             robot.delay(100);
-            Assert.assertTrue(raccoonGame.player.direction == "left");
+            Assert.assertSame("left", raccoonGame.player.direction);
             robot.delay(100);
             robot.keyRelease(KeyEvent.VK_A);
             robot.delay(100);
             robot.keyPress(KeyEvent.VK_W);
             robot.delay(100);
-            Assert.assertTrue(raccoonGame.player.direction == "up");
+            Assert.assertSame("up", raccoonGame.player.direction);
             robot.delay(100);
             robot.keyRelease(KeyEvent.VK_W);
             robot.delay(100);
             robot.keyPress(KeyEvent.VK_S);
             robot.delay(100);
-            Assert.assertTrue(raccoonGame.player.direction == "down");
+            Assert.assertSame("down", raccoonGame.player.direction);
             robot.delay(100);
             robot.keyRelease(KeyEvent.VK_S);
 
             robot.delay(200);
             Assert.assertFalse(raccoonGame.player.moving);
-            Assert.assertTrue(raccoonGame.player.pixelCounter == 0);
+            Assert.assertEquals(0, raccoonGame.player.pixelCounter);
         }
         catch (Exception e) {
             e.printStackTrace();

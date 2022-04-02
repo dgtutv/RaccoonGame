@@ -9,7 +9,6 @@ public class GraphMaker {
     static RaccoonGame raccoonGame;
     public int mapBlockArr[][];
     public static Node[][] mapNodeArr;
-    public static Node head;
 
     //Node class for a linked list-based map
     public static class Node {
@@ -92,6 +91,7 @@ public class GraphMaker {
 
     //Print the map
     public void print() {
+
         for(int row = 0; row< raccoonGame.windowRow; row++){
             System.out.println();
             for(int col = 0; col< raccoonGame.windowCol; col++){
