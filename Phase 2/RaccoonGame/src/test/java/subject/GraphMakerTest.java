@@ -2,13 +2,9 @@ package subject;
 
 import main.RaccoonGame;
 import org.junit.Assert;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static subject.GraphMaker.mapNodeArr;
-import static subject.GraphMaker.raccoonGame;
-
-class GraphMakerTest {
+public class GraphMakerTest {
 
     @Test
     public void makeGraph() {
@@ -16,9 +12,9 @@ class GraphMakerTest {
         raccoonGame.gameState = raccoonGame.playState;
 
         try {
-            assertNotNull(raccoonGame.graphMaker);
-            assertNotNull(raccoonGame.graphMaker.mapBlockArr);
-            assertNotNull(mapNodeArr);
+            Assert.assertNotNull(raccoonGame.graphMaker);
+            Assert.assertNotNull(raccoonGame.graphMaker.mapBlockArr);
+            Assert.assertNotNull(raccoonGame.graphMaker.mapNodeArr);
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -35,9 +31,9 @@ class GraphMakerTest {
         for(int row = 0; row< raccoonGame.windowRow; row++){
             for(int col = 0; col< raccoonGame.windowCol; col++){
                 try{
-                    assertNotNull(GraphMaker.find(col, row));
-                    assertEquals(col, GraphMaker.find(col, row).x);
-                    assertEquals(row, GraphMaker.find(col, row).y);
+                    Assert.assertNotNull(raccoonGame.graphMaker.find(col, row));
+                    Assert.assertEquals(col, raccoonGame.graphMaker.find(col, row).x);
+                    Assert.assertEquals(row, raccoonGame.graphMaker.find(col, row).y);
                 }
                 catch(Exception e){
                     e.printStackTrace();
@@ -87,8 +83,8 @@ class GraphMakerTest {
                 "! 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ! \n" +
                 "! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ";
         try{
-            assertNotEquals("", testString);
-            assertEquals(testString, correctString);
+            Assert.assertNotEquals("", testString);
+            Assert.assertEquals(testString, correctString);
 
         }
         catch(Exception e){
@@ -96,4 +92,49 @@ class GraphMakerTest {
         }
         raccoonGame.gameWindow.dispose();
     }
+    @Test
+    public void graphDirectionFill(){
+        RaccoonGame raccoonGame = new RaccoonGame();
+        raccoonGame.gameState = raccoonGame.playState;
+
+        for(int row = 0; row< raccoonGame.windowRow; row++){
+            for(int col = 0; col< raccoonGame.windowCol; col++){
+                if(0 < row){
+                    try {
+                        Assert.assertEquals(raccoonGame.graphMaker.mapNodeArr[col][row].up, (raccoonGame.graphMaker.mapNodeArr[col][row - 1]));
+                    }
+                    catch(Exception e){
+                        e.printStackTrace();
+                    }
+                }
+                if(0 < col){
+                    try {
+                        Assert.assertEquals(raccoonGame.graphMaker.mapNodeArr[col][row].left, raccoonGame.graphMaker.mapNodeArr[col - 1][row]);
+                    }
+                    catch(Exception e){
+                        e.printStackTrace();
+                    }
+                }
+                if(row < raccoonGame.windowRow-1) {
+                    try {
+                        Assert.assertEquals(raccoonGame.graphMaker.mapNodeArr[col][row].down, raccoonGame.graphMaker.mapNodeArr[col][row + 1]);
+                    }
+                    catch(Exception e){
+                        e.printStackTrace();
+                    }
+                }
+                if(col < raccoonGame.windowCol-1){
+                    try {
+                        Assert.assertEquals(raccoonGame.graphMaker.mapNodeArr[col][row].right, raccoonGame.graphMaker.mapNodeArr[col + 1][row]);
+                    }
+                    catch(Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+
+        raccoonGame.gameWindow.dispose();
+    }
+
 }

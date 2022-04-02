@@ -60,7 +60,7 @@ public class GraphMaker {
     }
 
     //Here we assign the direction variables to each node from a completed map
-    private void graphDirectionFill(){
+    public void graphDirectionFill(){
         for(int row = 0; row< raccoonGame.windowRow; row++){
             for(int col = 0; col< raccoonGame.windowCol; col++){
                 if(0 < row){

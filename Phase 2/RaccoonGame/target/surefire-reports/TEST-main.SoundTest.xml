@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="C:\Users\dgtut\.jdks\openjdk-17.0.2\bin"/>
-    <property name="sun.java.command" value="C:\Users\dgtut\AppData\Local\Temp\surefire14113247307017484415\surefirebooter5395669049470328101.jar C:\Users\dgtut\AppData\Local\Temp\surefire14113247307017484415 2022-04-01T23-30-21_961-jvmRun1 surefire6854371105189347570tmp surefire_08491718246801249212tmp"/>
+    <property name="sun.java.command" value="C:\Users\dgtut\AppData\Local\Temp\surefire8063586805178277807\surefirebooter4406241583738518891.jar C:\Users\dgtut\AppData\Local\Temp\surefire8063586805178277807 2022-04-02T00-05-19_682-jvmRun1 surefire360352728723607617tmp surefire_03669342922943979417tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\dgtut\Desktop\Spring 2022\project\Phase 2\RaccoonGame\target\test-classes;C:\Users\dgtut\Desktop\Spring 2022\project\Phase 2\RaccoonGame\target\classes;C:\Users\dgtut\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\dgtut\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\dgtut\AppData\Local\Temp\surefire14113247307017484415\surefirebooter5395669049470328101.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\dgtut\AppData\Local\Temp\surefire8063586805178277807\surefirebooter4406241583738518891.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.2+8-86"/>

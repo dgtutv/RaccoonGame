@@ -5,7 +5,6 @@ object\RedRaccoonTest.class
 object\ExitDoorTest.class
 main\KeyHandlerTest.class
 subject\GraphMakerTest.class
-subject\TreeMakerTest.class
 GUI\KeyHandlerGUI.class
 block\MapManagerTest.class
 subject\SubjectTest.class
