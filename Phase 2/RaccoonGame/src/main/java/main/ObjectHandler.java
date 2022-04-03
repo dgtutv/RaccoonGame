@@ -21,6 +21,7 @@ public class ObjectHandler {
     public int numRewards = 0;
     public int numTraps = 0;
     public int[][] mapItemArr;
+    public int itemCount = 0;
 
     /**
      * Constructs a new ObjectHandler class and sets its raccoonGame attribute to the parameter passed.
@@ -52,18 +53,21 @@ public class ObjectHandler {
                     numTraps++;
                     raccoonGame.objects[ind].x = currentX;
                     raccoonGame.objects[ind].y = currentY;
+                    ind++;
                     break;
                 case 2:
                     raccoonGame.objects[ind] = new Garbage();
                     numRewards++;
                     raccoonGame.objects[ind].x = currentX;
                     raccoonGame.objects[ind].y = currentY;
+                    ind++;
                     break;
                 case 3:
                     raccoonGame.objects[ind] = new ExitDoor();
                     numDoors++;
                     raccoonGame.objects[ind].x = currentX;
                     raccoonGame.objects[ind].y = currentY;
+                    ind++;
                     break;
                 case 4:
                     raccoonGame.objects[ind] = new RedRaccoon();
@@ -72,10 +76,11 @@ public class ObjectHandler {
                     raccoonGame.objects[ind].y = 0;
                     raccoonGame.objects[ind].collidableArea.width = 0;
                     raccoonGame.objects[ind].collidableArea.height = 0;
+                    ind++;
                     break;
             }
 
-            ind++;
+
             currentCol++;
             currentX += raccoonGame.blockSize;
 
@@ -87,5 +92,6 @@ public class ObjectHandler {
                 currentY += raccoonGame.blockSize;
             }
         }
+       itemCount = ind;
     }
 }

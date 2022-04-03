@@ -159,7 +159,7 @@ public class Player extends Subject{
     }
 
     //Method for handling objects collected by the player
-    public void collectObject(int index) {
+    public boolean collectObject(int index) {
         //check if the index is valid
         if(index != 999) {
             String objectName = raccoonGame.objects[index].objectName;
@@ -172,6 +172,7 @@ public class Player extends Subject{
                     this.changeScore(10);
                     collectedRewards++;
                     raccoonGame.objects[index] = null;
+
                     //check if all rewards collected
                     if(collectedRewards >= raccoonGame.objectHandler.numRewards) {
                         //load secondary map with door
@@ -212,7 +213,9 @@ public class Player extends Subject{
                     this.raccoonGame.objects[index] = null;
                     break;
             }
+            return true;
         }
+        return false;
     }
 
     
