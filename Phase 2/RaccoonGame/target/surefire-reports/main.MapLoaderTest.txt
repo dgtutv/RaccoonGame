@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: main.MapLoaderTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.356 s - in main.MapLoaderTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.412 s - in main.MapLoaderTest
