@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: main.CollisionHandlerTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.545 s - in main.CollisionHandlerTest
+=======
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.231 s - in main.CollisionHandlerTest
+>>>>>>> 590218a76390bb8bbcf04675994db4b54bb306b2

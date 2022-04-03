@@ -12,8 +12,10 @@ public class TreeMaker {
     Enemy enemy;
     int enemyBlockX, enemyBlockY, playerBlockX, playerBlockY;
     RaccoonGame raccoonGame;
-    GraphMaker graph;
-    GraphMaker.Node root, playerNode;
+    public GraphMaker graph;
+    public GraphMaker.Node root;
+    public GraphMaker.Node playerNode;
+    public List<GraphMaker.Node> tree;
 
     //Default constructor
     TreeMaker(Player player, Enemy enemy){
@@ -33,15 +35,17 @@ public class TreeMaker {
         //Find the player's Node
         playerNode = GraphMaker.find(playerBlockX, playerBlockY);
         //reset the path and generate the tree
-        return BFS();
+        tree = BFS();
+        return tree;
     }
 
     //Method to print the path found from the enemy to the player
-    public void print(List<GraphMaker.Node> path){
+    public String print(List<GraphMaker.Node> path){
+        String printString = "";
         for(int i=0; i<path.size(); i++){
-            System.out.print("("+path.get(i).x+" ,"+path.get(i).y+")");
+            printString += "("+path.get(i).x+" ,"+path.get(i).y+")";
         }
-        System.out.println();
+        return printString;
     }
 
     //BFS traversal for enemy pathing. Returns a root to the tree
