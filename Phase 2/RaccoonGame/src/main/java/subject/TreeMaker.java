@@ -37,11 +37,12 @@ public class TreeMaker {
     }
 
     //Method to print the path found from the enemy to the player
-    public void print(List<GraphMaker.Node> path){
+    public String print(List<GraphMaker.Node> path){
+        String printString = "";
         for(int i=0; i<path.size(); i++){
-            System.out.print("("+path.get(i).x+" ,"+path.get(i).y+")");
+            printString += "("+path.get(i).x+" ,"+path.get(i).y+")";
         }
-        System.out.println();
+        return printString;
     }
 
     //BFS traversal for enemy pathing. Returns a root to the tree
