@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: subject.PlayerTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.941 s - in subject.PlayerTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.93 s - in subject.PlayerTest

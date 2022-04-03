@@ -183,7 +183,7 @@ public class PlayerTest {
             raccoonGame.objects[objectsSize].y = raccoonGame.player.y;
 
             robot.keyPress(KeyEvent.VK_D);
-            robot.delay(200);
+            robot.delay(400);
             robot.keyRelease(KeyEvent.VK_D);
 
             Assert.assertNull(raccoonGame.objects[objectsSize]);
@@ -197,7 +197,7 @@ public class PlayerTest {
             raccoonGame.objects[objectsSize].y = raccoonGame.player.y;
 
             robot.keyPress(KeyEvent.VK_A);
-            robot.delay(200);
+            robot.delay(400);
             robot.keyRelease(KeyEvent.VK_A);
 
             Assert.assertNull(raccoonGame.objects[objectsSize]);
@@ -210,10 +210,13 @@ public class PlayerTest {
             raccoonGame.objects[objectsSize].y = raccoonGame.player.y;
 
             robot.keyPress(KeyEvent.VK_D);
-            robot.delay(200);
+            robot.delay(400);
             robot.keyRelease(KeyEvent.VK_D);
 
             Assert.assertNull(raccoonGame.objects[objectsSize]);
+
+            // Case ExitDoor is unused
+
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -222,5 +225,29 @@ public class PlayerTest {
         raccoonGame.gameWindow.dispose();
     }
 
+    @Test
+    public void changeScoreAndReward() {
+        RaccoonGame raccoonGame = new RaccoonGame();
+        raccoonGame.gameState = raccoonGame.playState;
+
+
+
+        try {
+
+            int preTestScore = raccoonGame.player.score;
+            raccoonGame.player.changeScore(10);
+            Assert.assertEquals(preTestScore + 10, raccoonGame.player.score);
+
+            int preTestReward = raccoonGame.player.reward;
+            raccoonGame.player.rewardUpdate(10);
+            Assert.assertEquals(preTestReward + 10, raccoonGame.player.reward);
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        raccoonGame.gameWindow.dispose();
+    }
 
 }
