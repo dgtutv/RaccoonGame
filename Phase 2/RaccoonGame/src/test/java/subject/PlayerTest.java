@@ -60,28 +60,35 @@ public class PlayerTest {
 
         try {
             robot = new Robot();
+            int preX = raccoonGame.player.x;
             robot.delay(100);
             robot.keyPress(KeyEvent.VK_D);
             robot.delay(100);
             Assert.assertTrue(raccoonGame.player.moving);
-            Assert.assertSame("right", raccoonGame.player.direction);
+            Assert.assertTrue(preX < raccoonGame.player.x);
             robot.keyRelease(KeyEvent.VK_D);
+
+            preX = raccoonGame.player.x;
             robot.delay(100);
             robot.keyPress(KeyEvent.VK_A);
             robot.delay(100);
-            Assert.assertSame("left", raccoonGame.player.direction);
+            Assert.assertTrue(preX > raccoonGame.player.x);
             robot.delay(100);
             robot.keyRelease(KeyEvent.VK_A);
+
+            int preY = raccoonGame.player.y;
             robot.delay(100);
             robot.keyPress(KeyEvent.VK_W);
             robot.delay(100);
-            Assert.assertSame("up", raccoonGame.player.direction);
+            Assert.assertTrue(preY > raccoonGame.player.y);
             robot.delay(100);
             robot.keyRelease(KeyEvent.VK_W);
+
+            preY = raccoonGame.player.y;
             robot.delay(100);
             robot.keyPress(KeyEvent.VK_S);
             robot.delay(100);
-            Assert.assertSame("down", raccoonGame.player.direction);
+            Assert.assertTrue(preY < raccoonGame.player.y);
             robot.delay(100);
             robot.keyRelease(KeyEvent.VK_S);
 

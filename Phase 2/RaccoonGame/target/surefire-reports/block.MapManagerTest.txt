@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: block.MapManagerTest
 -------------------------------------------------------------------------------
-<<<<<<< HEAD
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.782 s - in block.MapManagerTest
-=======
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.714 s - in block.MapManagerTest
->>>>>>> 590218a76390bb8bbcf04675994db4b54bb306b2
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.838 s - in block.MapManagerTest

@@ -31,29 +31,31 @@ public class SubjectTest {
     }
 
     @Test
-    public void updateSubject() {
+    public void update() {
         RaccoonGame raccoonGame = new RaccoonGame();
         raccoonGame.gameState = raccoonGame.playState;
         raccoonGame.enemyHandler.deleteEnemies();
         Robot robot = null;
 
-//        try {
-//            robot = new Robot();
-//            robot.delay(100);
-//            robot.keyPress(KeyEvent.VK_D);
-//            robot.delay(100);
-//            Assert.assertTrue(raccoonGame.player.spriteNum == 1);
-//            robot.keyRelease(KeyEvent.VK_D);
-//            robot.delay(100);
-//            robot.keyPress(KeyEvent.VK_A);
-//            robot.delay(100);
-//            Assert.assertTrue(raccoonGame.player.spriteNum == 2);
-//            robot.delay(100);
-//            robot.keyRelease(KeyEvent.VK_A);
-//        }
-//        catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        try {
+            robot = new Robot();
+            robot.delay(100);
+            robot.keyPress(KeyEvent.VK_D);
+            robot.delay(100);
+            Assert.assertTrue(raccoonGame.player.spriteNum == 1);
+            robot.keyRelease(KeyEvent.VK_D);
+            robot.delay(100);
+            robot.keyPress(KeyEvent.VK_A);
+            robot.delay(100);
+            Assert.assertTrue(raccoonGame.player.spriteNum == 2);
+            robot.delay(100);
+            robot.keyRelease(KeyEvent.VK_A);
+
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
 
         raccoonGame.gameWindow.dispose();
     }
