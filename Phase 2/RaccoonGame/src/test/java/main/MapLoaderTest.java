@@ -77,5 +77,6 @@ public class MapLoaderTest {
     @After
     public void endTest() {
         raccoonGame.gameWindow.dispose();
+        raccoonGame.stopThread();
     }
 }

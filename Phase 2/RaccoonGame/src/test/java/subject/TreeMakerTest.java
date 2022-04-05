@@ -83,7 +83,7 @@ public class TreeMakerTest {
     @After
     public void endTest() {
         raccoonGame.gameWindow.dispose();
-        raccoonGame = null;
+        raccoonGame.stopThread();
     }
 
      */

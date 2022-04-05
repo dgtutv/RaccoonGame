@@ -67,6 +67,7 @@ public class SubjectTest {
     @After
     public void endTest() {
         raccoonGame.gameWindow.dispose();
+        raccoonGame.stopThread();
     }
 
 }

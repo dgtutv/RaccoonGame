@@ -156,6 +156,10 @@ public class RaccoonGame extends JPanel implements Runnable{
 
     }
 
+    public void stopThread() {
+        gameThread = null;
+    }
+
 
     /**
      * The main method that runs the game. Implements a delta-style game loop that runs at 60

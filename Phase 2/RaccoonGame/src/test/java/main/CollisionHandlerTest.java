@@ -22,8 +22,6 @@ public class CollisionHandlerTest {
 
         //standard position, no object
         Assert.assertEquals(999, raccoonGame.collisionHandler.checkObject(raccoonGame.player, true));
-
-        raccoonGame.gameWindow.dispose();
     }
 
     @Test
@@ -33,8 +31,6 @@ public class CollisionHandlerTest {
         raccoonGame.player.x = 1*raccoonGame.blockSize;
         raccoonGame.player.y = 10*raccoonGame.blockSize;
         Assert.assertNotEquals(999, raccoonGame.collisionHandler.checkObject(raccoonGame.player, true));
-
-        raccoonGame.gameWindow.dispose();
     }
 
     @Test
@@ -42,8 +38,6 @@ public class CollisionHandlerTest {
 
         //standard position, no enemy
         Assert.assertFalse(raccoonGame.collisionHandler.checkEnemy(raccoonGame.player, true));
-
-        raccoonGame.gameWindow.dispose();
     }
 
     @Test
@@ -58,5 +52,6 @@ public class CollisionHandlerTest {
     @After
     public void endTest() {
         raccoonGame.gameWindow.dispose();
+        raccoonGame.stopThread();
     }
 }

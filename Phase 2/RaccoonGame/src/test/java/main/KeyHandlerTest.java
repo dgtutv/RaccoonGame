@@ -126,5 +126,6 @@ public class KeyHandlerTest {
     @After
     public void endTest() {
         raccoonGame.gameWindow.dispose();
+        raccoonGame.stopThread();
     }
 }

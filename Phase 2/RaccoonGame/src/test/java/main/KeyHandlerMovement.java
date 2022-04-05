@@ -75,6 +75,7 @@ public class KeyHandlerMovement {
     @After
     public void endTest() {
         raccoonGame.gameWindow.dispose();
+        raccoonGame.stopThread();
     }
 
 }

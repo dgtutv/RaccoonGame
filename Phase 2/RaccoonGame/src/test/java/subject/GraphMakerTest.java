@@ -27,8 +27,6 @@ public class GraphMakerTest {
         catch (Exception e) {
             e.printStackTrace();
         }
-
-        raccoonGame.gameWindow.dispose();
     }
 
     @Test
@@ -140,6 +138,7 @@ public class GraphMakerTest {
     @After
     public void endTest() {
         raccoonGame.gameWindow.dispose();
+        raccoonGame.stopThread();
     }
 
 }
