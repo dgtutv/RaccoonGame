@@ -53,6 +53,34 @@ public class EnemyTest {
     }
 
     @Test
+    public void enemyDirectionBase() {
+        raccoonGame.gameState = raccoonGame.playState;
+
+        Assert.assertEquals("down", enemies.get(0).direction);
+    }
+
+    @Test
+    public void enemyDirectionPlayer() {
+        raccoonGame.gameState = raccoonGame.playState;
+
+        enemies.get(0).x = raccoonGame.player.x + raccoonGame.blockSize;
+        enemies.get(0).y = raccoonGame.player.y;
+
+        threadManager.doTick(15, raccoonGame);
+
+        Assert.assertEquals("left", enemies.get(0).direction);
+    }
+
+    @Test
+    public void enemyMovement() {
+        raccoonGame.gameState = raccoonGame.playState;
+
+        enemies.get(0).directionUpdate();
+        enemies.get(0).moveUpdate();
+
+    }
+
+    @Test
     public void enemyTracking() {
         raccoonGame.gameState = raccoonGame.playState;
 
