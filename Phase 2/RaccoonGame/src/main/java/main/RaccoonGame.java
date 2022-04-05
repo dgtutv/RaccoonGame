@@ -64,7 +64,6 @@ public class RaccoonGame extends JPanel implements Runnable{
         setupScreen();
         setupGame();
         startGame();
-        startThread();
     }
 
     /**
@@ -100,6 +99,8 @@ public class RaccoonGame extends JPanel implements Runnable{
 
         //Initialize collision handler
         collisionHandler = new CollisionHandler(this);
+
+        gameThread = new Thread(this);
 
         //initialize map loader
         mapLoader = new mapLoader(this);
@@ -151,7 +152,6 @@ public class RaccoonGame extends JPanel implements Runnable{
      * Initializes the GameThread and starts it.
      */
     public void startThread() {
-        gameThread = new Thread(this);
         gameThread.start();
 
     }

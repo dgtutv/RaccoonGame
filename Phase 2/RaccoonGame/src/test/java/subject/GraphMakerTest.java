@@ -13,6 +13,7 @@ public class GraphMakerTest {
     @Before
     public void setupTest() {
         raccoonGame = new RaccoonGame();
+        raccoonGame.startThread();
     }
 
     @Test

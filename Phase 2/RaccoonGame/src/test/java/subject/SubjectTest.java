@@ -18,6 +18,7 @@ public class SubjectTest {
     @Before
     public void setupTest() {
         raccoonGame = new RaccoonGame();
+        raccoonGame.startThread();
     }
 
     @Test

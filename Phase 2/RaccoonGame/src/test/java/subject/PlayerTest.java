@@ -1,6 +1,7 @@
 package subject;
 
 import main.RaccoonGame;
+import main.ThreadManager;
 import object.Garbage;
 import object.RedRaccoon;
 import object.Trap;
@@ -15,14 +16,17 @@ import java.awt.event.KeyEvent;
 public class PlayerTest {
 
     RaccoonGame raccoonGame;
+    ThreadManager threadManager;
 
     @Before
     public void setupTest() {
         raccoonGame = new RaccoonGame();
+        threadManager = new ThreadManager();
     }
 
     @Test
     public void createPlayer() {
+        raccoonGame.startThread();
         raccoonGame.gameState = raccoonGame.playState;
 
 
@@ -40,6 +44,7 @@ public class PlayerTest {
 
     @Test
     public void customUpdate() {
+        raccoonGame.startThread();
         raccoonGame.gameState = raccoonGame.playState;
         raccoonGame.enemyHandler.deleteEnemies();
         Robot robot = null;
@@ -58,6 +63,7 @@ public class PlayerTest {
 
     @Test
     public void moveUpdate() {
+        raccoonGame.startThread();
         raccoonGame.gameState = raccoonGame.playState;
         raccoonGame.enemyHandler.deleteEnemies();
         Robot robot = null;
@@ -107,6 +113,7 @@ public class PlayerTest {
 
     @Test
     public void directionUpdate() {
+        raccoonGame.startThread();
         raccoonGame.gameState = raccoonGame.playState;
 
         Robot robot = null;
@@ -189,7 +196,7 @@ public class PlayerTest {
             raccoonGame.objects[objectsSize].y = raccoonGame.player.y;
 
             robot.keyPress(KeyEvent.VK_D);
-            robot.delay(400);
+            threadManager.doTick(30, raccoonGame);
             robot.keyRelease(KeyEvent.VK_D);
 
             Assert.assertNull(raccoonGame.objects[objectsSize]);
@@ -203,7 +210,7 @@ public class PlayerTest {
             raccoonGame.objects[objectsSize].y = raccoonGame.player.y;
 
             robot.keyPress(KeyEvent.VK_A);
-            robot.delay(400);
+            threadManager.doTick(30, raccoonGame);
             robot.keyRelease(KeyEvent.VK_A);
 
             Assert.assertNull(raccoonGame.objects[objectsSize]);
@@ -216,7 +223,7 @@ public class PlayerTest {
             raccoonGame.objects[objectsSize].y = raccoonGame.player.y;
 
             robot.keyPress(KeyEvent.VK_D);
-            robot.delay(400);
+            threadManager.doTick(30, raccoonGame);
             robot.keyRelease(KeyEvent.VK_D);
 
             Assert.assertNull(raccoonGame.objects[objectsSize]);
@@ -232,6 +239,7 @@ public class PlayerTest {
 
     @Test
     public void changeScoreAndReward() {
+        raccoonGame.startThread();
         raccoonGame.gameState = raccoonGame.playState;
 
 

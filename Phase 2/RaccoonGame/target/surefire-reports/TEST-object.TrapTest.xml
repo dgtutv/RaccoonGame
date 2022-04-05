@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="CA"/>
     <property name="sun.boot.library.path" value="C:\Users\Ryan\AppData\Local\Programs\Eclipse Adoptium\jdk-17.0.1.12-hotspot\bin"/>
-    <property name="sun.java.command" value="C:\Users\Ryan\AppData\Local\Temp\surefire2993248284717888337\surefirebooter4129184083618235950.jar C:\Users\Ryan\AppData\Local\Temp\surefire2993248284717888337 2022-04-04T17-29-52_826-jvmRun1 surefire4291627645706890562tmp surefire_015947318770998280410tmp"/>
+    <property name="sun.java.command" value="C:\Users\Ryan\AppData\Local\Temp\surefire13786309248225751230\surefirebooter10822164230131221211.jar C:\Users\Ryan\AppData\Local\Temp\surefire13786309248225751230 2022-04-04T17-56-45_549-jvmRun1 surefire563752347663287505tmp surefire_014921392646172607496tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\Ryan\Documents\CMPT 276\project\Phase 2\RaccoonGame\target\test-classes;C:\Users\Ryan\Documents\CMPT 276\project\Phase 2\RaccoonGame\target\classes;C:\Users\Ryan\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\Ryan\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Ryan\AppData\Local\Temp\surefire2993248284717888337\surefirebooter4129184083618235950.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Ryan\AppData\Local\Temp\surefire13786309248225751230\surefirebooter10822164230131221211.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.1+12"/>
