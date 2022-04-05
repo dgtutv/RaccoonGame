@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: object.GarbageTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s - in object.GarbageTest
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.008 s <<< FAILURE! - in object.GarbageTest
+createGarbage(object.GarbageTest)  Time elapsed: 0.008 s  <<< FAILURE!
+java.lang.AssertionError: expected same:<BufferedImage@6f80fafe: type = 6 ColorModel: #pixelBits = 32 numComponents = 4 color space = java.awt.color.ICC_ColorSpace@6d8792db transparency = 3 has alpha = true isAlphaPre = false ByteInterleavedRaster: width = 32 height = 32 #numDataElements 4 dataOff[0] = 3> was not:<BufferedImage@71c5b236: type = 6 ColorModel: #pixelBits = 32 numComponents = 4 color space = java.awt.color.ICC_ColorSpace@6d8792db transparency = 3 has alpha = true isAlphaPre = false ByteInterleavedRaster: width = 32 height = 32 #numDataElements 4 dataOff[0] = 3>
+	at object.GarbageTest.createGarbage(GarbageTest.java:20)
+

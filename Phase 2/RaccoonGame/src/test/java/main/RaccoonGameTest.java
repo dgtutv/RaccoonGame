@@ -8,7 +8,6 @@ import org.junit.Test;
 public class RaccoonGameTest {
 
     RaccoonGame raccoonGame;
-    ThreadManager threadManager;
 
     @Before
     public void setupTest() {
@@ -45,6 +44,10 @@ public class RaccoonGameTest {
         Assert.assertEquals(raccoonGame.player.score%10, raccoonGame.gui.ones);
         Assert.assertEquals((raccoonGame.player.score/10)%10, raccoonGame.gui.tens);
         Assert.assertEquals((raccoonGame.player.score/100)%10, raccoonGame.gui.hundreds);
+
+        Assert.assertEquals(4, raccoonGame.gui.ones);
+        Assert.assertEquals(0, raccoonGame.gui.tens);
+        Assert.assertEquals(4, raccoonGame.gui.hundreds);
     }
 
     @Test
