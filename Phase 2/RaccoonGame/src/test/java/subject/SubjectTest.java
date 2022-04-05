@@ -46,16 +46,14 @@ public class SubjectTest {
         Robot robot = null;
 
         try {
-            robot = new Robot();
-            robot.keyPress(KeyEvent.VK_D);
-            threadManager.doTick(30, raccoonGame);
-            Assert.assertTrue(raccoonGame.player.spriteNum == 1);
-            robot.keyRelease(KeyEvent.VK_D);
-
-            robot.keyPress(KeyEvent.VK_A);
+            raccoonGame.player.spriteCounter = 13;
             threadManager.doTick(30, raccoonGame);
             Assert.assertTrue(raccoonGame.player.spriteNum == 2);
-            robot.keyRelease(KeyEvent.VK_A);
+
+            raccoonGame.player.spriteCounter = 13;
+            threadManager.doTick(30, raccoonGame);
+            Assert.assertTrue(raccoonGame.player.spriteNum == 1);
+
 
 
         }
