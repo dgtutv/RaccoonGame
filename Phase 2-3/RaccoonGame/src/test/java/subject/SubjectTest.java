@@ -47,24 +47,15 @@ public class SubjectTest {
         Robot robot = null;
 
         try {
+            raccoonGame.player.moving = true;
             raccoonGame.player.spriteCounter = 13;
-            threadManager.doTick(30, raccoonGame);
-<<<<<<< HEAD:Phase 2/RaccoonGame/src/test/java/subject/SubjectTest.java
+            raccoonGame.player.update();
             Assert.assertTrue(raccoonGame.player.spriteNum == 2);
-=======
-            //Assert.assertTrue(raccoonGame.player.spriteNum == 1);
-            robot.keyRelease(KeyEvent.VK_D);
->>>>>>> 551675b48f95d0fe77ff84f16e94ceb257537b6a:Phase 2-3/RaccoonGame/src/test/java/subject/SubjectTest.java
 
+            raccoonGame.player.moving = true;
             raccoonGame.player.spriteCounter = 13;
-            threadManager.doTick(30, raccoonGame);
-<<<<<<< HEAD:Phase 2/RaccoonGame/src/test/java/subject/SubjectTest.java
+            raccoonGame.player.update();
             Assert.assertTrue(raccoonGame.player.spriteNum == 1);
-
-=======
-           // Assert.assertTrue(raccoonGame.player.spriteNum == 2);
-            robot.keyRelease(KeyEvent.VK_A);
->>>>>>> 551675b48f95d0fe77ff84f16e94ceb257537b6a:Phase 2-3/RaccoonGame/src/test/java/subject/SubjectTest.java
 
 
         }

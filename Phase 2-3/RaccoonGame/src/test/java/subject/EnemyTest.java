@@ -75,8 +75,14 @@ public class EnemyTest {
     public void enemyMovement() {
         raccoonGame.gameState = raccoonGame.playState;
 
+        Assert.assertEquals(31*raccoonGame.blockSize, enemies.get(0).x);
+        Assert.assertEquals(8*raccoonGame.blockSize, enemies.get(0).y);
+
         enemies.get(0).directionUpdate();
         enemies.get(0).moveUpdate();
+
+        Assert.assertEquals(31*raccoonGame.blockSize, enemies.get(0).x);
+        Assert.assertEquals(8*raccoonGame.blockSize - enemies.get(0).speed, enemies.get(0).y);
 
     }
 
