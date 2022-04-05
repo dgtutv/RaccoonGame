@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="subject.GraphMakerTest" time="1.182" tests="4" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="subject.GraphMakerTest" time="1.152" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="CA"/>
     <property name="sun.boot.library.path" value="C:\Users\Ryan\AppData\Local\Programs\Eclipse Adoptium\jdk-17.0.1.12-hotspot\bin"/>
-    <property name="sun.java.command" value="C:\Users\Ryan\AppData\Local\Temp\surefire13786309248225751230\surefirebooter10822164230131221211.jar C:\Users\Ryan\AppData\Local\Temp\surefire13786309248225751230 2022-04-04T17-56-45_549-jvmRun1 surefire563752347663287505tmp surefire_014921392646172607496tmp"/>
+    <property name="sun.java.command" value="C:\Users\Ryan\AppData\Local\Temp\surefire12067812447248402989\surefirebooter165951389721677654.jar C:\Users\Ryan\AppData\Local\Temp\surefire12067812447248402989 2022-04-04T18-00-09_896-jvmRun1 surefire3617124502973018959tmp surefire_010770407675082509896tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\Ryan\Documents\CMPT 276\project\Phase 2\RaccoonGame\target\test-classes;C:\Users\Ryan\Documents\CMPT 276\project\Phase 2\RaccoonGame\target\classes;C:\Users\Ryan\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\Ryan\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Ryan\AppData\Local\Temp\surefire13786309248225751230\surefirebooter10822164230131221211.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Ryan\AppData\Local\Temp\surefire12067812447248402989\surefirebooter165951389721677654.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.1+12"/>
@@ -58,8 +58,8 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="graphDirectionFill" classname="subject.GraphMakerTest" time="0.305"/>
-  <testcase name="find" classname="subject.GraphMakerTest" time="0.286"/>
-  <testcase name="print" classname="subject.GraphMakerTest" time="0.301"/>
-  <testcase name="makeGraph" classname="subject.GraphMakerTest" time="0.29"/>
+  <testcase name="graphDirectionFill" classname="subject.GraphMakerTest" time="0.287"/>
+  <testcase name="find" classname="subject.GraphMakerTest" time="0.288"/>
+  <testcase name="print" classname="subject.GraphMakerTest" time="0.288"/>
+  <testcase name="makeGraph" classname="subject.GraphMakerTest" time="0.289"/>
 </testsuite>

@@ -12,11 +12,12 @@ import java.awt.event.WindowEvent;
 public class KeyHandlerTest {
 
     RaccoonGame raccoonGame;
+    ThreadManager threadManager;
 
     @Before
     public void setupTest() {
         raccoonGame = new RaccoonGame();
-        raccoonGame.startThread();
+        threadManager = new ThreadManager();
     }
 
     @Test
@@ -28,10 +29,10 @@ public class KeyHandlerTest {
             robot = new Robot();
             robot.delay(100);
             robot.keyPress(KeyEvent.VK_W);
-            robot.delay(100);
+            threadManager.doTick(15, raccoonGame);
             Assert.assertTrue(raccoonGame.keyHandler.upPressed);
             robot.keyRelease(KeyEvent.VK_W);
-            robot.delay(100);
+            threadManager.doTick(15, raccoonGame);
             Assert.assertFalse(raccoonGame.keyHandler.upPressed);
         }
         catch (AWTException e) {
@@ -48,10 +49,10 @@ public class KeyHandlerTest {
             robot = new Robot();
             robot.delay(100);
             robot.keyPress(KeyEvent.VK_S);
-            robot.delay(100);
+            threadManager.doTick(15, raccoonGame);
             Assert.assertTrue(raccoonGame.keyHandler.downPressed);
             robot.keyRelease(KeyEvent.VK_S);
-            robot.delay(100);
+            threadManager.doTick(15, raccoonGame);
             Assert.assertFalse(raccoonGame.keyHandler.downPressed);
         }
         catch (AWTException e) {
@@ -68,10 +69,10 @@ public class KeyHandlerTest {
             robot = new Robot();
             robot.delay(100);
             robot.keyPress(KeyEvent.VK_D);
-            robot.delay(100);
+            threadManager.doTick(15, raccoonGame);
             Assert.assertTrue(raccoonGame.keyHandler.rightPressed);
             robot.keyRelease(KeyEvent.VK_D);
-            robot.delay(100);
+            threadManager.doTick(15, raccoonGame);
             Assert.assertFalse(raccoonGame.keyHandler.rightPressed);
         }
         catch (AWTException e) {
@@ -88,10 +89,10 @@ public class KeyHandlerTest {
             robot = new Robot();
             robot.delay(100);
             robot.keyPress(KeyEvent.VK_A);
-            robot.delay(100);
+            threadManager.doTick(15, raccoonGame);
             Assert.assertTrue(raccoonGame.keyHandler.leftPressed);
             robot.keyRelease(KeyEvent.VK_A);
-            robot.delay(100);
+            threadManager.doTick(15, raccoonGame);
             Assert.assertFalse(raccoonGame.keyHandler.leftPressed);
         }
         catch (AWTException e) {
@@ -107,16 +108,18 @@ public class KeyHandlerTest {
         try {
             robot = new Robot();
             robot.delay(100);
+
             robot.keyPress(KeyEvent.VK_ESCAPE);
-            robot.delay(100);
+            threadManager.doTick(15, raccoonGame);
             robot.keyRelease(KeyEvent.VK_ESCAPE);
-            robot.delay(100);
+            threadManager.doTick(15, raccoonGame);
             Assert.assertEquals(raccoonGame.pauseState, raccoonGame.gameState);
+
             robot.delay(100);
             robot.keyPress(KeyEvent.VK_ESCAPE);
-            robot.delay(100);
+            threadManager.doTick(15, raccoonGame);
             robot.keyRelease(KeyEvent.VK_ESCAPE);
-            robot.delay(100);
+            threadManager.doTick(15, raccoonGame);
             Assert.assertEquals(raccoonGame.playState, raccoonGame.gameState);
         }
         catch (AWTException e) {
@@ -127,6 +130,5 @@ public class KeyHandlerTest {
     @After
     public void endTest() {
         raccoonGame.gameWindow.dispose();
-        raccoonGame.stopThread();
     }
 }
