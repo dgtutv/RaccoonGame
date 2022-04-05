@@ -1,7 +1,10 @@
+main\SoundTest.class
 main\KeyHandlerMovement.class
 main\ThreadManager.class
 subject\PlayerTest.class
 object\RedRaccoonTest.class
+main\RaccoonGameTest.class
+object\ExitDoorTest.class
 main\KeyHandlerTest.class
 subject\GraphMakerTest.class
 subject\TreeMakerTest.class
