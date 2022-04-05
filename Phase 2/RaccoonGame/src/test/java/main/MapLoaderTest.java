@@ -1,16 +1,24 @@
 package main;
 
 import main.RaccoonGame;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.event.WindowEvent;
 
 public class MapLoaderTest {
 
+    RaccoonGame raccoonGame;
+
+    @Before
+    public void setupTest() {
+        raccoonGame = new RaccoonGame();
+    }
+
     @Test
     public void test_loadMap() {
-        RaccoonGame raccoonGame = new RaccoonGame();
         int[][] testArr = new int[raccoonGame.windowCol][raccoonGame.windowRow];
         String testMap = "/map/raccoonGameMap.txt";
 
@@ -64,7 +72,10 @@ public class MapLoaderTest {
         raccoonGame.mapLoader.loadMap(testArr, testMap);;
 
         Assert.assertArrayEquals(correctArr, testArr);
+    }
 
+    @After
+    public void endTest() {
         raccoonGame.gameWindow.dispose();
     }
 }

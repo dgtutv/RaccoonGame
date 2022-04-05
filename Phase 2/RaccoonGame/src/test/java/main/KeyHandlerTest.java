@@ -1,6 +1,8 @@
 package main;
 import main.RaccoonGame;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
@@ -9,9 +11,15 @@ import java.awt.event.WindowEvent;
 
 public class KeyHandlerTest {
 
+    RaccoonGame raccoonGame;
+
+    @Before
+    public void setupTest() {
+        raccoonGame = new RaccoonGame();
+    }
+
     @Test
     public void test_upPress() {
-        RaccoonGame raccoonGame = new RaccoonGame();
         raccoonGame.gameState = raccoonGame.playState;
 
         Robot robot = null;
@@ -28,13 +36,10 @@ public class KeyHandlerTest {
         catch (AWTException e) {
             e.printStackTrace();
         }
-
-        raccoonGame.gameWindow.dispose();
     }
 
     @Test
     public void test_downPress() {
-        RaccoonGame raccoonGame = new RaccoonGame();
         raccoonGame.gameState = raccoonGame.playState;
 
         Robot robot = null;
@@ -51,13 +56,10 @@ public class KeyHandlerTest {
         catch (AWTException e) {
             e.printStackTrace();
         }
-
-        raccoonGame.gameWindow.dispose();
     }
 
     @Test
     public void test_rightPress() {
-        RaccoonGame raccoonGame = new RaccoonGame();
         raccoonGame.gameState = raccoonGame.playState;
 
         Robot robot = null;
@@ -74,13 +76,10 @@ public class KeyHandlerTest {
         catch (AWTException e) {
             e.printStackTrace();
         }
-
-        raccoonGame.gameWindow.dispose();
     }
 
     @Test
     public void test_leftPress() {
-        RaccoonGame raccoonGame = new RaccoonGame();
         raccoonGame.gameState = raccoonGame.playState;
 
         Robot robot = null;
@@ -97,13 +96,10 @@ public class KeyHandlerTest {
         catch (AWTException e) {
             e.printStackTrace();
         }
-
-        raccoonGame.gameWindow.dispose();
     }
 
     @Test
     public void test_escPress() {
-        RaccoonGame raccoonGame = new RaccoonGame();
         raccoonGame.gameState = raccoonGame.playState;
 
         Robot robot = null;
@@ -125,7 +121,10 @@ public class KeyHandlerTest {
         catch (AWTException e) {
             e.printStackTrace();
         }
+    }
 
+    @After
+    public void endTest() {
         raccoonGame.gameWindow.dispose();
     }
 }

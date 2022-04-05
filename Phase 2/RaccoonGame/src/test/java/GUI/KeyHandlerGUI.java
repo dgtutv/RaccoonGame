@@ -1,6 +1,8 @@
 package GUI;
 import main.RaccoonGame;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
@@ -9,10 +11,15 @@ import java.awt.event.WindowEvent;
 
 public class KeyHandlerGUI {
 
+    RaccoonGame raccoonGame;
+
+    @Before
+    public void setupTest() {
+        RaccoonGame raccoonGame = new RaccoonGame();
+    }
+
     @Test
     public void titleScreenKeyPress() {
-        //create new window
-        RaccoonGame raccoonGame = new RaccoonGame();
 
         Robot robot = null;
         try {
@@ -39,6 +46,10 @@ public class KeyHandlerGUI {
         } catch (AWTException e) {
             e.printStackTrace();
         }
+    }
+
+    @After
+    public void endTest() {
         raccoonGame.gameWindow.dispose();
     }
 }

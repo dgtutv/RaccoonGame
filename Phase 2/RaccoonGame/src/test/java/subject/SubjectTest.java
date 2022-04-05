@@ -2,7 +2,9 @@ package subject;
 
 import main.KeyHandler;
 import main.RaccoonGame;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
@@ -11,9 +13,15 @@ import java.awt.image.BufferedImage;
 
 public class SubjectTest {
 
+    RaccoonGame raccoonGame;
+
+    @Before
+    public void setupTest() {
+        raccoonGame = new RaccoonGame();
+    }
+
     @Test
     public void createSubject() {
-        RaccoonGame raccoonGame = new RaccoonGame();
         raccoonGame.gameState = raccoonGame.playState;
 
 
@@ -26,13 +34,10 @@ public class SubjectTest {
         catch (Exception e) {
             e.printStackTrace();
         }
-
-        raccoonGame.gameWindow.dispose();
     }
 
     @Test
     public void update() {
-        RaccoonGame raccoonGame = new RaccoonGame();
         raccoonGame.gameState = raccoonGame.playState;
         raccoonGame.enemyHandler.deleteEnemies();
         Robot robot = null;
@@ -57,8 +62,11 @@ public class SubjectTest {
             e.printStackTrace();
         }
 
-        raccoonGame.gameWindow.dispose();
     }
 
+    @After
+    public void endTest() {
+        raccoonGame.gameWindow.dispose();
+    }
 
 }

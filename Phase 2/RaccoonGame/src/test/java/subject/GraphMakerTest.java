@@ -1,14 +1,22 @@
 package subject;
 
 import main.RaccoonGame;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class GraphMakerTest {
 
+    RaccoonGame raccoonGame;
+
+    @Before
+    public void setupTest() {
+        raccoonGame = new RaccoonGame();
+    }
+
     @Test
     public void makeGraph() {
-        RaccoonGame raccoonGame = new RaccoonGame();
         raccoonGame.gameState = raccoonGame.playState;
 
         try {
@@ -25,7 +33,6 @@ public class GraphMakerTest {
 
     @Test
     public void find() {
-        RaccoonGame raccoonGame = new RaccoonGame();
         raccoonGame.gameState = raccoonGame.playState;
 
         for(int row = 0; row< raccoonGame.windowRow; row++){
@@ -40,13 +47,10 @@ public class GraphMakerTest {
                 }
             }
         }
-
-        raccoonGame.gameWindow.dispose();
     }
 
     @Test
     public void print() {
-        RaccoonGame raccoonGame = new RaccoonGame();
         raccoonGame.gameState = raccoonGame.playState;
 
         String testString = raccoonGame.graphMaker.print();
@@ -90,11 +94,9 @@ public class GraphMakerTest {
         catch(Exception e){
             e.printStackTrace();
         }
-        raccoonGame.gameWindow.dispose();
     }
     @Test
     public void graphDirectionFill(){
-        RaccoonGame raccoonGame = new RaccoonGame();
         raccoonGame.gameState = raccoonGame.playState;
 
         for(int row = 0; row< raccoonGame.windowRow; row++){
@@ -133,7 +135,10 @@ public class GraphMakerTest {
                 }
             }
         }
+    }
 
+    @After
+    public void endTest() {
         raccoonGame.gameWindow.dispose();
     }
 

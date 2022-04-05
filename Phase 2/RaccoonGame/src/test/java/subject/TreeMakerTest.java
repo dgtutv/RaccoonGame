@@ -2,14 +2,20 @@ package subject;
 
 import junit.framework.TestCase;
 import main.RaccoonGame;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;
 
 public class TreeMakerTest {
+
+    RaccoonGame raccoonGame;
+
+    /*
+
     private RaccoonGame testFactory(){
-        RaccoonGame raccoonGame = new RaccoonGame();
+        raccoonGame = new RaccoonGame();
         for (int i = 0; i < raccoonGame.enemyHandler.EnemyList.size()-1; i++) {
             raccoonGame.enemyHandler.EnemyList.get(i).speed = 0;
         }
@@ -18,9 +24,10 @@ public class TreeMakerTest {
         raccoonGame.player.y = 480;
         return  raccoonGame;
     }
+
     @Test
     public void MakeTree(){
-        RaccoonGame raccoonGame = testFactory();
+        raccoonGame = testFactory();
         Assert.assertEquals(5 ,raccoonGame.enemyHandler.EnemyList.size());
         try {
             for (int i = 0; i < raccoonGame.enemyHandler.EnemyList.size()-1; i++){
@@ -34,12 +41,11 @@ public class TreeMakerTest {
         catch (Exception e) {
             e.printStackTrace();
         }
-        raccoonGame.gameWindow.dispose();
     }
 
     @Test
     public void updateTest(){
-        RaccoonGame raccoonGame = testFactory();
+        raccoonGame = testFactory();
         Assert.assertEquals(raccoonGame.enemyHandler.EnemyList.get(1).x, raccoonGame.enemyHandler.EnemyList.get(1).tree.root.x);
         Assert.assertEquals(raccoonGame.enemyHandler.EnemyList.get(1).y, raccoonGame.enemyHandler.EnemyList.get(1).tree.root.y);
         Assert.assertEquals(raccoonGame.enemyHandler.player.x, raccoonGame.enemyHandler.EnemyList.get(1).tree.playerNode.x);
@@ -48,12 +54,12 @@ public class TreeMakerTest {
         Assert.assertNotNull(raccoonGame.enemyHandler.EnemyList.get(1).tree.playerNode);
         Assert.assertNotNull(raccoonGame.enemyHandler.EnemyList.get(1).tree.tree);
         Assert.assertEquals(raccoonGame.enemyHandler.EnemyList.get(1).tree.print(raccoonGame.enemyHandler.EnemyList.get(1).tree.tree), "(17 ,11)(17 ,12)(17 ,13)(16 ,13)(15 ,13)(15 ,14)(15 ,15)(14 ,15)");
-        raccoonGame.gameWindow.dispose();
+
     }
 
     @Test
     public void testPrint() {
-        RaccoonGame raccoonGame = testFactory();
+        raccoonGame = testFactory();
         try {
             for (int i = 0; i < raccoonGame.enemyHandler.EnemyList.size()-1; i++){
                 List<GraphMaker.Node> list = raccoonGame.enemyHandler.EnemyList.get(i).tree.update();
@@ -67,11 +73,18 @@ public class TreeMakerTest {
         catch (Exception e) {
             e.printStackTrace();
         }
-        raccoonGame.gameWindow.dispose();
     }
 
     @Test
     public void blockUpdate(){
-        RaccoonGame raccoonGame = testFactory();
+        raccoonGame = testFactory();
     }
+
+    @After
+    public void endTest() {
+        raccoonGame.gameWindow.dispose();
+        raccoonGame = null;
+    }
+
+     */
 }

@@ -4,7 +4,9 @@ import main.RaccoonGame;
 import object.Garbage;
 import object.RedRaccoon;
 import object.Trap;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
@@ -12,9 +14,15 @@ import java.awt.event.KeyEvent;
 
 public class PlayerTest {
 
+    RaccoonGame raccoonGame;
+
+    @Before
+    public void setupTest() {
+        raccoonGame = new RaccoonGame();
+    }
+
     @Test
     public void createPlayer() {
-        RaccoonGame raccoonGame = new RaccoonGame();
         raccoonGame.gameState = raccoonGame.playState;
 
 
@@ -28,12 +36,10 @@ public class PlayerTest {
             e.printStackTrace();
         }
 
-        raccoonGame.gameWindow.dispose();
     }
 
     @Test
     public void customUpdate() {
-        RaccoonGame raccoonGame = new RaccoonGame();
         raccoonGame.gameState = raccoonGame.playState;
         raccoonGame.enemyHandler.deleteEnemies();
         Robot robot = null;
@@ -48,12 +54,10 @@ public class PlayerTest {
             e.printStackTrace();
         }
 
-        raccoonGame.gameWindow.dispose();
     }
 
     @Test
     public void moveUpdate() {
-        RaccoonGame raccoonGame = new RaccoonGame();
         raccoonGame.gameState = raccoonGame.playState;
         raccoonGame.enemyHandler.deleteEnemies();
         Robot robot = null;
@@ -99,13 +103,10 @@ public class PlayerTest {
         catch (Exception e) {
             e.printStackTrace();
         }
-
-        raccoonGame.gameWindow.dispose();
     }
 
     @Test
     public void directionUpdate() {
-        RaccoonGame raccoonGame = new RaccoonGame();
         raccoonGame.gameState = raccoonGame.playState;
 
         Robot robot = null;
@@ -164,12 +165,10 @@ public class PlayerTest {
             e.printStackTrace();
         }
 
-        raccoonGame.gameWindow.dispose();
     }
 
     @Test
     public void collectObject() {
-        RaccoonGame raccoonGame = new RaccoonGame();
         raccoonGame.gameState = raccoonGame.playState;
 
         Robot robot = null;
@@ -229,12 +228,10 @@ public class PlayerTest {
             e.printStackTrace();
         }
 
-        raccoonGame.gameWindow.dispose();
     }
 
     @Test
     public void changeScoreAndReward() {
-        RaccoonGame raccoonGame = new RaccoonGame();
         raccoonGame.gameState = raccoonGame.playState;
 
 
@@ -253,7 +250,10 @@ public class PlayerTest {
         catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
+    @After
+    public void endTest() {
         raccoonGame.gameWindow.dispose();
     }
 

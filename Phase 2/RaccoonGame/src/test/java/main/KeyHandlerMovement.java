@@ -1,5 +1,7 @@
 package main;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
@@ -9,10 +11,15 @@ import java.awt.event.WindowEvent;
 
 public class KeyHandlerMovement {
 
+    RaccoonGame raccoonGame;
+
+    @Before
+    public void setupTest() {
+        raccoonGame = new RaccoonGame();
+    }
+
     @Test
     public void gamePlayKeyPress() {
-        //create new game
-        RaccoonGame raccoonGame = new RaccoonGame();
 
         raccoonGame.gameState = raccoonGame.playState;
 
@@ -63,7 +70,10 @@ public class KeyHandlerMovement {
         robot.keyRelease(KeyEvent.VK_ESCAPE);
         robot.delay(500);
         Assert.assertEquals(raccoonGame.pauseState, raccoonGame.gameState);
+    }
 
+    @After
+    public void endTest() {
         raccoonGame.gameWindow.dispose();
     }
 
