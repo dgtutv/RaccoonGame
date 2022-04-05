@@ -47,12 +47,12 @@ public class PlayerTest {
         raccoonGame.startThread();
         raccoonGame.gameState = raccoonGame.playState;
         raccoonGame.enemyHandler.deleteEnemies();
-        Robot robot = null;
+
 
         try {
-            robot = new Robot();
+
             raccoonGame.player.score = -10;
-            robot.delay(200);
+            threadManager.doTick(30, raccoonGame);
             Assert.assertTrue(raccoonGame.player.GameOver);
         }
         catch (Exception e) {
@@ -71,38 +71,33 @@ public class PlayerTest {
         try {
             robot = new Robot();
             int preX = raccoonGame.player.x;
-            robot.delay(100);
+
             robot.keyPress(KeyEvent.VK_D);
-            robot.delay(100);
-            Assert.assertTrue(raccoonGame.player.moving);
+            threadManager.doTick(30, raccoonGame);
             Assert.assertTrue(preX < raccoonGame.player.x);
             robot.keyRelease(KeyEvent.VK_D);
 
             preX = raccoonGame.player.x;
-            robot.delay(100);
+
             robot.keyPress(KeyEvent.VK_A);
-            robot.delay(100);
+            threadManager.doTick(30, raccoonGame);
             Assert.assertTrue(preX > raccoonGame.player.x);
-            robot.delay(100);
             robot.keyRelease(KeyEvent.VK_A);
 
             int preY = raccoonGame.player.y;
-            robot.delay(100);
+
             robot.keyPress(KeyEvent.VK_W);
-            robot.delay(100);
+            threadManager.doTick(30, raccoonGame);
             Assert.assertTrue(preY > raccoonGame.player.y);
-            robot.delay(100);
             robot.keyRelease(KeyEvent.VK_W);
 
             preY = raccoonGame.player.y;
-            robot.delay(100);
             robot.keyPress(KeyEvent.VK_S);
-            robot.delay(100);
+            threadManager.doTick(30, raccoonGame);
             Assert.assertTrue(preY < raccoonGame.player.y);
-            robot.delay(100);
             robot.keyRelease(KeyEvent.VK_S);
 
-            robot.delay(200);
+            threadManager.doTick(30, raccoonGame);
             Assert.assertFalse(raccoonGame.player.moving);
             Assert.assertEquals(0, raccoonGame.player.pixelCounter);
         }
@@ -127,35 +122,33 @@ public class PlayerTest {
             // condition (only move if the block you're moving to is 0) is true
 
             robot.keyPress(KeyEvent.VK_W);
-            robot.delay(100);
+            threadManager.doTick(30, raccoonGame);
             Assert.assertFalse(raccoonGame.player.moving);
-            robot.delay(100);
             robot.keyRelease(KeyEvent.VK_W);
+
             robot.keyPress(KeyEvent.VK_A);
-            robot.delay(100);
+            threadManager.doTick(30, raccoonGame);
             Assert.assertFalse(raccoonGame.player.moving);
-            robot.delay(100);
             robot.keyRelease(KeyEvent.VK_A);
 
             raccoonGame.player.y = 28* raccoonGame.blockSize;
             raccoonGame.player.x = 43* raccoonGame.blockSize;
 
             robot.keyPress(KeyEvent.VK_D);
-            robot.delay(100);
+            threadManager.doTick(30, raccoonGame);
             Assert.assertFalse(raccoonGame.player.moving);
-            robot.delay(100);
             robot.keyRelease(KeyEvent.VK_D);
+
             robot.keyPress(KeyEvent.VK_S);
-            robot.delay(100);
+            threadManager.doTick(30, raccoonGame);
             Assert.assertFalse(raccoonGame.player.moving);
-            robot.delay(100);
             robot.keyRelease(KeyEvent.VK_S);
 
 
 
             raccoonGame.enemyHandler.EnemyList.add(new Enemy(raccoonGame, raccoonGame.player.x, raccoonGame.player.y, raccoonGame.player));
 
-            robot.delay(100);
+            threadManager.doTick(30, raccoonGame);
             Assert.assertTrue(raccoonGame.player.GameOver);
 
 //            int objectsSize = raccoonGame.objects.length;
