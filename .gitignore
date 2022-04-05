@@ -5,5 +5,5 @@
 *.iml
 *.idea
 
-/target
+target/
 .DS_Store
