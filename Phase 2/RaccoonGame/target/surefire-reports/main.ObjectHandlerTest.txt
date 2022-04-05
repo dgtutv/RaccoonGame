@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: main.ObjectHandlerTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.269 s - in main.ObjectHandlerTest
+=======
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.304 s - in main.ObjectHandlerTest
+>>>>>>> d4566d0f4ab64c0b3f9fb2fe19f54ef9ab0c837a

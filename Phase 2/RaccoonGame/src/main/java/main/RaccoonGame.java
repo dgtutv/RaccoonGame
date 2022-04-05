@@ -230,8 +230,8 @@ public class RaccoonGame extends JPanel implements Runnable{
 
             //End the game if game over, add a game over screen here in future
             if(player.GameOver){
-                //stop the music for the main game
-                //cloneSound.stopSound();
+                player.score += player.reward;
+                gameState = endState;
 
                 //wait 3 seconds so that the death music finishes playing before going to the end screen
                 sound.flushSound();
@@ -241,9 +241,6 @@ public class RaccoonGame extends JPanel implements Runnable{
 
                 //play loss sound
                 sound.music(8, sound);
-
-                player.score += player.reward;
-                gameState = endState;
             }
         }
 
@@ -268,7 +265,7 @@ public class RaccoonGame extends JPanel implements Runnable{
         }
 
 
-        //play state
+        //play state or pause state
         else {
             //draw map
 

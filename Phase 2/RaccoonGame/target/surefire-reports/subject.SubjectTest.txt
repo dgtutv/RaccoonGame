@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: subject.SubjectTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.578 s - in subject.SubjectTest
+=======
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.125 s - in subject.SubjectTest
+>>>>>>> d4566d0f4ab64c0b3f9fb2fe19f54ef9ab0c837a

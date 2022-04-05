@@ -1,0 +1,21 @@
+<<<<<<< HEAD
+=======
+main\SoundTest.class
+main\KeyHandlerMovement.class
+main\ThreadManager.class
+subject\PlayerTest.class
+object\RedRaccoonTest.class
+main\RaccoonGameTest.class
+object\ExitDoorTest.class
+main\KeyHandlerTest.class
+subject\GraphMakerTest.class
+subject\TreeMakerTest.class
+GUI\KeyHandlerGUI.class
+block\MapManagerTest.class
+subject\SubjectTest.class
+main\CollisionHandlerTest.class
+object\GarbageTest.class
+main\MapLoaderTest.class
+main\ObjectHandlerTest.class
+object\TrapTest.class
+>>>>>>> d4566d0f4ab64c0b3f9fb2fe19f54ef9ab0c837a
