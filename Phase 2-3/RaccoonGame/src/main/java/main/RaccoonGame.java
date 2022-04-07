@@ -3,7 +3,6 @@ package main;
 import GUI.GUI;
 import block.MapManager;
 
-import javax.sound.midi.SysexMessage;
 import javax.swing.*;
 import java.awt.*;
 
@@ -36,7 +35,7 @@ public class RaccoonGame extends JPanel implements Runnable{
     Thread gameThread;
 
     public CollisionHandler collisionHandler;
-    public main.mapLoader mapLoader;
+    public MapLoader mapLoader;
     public Sound sound;
     public GeneralObject[] objects;
     public ObjectHandler objectHandler;
@@ -91,7 +90,7 @@ public class RaccoonGame extends JPanel implements Runnable{
     /**
      * Initializes all of RaccoonGame's object attributes to newly constructed objects that are needed
      * for gamePlay:
-     * collisionHandler, mapLoader, sound, objectHandler, mapManager, mapLoader, graphMaker, gui,
+     * collisionHandler, MapLoader, sound, objectHandler, mapManager, MapLoader, graphMaker, gui,
      * keyHandler, enemyHandler, and player.
      * Set's the game's default gameState to be titleState.
      */
@@ -103,7 +102,7 @@ public class RaccoonGame extends JPanel implements Runnable{
         gameThread = new Thread(this);
 
         //initialize map loader
-        mapLoader = new mapLoader(this);
+        mapLoader = new MapLoader(this);
 
         //initialize sound handler
         sound = new Sound();

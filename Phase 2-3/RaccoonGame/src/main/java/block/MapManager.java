@@ -1,19 +1,16 @@
 package block;
 
-import main.mapLoader;
+import main.MapLoader;
 import main.RaccoonGame;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.Objects;
 
 public class MapManager {
     RaccoonGame raccoonGame;
-    mapLoader loadMap;
+    MapLoader loadMap;
     public MapBlock[] blocks;
     public int[][] mapBlockArr;
 
