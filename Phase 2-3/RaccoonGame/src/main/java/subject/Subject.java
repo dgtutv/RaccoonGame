@@ -42,6 +42,38 @@ public abstract class Subject {
     }
 
 
+    /**
+     * Sets subject's x coordinate to the value passed in to the integer parameter x. returns nothing.
+     * @param x: the value which calling subject's x coordinate will be set too.
+     */
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    /**
+     * Sets subject's y coordinate to the value passed in to the integer parameter y. returns nothing.
+     * @param y: the value which calling subject's y coordinate will be set too.
+     */
+    public void setY(int y) {
+        this.y = y;
+    }
+
+
+    /**
+     * Gets the calling subject's x coordinate value from it's integer x attribute.
+     * @return integer value corresponding to the subject's x coordinate.
+     */
+    public int getX() {
+        return this.x;
+    }
+
+    /**
+     * Gets the calling subject's u coordinate value from it's integer u attribute.
+     * @return integer value corresponding to the subject's u coordinate.
+     */
+    public int getY() {
+        return this.y;
+    }
 
 
     //direction updater needs to be implemented different for characters and enemies

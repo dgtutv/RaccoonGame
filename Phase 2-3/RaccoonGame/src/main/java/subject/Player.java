@@ -36,8 +36,8 @@ public class Player extends Subject{
 
         loadCharacterFrames();
         //default values that can easily be changed
-        x = 2* raccoonGame.blockSize;
-        y = 15* raccoonGame.blockSize;
+        setX(2* raccoonGame.blockSize);
+        setY(15* raccoonGame.blockSize);
         speed = 4;
         score = 50;
         collectedRewards = 0;
@@ -78,16 +78,16 @@ public class Player extends Subject{
         if(moving) {
             switch (direction) {
                 case "up":
-                    y -= speed;
+                    setY(getY() - speed);
                     break;
                 case "down":
-                    y += speed;
+                    setY(getY() + speed);
                     break;
                 case "left":
-                    x -= speed;
+                    setX(getX() - speed);
                     break;
                 case "right":
-                    x += speed;
+                    setX(getX() + speed);
                     break;
             }
             //Tracks how many pixels we've moved
@@ -125,28 +125,28 @@ public class Player extends Subject{
             if(keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
                 if(keyH.upPressed) {
                     //valid input check
-                    if(mapBlockArr[x/raccoonGame.blockSize][(y/raccoonGame.blockSize)-1] == 0){
+                    if(mapBlockArr[getX()/raccoonGame.blockSize][(getY()/raccoonGame.blockSize)-1] == 0){
                         direction = "up";
                         moving = true;
                     }
                 }
                 else if(keyH.downPressed) {
                     //valid input check
-                    if(mapBlockArr[x/raccoonGame.blockSize][(y/raccoonGame.blockSize)+1] == 0){
+                    if(mapBlockArr[getX()/raccoonGame.blockSize][(getY()/raccoonGame.blockSize)+1] == 0){
                         direction = "down";
                         moving = true;
                     }
                 }
                 else if(keyH.rightPressed) {
                     //valid input check
-                    if(mapBlockArr[(x/raccoonGame.blockSize)+1][y/raccoonGame.blockSize] == 0) {
+                    if(mapBlockArr[(getX()/raccoonGame.blockSize)+1][getY()/raccoonGame.blockSize] == 0) {
                         direction = "right";
                         moving = true;
                     }
                 }
                 else if(keyH.leftPressed) {
                     //valid input check
-                    if(mapBlockArr[(x/raccoonGame.blockSize)-1][y/raccoonGame.blockSize] == 0) {
+                    if(mapBlockArr[(getX()/raccoonGame.blockSize)-1][getY()/raccoonGame.blockSize] == 0) {
                         direction = "left";
                         moving = true;
                     }

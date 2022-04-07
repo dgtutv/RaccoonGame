@@ -28,8 +28,8 @@ public class CollisionHandler {
         for (int i = 0; i < raccoonGame.objects.length; i++) {
             if (raccoonGame.objects[i] != null) {
                 //find subjects position
-                subject.collidableArea.x = subject.x + subject.collidableArea.x;
-                subject.collidableArea.y = subject.y + subject.collidableArea.y;
+                subject.collidableArea.x = subject.getX() + subject.collidableArea.x;
+                subject.collidableArea.y = subject.getY() + subject.collidableArea.y;
 
                 //find item/objects position
                 raccoonGame.objects[i].collidableArea.x = raccoonGame.objects[i].x + raccoonGame.objects[i].collidableArea.x;
@@ -88,8 +88,8 @@ public class CollisionHandler {
         for (int i = 0; i < raccoonGame.enemyHandler.EnemyList.size(); i++) {
             if (raccoonGame.enemyHandler.EnemyList.get(i) != null) {
                 //find subjects position
-                subject.collidableArea.x = subject.x + subject.collidableArea.x;
-                subject.collidableArea.y = subject.y + subject.collidableArea.y;
+                subject.collidableArea.x = subject.getX() + subject.collidableArea.x;
+                subject.collidableArea.y = subject.getY() + subject.collidableArea.y;
 
                 //find item/objects position
                 raccoonGame.enemyHandler.EnemyList.get(i).collidableArea.x = raccoonGame.enemyHandler.EnemyList.get(i).x + raccoonGame.enemyHandler.EnemyList.get(i).collidableArea.x;
