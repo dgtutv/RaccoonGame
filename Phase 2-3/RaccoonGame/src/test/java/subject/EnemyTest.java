@@ -2,16 +2,11 @@ package subject;
 
 import main.RaccoonGame;
 import main.ThreadManager;
-import object.Garbage;
-import object.RedRaccoon;
-import object.Trap;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.util.List;
 
 public class EnemyTest {

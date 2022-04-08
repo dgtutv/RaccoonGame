@@ -1,6 +1,8 @@
-package object;
+package CollectableObject;
 
 import main.RaccoonGame;
+import object.GeneralCollectableObject;
+import object.GeneralObject;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -12,7 +14,7 @@ import java.util.Random;
 /**
  * A pretty (randomly generated) raccoon lady.
  */
-public class RedRaccoon extends GeneralObject {
+public class RedRaccoon extends GeneralCollectableObject {
 
     private BufferedImage objectImage2;
     private int timer;
@@ -55,7 +57,7 @@ public class RedRaccoon extends GeneralObject {
         }
         //after racoon has been visible for 5 seconds, remove
         if(timer > 60*15) {
-            removeRedRaccoon(graphics, raccoonGame);
+            removeRedRaccoon();
         }
     }
 
@@ -100,10 +102,8 @@ public class RedRaccoon extends GeneralObject {
     /**
      * Removes the RedRaccoon object from the map by setting the timer to 0, also sets the collidableArea of the
      * RedRaccoon to 0x0 so that the object can no longer be collected while it is invisible.
-     * @param graphics: Graphics2D object used the draw the image to the screen
-     * @param raccoonGame: main instance of the game, needed to access map size and dimension information
      */
-    public void removeRedRaccoon(Graphics2D graphics, RaccoonGame raccoonGame) {
+    public void removeRedRaccoon() {
         timer = 0;
         //set collidable area to zero so that you cannot pickup the raccoon when it is invisible
         this.collidableArea.width = 0;

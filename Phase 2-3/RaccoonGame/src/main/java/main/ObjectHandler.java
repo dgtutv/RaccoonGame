@@ -1,13 +1,10 @@
 package main;
 
-import object.*;
-import subject.Enemy;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
+import CollectableObject.ExitDoor;
+import CollectableObject.Garbage;
+import CollectableObject.RedRaccoon;
+import CollectableObject.Trap;
+import Factory.CollectableObjectFactory;
 
 /**
  * Handler used to spawn items.
@@ -49,28 +46,28 @@ public class ObjectHandler {
 
             switch(blockNum) {
                 case 1:
-                    raccoonGame.objects[ind] = new Trap();
+                    raccoonGame.objects[ind] = CollectableObjectFactory.createTrap();
                     numTraps++;
                     raccoonGame.objects[ind].x = currentX;
                     raccoonGame.objects[ind].y = currentY;
                     ind++;
                     break;
                 case 2:
-                    raccoonGame.objects[ind] = new Garbage();
+                    raccoonGame.objects[ind] = CollectableObjectFactory.createGarbage();
                     numRewards++;
                     raccoonGame.objects[ind].x = currentX;
                     raccoonGame.objects[ind].y = currentY;
                     ind++;
                     break;
                 case 3:
-                    raccoonGame.objects[ind] = new ExitDoor();
+                    raccoonGame.objects[ind] = CollectableObjectFactory.createExitDoor();
                     numDoors++;
                     raccoonGame.objects[ind].x = currentX;
                     raccoonGame.objects[ind].y = currentY;
                     ind++;
                     break;
                 case 4:
-                    raccoonGame.objects[ind] = new RedRaccoon();
+                    raccoonGame.objects[ind] = CollectableObjectFactory.createRedRaccoon();
                     numRaccoon++;
                     raccoonGame.objects[ind].x = 0;
                     raccoonGame.objects[ind].y = 0;

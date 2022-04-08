@@ -1,10 +1,13 @@
-package object;
+package CollectableObject;
+
+import object.GeneralCollectableObject;
+import object.GeneralObject;
 
 import javax.imageio.ImageIO;
 import java.io.IOException;
 import java.util.Objects;
 
-public class ExitDoor extends GeneralObject {
+public class ExitDoor extends GeneralCollectableObject {
 
     public ExitDoor() {
         objectName = "ExitDoor";

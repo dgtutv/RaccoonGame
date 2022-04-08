@@ -1,7 +1,7 @@
 package block;
 
-import main.MapLoader;
 import main.RaccoonGame;
+import object.GeneralDrawableObject;
 import object.GeneralObject;
 
 import javax.imageio.ImageIO;
@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public class MapManager {
     RaccoonGame raccoonGame;
-    public static GeneralObject[] blocks;
+    public static GeneralDrawableObject[] blocks;
     public int[][] mapBlockArr;
 
     /**
@@ -22,7 +22,7 @@ public class MapManager {
     public MapManager(RaccoonGame raccoonGame) {
         this.raccoonGame = raccoonGame;
 
-        blocks = new GeneralObject[11]; //storage for different block images
+        blocks = new GeneralDrawableObject[11]; //storage for different block images
         mapBlockArr = new int[raccoonGame.windowCol][raccoonGame.windowRow];
 
     }
@@ -34,7 +34,7 @@ public class MapManager {
     public void getBlockImage() {
         try {
             for(int i=0; i<11; i++){
-                blocks[i] = new GeneralObject();
+                blocks[i] = new GeneralDrawableObject();
             }
             blocks[0].Image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wood_floor.png")));
             blocks[1].Image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wall_top.png")));

@@ -1,4 +1,7 @@
-package object;
+package CollectableObject;
+
+import object.GeneralCollectableObject;
+import object.GeneralObject;
 
 import javax.imageio.ImageIO;
 import java.io.IOException;
@@ -7,7 +10,7 @@ import java.util.Objects;
 /**
  * Our main collectible: garbage.
  */
-public class Garbage extends GeneralObject {
+public class Garbage extends GeneralCollectableObject {
 
     public Garbage() {
         objectName = "Garbage";
