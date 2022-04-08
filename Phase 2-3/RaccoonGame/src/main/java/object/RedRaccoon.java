@@ -22,7 +22,7 @@ public class RedRaccoon extends GeneralObject {
     public RedRaccoon() {
         objectName = "RedRaccoon";
         try {
-            objectImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/items/raccoon_red_dress.png")));
+            Image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/items/raccoon_red_dress.png")));
             objectImage2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/items/raccoon_red_dress_flash.png")));
         }
         catch(IOException e) {
@@ -89,7 +89,7 @@ public class RedRaccoon extends GeneralObject {
     public void spawnRedRaccoon(Graphics2D graphics, RaccoonGame raccoonGame) {
         //flip between drawing regular and "flash" red raccoon every 5/6 ths of a second
         if(timer%100 > 0 && timer%100 < 50) {
-            graphics.drawImage(objectImage, this.x, this.y, raccoonGame.blockSize, raccoonGame.blockSize, null);
+            graphics.drawImage(Image, this.x, this.y, raccoonGame.blockSize, raccoonGame.blockSize, null);
         }
         else {
             graphics.drawImage(objectImage2, this.x, this.y, raccoonGame.blockSize, raccoonGame.blockSize, null);

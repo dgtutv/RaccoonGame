@@ -2,6 +2,7 @@ package block;
 
 import main.MapLoader;
 import main.RaccoonGame;
+import object.GeneralObject;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -10,8 +11,7 @@ import java.util.Objects;
 
 public class MapManager {
     RaccoonGame raccoonGame;
-    MapLoader loadMap;
-    public static MapBlock[] blocks;
+    public static GeneralObject[] blocks;
     public int[][] mapBlockArr;
 
     /**
@@ -22,7 +22,7 @@ public class MapManager {
     public MapManager(RaccoonGame raccoonGame) {
         this.raccoonGame = raccoonGame;
 
-        blocks = new MapBlock[11]; //storage for different block images
+        blocks = new GeneralObject[11]; //storage for different block images
         mapBlockArr = new int[raccoonGame.windowCol][raccoonGame.windowRow];
 
     }
@@ -34,28 +34,28 @@ public class MapManager {
     public void getBlockImage() {
         try {
             for(int i=0; i<11; i++){
-                blocks[i] = new MapBlock();
+                blocks[i] = new GeneralObject();
             }
-            blocks[0].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wood_floor.png")));
-            blocks[1].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wall_top.png")));
+            blocks[0].Image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wood_floor.png")));
+            blocks[1].Image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wall_top.png")));
             blocks[1].collidable = true;
-            blocks[2].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wall.png")));
+            blocks[2].Image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wall.png")));
             blocks[2].collidable = true;
-            blocks[3].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/exit.png")));
+            blocks[3].Image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/exit.png")));
             blocks[3].collidable = true;
-            blocks[4].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wall_right.png")));
+            blocks[4].Image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wall_right.png")));
             blocks[4].collidable = true;
-            blocks[5].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wall_single.png")));
+            blocks[5].Image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/wall_single.png")));
             blocks[5].collidable = true;
-            blocks[6].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/chair.png")));
+            blocks[6].Image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/chair.png")));
             blocks[6].collidable = true;
-            blocks[7].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/vending_top.png")));
+            blocks[7].Image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/vending_top.png")));
             blocks[7].collidable = true;
-            blocks[8].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/vending_bottom.png")));
+            blocks[8].Image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/vending_bottom.png")));
             blocks[8].collidable = true;
-            blocks[9].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/table_left.png")));
+            blocks[9].Image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/table_left.png")));
             blocks[9].collidable = true;
-            blocks[10].blockImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/table_right.png")));
+            blocks[10].Image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/blocks/table_right.png")));
             blocks[10].collidable = true;
         }
         catch(IOException e) {
@@ -81,10 +81,10 @@ public class MapManager {
 
             if(blockNum > 5) { //is table piece
                 //render floor before rendering the table piece so that there is a background
-                graphics.drawImage(blocks[0].blockImage, currentX, currentY, raccoonGame.blockSize, raccoonGame.blockSize, null);
+                graphics.drawImage(blocks[0].Image, currentX, currentY, raccoonGame.blockSize, raccoonGame.blockSize, null);
             }
 
-            graphics.drawImage(blocks[blockNum].blockImage, currentX, currentY, raccoonGame.blockSize, raccoonGame.blockSize, null);
+            graphics.drawImage(blocks[blockNum].Image, currentX, currentY, raccoonGame.blockSize, raccoonGame.blockSize, null);
             currentCol++;
             currentX += raccoonGame.blockSize;
 

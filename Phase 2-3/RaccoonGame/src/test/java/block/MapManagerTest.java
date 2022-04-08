@@ -1,11 +1,8 @@
 package block;
 
-import block.MapManager;
 import main.RaccoonGame;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.awt.*;
 
 public class MapManagerTest {
 
@@ -17,7 +14,7 @@ public class MapManagerTest {
 
         for(int i=0; i<mapManager.blocks.length; i++) {
             //check for null blockImage
-            Assert.assertNotEquals(mapManager.blocks[i].blockImage, null);
+            Assert.assertNotEquals(mapManager.blocks[i].Image, null);
             //check for collidable variable
             if(i == 0) {
                 Assert.assertFalse(mapManager.blocks[i].collidable);

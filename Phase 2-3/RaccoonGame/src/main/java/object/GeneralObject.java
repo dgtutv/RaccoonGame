@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
  */
 public class GeneralObject {
 
-    public BufferedImage objectImage;
+    public BufferedImage Image;
     public String objectName;
     public boolean collidable = false;
     public int x, y;
@@ -20,7 +20,7 @@ public class GeneralObject {
 
 
     public void drawObject(Graphics2D graphics, RaccoonGame raccoonGame) {
-        graphics.drawImage(objectImage, x, y, raccoonGame.blockSize, raccoonGame.blockSize, null);
+        graphics.drawImage(Image, x, y, raccoonGame.blockSize, raccoonGame.blockSize, null);
     }
 
 }

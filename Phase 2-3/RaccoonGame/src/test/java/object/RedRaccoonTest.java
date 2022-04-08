@@ -3,11 +3,6 @@ package object;
 import org.junit.Assert;
 import org.junit.Test;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.Objects;
-
 public class RedRaccoonTest {
 
     @Test
@@ -16,7 +11,7 @@ public class RedRaccoonTest {
 
 
         Assert.assertEquals("RedRaccoon", redRaccoon.objectName);
-        Assert.assertNotNull(redRaccoon.objectImage);
+        Assert.assertNotNull(redRaccoon.Image);
         Assert.assertFalse(redRaccoon.collidable);
     }
 }

@@ -9,7 +9,7 @@ public class ExitDoor extends GeneralObject {
     public ExitDoor() {
         objectName = "ExitDoor";
         try {
-            objectImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/items/empty.png")));
+            Image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/items/empty.png")));
         }
         catch(IOException e) {
             e.printStackTrace();
