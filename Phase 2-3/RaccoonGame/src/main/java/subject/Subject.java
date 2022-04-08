@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
  */
 public abstract class Subject {
     //Game Awareness
-    RaccoonGame raccoonGame;
+    public RaccoonGame raccoonGame;
     public boolean GameOver = false;
 
     //Speed and spacial awareness

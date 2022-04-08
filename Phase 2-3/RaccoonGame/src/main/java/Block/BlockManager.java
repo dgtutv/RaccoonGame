@@ -3,7 +3,7 @@ package Block;
 import main.RaccoonGame;
 import java.awt.*;
 
-public class MapManager {
+public class BlockManager {
     RaccoonGame raccoonGame;
     public int[][] mapBlockArr;
     public BlockList blockList;
@@ -13,7 +13,7 @@ public class MapManager {
      * Also initializes the ObjectHandler's MapBlock object array "blocks" to an initial size of 11 and
      * 2D integer array "mapBlockArr" to a size of windowCol*windowRow.
      */
-    public MapManager(RaccoonGame raccoonGame) {
+    public BlockManager(RaccoonGame raccoonGame) {
         this.raccoonGame = raccoonGame;
         mapBlockArr = new int[raccoonGame.windowCol][raccoonGame.windowRow];
         blockList = new BlockList();

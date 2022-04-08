@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
+import Enemy.EnemyHandler;
 
 public class EnemyTest {
 

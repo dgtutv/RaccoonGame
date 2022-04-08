@@ -1,11 +1,13 @@
-package subject;
+package Enemy;
 
 import main.RaccoonGame;
 import object.Node;
+import subject.Enemy;
+import subject.Player;
 
 import java.util.*;
 
-import static subject.GraphMaker.mapNodeArr;
+import static Enemy.GraphMaker.mapNodeArr;
 
 public class TreeMaker {
     //Some needed variables
@@ -19,7 +21,7 @@ public class TreeMaker {
     public List<Node> tree;
 
     //Default constructor
-    TreeMaker(Player player, Enemy enemy){
+    public TreeMaker(Player player, Enemy enemy){
         //variable initialization from input
         this.player = player;
         this.enemy = enemy;

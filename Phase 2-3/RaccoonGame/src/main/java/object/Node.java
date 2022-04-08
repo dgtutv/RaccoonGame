@@ -1,7 +1,5 @@
 package object;
 
-import subject.GraphMaker;
-
 public class Node extends GeneralObject{
     //Additional variables that Node needs on top of what GeneralObject provides
     public boolean visited = false;

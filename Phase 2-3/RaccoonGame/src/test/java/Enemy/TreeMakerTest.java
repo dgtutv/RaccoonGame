@@ -1,4 +1,4 @@
-package subject;
+package Enemy;
 
 import junit.framework.TestCase;
 import main.RaccoonGame;

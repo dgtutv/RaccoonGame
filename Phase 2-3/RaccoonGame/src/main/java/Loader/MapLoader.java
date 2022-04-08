@@ -1,4 +1,6 @@
-package main;
+package Loader;
+
+import main.RaccoonGame;
 
 import java.io.BufferedReader;
 import java.io.InputStream;

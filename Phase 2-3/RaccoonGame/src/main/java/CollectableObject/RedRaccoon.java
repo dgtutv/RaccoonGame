@@ -2,7 +2,6 @@ package CollectableObject;
 
 import main.RaccoonGame;
 import object.GeneralCollectableObject;
-import object.GeneralObject;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -71,9 +70,9 @@ public class RedRaccoon extends GeneralCollectableObject {
         do {
             row = randomNumGenerator.nextInt(raccoonGame.windowCol);
             col = randomNumGenerator.nextInt(raccoonGame.windowRow);
-            spawnBlock = raccoonGame.mapManager.mapBlockArr[row][col];
+            spawnBlock = raccoonGame.blockManager.mapBlockArr[row][col];
         }
-        while(raccoonGame.mapManager.blockList.isCollidable(spawnBlock));
+        while(raccoonGame.blockManager.blockList.isCollidable(spawnBlock));
         this.x = row*raccoonGame.blockSize;
         this.y = col*raccoonGame.blockSize;
         this.collidableArea.width = raccoonGame.blockSize;

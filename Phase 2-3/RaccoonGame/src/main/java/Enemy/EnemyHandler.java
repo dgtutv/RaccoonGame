@@ -1,6 +1,8 @@
-package subject;
+package Enemy;
 
 import main.RaccoonGame;
+import subject.Enemy;
+import subject.Player;
 
 import java.util.ArrayList;
 import java.util.List;

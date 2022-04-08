@@ -56,7 +56,7 @@ public class Player extends Subject{
         this.keyH = keyH;
 
         //instantiate mapBlockArr
-        this.mapBlockArr = raccoonGame.mapManager.mapBlockArr;
+        this.mapBlockArr = raccoonGame.blockManager.mapBlockArr;
     }
 
     //Method called every update to check on the player's score
@@ -173,7 +173,7 @@ public class Player extends Subject{
                     //check if all rewards collected
                     if(collectedRewards >= raccoonGame.collectableObjectHandler.numRewards) {
                         //load secondary map with door
-                        raccoonGame.mapLoader.loadMap(raccoonGame.mapManager.mapBlockArr, "/map/raccoonGameMapEnd.txt");
+                        raccoonGame.mapLoader.loadMap(raccoonGame.blockManager.mapBlockArr, "/map/raccoonGameMapEnd.txt");
                         //play door sound
                         raccoonGame.sound.effect(5, raccoonGame.sound);
                     }

@@ -1,4 +1,4 @@
-package subject;
+package Enemy;
 
 import main.RaccoonGame;
 import org.junit.After;
