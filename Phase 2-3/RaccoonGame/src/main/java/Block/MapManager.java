@@ -36,10 +36,13 @@ public class MapManager {
 
             if(blockNum > 5) { //is table piece
                 //render floor before rendering the table piece so that there is a background
-                graphics.drawImage(blockList.getImage(0), currentX, currentY, raccoonGame.blockSize, raccoonGame.blockSize, null);
+                blockList.getObject(0).x = currentX;
+                blockList.getObject(0).y = currentY;
+                blockList.getObject(0).drawObject(graphics, raccoonGame);
             }
-
-            graphics.drawImage(blockList.getImage(blockNum), currentX, currentY, raccoonGame.blockSize, raccoonGame.blockSize, null);
+            blockList.getObject(blockNum).x = currentX;
+            blockList.getObject(blockNum).y = currentY;
+            blockList.getObject(blockNum).drawObject(graphics, raccoonGame);
             currentCol++;
             currentX += raccoonGame.blockSize;
 

@@ -1,5 +1,6 @@
 package Block;
 
+import object.GeneralCollectableObject;
 import object.GeneralDrawableObject;
 
 import javax.imageio.ImageIO;
@@ -46,6 +47,9 @@ public class BlockList{
         for(int i=0; i<max; i++){
             blocks[i] = new GeneralDrawableObject();
         }
+    }
+    protected GeneralDrawableObject getObject(int i){
+        return blocks[i];
     }
     public Image getImage(int i){
         return blocks[i].Image;
