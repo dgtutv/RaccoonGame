@@ -1,6 +1,8 @@
 package subject;
 
+import block.MapManager;
 import main.RaccoonGame;
+import object.Node;
 
 import java.util.ArrayList;
 
@@ -9,25 +11,6 @@ public class GraphMaker {
     static RaccoonGame raccoonGame;
     public int mapBlockArr[][];
     public static Node[][] mapNodeArr;
-
-    //Node class for a linked list-based map
-    public static class Node {
-        //general node stuff
-        public int x, y;
-        //graph node stuff
-        public boolean nonCollidable = false;
-        //tree node stuff
-        public ArrayList<Node> children;
-        public boolean visited = false;
-        public Node up, down, left, right = null;
-        public String direction = "";
-
-        //Constructor
-        Node(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-    }
 
     //constructor
     public GraphMaker(RaccoonGame raccoonGame) {
@@ -46,15 +29,9 @@ public class GraphMaker {
         for(int currentRow = 0; currentRow< raccoonGame.windowRow; currentRow++){
             for(int currentCol = 0; currentCol< raccoonGame.windowCol; currentCol++){
                 //Initialize node and add to array
-                Node currentNode = new Node(currentCol, currentRow);
+                Node currentNode = new Node(currentCol, currentRow, MapManager.blocks[mapBlockArr[currentCol][currentRow]].collidable);
                 mapNodeArr[currentCol][currentRow] = currentNode;
-                currentNode.x = currentCol;
-                currentNode.y = currentRow;
                 //if block is a 0 (i.e, not collidable), then set isZero to true. isZero is false by default
-                int blockNum = mapBlockArr[currentCol][currentRow];
-                if (blockNum == 0) {
-                    currentNode.nonCollidable = true;
-                }
             }
         }
     }
@@ -96,7 +73,7 @@ public class GraphMaker {
         for(int row = 0; row< raccoonGame.windowRow; row++){
             printString+="\n";
             for(int col = 0; col< raccoonGame.windowCol; col++){
-                if(mapNodeArr[col][row].nonCollidable){
+                if(!mapNodeArr[col][row].collidable){
                     printString+= "0 ";
                 } else {
                     printString+= "! ";

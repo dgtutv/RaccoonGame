@@ -11,7 +11,7 @@ import java.util.Objects;
 public class MapManager {
     RaccoonGame raccoonGame;
     MapLoader loadMap;
-    public MapBlock[] blocks;
+    public static MapBlock[] blocks;
     public int[][] mapBlockArr;
 
     /**

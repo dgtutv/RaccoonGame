@@ -2,6 +2,7 @@ package subject;
 
 import junit.framework.TestCase;
 import main.RaccoonGame;
+import object.Node;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
@@ -62,7 +63,7 @@ public class TreeMakerTest {
         raccoonGame = testFactory();
         try {
             for (int i = 0; i < raccoonGame.enemyHandler.EnemyList.size(); i++){
-                List<GraphMaker.Node> list = raccoonGame.enemyHandler.EnemyList.get(i).tree.update();
+                List<Node> list = raccoonGame.enemyHandler.EnemyList.get(i).tree.update();
                 Assert.assertNotEquals("", raccoonGame.enemyHandler.EnemyList.get(i).tree.print(list));
                 if(i==0){
                     Assert.assertEquals("(31 ,8)(31 ,9)(31 ,10)(31 ,11)(31 ,12)(31 ,13)(30 ,13)(29 ,13)(28 ,13)(27 ,13)(26 ,13)(25 ,13)(24 ,13)(23 ,13)(22 ,13)(21 ,13)(20 ,13)(19 ,13)(18 ,13)(17 ,13)(16 ,13)(15 ,13)(15 ,14)(15 ,15)(14 ,15)", raccoonGame.enemyHandler.EnemyList.get(i).tree.print(list));

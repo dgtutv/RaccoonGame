@@ -1,6 +1,7 @@
 package subject;
 
 import main.RaccoonGame;
+import object.Node;
 
 import java.util.*;
 
@@ -13,9 +14,9 @@ public class TreeMaker {
     int enemyBlockX, enemyBlockY, playerBlockX, playerBlockY;
     RaccoonGame raccoonGame;
     public GraphMaker graph;
-    public GraphMaker.Node root;
-    public GraphMaker.Node playerNode;
-    public List<GraphMaker.Node> tree;
+    public Node root;
+    public Node playerNode;
+    public List<Node> tree;
 
     //Default constructor
     TreeMaker(Player player, Enemy enemy){
@@ -27,7 +28,7 @@ public class TreeMaker {
     }
 
     //Update method called by enemy each update
-    public List<GraphMaker.Node> update(){
+    public List<Node> update(){
         //Get block locations of the enemy and player
         blockUpdate();
         //Initialize a new root for current position of the enemy
@@ -40,7 +41,7 @@ public class TreeMaker {
     }
 
     //Method to print the path found from the enemy to the player
-    public String print(List<GraphMaker.Node> path){
+    public String print(List<Node> path){
         String printString = "";
         for(int i=0; i<path.size(); i++){
             printString += "("+path.get(i).x+" ,"+path.get(i).y+")";
@@ -49,10 +50,10 @@ public class TreeMaker {
     }
 
     //BFS traversal for enemy pathing. Returns a root to the tree
-    private List<GraphMaker.Node> BFS() {
+    private List<Node> BFS() {
         //Make a queue for bfs and a list for path tracking
-        Queue<GraphMaker.Node> queue = new LinkedList<>();
-        List<GraphMaker.Node> path = new ArrayList<>();
+        Queue<Node> queue = new LinkedList<>();
+        List<Node> path = new ArrayList<>();
 
         //mark all nodes unvisited, and set their direction to ""
         for (int row = 0; row < raccoonGame.windowRow; row++) {
@@ -67,10 +68,10 @@ public class TreeMaker {
         root.visited = true;
 
         //Create a hashmap for tracking the node's parents
-        Map<GraphMaker.Node, GraphMaker.Node> parentMap = new HashMap<>();
+        Map<Node, Node> parentMap = new HashMap<>();
 
         //Initialize a current node, and note that the root's parent is null
-        GraphMaker.Node current = root;
+        Node current = root;
         parentMap.put(root, null);
 
         //Main BFS loop
@@ -85,7 +86,7 @@ public class TreeMaker {
             }
 
             //Make a list of nodes adjacent to current, and set each direction
-            ArrayList<GraphMaker.Node> adjacent = new ArrayList<>();
+            ArrayList<Node> adjacent = new ArrayList<>();
             adjacent.add(current.left);
             adjacent.add(current.right);
             adjacent.add(current.up);
@@ -96,9 +97,9 @@ public class TreeMaker {
             current.down.direction = "up";
 
             //Iterate through each neighbor checking both if theyre not visited and non-collidable
-            for (GraphMaker.Node neighbor : adjacent) {
+            for (Node neighbor : adjacent) {
                 //if so, note the parent of the neighbor and add the neighbor to the queue
-                if (!neighbor.visited && neighbor.nonCollidable) {
+                if (!neighbor.visited && !neighbor.collidable) {
                     queue.add(neighbor);
                     parentMap.put(neighbor, current);
                 }
@@ -106,7 +107,7 @@ public class TreeMaker {
         }
         //Once the loop is complete, we should end at playerNode
         //So, backtrack through it's parents, and record each parent in path
-        GraphMaker.Node currIter = current;
+        Node currIter = current;
         while (currIter != null) {
             path.add(0, currIter);
             currIter = parentMap.get(currIter);

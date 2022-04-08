@@ -1,6 +1,7 @@
 package subject;
 
 import main.RaccoonGame;
+import object.Node;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -28,7 +29,7 @@ public class Enemy extends Subject{
     boolean topRight;
     boolean bottomLeft;
     boolean bottomRight;
-    List<GraphMaker.Node> path;
+    List<Node> path;
     TreeMaker tree;
 
     public boolean collidable;
