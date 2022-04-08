@@ -1,6 +1,5 @@
 package subject;
 
-import main.KeyHandler;
 import main.RaccoonGame;
 import main.ThreadManager;
 import org.junit.After;
@@ -9,8 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
-import java.awt.event.*;
-import java.awt.image.BufferedImage;
 
 public class SubjectTest {
 

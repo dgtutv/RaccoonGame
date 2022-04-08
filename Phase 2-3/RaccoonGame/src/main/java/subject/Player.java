@@ -1,6 +1,6 @@
 package subject;
 
-import main.KeyHandler;
+import Handler.KeyHandler;
 import main.RaccoonGame;
 
 import javax.imageio.ImageIO;
@@ -71,7 +71,7 @@ public class Player extends Subject{
 
     //Custom method for updating the movement based off direction
     public void moveUpdate(){
-        //If the subject is moving, keep moving until centered in block
+        //If the subject is moving, keep moving until centered in Block
         if(moving) {
             switch (direction) {
                 case "up":
@@ -90,7 +90,7 @@ public class Player extends Subject{
             //Tracks how many pixels we've moved
             pixelCounter += speed;
 
-            //Once we've moved a whole block, player can be still (!moving) and reset pixelCounter
+            //Once we've moved a whole Block, player can be still (!moving) and reset pixelCounter
             if (pixelCounter == raccoonGame.blockSize) {
                 moving = false;
                 pixelCounter = 0;
@@ -171,7 +171,7 @@ public class Player extends Subject{
                     raccoonGame.objects[index] = null;
 
                     //check if all rewards collected
-                    if(collectedRewards >= raccoonGame.objectHandler.numRewards) {
+                    if(collectedRewards >= raccoonGame.collectableObjectHandler.numRewards) {
                         //load secondary map with door
                         raccoonGame.mapLoader.loadMap(raccoonGame.mapManager.mapBlockArr, "/map/raccoonGameMapEnd.txt");
                         //play door sound
@@ -193,7 +193,7 @@ public class Player extends Subject{
                     break;
                 case "ExitDoor":
                     //end the game if all rewards collected
-                    if(collectedRewards >= raccoonGame.objectHandler.numRewards) {
+                    if(collectedRewards >= raccoonGame.collectableObjectHandler.numRewards) {
                         //set hasEscaped (won) to true
                         hasEscaped = true;
                         //play winning sound

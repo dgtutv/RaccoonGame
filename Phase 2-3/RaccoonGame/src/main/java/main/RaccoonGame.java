@@ -1,13 +1,15 @@
 package main;
 
 import GUI.GUI;
-import block.MapManager;
+import Handler.CollectableObjectHandler;
+import Handler.CollisionHandler;
+import Handler.KeyHandler;
+import Block.MapManager;
 
 import javax.swing.*;
 import java.awt.*;
 
 import object.GeneralCollectableObject;
-import object.GeneralObject;
 import subject.EnemyHandler;
 import subject.GraphMaker;
 import subject.Player;
@@ -39,7 +41,7 @@ public class RaccoonGame extends JPanel implements Runnable{
     public MapLoader mapLoader;
     public Sound sound;
     public GeneralCollectableObject[] objects;
-    public ObjectHandler objectHandler;
+    public CollectableObjectHandler collectableObjectHandler;
     public MapManager mapManager;
     public GraphMaker graphMaker;
     public GUI gui;
@@ -110,13 +112,12 @@ public class RaccoonGame extends JPanel implements Runnable{
 
         //Initialize object array and object handler
         objects = new GeneralCollectableObject[windowCol*windowRow];
-        objectHandler = new ObjectHandler(this);
-        mapLoader.loadMap(objectHandler.mapItemArr, "/map/raccoonItemMap.txt");
-        objectHandler.spawnItems();
+        collectableObjectHandler = new CollectableObjectHandler(this);
+        mapLoader.loadMap(collectableObjectHandler.mapItemArr, "/map/raccoonItemMap.txt");
+        collectableObjectHandler.spawnItems();
 
         //initialize map/*
         mapManager = new MapManager(this);
-        mapManager.getBlockImage();
         mapLoader.loadMap(mapManager.mapBlockArr, "/map/raccoonGameMap.txt");
 
         //initialize graphMaker

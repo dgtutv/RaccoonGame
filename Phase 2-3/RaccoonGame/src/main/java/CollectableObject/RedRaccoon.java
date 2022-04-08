@@ -73,7 +73,7 @@ public class RedRaccoon extends GeneralCollectableObject {
             col = randomNumGenerator.nextInt(raccoonGame.windowRow);
             spawnBlock = raccoonGame.mapManager.mapBlockArr[row][col];
         }
-        while(raccoonGame.mapManager.blocks[spawnBlock].collidable);
+        while(raccoonGame.mapManager.blockList.isCollidable(spawnBlock));
         this.x = row*raccoonGame.blockSize;
         this.y = col*raccoonGame.blockSize;
         this.collidableArea.width = raccoonGame.blockSize;

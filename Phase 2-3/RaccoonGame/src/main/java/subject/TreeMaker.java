@@ -29,7 +29,7 @@ public class TreeMaker {
 
     //Update method called by enemy each update
     public List<Node> update(){
-        //Get block locations of the enemy and player
+        //Get Block locations of the enemy and player
         blockUpdate();
         //Initialize a new root for current position of the enemy
         root = GraphMaker.find(enemyBlockX, enemyBlockY);

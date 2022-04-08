@@ -73,7 +73,7 @@ public class RaccoonGameTest {
         Assert.assertNotNull(raccoonGame.collisionHandler);
         Assert.assertNotNull(raccoonGame.mapLoader);
         Assert.assertNotNull(raccoonGame.sound);
-        Assert.assertNotNull(raccoonGame.objectHandler);
+        Assert.assertNotNull(raccoonGame.collectableObjectHandler);
         Assert.assertNotNull(raccoonGame.mapManager);
         Assert.assertNotNull(raccoonGame.graphMaker);
         Assert.assertNotNull(raccoonGame.gui);

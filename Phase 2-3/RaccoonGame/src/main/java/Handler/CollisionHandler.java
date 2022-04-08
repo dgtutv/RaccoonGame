@@ -1,5 +1,6 @@
-package main;
+package Handler;
 
+import main.RaccoonGame;
 import subject.Subject;
 
 /**

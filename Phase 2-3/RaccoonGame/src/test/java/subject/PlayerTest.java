@@ -3,9 +3,6 @@ package subject;
 import Factory.CollectableObjectFactory;
 import main.RaccoonGame;
 import main.ThreadManager;
-import CollectableObject.Garbage;
-import CollectableObject.RedRaccoon;
-import CollectableObject.Trap;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -183,9 +180,9 @@ public class PlayerTest {
 
 
             robot = new Robot();
-            int objectsSize = raccoonGame.objectHandler.itemCount + 1;
+            int objectsSize = raccoonGame.collectableObjectHandler.itemCount + 1;
             raccoonGame.objects[objectsSize] = CollectableObjectFactory.createGarbage();
-            raccoonGame.objectHandler.numRewards++;
+            raccoonGame.collectableObjectHandler.numRewards++;
             raccoonGame.objects[objectsSize].x = raccoonGame.player.x + raccoonGame.blockSize;
             raccoonGame.objects[objectsSize].y = raccoonGame.player.y;
 
@@ -199,7 +196,7 @@ public class PlayerTest {
             objectsSize++;
 
             raccoonGame.objects[objectsSize] = CollectableObjectFactory.createTrap();
-            raccoonGame.objectHandler.numRewards++;
+            raccoonGame.collectableObjectHandler.numRewards++;
             raccoonGame.objects[objectsSize].x = raccoonGame.player.x - raccoonGame.blockSize;
             raccoonGame.objects[objectsSize].y = raccoonGame.player.y;
 
@@ -212,7 +209,7 @@ public class PlayerTest {
             objectsSize++;
 
             raccoonGame.objects[objectsSize] = CollectableObjectFactory.createRedRaccoon();
-            raccoonGame.objectHandler.numRewards++;
+            raccoonGame.collectableObjectHandler.numRewards++;
             raccoonGame.objects[objectsSize].x = raccoonGame.player.x + raccoonGame.blockSize;
             raccoonGame.objects[objectsSize].y = raccoonGame.player.y;
 

@@ -1,4 +1,6 @@
-package main;
+package Handler;
+
+import main.RaccoonGame;
 
 import javax.sound.midi.SysexMessage;
 import javax.swing.*;

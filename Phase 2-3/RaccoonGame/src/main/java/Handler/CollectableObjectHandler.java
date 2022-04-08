@@ -1,15 +1,12 @@
-package main;
+package Handler;
 
-import CollectableObject.ExitDoor;
-import CollectableObject.Garbage;
-import CollectableObject.RedRaccoon;
-import CollectableObject.Trap;
 import Factory.CollectableObjectFactory;
+import main.RaccoonGame;
 
 /**
  * Handler used to spawn items.
  */
-public class ObjectHandler {
+public class CollectableObjectHandler {
 
     RaccoonGame raccoonGame;
 
@@ -23,7 +20,7 @@ public class ObjectHandler {
     /**
      * Constructs a new ObjectHandler class and sets its raccoonGame attribute to the parameter passed.
      */
-    public ObjectHandler(RaccoonGame raccoonGame) {
+    public CollectableObjectHandler(RaccoonGame raccoonGame) {
         mapItemArr = new int[raccoonGame.windowCol][raccoonGame.windowRow];
         this.raccoonGame = raccoonGame;
     }

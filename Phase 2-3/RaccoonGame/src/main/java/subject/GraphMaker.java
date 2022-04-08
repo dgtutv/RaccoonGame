@@ -1,10 +1,8 @@
 package subject;
 
-import block.MapManager;
+import Block.MapManager;
 import main.RaccoonGame;
 import object.Node;
-
-import java.util.ArrayList;
 
 public class GraphMaker {
     //Needed variables
@@ -29,7 +27,7 @@ public class GraphMaker {
         for(int currentRow = 0; currentRow< raccoonGame.windowRow; currentRow++){
             for(int currentCol = 0; currentCol< raccoonGame.windowCol; currentCol++){
                 //Initialize node and add to array
-                Node currentNode = new Node(currentCol, currentRow, MapManager.blocks[mapBlockArr[currentCol][currentRow]].collidable);
+                Node currentNode = new Node(currentCol, currentRow, raccoonGame.mapManager.blockList.isCollidable(mapBlockArr[currentCol][currentRow]));
                 mapNodeArr[currentCol][currentRow] = currentNode;
                 //if block is a 0 (i.e, not collidable), then set isZero to true. isZero is false by default
             }

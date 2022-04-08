@@ -1,12 +1,6 @@
 package main;
 
-import main.CollisionHandler;
-import main.KeyHandler;
-import main.RaccoonGame;
 import org.junit.*;
-import subject.Player;
-
-import java.awt.event.WindowEvent;
 
 public class CollisionHandlerTest {
 
