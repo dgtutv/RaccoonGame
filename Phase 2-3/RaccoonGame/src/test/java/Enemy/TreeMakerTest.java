@@ -20,8 +20,8 @@ public class TreeMakerTest {
             raccoonGame.enemyHandler.EnemyList.get(i).speed = 0;
         }
         raccoonGame.gameState = raccoonGame.playState;
-        raccoonGame.player.x = 476;
-        raccoonGame.player.y = 480;
+        raccoonGame.player.setX(476);
+        raccoonGame.player.setY(480);
         return  raccoonGame;
     }
 
@@ -48,10 +48,10 @@ public class TreeMakerTest {
         raccoonGame = testFactory();
         for (int i = 0; i < raccoonGame.enemyHandler.EnemyList.size(); i++) {
             raccoonGame.enemyHandler.EnemyList.get(1).path = raccoonGame.enemyHandler.EnemyList.get(i).tree.update();
-            Assert.assertEquals(raccoonGame.enemyHandler.EnemyList.get(i).x / raccoonGame.blockSize, raccoonGame.enemyHandler.EnemyList.get(i).tree.root.x);
-            Assert.assertEquals(raccoonGame.enemyHandler.EnemyList.get(i).y / raccoonGame.blockSize, raccoonGame.enemyHandler.EnemyList.get(i).tree.root.y);
-            Assert.assertEquals(raccoonGame.enemyHandler.player.x / raccoonGame.blockSize, raccoonGame.enemyHandler.EnemyList.get(i).tree.playerNode.x);
-            Assert.assertEquals(raccoonGame.enemyHandler.player.y / raccoonGame.blockSize, raccoonGame.enemyHandler.EnemyList.get(i).tree.playerNode.y);
+            Assert.assertEquals(raccoonGame.enemyHandler.EnemyList.get(i).getX() / raccoonGame.blockSize, raccoonGame.enemyHandler.EnemyList.get(i).tree.root.x);
+            Assert.assertEquals(raccoonGame.enemyHandler.EnemyList.get(i).getY() / raccoonGame.blockSize, raccoonGame.enemyHandler.EnemyList.get(i).tree.root.y);
+            Assert.assertEquals(raccoonGame.enemyHandler.player.getX() / raccoonGame.blockSize, raccoonGame.enemyHandler.EnemyList.get(i).tree.playerNode.x);
+            Assert.assertEquals(raccoonGame.enemyHandler.player.getY() / raccoonGame.blockSize, raccoonGame.enemyHandler.EnemyList.get(i).tree.playerNode.y);
             Assert.assertNotNull(raccoonGame.enemyHandler.EnemyList.get(i).tree.root);
             Assert.assertNotNull(raccoonGame.enemyHandler.EnemyList.get(i).tree.playerNode);
             Assert.assertNotNull(raccoonGame.enemyHandler.EnemyList.get(i).tree.tree);
@@ -94,10 +94,10 @@ public class TreeMakerTest {
         try{
             for(int i = 0; i < raccoonGame.enemyHandler.EnemyList.size(); i++){
                 raccoonGame.enemyHandler.EnemyList.get(i).path = raccoonGame.enemyHandler.EnemyList.get(i).tree.update();
-                Assert.assertEquals(raccoonGame.enemyHandler.EnemyList.get(i).tree.playerBlockX, raccoonGame.player.x / raccoonGame.blockSize);
-                Assert.assertEquals(raccoonGame.enemyHandler.EnemyList.get(i).tree.playerBlockY, raccoonGame.player.y / raccoonGame.blockSize);
-                Assert.assertEquals(raccoonGame.enemyHandler.EnemyList.get(i).tree.enemyBlockX, raccoonGame.enemyHandler.EnemyList.get(i).x / raccoonGame.blockSize);
-                Assert.assertEquals(raccoonGame.enemyHandler.EnemyList.get(i).tree.enemyBlockY, raccoonGame.enemyHandler.EnemyList.get(i).y / raccoonGame.blockSize);
+                Assert.assertEquals(raccoonGame.enemyHandler.EnemyList.get(i).tree.playerBlockX, raccoonGame.player.getX() / raccoonGame.blockSize);
+                Assert.assertEquals(raccoonGame.enemyHandler.EnemyList.get(i).tree.playerBlockY, raccoonGame.player.getY() / raccoonGame.blockSize);
+                Assert.assertEquals(raccoonGame.enemyHandler.EnemyList.get(i).tree.enemyBlockX, raccoonGame.enemyHandler.EnemyList.get(i).getX() / raccoonGame.blockSize);
+                Assert.assertEquals(raccoonGame.enemyHandler.EnemyList.get(i).tree.enemyBlockY, raccoonGame.enemyHandler.EnemyList.get(i).getY() / raccoonGame.blockSize);
             }
         }
         catch (Exception e){

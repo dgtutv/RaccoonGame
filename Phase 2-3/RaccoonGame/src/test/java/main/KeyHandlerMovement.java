@@ -31,40 +31,40 @@ public class KeyHandlerMovement {
             e.printStackTrace();
         }
 
-        int originalX = raccoonGame.player.x;
-        int originalY = raccoonGame.player.y;
+        int originalX = raccoonGame.player.getX();
+        int originalY = raccoonGame.player.getY();
 
         robot.keyPress(KeyEvent.VK_S);
         robot.keyRelease(KeyEvent.VK_S);
         robot.delay(500);
-        Assert.assertEquals(originalY += raccoonGame.blockSize, raccoonGame.player.y);
-        Assert.assertEquals(originalX, raccoonGame.player.x);
-        raccoonGame.player.x = originalX;
-        raccoonGame.player.y = originalY;
+        Assert.assertEquals(originalY += raccoonGame.blockSize, raccoonGame.player.getY());
+        Assert.assertEquals(originalX, raccoonGame.player.getX());
+        raccoonGame.player.setX(originalX);
+        raccoonGame.player.setY(originalY);
 
         robot.keyPress(KeyEvent.VK_D);
         robot.keyRelease(KeyEvent.VK_D);
         robot.delay(500);
-        Assert.assertEquals(originalX += raccoonGame.blockSize, raccoonGame.player.x);
-        Assert.assertEquals(originalY, raccoonGame.player.y);
-        raccoonGame.player.x = originalX;
-        raccoonGame.player.y = originalY;
+        Assert.assertEquals(originalX += raccoonGame.blockSize, raccoonGame.player.getX());
+        Assert.assertEquals(originalY, raccoonGame.player.getY());
+        raccoonGame.player.setX(originalX);
+        raccoonGame.player.setY(originalY);
 
         robot.keyPress(KeyEvent.VK_W);
         robot.keyRelease(KeyEvent.VK_W);
         robot.delay(500);
-        Assert.assertEquals(originalY -= raccoonGame.blockSize, raccoonGame.player.y);
-        Assert.assertEquals(originalX, raccoonGame.player.x);
-        raccoonGame.player.x = originalX;
-        raccoonGame.player.y = originalY;
+        Assert.assertEquals(originalY -= raccoonGame.blockSize, raccoonGame.player.getY());
+        Assert.assertEquals(originalX, raccoonGame.player.getX());
+        raccoonGame.player.setX(originalX);
+        raccoonGame.player.setY(originalY);
 
         robot.keyPress(KeyEvent.VK_A);
         robot.keyRelease(KeyEvent.VK_A);
         robot.delay(500);
-        Assert.assertEquals(originalX -= raccoonGame.blockSize, raccoonGame.player.x);
-        Assert.assertEquals(originalY, raccoonGame.player.y);
-        raccoonGame.player.x = originalX;
-        raccoonGame.player.y = originalY;
+        Assert.assertEquals(originalX -= raccoonGame.blockSize, raccoonGame.player.getX());
+        Assert.assertEquals(originalY, raccoonGame.player.getY());
+        raccoonGame.player.setX(originalX);
+        raccoonGame.player.setY(originalY);
 
         robot.keyPress(KeyEvent.VK_ESCAPE);
         robot.delay(100);

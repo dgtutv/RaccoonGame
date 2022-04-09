@@ -23,8 +23,8 @@ public class CollisionHandlerTest {
     public void isObject() {
 
         //Change player position an object
-        raccoonGame.player.x = 1*raccoonGame.blockSize;
-        raccoonGame.player.y = 10*raccoonGame.blockSize;
+        raccoonGame.player.setX(1*raccoonGame.blockSize);
+        raccoonGame.player.setY(10*raccoonGame.blockSize);
         Assert.assertNotEquals(999, raccoonGame.collisionHandler.checkObject(raccoonGame.player, true));
     }
 
@@ -39,8 +39,8 @@ public class CollisionHandlerTest {
     public void isEnemy() {
 
         //Change player position an enemy
-        raccoonGame.player.x = 17*raccoonGame.blockSize;
-        raccoonGame.player.y = 11*raccoonGame.blockSize;
+        raccoonGame.player.setX(17*raccoonGame.blockSize);
+        raccoonGame.player.setY(11*raccoonGame.blockSize);
         Assert.assertTrue(raccoonGame.collisionHandler.checkEnemy(raccoonGame.player, true));
     }
 

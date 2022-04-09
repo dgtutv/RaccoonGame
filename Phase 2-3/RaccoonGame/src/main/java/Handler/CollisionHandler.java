@@ -93,8 +93,8 @@ public class CollisionHandler {
                 subject.collidableArea.y = subject.getY() + subject.collidableArea.y;
 
                 //find item/objects position
-                raccoonGame.enemyHandler.EnemyList.get(i).collidableArea.x = raccoonGame.enemyHandler.EnemyList.get(i).x + raccoonGame.enemyHandler.EnemyList.get(i).collidableArea.x;
-                raccoonGame.enemyHandler.EnemyList.get(i).collidableArea.y = raccoonGame.enemyHandler.EnemyList.get(i).y + raccoonGame.enemyHandler.EnemyList.get(i).collidableArea.y;
+                raccoonGame.enemyHandler.EnemyList.get(i).collidableArea.x += raccoonGame.enemyHandler.EnemyList.get(i).getX();
+                raccoonGame.enemyHandler.EnemyList.get(i).collidableArea.y += raccoonGame.enemyHandler.EnemyList.get(i).getY();
 
                 //check for overlap
                 if (subject.direction == "up" || subject.direction == "down" || subject.direction == "left" || subject.direction == "right") {

@@ -14,7 +14,7 @@ public abstract class Subject {
     public boolean GameOver = false;
 
     //Speed and spacial awareness
-    public int x, y;
+    protected int x, y;
     public int speed;
     boolean moving = false;      //track if the player is moving or not
     int pixelCounter = 0;       //track the amount of pixels a subject has travelled between blocks
