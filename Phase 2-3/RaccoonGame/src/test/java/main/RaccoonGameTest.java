@@ -27,7 +27,7 @@ public class RaccoonGameTest {
     public void gameOverTest() throws InterruptedException {
         raccoonGame.gameState = raccoonGame.playState;
         int playerPrevScore = raccoonGame.player.score;
-        raccoonGame.player.GameOver = true;
+        raccoonGame.player.gameOver = true;
         raccoonGame.update();
 
 

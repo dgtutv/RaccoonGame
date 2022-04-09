@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
 public abstract class Subject {
     //Game Awareness
     public RaccoonGame raccoonGame;
-    public boolean GameOver = false;
+    public boolean gameOver = false;
 
     //Speed and spacial awareness
     protected int x, y;
@@ -24,9 +24,9 @@ public abstract class Subject {
     public String direction;
 
     //Animation variables
-    public int spriteCounter = 0;
-    public int spriteNum = 1;
-    public int animSpeed = 12;  //speed of frame switching
+    protected int spriteCounter = 0;
+    protected int spriteNum = 1;
+    protected int animSpeed = 12;  //speed of frame switching
 
 
 
@@ -88,7 +88,7 @@ public abstract class Subject {
     //Subject Movement
     public void update(){
         customUpdate();
-        if(GameOver) return;
+        if(gameOver) return;
         directionUpdate();
 
         moveUpdate();

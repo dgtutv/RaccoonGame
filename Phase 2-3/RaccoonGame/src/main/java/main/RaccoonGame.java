@@ -231,7 +231,7 @@ public class RaccoonGame extends JPanel implements Runnable{
             gui.update((player.score%10), (player.score/10)%10, (player.score/100)%10);
 
             //End the game if game over, add a game over screen here in future
-            if(player.GameOver){
+            if(player.gameOver){
                 player.score += player.reward;
                 gameState = endState;
 

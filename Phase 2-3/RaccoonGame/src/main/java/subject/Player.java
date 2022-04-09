@@ -65,7 +65,7 @@ public class Player extends Subject{
         //If player should be dead
         timerUpdate(60, 1);
         if(score <= 0){
-            GameOver = true;
+            gameOver = true;
         }
     }
 
@@ -114,7 +114,7 @@ public class Player extends Subject{
         //check enemy collision, if true end game
         if(raccoonGame.collisionHandler.checkEnemy(this, true)) {
 
-            GameOver = true;
+            gameOver = true;
         }
         //If and only if the player is still, accept key-presses, then set moving to true
         if(!moving){
@@ -199,7 +199,7 @@ public class Player extends Subject{
                         //play winning sound
                         raccoonGame.sound.stop(raccoonGame.sound);
                         raccoonGame.sound.effect(6, raccoonGame.sound);
-                        GameOver = true;
+                        gameOver = true;
                     }
                     break;
                 case "RedRaccoon":

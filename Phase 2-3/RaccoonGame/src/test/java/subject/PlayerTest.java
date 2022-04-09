@@ -51,7 +51,7 @@ public class PlayerTest {
 
             raccoonGame.player.score = -10;
             threadManager.doTick(30, raccoonGame);
-            Assert.assertTrue(raccoonGame.player.GameOver);
+            Assert.assertTrue(raccoonGame.player.gameOver);
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -147,7 +147,7 @@ public class PlayerTest {
             raccoonGame.enemyHandler.EnemyList.add(new Enemy(raccoonGame, raccoonGame.player.x, raccoonGame.player.y, raccoonGame.player));
 
             threadManager.doTick(30, raccoonGame);
-            Assert.assertTrue(raccoonGame.player.GameOver);
+            Assert.assertTrue(raccoonGame.player.gameOver);
 
 //            int objectsSize = raccoonGame.objects.length;
 //            raccoonGame.objects[objectsSize] = new Garbage();
