@@ -140,32 +140,32 @@ public class Enemy extends Subject{
         //check if collision is on
         if(moving) {
             //Move towards the target
-            if (getX() < targetX) {
-                if (targetX - getX() < speed) {
-                    setX(targetX);
+            if (x < targetX) {
+                if (targetX - x < speed) {
+                    x = targetX;
                 } else {
-                    setX(getX() + speed);
+                    x += speed;
                 }
             }
-            else if (getY() < targetY) {
-                if (targetY - getY() < speed) {
-                    setY(targetY);
+            else if (y < targetY) {
+                if (targetY - y < speed) {
+                    y = targetY;
                 } else {
-                    setY(getY() + speed);
+                    y += speed;
                 }
             }
-            else if (getX() > targetX) {
-                if (getX() - targetX < speed) {
-                    setX(-targetX);
+            else if (x > targetX) {
+                if (x - targetX < speed) {
+                    x = -targetX;
                 } else {
-                    setX(getX() - speed);
+                    x -= speed;
                 }
             }
-            else if (getY() > targetY) {
-                if (getY() - targetY < speed) {
-                    setY(-targetY);
+            else if (y > targetY) {
+                if (y - targetY < speed) {
+                    y = -targetY;
                 } else {
-                    setY(getY() - speed);
+                    y -= speed;
                 }
             }
             //Tracks how many pixels we've moved
@@ -183,7 +183,7 @@ public class Enemy extends Subject{
     private boolean rangeCheck(){
         //use pythagorean theorem to get the distance of a line to the player, then compare to range * blocksize
         //this in turn calculates if a player is within a range given in blocks to the enemy
-        return (pow((player.getX() - getX()), 2) + pow((player.getY() - getY()), 2) <=
+        return (pow((player.getX() - x), 2) + pow((player.getY() - y), 2) <=
                 pow(range * raccoonGame.blockSize, 2));
 
     }
@@ -209,6 +209,6 @@ public class Enemy extends Subject{
         else if(spriteNum == 2){
             frame = moving2;
         }
-        g.drawImage(frame, getX(), getY(), raccoonGame.blockSize, raccoonGame.blockSize, null);       //Image Observer
+        g.drawImage(frame, x, y, raccoonGame.blockSize, raccoonGame.blockSize, null);       //Image Observer
     }
 }
