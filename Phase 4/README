@@ -1,0 +1,10 @@
+To build our project with maven:
+    (i) command line: "mvn clean package"
+    (ii) IDE: In intellij, click maven on the right side of the screen, then select "Lifecycle". Then click clean, and then click compile
+    For both methods, wait for the test to finish before executing ANY keypresses
+To test our project with maven:
+    (i) command line: mvn test
+    (ii) IDE: In intellij, click maven on the right side of the screen, then select "Lifecycle". Then click test
+    For both methods, wait for the test to finish before executing ANY keypresses
+To run the jar file packaged by maven, direct to RaccoonGame\target and double click "RaccoonGame-1.0-SNAPSHOT.jar"
+In order to execute this jar file you must have Java 17 or newer and JDK downloaded and installed
