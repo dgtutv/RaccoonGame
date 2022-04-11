@@ -3,6 +3,9 @@ package Enemy;
 import main.RaccoonGame;
 import object.Node;
 
+/**
+ * GraphMaker uses a map ADT to generate as a graph-theory based graph, upon which the TreeMaker class acts
+ */
 public class GraphMaker {
     //Needed variables
     static RaccoonGame raccoonGame;

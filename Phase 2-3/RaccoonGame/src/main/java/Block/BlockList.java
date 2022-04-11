@@ -8,6 +8,9 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * Blocklist handles the list of all block types in the game, used by BlockManager
+ */
 public class BlockList{
     private GeneralDrawableObject[] blocks;
     public BlockList(){

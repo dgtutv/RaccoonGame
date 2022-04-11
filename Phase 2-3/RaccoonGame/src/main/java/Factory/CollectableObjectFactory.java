@@ -5,7 +5,9 @@ import CollectableObject.Garbage;
 import CollectableObject.RedRaccoon;
 import CollectableObject.Trap;
 
-//Abstract factory for objects
+/**
+ * Abstract factory for objects
+ */
 public class CollectableObjectFactory{
     public static ExitDoor createExitDoor(){
         return new ExitDoor();

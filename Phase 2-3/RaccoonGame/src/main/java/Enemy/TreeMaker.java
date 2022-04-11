@@ -9,6 +9,9 @@ import java.util.*;
 
 import static Enemy.GraphMaker.mapNodeArr;
 
+/**
+ * TreeMaker generates and handles enemy pathing by means of a Breadth First Search algorithm
+ */
 public class TreeMaker {
     //Some needed variables
     Player player;

@@ -1,5 +1,8 @@
 package object;
 
+/**
+ * Node type inherits from GeneralObject to be used as a graph theory node in GraphMaker
+ */
 public class Node extends GeneralObject{
     //Additional variables that Node needs on top of what GeneralObject provides
     public boolean visited = false;
