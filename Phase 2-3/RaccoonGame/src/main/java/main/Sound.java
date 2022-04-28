@@ -12,6 +12,7 @@ public class Sound {
 
     Clip clip;
     public URL[] soundPaths;
+    Clip music;
 
     /**
      * Constructs a new Sound class which initializes its URL array to a capacity of 9 and also
@@ -34,14 +35,16 @@ public class Sound {
      * Takes in an integer that corresponds to an index for soundPaths URL array, uses AudioInputStream
      * and Clip object to open this sound file.
      */
-    public void setSound(int i) {
+    public Clip setSound(int i) {
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundPaths[i]);
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
+            return clip;
         }
         catch(Exception e) {
             e.printStackTrace();
+            return null;
         }
     }
 
@@ -78,7 +81,7 @@ public class Sound {
      * is continually played (music).
      */
     public void music(int i, Sound sound) {
-        sound.setSound(i);
+        music = sound.setSound(i);
         sound.playSound();
         sound.loopSound();
     }
@@ -91,6 +94,13 @@ public class Sound {
     public void effect(int i, Sound sound) {
         sound.setSound(i);
         sound.playSound();
+    }
+
+    /**
+     * Stops the current game music being played
+     */
+    public void stopMusic(){
+        music.stop();
     }
 
     /**

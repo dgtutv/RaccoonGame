@@ -237,7 +237,7 @@ public class RaccoonGame extends JPanel implements Runnable{
 
                 //wait 3 seconds so that the death music finishes playing before going to the end screen
                 sound.flushSound();
-                sound.stop(sound);
+                sound.stopMusic();
                 sound.effect(7, sound);
                 Thread.sleep(3000);
 
@@ -270,11 +270,7 @@ public class RaccoonGame extends JPanel implements Runnable{
         //play state or pause state
         else {
             //draw map
-
             blockManager.drawMap(graphics);
-
-
-
 
             //draw items
             for(int i = 0; i < objects.length; i++) {
@@ -283,27 +279,16 @@ public class RaccoonGame extends JPanel implements Runnable{
                 }
             }
 
-
-
             //draw player
             player.draw(graphics);
-
 
             //draw enemies
             for(int i=0; i<enemyHandler.EnemyList.size(); i++){
                 enemyHandler.EnemyList.get(i).draw(graphics);
             }
-
-
-
-
             // Draw GUI
             gui.drawGUI(graphics);
-
         }
-
-
-
         //clean up
         graphics.dispose();
     }
