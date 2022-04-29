@@ -196,9 +196,6 @@ public class Player extends Subject{
                     if(collectedRewards >= raccoonGame.collectableObjectHandler.numRewards) {
                         //set hasEscaped (won) to true
                         hasEscaped = true;
-                        //play winning sound
-                        raccoonGame.sound.stop(raccoonGame.sound);
-                        raccoonGame.sound.effect(6, raccoonGame.sound);
                         gameOver = true;
                     }
                     break;

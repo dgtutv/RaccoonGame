@@ -232,17 +232,29 @@ public class RaccoonGame extends JPanel implements Runnable{
 
             //End the game if game over, add a game over screen here in future
             if(player.gameOver){
-                player.score += player.reward;
-                gameState = endState;
 
-                //wait 3 seconds so that the death music finishes playing before going to the end screen
+                //stop all the music and sound effects
                 sound.flushSound();
                 sound.stopMusic();
-                sound.effect(7, sound);
-                Thread.sleep(3000);
 
-                //play loss sound
-                sound.music(8, sound);
+                //occurs when the player wins
+                if(player.hasEscaped){
+                    //play winning sound
+                    sound.stopMusic();
+                    sound.effect(6, sound);
+                }
+                else{
+                    //wait 3 seconds so that the death music finishes playing before going to the end screen
+                    sound.effect(7, sound);
+                    Thread.sleep(3000);
+
+                    //play loss sound
+                    sound.music(8, sound);
+                }
+
+                //add up bonus rewards, and go to the end screen..
+                player.score += player.reward;
+                gameState = endState;
             }
         }
 
