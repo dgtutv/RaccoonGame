@@ -73,20 +73,19 @@ public class Player extends Subject{
     public void moveUpdate(){
         //If the subject is moving, keep moving until centered in Block
         if(moving) {
-            switch (direction) {
-                case "up":
-                    y -= speed;
-                    break;
-                case "down":
-                    y += speed;
-                    break;
-                case "left":
-                    x -= speed;
-                    break;
-                case "right":
-                    x += speed;
-                    break;
+            if(direction == "up"){
+                y -= speed;
             }
+            if(direction == "down"){
+                y += speed;
+            }
+            if(direction == "left"){
+                x -= speed;
+            }
+            if(direction == "right"){
+                x += speed;
+            }
+
             //Tracks how many pixels we've moved
             pixelCounter += speed;
 
